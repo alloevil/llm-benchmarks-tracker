@@ -6,7 +6,7 @@ All notable changes to the data model and tooling. Data additions are tracked in
 
 ### Added
 - 13 benchmarks reported in 2025–2026 frontier launches: GDPval, Aider Polyglot, AA-Omniscience, ScreenSpot-Pro, HealthBench, LMArena Text (Elo ledger), OSWorld 2.0 (supersedes OSWorld), Tool Decathlon, AndroidWorld, Cybench, AutomationBench, DeepSearchQA, BenchCAD. Terminal-Bench gains a `science` split with rows. 54 benchmarks / 250 sourced results.
-- `scripts/check_staleness.py` + weekly `staleness.yml`: compares ledgers against machine-readable official/independent sources (ARC Prize JSON, BFCL CSV, Epoch AI export, Aider leaderboard) and lists active benchmarks untouched for 45 days. Report only — opens/updates a "Weekly staleness report" issue; nothing is written to data automatically.
+- `scripts/sync_ledgers.py` + `sync.yml` (Mon/Thu): appends new top scores from allow-listed structured sources — ARC Prize leaderboard JSON, BFCL CSV, Epoch AI export (GPQA Diamond, FrontierMath, MATH L5), Aider polyglot YAML — with source-provided conditions (harness, effort, cost, run date) and honest `source.kind`. Writes are gated by schema validation, ascending-date and duplicate checks; README tables are regenerated and committed by the bot. Parse failures open a `tooling` issue instead of writing.
 
 ## 1.7.0 — 2026-09-04
 

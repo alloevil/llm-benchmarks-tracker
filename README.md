@@ -202,7 +202,7 @@ pytest                              # validator contract tests
 
 ## Contributing
 
-Data is curated, not scraped: a weekly job ([`staleness.yml`](.github/workflows/staleness.yml)) compares ledgers with official and independent sources and files an issue when a source shows a higher score or a benchmark goes quiet; a human verifies and adds the row. See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: edit or add a JSON file under `data/`, run `python scripts/validate.py && python scripts/build.py`, open a PR. CI rejects schema violations, dangling references, unsourced rows, and stale README tables.
+Two tiers of provenance. **Structured official/independent sources** (ARC Prize leaderboard JSON, BFCL CSV, Epoch AI data export, Aider leaderboard YAML) carry system, score and conditions in machine-readable form, so [`sync.yml`](.github/workflows/sync.yml) appends new top scores from them automatically twice a week (`scripts/sync_ledgers.py`; schema validation, append-only ordering and duplicate checks gate every write, and git history is the audit log). **Everything else** — vendor posts, aggregators, new benchmarks — is added by people. See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: edit or add a JSON file under `data/`, run `python scripts/validate.py && python scripts/build.py`, open a PR. CI rejects schema violations, dangling references, unsourced rows, and stale README tables.
 
 ## Citation
 

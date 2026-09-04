@@ -2,6 +2,10 @@
 
 Thanks for helping keep this accurate. The bar is simple: **every fact must be traceable to a URL you actually opened.**
 
+## What is automated
+
+`scripts/sync_ledgers.py` runs twice a week and appends a row when an allow-listed structured source (ARC Prize, BFCL, Epoch AI, Aider) shows a score above our current top for that benchmark. Rows it writes are marked `Added automatically by scripts/sync_ledgers.py` in `conditions.notes`. To add a source, write a fetcher returning `Row`s with honest `kind` and the conditions the source exposes; sources that only give a number (vendor blogs, aggregator tables) do not qualify.
+
 ## Adding or updating a result
 
 1. Open `data/results/<benchmark>.json` (create it if missing; `benchmark` must equal the file name and a file in `data/benchmarks/`).
