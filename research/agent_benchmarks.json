@@ -1,0 +1,138 @@
+{
+  "category": "agent_benchmarks",
+  "description": "AI Agent 评测基准，涵盖网页操作、计算机使用、工具调用、通用助手等",
+  "last_updated": "2026-09-04",
+  "benchmarks": [
+    {
+      "id": "gaia",
+      "name": "GAIA (General AI Assistants)",
+      "year": 2023,
+      "paper_url": "https://arxiv.org/abs/2311.12983",
+      "website": "https://huggingface.co/gaia-benchmark",
+      "description": "由Meta AI、Hugging Face、AutoGPT作者联合推出，466道真实世界助手任务题。三个难度级别，测试推理、多模态、网页浏览和工具使用。",
+      "current_sota": {
+        "score": "74.6%",
+        "model": "Claude Sonnet 4.5 (Princeton HAL)",
+        "date": "2026-04"
+      },
+      "top_alternates": [
+        {"model": "Claude Mythos Preview", "score": "52.3% (BenchLM)", "date": "2026-04"}
+      ],
+      "human_baseline": "~92%",
+      "status": "active",
+      "notes": "Anthropic模型包揽HAL排行榜前6名"
+    },
+    {
+      "id": "webarena",
+      "name": "WebArena",
+      "year": 2023,
+      "paper_url": "https://arxiv.org/abs/2307.13854",
+      "website": "https://webarena.dev",
+      "description": "真实网站环境（电商、论坛、GitLab等）中的Agent导航和操作任务。",
+      "current_sota": {
+        "score": "68.7%",
+        "model": "Claude Mythos Preview (BenchLM)",
+        "date": "2026-04"
+      },
+      "top_alternates": [
+        {"model": "GPT-5.4 Pro", "score": "65.8%", "date": "2026-04"},
+        {"model": "Claude Opus 4.6", "score": "64.5%", "date": "2026-04"}
+      ],
+      "human_baseline": "~78%",
+      "status": "active"
+    },
+    {
+      "id": "osworld",
+      "name": "OSWorld (Computer Use)",
+      "year": 2024,
+      "paper_url": "https://arxiv.org/abs/2404.07972",
+      "website": "https://os-world.github.io",
+      "description": "桌面自动化操作评测，Agent需操作真实操作系统完成任务。2026年Agent基准之一。",
+      "current_sota": {
+        "score": "75%",
+        "model": "GPT-5.4",
+        "date": "2026-05"
+      },
+      "human_baseline": "~72% (人类专家)",
+      "status": "active",
+      "notes": "GPT-5.4已超越人类专家水平"
+    },
+    {
+      "id": "agentbench",
+      "name": "AgentBench",
+      "year": 2023,
+      "paper_url": "https://arxiv.org/abs/2308.03688",
+      "website": "https://github.com/THUDM/AgentBench",
+      "description": "清华大学THUDM维护，8个环境（操作系统、数据库、知识图谱、数字卡牌游戏等）的Agent综合评测。",
+      "current_sota": {
+        "score": "综合分，各环境差异大",
+        "model": "各模型差异大",
+        "date": "2026"
+      },
+      "human_baseline": "因环境而异",
+      "status": "active",
+      "notes": "聚合分数会隐藏单环境失败"
+    },
+    {
+      "id": "tau-bench",
+      "name": "TAU-bench (Tool Augmented Understanding Benchmark)",
+      "year": 2024,
+      "paper_url": "https://arxiv.org/abs/2406.12522",
+      "website": "https://github.com/ServiceNow/tau-bench",
+      "description": "测试Agent在客服等场景下的工具增强理解能力，含航空公司和零售两个领域。",
+      "current_sota": {
+        "score": "待确认",
+        "model": "多个前沿模型",
+        "date": "2026"
+      },
+      "human_baseline": "未公布",
+      "status": "active",
+      "notes": "Papers with Code上有airline和retail两个子榜单"
+    },
+    {
+      "id": "browsecomp",
+      "name": "BrowseComp",
+      "year": 2024,
+      "paper_url": "https://arxiv.org/abs/2410.02841",
+      "website": null,
+      "description": "测试Agent的网页浏览能力，需要从网页中提取复杂信息。",
+      "current_sota": {
+        "score": "各模型差异大",
+        "model": "因模型而异",
+        "date": "2026"
+      },
+      "human_baseline": "未公布",
+      "status": "emerging_agent_benchmark"
+    },
+    {
+      "id": "fieldworkarena",
+      "name": "FieldWorkArena",
+      "year": 2025,
+      "paper_url": "https://arxiv.org/abs/2505.19662",
+      "website": null,
+      "description": "真实现场工作任务的Agentic AI基准测试，2025年新发布。",
+      "current_sota": {
+        "score": "待确认",
+        "model": "待确认",
+        "date": "2025-05"
+      },
+      "human_baseline": "未公布",
+      "status": "new_2025"
+    },
+    {
+      "id": "officeqa-pro",
+      "name": "OfficeQA Pro",
+      "year": 2025,
+      "paper_url": null,
+      "website": null,
+      "description": "知识工作任务评测（Excel、文档处理等），企业场景相关。",
+      "current_sota": {
+        "score": "未公开",
+        "model": "GPT-5.4 leads",
+        "date": "2026"
+      },
+      "human_baseline": "未公布",
+      "status": "active"
+    }
+  ]
+}
