@@ -6,6 +6,7 @@
   "released": "2025-04",
   "maintainer": "OpenAI (Starace et al.)",
   "description": "Agents must replicate 20 ICML 2024 Spotlight and Oral papers from scratch: understand the paper, write a codebase and run the experiments, in a container with GPU access. Grading uses author-co-developed hierarchical rubrics (8,316 gradable leaf nodes) applied by an LLM judge, giving a replication score from 0 to 100. The Code-Dev variant grades code only. It measures long-horizon research engineering, with a measured human (ML PhD) baseline for comparison.",
+  "description_zh": "智能体需从零复现 20 篇 ICML 2024 Spotlight 和 Oral 论文:理解论文、编写代码库并在可访问 GPU 的容器中运行实验。评分使用与作者共同制定的层级式评分表(8,316 个可评分叶节点),由 LLM 评判应用,给出 0 到 100 的复现分数。Code-Dev 变体仅对代码评分。它衡量长程研究工程能力,并有实测的人类(ML 博士)基线可供比较。",
   "domains": [
     "research",
     "ml-engineering",

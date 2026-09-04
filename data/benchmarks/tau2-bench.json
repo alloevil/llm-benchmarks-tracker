@@ -6,6 +6,7 @@
   "released": "2025-06",
   "maintainer": "Sierra Research (Barres et al.)",
   "description": "Successor to tau-bench that adds a telecom troubleshooting domain (114 tasks) in which both the agent and the simulated user have tools, so the agent must coordinate and guide the user rather than act alone; the verified retail (115) and airline (50) domains are retained. Tasks are generated compositionally from atomic sub-tasks and scored on final database state; pass^k measures reliability across repeated trials. Now maintained as tau^3-bench with a banking knowledge domain and a voice modality.",
+  "description_zh": "tau-bench 的继任者,新增电信故障排查领域(114 个任务),其中智能体和模拟用户都拥有工具,因此智能体必须协调并引导用户而非独自行动;保留了经核验的零售(115)和航空(50)领域。任务由原子子任务组合生成,并按最终数据库状态评分;pass^k 衡量重复试验间的可靠性。现以 tau^3-bench 形式维护,增加了银行知识领域和语音模态。",
   "domains": [
     "tool-use",
     "instruction-following",

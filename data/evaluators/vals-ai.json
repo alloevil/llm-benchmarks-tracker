@@ -5,6 +5,7 @@
   "maintainer": "Vals AI",
   "released": "2024-04",
   "description": "Independent evaluator that runs frontier models and agents on domain benchmarks for law, finance, tax, healthcare, coding and math. Most test sets are private and expert-built (Finance Agent, Legal Research Bench, TaxEval, Vibe Code Bench, Excel Modeling) so they cannot leak into training data; it also re-runs some public academic benchmarks. Scores report accuracy with standard errors plus cost and latency, and all evaluations are run in-house rather than collected from vendors, which is why its numbers often differ from lab-reported ones.",
+  "description_zh": "独立评估机构,在法律、金融、税务、医疗、编程和数学领域基准上运行前沿模型和智能体。多数测试集为私有且由专家构建(Finance Agent、Legal Research Bench、TaxEval、Vibe Code Bench、Excel Modeling),因此不会泄漏到训练数据中;它也重新运行部分公开学术基准。分数报告准确率及标准误,附成本和延迟,所有评估均在内部运行而非从供应商收集,这也是其数据常与实验室自报数据不同的原因。",
   "status": "active",
   "license": null,
   "benchmarks": [

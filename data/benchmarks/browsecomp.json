@@ -6,6 +6,7 @@
   "released": "2025-04",
   "maintainer": "OpenAI (Wei et al.)",
   "description": "1,266 human-written questions whose short, verifiable answers can only be found by persistently browsing many web pages and combining entangled constraints; human trainers verified that other people could not answer them within ten minutes and that then-current models failed. Scored as accuracy against the reference answer via a grader. It isolates deep web-research persistence rather than latent knowledge, so it separates browsing agents sharply.",
+  "description_zh": "1,266 个人工编写的问题,其简短可验证的答案只能通过持续浏览大量网页并组合相互交织的约束才能找到;人类训练者验证了他人无法在十分钟内作答,且当时的模型均告失败。通过评分器对照参考答案计算准确率。它隔离考察深度网络研究的持久性而非潜在知识,因此能显著区分各浏览智能体。",
   "domains": [
     "web",
     "tool-use",

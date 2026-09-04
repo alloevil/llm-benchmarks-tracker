@@ -6,6 +6,7 @@
   "released": "2024-06",
   "maintainer": "TIGER-Lab (University of Waterloo)",
   "description": "About 12,000 questions across 14 disciplines built from MMLU, STEM sites, TheoremQA and SciBench, with the answer set expanded from four to ten options and trivial or noisy items removed. Scored as accuracy with chain-of-thought (5-shot in the official setup). Reduces guessing headroom and prompt sensitivity, making it the standard replacement for MMLU when comparing knowledge and reasoning.",
+  "description_zh": "约 12,000 道题,覆盖 14 个学科,基于 MMLU、STEM 网站、TheoremQA 和 SciBench 构建,选项从四个扩展到十个,并移除了琐碎或有噪声的题目。以思维链下的准确率评分(官方设置为 5-shot)。减少了猜测空间和提示敏感性,成为比较知识与推理时 MMLU 的标准替代品。",
   "domains": [
     "knowledge",
     "reasoning"

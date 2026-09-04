@@ -6,6 +6,7 @@
   "released": "2025-03",
   "maintainer": "SWE-bench team (Khandpur, Lieret, Jimenez, Press, Yang)",
   "description": "300 curated issue-resolution tasks from 42 repositories in C, C++, Go, Java, JavaScript/TypeScript, PHP, Ruby and Rust, built with the SWE-bench collection pipeline and scored by fail-to-pass and pass-to-pass tests. It checks whether agentic coding ability transfers beyond Python, where scaffolds and models are heavily tuned to SWE-bench Verified.",
+  "description_zh": "300 个精选的问题修复任务,来自 C、C++、Go、Java、JavaScript/TypeScript、PHP、Ruby 和 Rust 的 42 个代码库,使用 SWE-bench 收集流水线构建,并以 fail-to-pass 和 pass-to-pass 测试评分。它检验智能体编程能力能否迁移到 Python 之外,因为脚手架和模型都针对 SWE-bench Verified 做了大量调优。",
   "domains": [
     "software-engineering",
     "code",

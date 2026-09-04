@@ -19,8 +19,9 @@ Thanks for helping keep this accurate. The bar is simple: **every fact must be t
 1. Create `data/benchmarks/<id>.json` following `schema/benchmark.schema.json`. Look at `swe-bench-verified.json` and `gpqa-diamond.json` as templates.
 2. Verify the arXiv id by opening `https://arxiv.org/abs/<id>` and checking the title. Wrong ids have been the most common error in this repo.
 3. Set `status` and `contamination_risk` per the definitions in the README, and link `supersedes` / `superseded_by` both ways.
-4. Add a results ledger if `status` is `active` (the validator requires it).
-5. Run `python scripts/validate.py && python scripts/build.py` and commit the regenerated `README.md`.
+4. Write `description_zh` (Simplified Chinese; keep names, metrics and numbers as in the English). If you cannot, say so in the PR and a maintainer will add it.
+5. Add a results ledger if `status` is `active` (the validator requires it).
+6. Run `python scripts/validate.py && python scripts/build.py` and commit the regenerated `README.md` and `README.zh-CN.md`.
 
 ## Adding an evaluator
 
@@ -33,7 +34,7 @@ Thanks for helping keep this accurate. The bar is simple: **every fact must be t
 - arXiv ids that resolve to a different paper.
 - Edits to existing ledger rows (open an issue if a row is wrong; we add a correcting row and note it).
 - Descriptions containing score claims (those live in the ledger).
-- Stale `README.md` tables: CI runs `python scripts/build.py --check`.
+- Stale `README.md` / `README.zh-CN.md` tables: CI runs `python scripts/build.py --check`.
 
 ## Local setup
 

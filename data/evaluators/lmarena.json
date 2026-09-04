@@ -5,6 +5,7 @@
   "maintainer": "Arena (LMArena, spun out of LMSYS / UC Berkeley)",
   "released": "2023-05",
   "description": "Crowdsourced human-preference leaderboard, originally Chatbot Arena. Visitors chat with two anonymous models side by side and vote; ratings are fit with a Bradley-Terry model (initially Elo) over millions of pairwise votes, with style-controlled variants that discount length and formatting. Because it measures what real users prefer rather than answer correctness, it complements accuracy benchmarks and is hard to contaminate, but it rewards persuasiveness and is sensitive to vote sourcing and model-sampling policies.",
+  "description_zh": "众包人类偏好排行榜,前身为 Chatbot Arena。访问者与两个匿名模型并排对话并投票;评分基于数百万次成对投票用 Bradley-Terry 模型(最初为 Elo)拟合,并提供折减长度和格式影响的风格控制变体。由于它衡量的是真实用户的偏好而非答案正确性,它与准确率基准互补且难以被污染,但会奖励说服力,并对投票来源和模型采样策略敏感。",
   "status": "active",
   "license": null,
   "benchmarks": [],

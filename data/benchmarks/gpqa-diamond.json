@@ -6,6 +6,7 @@
   "released": "2023-11",
   "maintainer": "NYU / Cohere / Anthropic (Rein et al.)",
   "description": "198 four-option multiple-choice questions in biology, physics and chemistry written by domain PhDs and validated so that experts agree while skilled non-experts with unrestricted web access fail. The Diamond subset keeps only questions both experts answered correctly and most non-experts missed. The standard frontier science-reasoning benchmark; noise floor is roughly plus or minus 3 points at n=198.",
+  "description_zh": "198 道生物、物理和化学领域的四选一多项选择题,由领域博士编写并经验证:专家意见一致,而可无限制访问网络的熟练非专家却会答错。Diamond 子集仅保留两位专家均答对且多数非专家答错的题目。是前沿科学推理的标准基准;在 n=198 时噪声下限约为正负 3 分。",
   "domains": ["science", "reasoning", "knowledge"],
   "metric": { "name": "accuracy", "unit": "percent", "higher_is_better": true },
   "task_count": 198,

@@ -6,6 +6,7 @@
   "released": "2019-07",
   "maintainer": "Allen Institute for AI (Sakaguchi et al.)",
   "description": "44,000 binary fill-in-the-blank pronoun-resolution problems inspired by the Winograd Schema Challenge, crowd-sourced and then debiased with the AfLite adversarial filter to remove word-association shortcuts. Scored as accuracy on the 1,267-item validation set (test labels are hidden). A long-running commonsense probe in pretraining evaluations; frontier models are within a few points of the 94% human figure.",
+  "description_zh": "44,000 个受 Winograd Schema Challenge 启发的二选一填空代词消解问题,众包构建后经 AfLite 对抗式过滤去偏,以消除词语关联捷径。以 1,267 项验证集上的准确率评分(测试集标签隐藏)。是预训练评估中长期使用的常识探针;前沿模型与 94% 的人类水平仅差几分。",
   "domains": [
     "commonsense",
     "reasoning"

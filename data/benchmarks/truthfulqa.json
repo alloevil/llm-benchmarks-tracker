@@ -6,6 +6,7 @@
   "released": "2021-09",
   "maintainer": "University of Oxford / OpenAI (Lin, Hilton, Evans)",
   "description": "817 questions across 38 categories (health, law, finance, politics, conspiracies) crafted so that some humans would answer falsely because of common misconceptions. Models are scored either on free-form generation (judged truthful and informative by a fine-tuned judge or human raters) or on multiple-choice variants MC1 and MC2 (probability mass on true answers). It exposed the 'inverse scaling' of imitative falsehoods and remains a reference point for factuality and sycophancy work, though the questions are widely trained on.",
+  "description_zh": "817 个问题,覆盖 38 个类别(健康、法律、金融、政治、阴谋论),精心设计使部分人类会因常见误解而答错。模型评分方式为自由生成(由微调评判模型或人类评分者判定真实且有信息量)或多项选择变体 MC1 和 MC2(真实答案上的概率质量)。它揭示了模仿性谬误的\"逆向缩放\",至今仍是事实性与迎合性研究的参考点,尽管题目已被广泛用于训练。",
   "domains": [
     "factuality",
     "safety"

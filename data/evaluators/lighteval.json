@@ -5,6 +5,7 @@
   "maintainer": "Hugging Face",
   "released": "2024-02",
   "description": "Hugging Face's evaluation toolkit, built by the team that ran the Open LLM Leaderboard. It supports 1000+ tasks across transformers, vLLM, SGLang, Nanotron and API endpoints, saves sample-level outputs for debugging, and since 2025 uses Inspect AI as its preferred execution backend. Scores are self-run by the user, with task configs (prompts, metrics, few-shot) versioned in the repo so numbers can be reproduced.",
+  "description_zh": "Hugging Face 的评估工具包,由运营 Open LLM Leaderboard 的团队构建。支持 1000 多个任务,覆盖 transformers、vLLM、SGLang、Nanotron 和 API 端点,保存样本级输出以便调试,并自 2025 年起以 Inspect AI 作为首选执行后端。分数由用户自行运行得出,任务配置(提示、指标、few-shot)在仓库中版本化,以便复现数据。",
   "status": "active",
   "license": "MIT",
   "benchmarks": [

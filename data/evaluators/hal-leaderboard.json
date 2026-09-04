@@ -5,6 +5,7 @@
   "maintainer": "Princeton University (SAgE team)",
   "released": "2025-02",
   "description": "Princeton's third-party, cost-aware leaderboard for AI agents. The HAL harness runs agents across benchmarks (GAIA, SWE-bench Verified Mini, tau-bench, CORE-Bench, USACO, AssistantBench, Online Mind2Web, ScienceAgentBench, SciCode) with identical orchestration, logging every model call and dollar spent so results are plotted on an accuracy-cost Pareto frontier. Traces are published encrypted. It shows how much scaffold choice and cost matter, which single-number lab reports hide; new-model updates paused in 2026 in favour of reliability work.",
+  "description_zh": "普林斯顿的第三方、成本感知 AI 智能体排行榜。HAL 框架以相同的编排在多个基准(GAIA、SWE-bench Verified Mini、tau-bench、CORE-Bench、USACO、AssistantBench、Online Mind2Web、ScienceAgentBench、SciCode)上运行智能体,记录每次模型调用和每一美元开销,并将结果绘制在准确率-成本帕累托前沿上。轨迹以加密形式发布。它显示了脚手架选择和成本的重要性,而实验室的单一数字报告掩盖了这一点;2026 年暂停新模型更新,转向可靠性工作。",
   "status": "active",
   "license": null,
   "benchmarks": [

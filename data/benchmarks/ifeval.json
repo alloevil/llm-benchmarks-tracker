@@ -6,6 +6,7 @@
   "released": "2023-11",
   "maintainer": "Google (Zhou et al.)",
   "description": "541 prompts each containing one or more of 25 types of verifiable instructions, such as 'write at least 400 words', 'respond in JSON', 'include the keyword X three times' or 'no commas'. Compliance is checked programmatically, giving prompt-level and instruction-level accuracy under strict and loose matching. Cheap, reproducible and free of LLM judges, it is the standard check that a chat model actually obeys formatting constraints.",
+  "description_zh": "541 个提示,每个包含 25 类可验证指令中的一种或多种,例如\"至少写 400 字\"、\"以 JSON 回复\"、\"包含关键词 X 三次\"或\"不使用逗号\"。合规性通过程序检查,给出严格与宽松匹配下的提示级和指令级准确率。低成本、可复现且不依赖 LLM 评判,是检验聊天模型是否真正遵守格式约束的标准。",
   "domains": [
     "instruction-following"
   ],

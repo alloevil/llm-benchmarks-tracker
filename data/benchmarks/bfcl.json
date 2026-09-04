@@ -6,6 +6,7 @@
   "released": "2024-02",
   "maintainer": "UC Berkeley Gorilla team (Patil, Mao et al.)",
   "description": "Evaluates how accurately a model produces function (tool) calls from natural-language requests. V1 introduced abstract-syntax-tree matching of single, multiple and parallel calls in Python, Java, JavaScript and REST; V2 added user-contributed live functions; V3 added multi-turn, multi-step and state-tracking scenarios; V4 added web-search and memory agentic tasks and format-sensitivity checks. The overall score is an unweighted average of sub-category accuracies, reported with cost and latency. The de-facto standard for tool-calling ability.",
+  "description_zh": "评估模型根据自然语言请求生成函数(工具)调用的准确度。V1 引入对 Python、Java、JavaScript 和 REST 中单个、多个及并行调用的抽象语法树匹配;V2 增加用户贡献的实时函数;V3 增加多轮、多步和状态跟踪场景;V4 增加网页搜索与记忆类智能体任务及格式敏感性检查。总分为各子类别准确率的无权重平均,并同时报告成本与延迟。是工具调用能力的事实标准。",
   "domains": [
     "tool-use"
   ],

@@ -6,6 +6,7 @@
   "released": "2019-11",
   "maintainer": "ARC Prize Foundation (created by Francois Chollet)",
   "description": "Grid-based visual puzzles: given a few input-output example pairs, the system must infer the transformation rule and produce the exact output grid for a new input. 400 public training and 400 public evaluation tasks plus 100-task semi-private and private sets; scored as the percentage of test outputs exactly correct within two attempts (pass@2). Built to measure skill acquisition on novel problems rather than memorized knowledge; it resisted LLM scaling until test-time reasoning arrived in late 2024.",
+  "description_zh": "基于网格的视觉谜题:给定少量输入-输出示例对,系统需推断变换规则并为新输入生成精确的输出网格。包含 400 个公开训练任务和 400 个公开评估任务,以及各 100 个任务的半私有和私有集;得分为两次尝试内(pass@2)完全正确的测试输出百分比。旨在衡量对新问题的技能获取而非记忆知识;在 2024 年底测试时推理出现之前,它一直抵御着 LLM 规模扩展。",
   "domains": [
     "reasoning"
   ],

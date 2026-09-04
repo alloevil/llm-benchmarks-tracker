@@ -5,6 +5,7 @@
   "maintainer": "ModelScope (Alibaba)",
   "released": "2024-04",
   "description": "ModelScope's one-command evaluation framework for LLMs, VLMs, embedding and AIGC models. It ships 100+ built-in benchmarks with pass@k style aggregation, an agent mode that runs benchmarks inside a multi-turn loop with Docker sandboxes, OpenCompass and VLMEvalKit backends, plus inference stress-testing and a results dashboard. Scores are self-run by the user; it is the default eval tool for Qwen and other ModelScope model releases.",
+  "description_zh": "ModelScope 面向 LLM、VLM、嵌入和 AIGC 模型的一键评估框架。内置 100 多个基准并支持 pass@k 式聚合,提供在多轮循环中配合 Docker 沙盒运行基准的智能体模式、OpenCompass 和 VLMEvalKit 后端,以及推理压力测试和结果看板。分数由用户自行运行得出;它是 Qwen 及其他 ModelScope 模型发布的默认评估工具。",
   "status": "active",
   "license": "Apache-2.0",
   "benchmarks": [

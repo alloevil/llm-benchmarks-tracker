@@ -6,6 +6,7 @@
   "released": "2024-08",
   "maintainer": "Princeton NLP / OpenAI (curation)",
   "description": "500 real GitHub issues from 12 Python repositories, filtered by human annotators to remove under-specified or untestable tasks. An agent receives the issue text and the repository, must produce a patch, and is scored by hidden FAIL_TO_PASS and PASS_TO_PASS tests. The de-facto standard for agentic coding; scores depend heavily on scaffold and step/cost limits.",
+  "description_zh": "500 个来自 12 个 Python 代码库的真实 GitHub issue,经人工标注者筛选以移除描述不足或无法测试的任务。智能体获得 issue 文本和代码库,需生成补丁,并以隐藏的 FAIL_TO_PASS 和 PASS_TO_PASS 测试评分。是智能体编程的事实标准;分数高度依赖脚手架及步数/成本限制。",
   "domains": ["software-engineering", "code", "tool-use"],
   "metric": { "name": "% resolved", "unit": "percent", "higher_is_better": true },
   "task_count": 500,

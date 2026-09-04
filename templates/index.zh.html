@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLM Benchmarks Tracker — {{N_MODEL}} 个模型基准与 {{N_AGENT}} 个 Agent 基准，每个分数都有来源</title>
+<meta name="description" content="{{N_BENCH}} 个 LLM 与 Agent 评测基准（SWE-bench、GPQA、HLE、ARC-AGI、OSWorld 等）的结构化目录：测什么、是否饱和、污染风险、{{N_RESULTS}} 条带来源的最高分（官方榜单 / 独立复现 / 厂商自报）。JSON Schema 校验，免费 JSON API。">
+<link rel="canonical" href="{{PAGE_URL}}">
+<link rel="alternate" hreflang="en" href="{{SITE}}/">
+<link rel="alternate" hreflang="zh-CN" href="{{SITE}}/zh/">
+<link rel="alternate" hreflang="x-default" href="{{SITE}}/">
+<link rel="alternate" type="application/json" href="{{BASE}}api/v1/index.json">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{PAGE_URL}}">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="LLM Benchmarks Tracker（中文）">
+<meta property="og:description" content="{{N_BENCH}} 个 LLM 与 Agent 基准、{{N_EVALUATORS}} 个评测方、{{N_RESULTS}} 条有来源的分数。每个数字都链接到发布处。">
+<meta property="og:image" content="{{SITE}}/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LLM Benchmarks Tracker（中文）">
+<meta name="twitter:description" content="{{N_BENCH}} 个 LLM 与 Agent 基准、{{N_EVALUATORS}} 个评测方、{{N_RESULTS}} 条有来源的分数。">
+<meta name="twitter:image" content="{{SITE}}/og.png">
+<script type="application/ld+json">{{JSON_LD}}</script>
+<link rel="stylesheet" href="{{BASE}}style.css">
+</head>
+<body>
+<header>
+  <h1>LLM Benchmarks Tracker</h1>
+  <p>一份有来源、经 schema 校验的目录，记录我们如何度量语言模型与 Agent。每个分数都链接到其发布处，并标明它是厂商自报、独立复现，还是来自官方榜单。</p>
+  <div class="stats">
+    <div class="stat"><b>{{N_MODEL}}</b><span>模型基准</span></div>
+    <div class="stat"><b>{{N_AGENT}}</b><span>Agent 基准</span></div>
+    <div class="stat"><b>{{N_EVALUATORS}}</b><span>评测方</span></div>
+    <div class="stat"><b>{{N_RESULTS}}</b><span>有来源的结果</span></div>
+  </div>
+</header>
+<nav>
+  <a href="#model">模型基准</a>
+  <a href="#agent">Agent 基准</a>
+  <a href="#evaluators">评测方</a>
+  <a href="#timeline">时间线</a>
+  <a href="{{BASE}}api/v1/index.json">JSON API</a>
+  <a href="https://github.com/alloevil/llm-benchmarks-tracker">GitHub</a>
+  {{LANG_SWITCH}}
+</nav>
+<main>
+  <div class="callout">
+    <strong>如何读分数。</strong>「最高分」是结果账本中的最佳一行，不是模型排名：各行的评测条件（工具、推理强度、scaffold、pass@k）不同，均逐条记录在 JSON 中。优先相信 <span class="src src-official-leaderboard">官方榜单</span> 与 <span class="src src-independent-evaluation">独立复现</span>，其次才是 <span class="src src-developer-report">厂商自报</span> 或 <span class="src src-aggregator">聚合站</span>。污染风险 high 表示测试集公开且静态。
+  </div>
+
+  <section id="model">
+    <h2>模型基准</h2>
+    <p class="lede">对模型本身做静态的「提示—回答」打分：知识、推理、数学、代码、事实性、长上下文。按发布时间倒序。</p>
+    <div class="wrap"><table>
+      <thead><tr><th>Benchmark</th><th>发布</th><th>领域</th><th>状态</th><th>污染风险</th><th>最高分</th><th>人类基线</th><th>账本</th></tr></thead>
+      <tbody>
+{{MODEL_ROWS}}
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="agent">
+    <h2>Agent 基准</h2>
+    <p class="lede">交互式环境：系统执行动作、调用工具，按任务完成度打分。分数受 scaffold 与预算的影响不亚于模型本身。按发布时间倒序。</p>
+    <div class="wrap"><table>
+      <thead><tr><th>Benchmark</th><th>发布</th><th>领域</th><th>状态</th><th>污染风险</th><th>最高分</th><th>人类基线</th><th>账本</th></tr></thead>
+      <tbody>
+{{AGENT_ROWS}}
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="evaluators">
+    <h2>评测方</h2>
+    <p class="lede">你自己运行的框架、基准维护者运营的榜单、独立复现模型的机构，以及转载已报告数字的聚合站。</p>
+    <div class="wrap"><table>
+      <thead><tr><th>评测方</th><th>类型</th><th>维护者</th><th>方法</th><th>状态</th></tr></thead>
+      <tbody>
+{{EVALUATOR_ROWS}}
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="timeline">
+    <h2>时间线</h2>
+    <p class="lede">所有被追踪的基准与评测方的发布年份。</p>
+    <div class="wrap" style="padding:8px 16px">
+{{TIMELINE}}
+    </div>
+    <div class="legend"><span class="pill tl-model">模型基准</span><span class="pill tl-agent">Agent 基准</span><span class="pill tl-evaluator">评测方</span></div>
+  </section>
+</main>
+<footer>
+  生成于 {{GENERATED}}，数据来自 <a href="https://github.com/alloevil/llm-benchmarks-tracker/tree/main/data">data/</a> · <a href="{{BASE}}api/v1/index.json">API</a> · <a href="{{BASE}}schema/benchmark.schema.json">schema</a> · MIT
+</footer>
+</body>
+</html>

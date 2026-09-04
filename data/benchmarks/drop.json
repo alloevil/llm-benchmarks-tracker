@@ -6,6 +6,7 @@
   "released": "2019-03",
   "maintainer": "Allen Institute for AI / UC Irvine (Dua et al.)",
   "description": "96,000 crowd-sourced, adversarially created reading-comprehension questions over Wikipedia paragraphs that require discrete operations such as addition, counting, sorting and date arithmetic, with span, number or date answers. Scored by exact match and a numerically-aware F1 (the headline metric), usually 3-shot on the 9,535-question dev set. Once a hard test of grounded numerical reasoning; frontier models now approach expert human F1.",
+  "description_zh": "96,000 个众包、对抗式构造的阅读理解问题,基于维基百科段落,需要加法、计数、排序和日期运算等离散操作,答案为文本片段、数字或日期。以精确匹配和数值感知的 F1(主要指标)评分,通常在 9,535 题的开发集上采用 3-shot。曾是有依据的数值推理的严苛测试;前沿模型如今已接近专家人类的 F1。",
   "domains": [
     "reasoning",
     "knowledge"

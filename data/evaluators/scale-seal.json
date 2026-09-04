@@ -5,6 +5,7 @@
   "maintainer": "Scale AI (SEAL Research Lab)",
   "released": "2024-05",
   "description": "Scale AI's expert-driven leaderboards. Most prompt sets are private and written by vetted domain experts, models are run by Scale, and answers are graded by experts or rubric-guided LLM judges with error bars; a model is normally only listed the first time its developer encounters the prompts. It also hosts official leaderboards for public benchmarks Scale co-authored such as Humanity's Last Exam and SWE-Bench Pro. Independent of the labs it ranks, though Scale is itself a data vendor to many of them.",
+  "description_zh": "Scale AI 的专家驱动排行榜。多数提示集为私有并由经审核的领域专家编写,模型由 Scale 运行,答案由专家或评分表引导的 LLM 评判打分并附误差线;模型通常仅在其开发者首次接触提示时上榜。它还托管 Scale 共同创作的公开基准(如 Humanity's Last Exam 和 SWE-Bench Pro)的官方排行榜。独立于其所排名的实验室,尽管 Scale 本身是其中许多实验室的数据供应商。",
   "status": "active",
   "license": null,
   "benchmarks": [

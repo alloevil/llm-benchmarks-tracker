@@ -6,6 +6,7 @@
   "released": "2024-06",
   "maintainer": "Sierra Research (Yao et al.)",
   "description": "Simulated customer-service conversations in retail (115 tasks) and airline (50 tasks) domains where the agent must talk to an LLM-simulated user, call database APIs and follow a written policy. A task passes only if the final database state matches the annotated goal; pass^k measures whether the same task succeeds in all k independent trials, exposing agent inconsistency. The reference benchmark for policy-following tool agents.",
+  "description_zh": "零售(115 个任务)和航空(50 个任务)领域的模拟客服对话,智能体需与 LLM 模拟的用户交谈、调用数据库 API 并遵守书面政策。仅当最终数据库状态与标注目标一致时任务才算通过;pass^k 衡量同一任务在全部 k 次独立试验中是否都成功,从而暴露智能体的不一致性。是遵循政策的工具智能体的参考基准。",
   "domains": [
     "tool-use",
     "instruction-following",

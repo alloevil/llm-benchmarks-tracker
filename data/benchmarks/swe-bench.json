@@ -6,6 +6,7 @@
   "released": "2023-10",
   "maintainer": "Princeton NLP / SWE-bench team (Jimenez et al.)",
   "description": "2,294 task instances built from real GitHub issues and their resolving pull requests across 12 popular Python repositories. Given the issue text and a repository snapshot, an agent must produce a patch; it is scored by running the PR's FAIL_TO_PASS and PASS_TO_PASS unit tests. The original agentic-coding benchmark and the template for the Verified, Lite, Multimodal, Multilingual and Pro descendants.",
+  "description_zh": "2,294 个任务实例,基于 12 个流行 Python 代码库中的真实 GitHub issue 及其对应的修复 pull request 构建。给定 issue 文本和代码库快照,智能体需生成补丁;通过运行该 PR 的 FAIL_TO_PASS 和 PASS_TO_PASS 单元测试评分。是最初的智能体编程基准,也是 Verified、Lite、Multimodal、Multilingual 和 Pro 等后续版本的模板。",
   "domains": [
     "software-engineering",
     "code",

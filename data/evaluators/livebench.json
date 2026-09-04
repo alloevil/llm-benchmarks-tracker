@@ -5,6 +5,7 @@
   "maintainer": "LiveBench team (Abacus.AI, NYU and collaborators)",
   "released": "2024-06",
   "description": "Contamination-limited LLM benchmark and leaderboard. Questions are refreshed monthly and drawn from recent arXiv papers, news, datasets and IMDb synopses across math, coding, reasoning, language, data analysis and instruction following; every question has an objective ground-truth answer so scoring is automatic with no LLM judge. The maintainers run all listed models themselves, and the newest question sets are held back from public release, making it a useful check on lab-reported scores.",
+  "description_zh": "限制污染的 LLM 基准与排行榜。题目每月刷新,取自近期 arXiv 论文、新闻、数据集和 IMDb 剧情简介,覆盖数学、编程、推理、语言、数据分析和指令遵循;每题都有客观的真值答案,因此评分自动完成且无需 LLM 评判。维护者自行运行所有上榜模型,且最新题集暂不公开发布,使其成为核对实验室自报分数的有用手段。",
   "status": "active",
   "license": "Apache-2.0",
   "benchmarks": [],

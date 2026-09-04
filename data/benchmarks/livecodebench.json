@@ -6,6 +6,7 @@
   "released": "2024-03",
   "maintainer": "UC Berkeley / MIT / Cornell (Jain et al.)",
   "description": "Competitive-programming problems continuously collected from LeetCode, AtCoder and Codeforces contests, each tagged with its release date so that models can be scored only on problems published after their training cutoff. Code generation is scored as pass@1 against hidden tests (averaged over samples); self-repair, code execution and test-output prediction are separate scenarios. The rolling release-date filter makes it the standard contamination-aware coding benchmark, though the window chosen changes the score.",
+  "description_zh": "从 LeetCode、AtCoder 和 Codeforces 竞赛中持续收集的竞赛编程题,每题标注发布日期,以便仅在模型训练截止之后发布的题目上评分。代码生成以针对隐藏测试的 pass@1(多次采样取平均)评分;自我修复、代码执行和测试输出预测为独立场景。滚动的发布日期过滤使其成为标准的防污染编程基准,但所选时间窗口会改变分数。",
   "domains": [
     "code",
     "reasoning"

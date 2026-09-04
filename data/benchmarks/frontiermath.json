@@ -6,6 +6,7 @@
   "released": "2024-11",
   "maintainer": "Epoch AI",
   "description": "Hundreds of original, unpublished research-grade mathematics problems written and vetted by expert mathematicians, from hard undergraduate (Tier 1) through advanced graduate (Tier 3) to research-level Tier 4, each with an automatically verifiable answer. Models may reason and run Python within a token budget and submit an answer function; scored as the fraction of problems solved. Kept private to avoid contamination, it is the main measure of frontier mathematical reasoning, and Epoch runs all evaluations itself.",
+  "description_zh": "数百道由专家数学家编写并审核的原创、未发表的研究级数学问题,难度从高难本科(Tier 1)经高阶研究生(Tier 3)到研究水平的 Tier 4,每题答案均可自动验证。模型可在 token 预算内推理并运行 Python,提交答案函数;得分为解出问题的比例。为避免污染而保持私有,是前沿数学推理的主要衡量标准,所有评估均由 Epoch 自行运行。",
   "domains": [
     "math",
     "reasoning",

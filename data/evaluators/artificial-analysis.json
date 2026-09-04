@@ -5,6 +5,7 @@
   "maintainer": "Artificial Analysis",
   "released": "2024-01",
   "description": "Independent benchmarking company that self-runs a fixed suite of evaluations against every major model and API endpoint under identical zero-shot prompts, temperature and repeat settings, and publishes an Intelligence Index alongside speed, latency and price. Answers are scored by regex extraction, code execution or an LLM equality checker; agentic evals run in its open-source Stirrup harness. Labs do not pay for placement and a 'mystery shopper' policy re-tests public endpoints, which makes it a useful cross-lab reference for otherwise self-reported numbers.",
+  "description_zh": "独立基准测试公司,在完全相同的零样本提示、温度和重复设置下,对每个主要模型和 API 端点自行运行一套固定评估,并发布 Intelligence Index 以及速度、延迟和价格。答案通过正则提取、代码执行或 LLM 等价检查器评分;智能体评估在其开源 Stirrup 框架中运行。实验室不为排名付费,且\"神秘顾客\"政策会对公开端点进行复测,使其成为对照各家自报数据的有用跨实验室参考。",
   "status": "active",
   "license": null,
   "benchmarks": [

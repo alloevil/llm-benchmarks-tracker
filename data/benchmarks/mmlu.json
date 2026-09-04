@@ -6,6 +6,7 @@
   "released": "2020-09",
   "maintainer": "Dan Hendrycks et al. (UC Berkeley)",
   "description": "14,042 four-option multiple-choice test questions across 57 subjects from elementary mathematics and US history to law and medicine, drawn from exams and textbooks (15,908 questions in total including dev and validation). Scored as accuracy, historically 5-shot. For three years it was the default measure of broad world knowledge; frontier models now cluster above 90%, and label noise in the test set limits further discrimination.",
+  "description_zh": "14,042 道四选一多项选择测试题,覆盖 57 个学科,从初等数学、美国历史到法律和医学,取自考试和教科书(含开发集与验证集共 15,908 题)。以准确率评分,历史上采用 5-shot。三年来一直是广泛世界知识的默认衡量标准;前沿模型如今集中在 90% 以上,测试集的标注噪声限制了进一步区分。",
   "domains": [
     "knowledge",
     "reasoning"

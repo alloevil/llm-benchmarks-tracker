@@ -6,6 +6,7 @@
   "released": "2024-04",
   "maintainer": "XLANG Lab, University of Hong Kong (Xie et al.)",
   "description": "369 real computer-use tasks in a live Ubuntu VM spanning Chrome, LibreOffice, GIMP, VLC, VS Code, Thunderbird, OS file operations and multi-app workflows. Agents see screenshots (and optionally the accessibility tree), emit mouse/keyboard actions, and are scored by execution-based checkers on the final machine state. The standard benchmark for GUI computer-use agents; OSWorld-Verified (July 2025) fixed 300+ task issues and is the basis of the current official leaderboard.",
+  "description_zh": "369 个在实时 Ubuntu 虚拟机中的真实计算机使用任务,涵盖 Chrome、LibreOffice、GIMP、VLC、VS Code、Thunderbird、操作系统文件操作和多应用工作流。智能体查看截图(可选无障碍树),输出鼠标/键盘动作,由基于执行的检查器对最终机器状态评分。是 GUI 计算机使用智能体的标准基准;OSWorld-Verified(2025 年 7 月)修复了 300 多个任务问题,是当前官方排行榜的基础。",
   "domains": [
     "computer-use",
     "multimodal",

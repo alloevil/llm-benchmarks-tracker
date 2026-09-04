@@ -6,6 +6,7 @@
   "released": "2021-10",
   "maintainer": "OpenAI (Cobbe et al.)",
   "description": "8,500 linguistically diverse grade-school math word problems (7,473 train, 1,319 test) that take two to eight elementary arithmetic steps to solve, with natural-language step-by-step solutions. Scored as exact match of the final numeric answer on the test split. It drove chain-of-thought research and was the standard math-reasoning check from 2021 to 2024; frontier models now exceed 95%, and errors are dominated by label noise.",
+  "description_zh": "8,500 道语言多样的小学数学应用题(7,473 训练、1,319 测试),需要两到八步基础算术求解,并附自然语言分步解答。以测试集上最终数值答案的精确匹配评分。它推动了思维链研究,是 2021 至 2024 年的标准数学推理检验;前沿模型如今已超过 95%,错误主要来自标注噪声。",
   "domains": [
     "math",
     "reasoning"

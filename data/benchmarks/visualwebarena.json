@@ -6,6 +6,7 @@
   "released": "2024-01",
   "maintainer": "Carnegie Mellon University (Koh et al.)",
   "description": "910 web tasks on Classifieds, Shopping and Reddit sites that require reading images (product photos, listings, posted pictures) to complete, extending WebArena's functional evaluation with visually grounded checks. Agents receive screenshots (optionally Set-of-Marks annotated) plus the accessibility tree and must act in the browser. It isolates the multimodal-perception gap that text-only web agents cannot close.",
+  "description_zh": "910 个在 Classifieds、Shopping 和 Reddit 站点上的网页任务,需要读取图像(商品照片、列表、发布的图片)才能完成,以视觉落地的检查扩展了 WebArena 的功能性评估。智能体接收截图(可选 Set-of-Marks 标注)和无障碍树,并需在浏览器中行动。它隔离考察纯文本网页智能体无法弥合的多模态感知差距。",
   "domains": [
     "web",
     "multimodal",

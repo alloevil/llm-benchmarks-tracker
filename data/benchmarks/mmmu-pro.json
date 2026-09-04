@@ -6,6 +6,7 @@
   "released": "2024-09",
   "maintainer": "MMMU Team (Yue et al.)",
   "description": "1,730 MMMU questions that survived filtering out items answerable by text-only models, each with the option set expanded to ten candidates, plus a vision-only setting in which the question is rendered inside the image so the model must read and see at once. Scored as accuracy; the headline number averages the standard (10-option) and vision settings. It is the current standard for expert-level multimodal reasoning because it removes the text-only shortcuts that inflated MMMU.",
+  "description_zh": "1,730 道 MMMU 题目,已过滤掉纯文本模型即可作答的题目,每题选项扩展为十个候选,并增加纯视觉设置:问题渲染在图像内部,模型必须同时阅读和观看。以准确率评分;主指标为标准(10 选项)设置与视觉设置的平均值。因消除了曾使 MMMU 虚高的纯文本捷径,它是当前专家级多模态推理的标准。",
   "domains": [
     "multimodal",
     "knowledge",

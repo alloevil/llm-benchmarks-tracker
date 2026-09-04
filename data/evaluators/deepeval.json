@@ -5,6 +5,7 @@
   "maintainer": "Confident AI",
   "released": "2023-08",
   "description": "Open-source, pytest-style LLM evaluation framework aimed at application testing: metrics such as G-Eval, answer relevancy, faithfulness and tool-correctness are computed with LLM-as-a-judge or local NLP models. It also bundles implementations of several public benchmarks (MMLU, HellaSwag, BBH, DROP, TruthfulQA, HumanEval, GSM8K) that follow the original papers' prompting. Scores are self-run by the user; the company sells a hosted platform (Confident AI) around it.",
+  "description_zh": "开源、pytest 风格的 LLM 评估框架,面向应用测试:G-Eval、答案相关性、忠实度和工具正确性等指标通过 LLM 评判或本地 NLP 模型计算。它还内置了多个公开基准(MMLU、HellaSwag、BBH、DROP、TruthfulQA、HumanEval、GSM8K)的实现,遵循原论文的提示方式。分数由用户自行运行得出;该公司围绕它销售托管平台(Confident AI)。",
   "status": "active",
   "license": "Apache-2.0",
   "benchmarks": [

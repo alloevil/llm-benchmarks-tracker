@@ -6,6 +6,7 @@
   "released": "2022-10",
   "maintainer": "Google Research / Stanford (Suzgun et al.)",
   "description": "A suite of 23 BIG-Bench tasks (6,511 examples) on which 2022 language models scored below the average human rater: multi-step arithmetic, logical deduction, tracking shuffled objects, causal judgement, date understanding and others. Scored as exact-match accuracy averaged over tasks, usually 3-shot with chain-of-thought exemplars. It showed that CoT prompting unlocks emergent gains and became a standard reasoning check; frontier models now exceed the best human rater on most tasks.",
+  "description_zh": "由 23 个 BIG-Bench 任务(6,511 个样例)组成的套件,2022 年的语言模型在这些任务上得分低于人类评分者平均水平:多步算术、逻辑推演、追踪被打乱的物体、因果判断、日期理解等。得分为各任务精确匹配准确率的平均值,通常采用 3-shot 并附带思维链示例。它证明了 CoT 提示能带来涌现式提升,并成为标准推理检验;前沿模型如今在多数任务上已超过最佳人类评分者。",
   "domains": [
     "reasoning"
   ],

@@ -6,6 +6,7 @@
   "released": "2024-10",
   "maintainer": "OpenAI (Chan et al.)",
   "description": "75 Kaggle competitions (22 low, 38 medium, 15 high complexity) in which an agent must read the task, prepare data, train models and submit predictions inside a sandbox within a compute budget. The score is the fraction of competitions in which the submission would have earned at least a bronze medal on the real Kaggle leaderboard. The standard test of end-to-end ML engineering rather than isolated coding.",
+  "description_zh": "75 个 Kaggle 竞赛(22 低、38 中、15 高复杂度),智能体需在沙盒内于算力预算之内阅读任务、准备数据、训练模型并提交预测。得分为提交结果在真实 Kaggle 排行榜上至少能获得铜牌的竞赛比例。是端到端 ML 工程(而非孤立编码)的标准测试。",
   "domains": [
     "ml-engineering",
     "code",

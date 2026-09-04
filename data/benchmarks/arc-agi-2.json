@@ -6,6 +6,7 @@
   "released": "2025-03",
   "maintainer": "ARC Prize Foundation",
   "description": "Second-generation ARC grid puzzles designed to defeat brute-force search and test symbolic interpretation, compositional reasoning and context-dependent rule application. 1,000 public training tasks plus calibrated 120-task public, semi-private and private evaluation sets; every task was solved by at least two humans within two attempts. Scored as the percentage of test outputs exactly correct within two attempts, always reported together with cost per task. It launched with ARC Prize 2025 as the successor to ARC-AGI-1.",
+  "description_zh": "第二代 ARC 网格谜题,旨在击败暴力搜索,并测试符号解释、组合推理和依赖上下文的规则应用。包含 1,000 个公开训练任务,以及经校准的各 120 个任务的公开、半私有和私有评估集;每个任务都至少被两名人类在两次尝试内解出。得分为两次尝试内完全正确的测试输出百分比,始终与每任务成本一并报告。作为 ARC-AGI-1 的继任者随 ARC Prize 2025 发布。",
   "domains": [
     "reasoning"
   ],

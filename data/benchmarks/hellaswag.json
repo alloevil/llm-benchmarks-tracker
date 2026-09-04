@@ -6,6 +6,7 @@
   "released": "2019-05",
   "maintainer": "Allen Institute for AI / University of Washington (Zellers et al.)",
   "description": "Commonsense sentence-completion: given a context from ActivityNet captions or WikiHow, pick the most plausible continuation among four options, where the wrong endings were adversarially filtered to fool 2019-era models. 10,042 validation and 10,003 test items, scored as accuracy (typically 10-shot). Trivial for humans and once a headline pretraining benchmark; modern models exceed 95%, so it no longer separates systems.",
+  "description_zh": "常识句子补全:给定来自 ActivityNet 字幕或 WikiHow 的上下文,从四个选项中选出最合理的续写,其中错误结尾经过对抗式筛选以迷惑 2019 年前后的模型。包含 10,042 个验证项和 10,003 个测试项,以准确率评分(通常 10-shot)。对人类而言极其简单,曾是预训练的头条基准;现代模型已超过 95%,不再能区分各系统。",
   "domains": [
     "commonsense"
   ],

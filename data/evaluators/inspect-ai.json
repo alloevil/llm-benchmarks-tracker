@@ -5,6 +5,7 @@
   "maintainer": "UK AI Security Institute",
   "released": "2024-04",
   "description": "Open-source evaluation framework from the UK AI Security Institute. Evals are Python tasks composed of a dataset, solvers (prompting, tool use, multi-turn agents, sandboxes) and scorers (exact match, model-graded, custom), with a log viewer for inspecting every sample. The companion inspect_evals package ships 200+ ready-to-run evals. Results are self-run by whoever executes the task; Inspect is also the engine behind Epoch AI's and lighteval's evaluations, so many published third-party numbers trace back to it.",
+  "description_zh": "英国 AI 安全研究所的开源评估框架。评估以 Python 任务形式编写,由数据集、求解器(提示、工具使用、多轮智能体、沙盒)和评分器(精确匹配、模型评分、自定义)组成,并提供可检视每个样本的日志查看器。配套的 inspect_evals 包提供 200 多个即用评估。结果由执行任务者自行运行得出;Inspect 也是 Epoch AI 和 lighteval 评估背后的引擎,因此许多已发布的第三方数据都可追溯至它。",
   "status": "active",
   "license": "MIT",
   "benchmarks": [

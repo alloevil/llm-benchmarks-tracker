@@ -6,6 +6,7 @@
   "released": "2025-02",
   "maintainer": "Mathematical Association of America (exam); evaluated by MathArena and model developers",
   "description": "The 30 problems from the 2025 AIME I (6 February 2025) and AIME II (12 February 2025), each with an integer answer from 000 to 999. Scored as the fraction of problems answered exactly, usually averaged over several samples (mean pass@1). Because the exam is written fresh each year, it was a clean test of competition-math reasoning for models trained before February 2025; scores with a code interpreter are not comparable to no-tools runs.",
+  "description_zh": "收录 2025 年 AIME I(2025 年 2 月 6 日)与 AIME II(2025 年 2 月 12 日)共 30 道题,每题答案为 000 到 999 的整数。得分为精确答对题目的比例,通常对多次采样取平均(平均 pass@1)。由于试题每年全新编写,对 2025 年 2 月之前训练的模型而言是一次干净的竞赛数学推理测试;使用代码解释器的成绩与无工具运行不可比。",
   "domains": [
     "math",
     "reasoning"

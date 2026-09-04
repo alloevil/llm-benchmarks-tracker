@@ -6,6 +6,7 @@
   "released": "2026-01",
   "maintainer": "Stanford / Laude Institute / Harbor (Merrill, Shaw et al.)",
   "description": "Hard, human-authored tasks that an agent must complete inside a real terminal environment (software engineering, scientific computing, ML, security, data processing). Each task ships its own container, a human solution and tests; the score is the fraction of tasks whose tests pass, averaged over several trials with 95% confidence intervals. The de-facto benchmark for CLI coding agents, run through the Harbor framework.",
+  "description_zh": "由人工编写的高难任务,智能体需在真实终端环境中完成(软件工程、科学计算、ML、安全、数据处理)。每个任务自带容器、人类解答和测试;得分为测试通过的任务比例,对多次试验取平均并附 95% 置信区间。是 CLI 编程智能体的事实基准,通过 Harbor 框架运行。",
   "domains": [
     "software-engineering",
     "code",

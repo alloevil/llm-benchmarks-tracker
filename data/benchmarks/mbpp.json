@@ -6,6 +6,7 @@
   "released": "2021-08",
   "maintainer": "Google Research (Austin et al.)",
   "description": "974 crowd-sourced short Python programming tasks aimed at entry-level programmers, each with a natural-language description, a reference solution and three test cases; a 427-problem hand-verified 'sanitized' subset is also used. Scored by executing the model's program against the tests (pass@1 or fraction solved). One of the two canonical early code-synthesis benchmarks alongside HumanEval; now saturated and largely contaminated.",
+  "description_zh": "974 道面向入门程序员的众包短篇 Python 编程任务,每题附自然语言描述、参考解答和三个测试用例;另有 427 题经人工核验的\"sanitized\"子集。通过对测试执行模型程序评分(pass@1 或解出比例)。与 HumanEval 并列为两个经典早期代码合成基准之一;现已饱和且大量受污染。",
   "domains": [
     "code"
   ],

@@ -5,6 +5,7 @@
   "maintainer": "Epoch AI",
   "released": "2024-11",
   "description": "Epoch AI's database of benchmark results for frontier models. Some benchmarks (GPQA Diamond, FrontierMath, SWE-bench Verified, SimpleQA Verified, MirrorCode) are evaluated internally with Inspect AI under documented, consistent settings and error bars; others (ARC-AGI, Terminal-Bench, HLE, MMLU) are collected from official leaderboards or primary sources and labelled as such. Data are CC-BY and downloadable, making it a standard source for capability trend analysis independent of lab marketing.",
+  "description_zh": "Epoch AI 的前沿模型基准结果数据库。部分基准(GPQA Diamond、FrontierMath、SWE-bench Verified、SimpleQA Verified、MirrorCode)由其内部使用 Inspect AI 在有文档记录的一致设置下评估并附误差线;其他基准(ARC-AGI、Terminal-Bench、HLE、MMLU)从官方排行榜或一手来源收集并如实标注。数据采用 CC-BY 许可且可下载,使其成为独立于实验室宣传的能力趋势分析的标准来源。",
   "status": "active",
   "license": "CC-BY-4.0",
   "benchmarks": [

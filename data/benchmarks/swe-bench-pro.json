@@ -6,6 +6,7 @@
   "released": "2025-09",
   "maintainer": "Scale AI",
   "description": "1,865 human-verified, long-horizon software engineering tasks from 41 repositories (public set: 731 tasks from copyleft-licensed OSS repos; commercial set: 276 tasks from proprietary startup codebases; held-out set: 858 tasks). Each task gives an augmented problem statement, requirements and optional interface; the patch is scored by fail-to-pass and pass-to-pass tests. Reference solutions average about 107 changed lines across 4 files, so it measures multi-file, enterprise-style work that SWE-bench Verified no longer separates.",
+  "description_zh": "1,865 个经人工核验的长程软件工程任务,来自 41 个代码库(公开集:来自 copyleft 许可开源库的 731 个任务;商业集:来自专有初创公司代码库的 276 个任务;保留集:858 个任务)。每个任务给出增强的问题陈述、需求和可选接口;补丁以 fail-to-pass 和 pass-to-pass 测试评分。参考解答平均改动约 107 行、跨 4 个文件,因此它衡量的是 SWE-bench Verified 已无法区分的多文件、企业级工作。",
   "domains": [
     "software-engineering",
     "code",

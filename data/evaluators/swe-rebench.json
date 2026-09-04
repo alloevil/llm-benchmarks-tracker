@@ -5,6 +5,7 @@
   "maintainer": "Nebius",
   "released": "2025-05",
   "description": "Nebius' continuously refreshed leaderboard for agentic software engineering. New GitHub issues are mined monthly into executable tasks, every model is run with the same fixed scaffold, and success is the fraction of tasks whose hidden tests pass (with pass@5, cost and tokens per problem). Tasks are dated so contamination relative to each model's release can be flagged. Because it is self-run under one harness on fresh problems, it is a cleaner comparison than lab-reported SWE-bench Verified numbers.",
+  "description_zh": "Nebius 持续刷新的智能体软件工程排行榜。每月从新的 GitHub issue 中挖掘出可执行任务,所有模型使用同一固定脚手架运行,成功率为隐藏测试通过的任务比例(附 pass@5、每题成本和 token 数)。任务带有日期,可标记相对各模型发布时间的污染情况。由于在单一框架下对新问题自行运行,它比实验室自报的 SWE-bench Verified 数据更干净。",
   "status": "active",
   "license": null,
   "benchmarks": [

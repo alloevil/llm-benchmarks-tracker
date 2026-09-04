@@ -5,6 +5,7 @@
   "maintainer": "EleutherAI",
   "released": "2021-09",
   "description": "The most widely used open-source framework for running academic benchmarks against language models. Tasks are declared in YAML, backends include Hugging Face transformers, vLLM, SGLang and hosted APIs, and results are cached and reproducible. Powered the Hugging Face Open LLM Leaderboard; you run it yourself, so scores depend on your prompt and shot settings.",
+  "description_zh": "针对语言模型运行学术基准最广泛使用的开源框架。任务以 YAML 声明,后端包括 Hugging Face transformers、vLLM、SGLang 和托管 API,结果可缓存且可复现。曾为 Hugging Face Open LLM Leaderboard 提供支撑;需自行运行,因此分数取决于你的提示和 shot 设置。",
   "status": "active",
   "license": "MIT",
   "benchmarks": [

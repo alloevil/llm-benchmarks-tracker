@@ -6,6 +6,7 @@
   "released": "2023-11",
   "maintainer": "Meta FAIR / Hugging Face / AutoGPT (Mialon et al.)",
   "description": "466 real-world questions (166 public validation, 300 private test) that need web browsing, file handling, multimodal reading and tool use to reach a short, unambiguous answer; scored by quasi-exact match after normalisation. Three difficulty levels, with Level 3 requiring long tool-use chains. Questions are easy for humans, so the gap to human accuracy is the headline signal for general assistants.",
+  "description_zh": "466 个真实世界问题(166 个公开验证、300 个私有测试),需要网页浏览、文件处理、多模态阅读和工具使用才能得出简短、无歧义的答案;归一化后按准精确匹配评分。分三个难度等级,Level 3 需要长工具使用链。问题对人类来说很容易,因此与人类准确率的差距是通用助手的主要信号。",
   "domains": [
     "general-assistant",
     "tool-use",

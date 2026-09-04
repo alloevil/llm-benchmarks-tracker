@@ -6,6 +6,7 @@
   "released": "2025-05",
   "maintainer": "Fujitsu Research (with Carnegie Mellon University)",
   "description": "886 tasks over on-site images, videos and documents captured in real factories, warehouses and retail stores (711 perception, 121 decision-making, 54 combination tasks), written from interviews with site workers and managers. An agent must extract information, detect safety or procedural violations and produce reports; answers are scored against ground truth with a weighted mix of exact and near-match scoring on a 0-1 scale (reported here as percent). It tests multimodal agents on physical-world field operations rather than digital environments.",
+  "description_zh": "886 个任务,基于真实工厂、仓库和零售店现场采集的图像、视频和文档(711 个感知任务、121 个决策任务、54 个组合任务),依据对现场工人和管理者的访谈编写。智能体需提取信息、检测安全或流程违规并生成报告;答案对照真值,以精确匹配与近似匹配的加权组合按 0-1 评分(此处以百分比报告)。它测试多模态智能体在物理世界现场作业而非数字环境中的表现。",
   "domains": [
     "multimodal",
     "general-assistant",

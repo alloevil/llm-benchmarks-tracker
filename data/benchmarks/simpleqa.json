@@ -6,6 +6,7 @@
   "released": "2024-11",
   "maintainer": "OpenAI (Wei et al.)",
   "description": "4,326 short fact-seeking questions with a single indisputable answer, adversarially collected against GPT-4o and verified by two independent annotators, spanning science, history, art, geography and more. A grader model marks each answer correct, incorrect or not attempted; the headline metric is percent correct, with F-score and calibration also reported. It measures whether models know what they know: hallucination-prone models score low even when otherwise capable.",
+  "description_zh": "4,326 个简短的事实型问题,每题有唯一无可争议的答案,针对 GPT-4o 对抗式收集并经两名独立标注者验证,涵盖科学、历史、艺术、地理等。评分模型将每个回答标记为正确、错误或未尝试;主指标为正确率,同时报告 F 分数和校准。它衡量模型是否知道自己知道什么:易产生幻觉的模型即便其他能力出色,得分也会很低。",
   "domains": [
     "factuality",
     "knowledge"

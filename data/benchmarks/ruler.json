@@ -6,6 +6,7 @@
   "released": "2024-04",
   "maintainer": "NVIDIA (Hsieh et al.)",
   "description": "A synthetic long-context suite of 13 tasks in four categories (needle-in-a-haystack retrieval variants, multi-hop variable tracing, aggregation of frequent words, and question answering over long inputs) generated at configurable lengths from 4K to 128K tokens or more. Scored as accuracy averaged across tasks at each length; a model's 'effective context' is the longest length at which it beats a fixed threshold (Llama-2-7B at 4K, 85.6%). It exposes the gap between claimed and usable context windows.",
+  "description_zh": "合成长上下文套件,包含四类共 13 个任务(多种大海捞针检索变体、多跳变量追踪、高频词聚合以及长输入问答),可按 4K 到 128K 或更长的 token 长度配置生成。以各长度下跨任务平均准确率评分;模型的\"有效上下文\"为其超过固定阈值(Llama-2-7B 在 4K 下的 85.6%)的最长长度。它揭示了宣称的与可用的上下文窗口之间的差距。",
   "domains": [
     "long-context"
   ],

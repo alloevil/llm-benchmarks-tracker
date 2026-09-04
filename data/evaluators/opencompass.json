@@ -5,6 +5,7 @@
   "maintainer": "Shanghai AI Laboratory (OpenCompass team)",
   "released": "2023-07",
   "description": "Open-source evaluation platform from Shanghai AI Laboratory covering 100+ datasets with configurable prompts, LLM-judge and math-verify evaluators, and inference backends including LMDeploy, vLLM and API models. Scores are produced by running the framework yourself; the same team self-runs it to publish the CompassRank leaderboard. Widely used for Chinese and English open-weight model reports, so numbers labelled 'OpenCompass' are usually reproducible from its configs.",
+  "description_zh": "上海人工智能实验室的开源评估平台,覆盖 100 多个数据集,支持可配置提示、LLM 评判和 math-verify 评估器,推理后端包括 LMDeploy、vLLM 和 API 模型。分数需自行运行框架得出;同一团队自行运行它以发布 CompassRank 排行榜。广泛用于中英文开放权重模型报告,因此标注为\"OpenCompass\"的数据通常可由其配置复现。",
   "status": "active",
   "license": "Apache-2.0",
   "benchmarks": [

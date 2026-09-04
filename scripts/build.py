@@ -30,17 +30,48 @@ DIST = ROOT / "dist"
 TEMPLATE = ROOT / "templates" / "index.html"
 STATIC = ROOT / "static"
 README = ROOT / "README.md"
+README_ZH = ROOT / "README.zh-CN.md"
 SITE = "https://alloevil.github.io/llm-benchmarks-tracker"
 REPO = "https://github.com/alloevil/llm-benchmarks-tracker"
 
-STATUS_ORDER = {"active": 0, "saturating": 1, "saturated": 2, "retired": 3}
-KIND_LABEL = {
-    "official-leaderboard": "official",
-    "developer-report": "self-reported",
-    "independent-evaluation": "independent",
-    "paper": "paper",
-    "aggregator": "aggregator",
+
+# Per-language strings. Everything user-visible in generated output goes through T[lang].
+T: dict[str, dict[str, str]] = {
+    "en": {
+        "bench_header": "| Benchmark | Released | Domains | Status | Top score | System | Source |",
+        "eval_header": "| Evaluator | Kind | Maintainer | Methodology | Status |",
+        "stats": "**{model}** model benchmarks · **{agent}** agent benchmarks · **{evals}** evaluators · "
+        "**{results}** sourced results · updated {date}",
+        "no_result": "no sourced result",
+        "rows": "{n} rows",
+        "lang_switch": '<a href="zh/" lang="zh-CN" hreflang="zh-CN">中文</a>',
+        "description": "description",
+        "kind_official-leaderboard": "official",
+        "kind_developer-report": "self-reported",
+        "kind_independent-evaluation": "independent",
+        "kind_paper": "paper",
+        "kind_aggregator": "aggregator",
+    },
+    "zh": {
+        "bench_header": "| Benchmark | 发布 | 领域 | 状态 | 最高分 | 系统 | 来源 |",
+        "eval_header": "| 评测方 | 类型 | 维护者 | 方法 | 状态 |",
+        "stats": "**{model}** 个模型基准 · **{agent}** 个 Agent 基准 · **{evals}** 个评测方 · "
+        "**{results}** 条有来源的结果 · 更新于 {date}",
+        "no_result": "暂无有来源的结果",
+        "rows": "{n} 条",
+        "lang_switch": '<a href="../" lang="en" hreflang="en">English</a>',
+        "description": "description_zh",
+        "kind_official-leaderboard": "官方榜单",
+        "kind_developer-report": "厂商自报",
+        "kind_independent-evaluation": "独立复现",
+        "kind_paper": "论文",
+        "kind_aggregator": "聚合站",
+    },
 }
+
+
+def kind_label(lang: str, kind: str) -> str:
+    return T[lang][f"kind_{kind}"]
 
 
 def fmt_value(b: dict[str, Any], value: float) -> str:
@@ -51,8 +82,9 @@ def fmt_value(b: dict[str, Any], value: float) -> str:
 
 
 def sort_benchmarks(ds: Dataset, layer: str) -> list[dict[str, Any]]:
+    """Newest first; ties broken by id for determinism."""
     rows = [b for b in ds.benchmarks.values() if b["layer"] == layer]
-    return sorted(rows, key=lambda b: (STATUS_ORDER[b["status"]], b["released"], b["id"]), reverse=False)
+    return sorted(rows, key=lambda b: (b["released"], b["id"]), reverse=True)
 
 
 def md_link(text: str, url: str | None) -> str:
@@ -67,14 +99,14 @@ def best_link(b: dict[str, Any]) -> str | None:
 # --------------------------------------------------------------------------- README
 
 
-def readme_benchmark_table(ds: Dataset, layer: str) -> str:
-    out = ["| Benchmark | Released | Domains | Status | Top score | System | Source |", "|---|---|---|---|---|---|---|"]
+def readme_benchmark_table(ds: Dataset, layer: str, lang: str = "en") -> str:
+    out = [T[lang]["bench_header"], "|---|---|---|---|---|---|---|"]
     for b in sort_benchmarks(ds, layer):
         sota = ds.sota(b["id"])
         if sota:
             score = fmt_value(b, sota["value"])
             system = sota["system"]
-            src = md_link(KIND_LABEL[sota["source"]["kind"]], sota["source"]["url"])
+            src = md_link(kind_label(lang, sota["source"]["kind"]), sota["source"]["url"])
         else:
             score = system = src = "—"
         out.append(
@@ -84,8 +116,8 @@ def readme_benchmark_table(ds: Dataset, layer: str) -> str:
     return "\n".join(out)
 
 
-def readme_evaluator_table(ds: Dataset) -> str:
-    out = ["| Evaluator | Kind | Maintainer | Methodology | Status |", "|---|---|---|---|---|"]
+def readme_evaluator_table(ds: Dataset, lang: str = "en") -> str:
+    out = [T[lang]["eval_header"], "|---|---|---|---|---|"]
     order = {"framework": 0, "leaderboard": 1, "independent-evaluator": 2, "aggregator": 3}
     for e in sorted(ds.evaluators.values(), key=lambda e: (order[e["kind"]], e["name"].lower())):
         url = e["links"].get("website") or e["links"].get("repo")
@@ -106,29 +138,30 @@ def readme_timeline(ds: Dataset) -> str:
     return "\n".join(lines)
 
 
-def readme_stats(ds: Dataset) -> str:
+def readme_stats(ds: Dataset, lang: str = "en") -> str:
     n_results = sum(len(v) for v in ds.results.values())
     model = sum(1 for b in ds.benchmarks.values() if b["layer"] == "model")
-    agent = len(ds.benchmarks) - model
-    return (
-        f"**{model}** model benchmarks · **{agent}** agent benchmarks · "
-        f"**{len(ds.evaluators)}** evaluators · **{n_results}** sourced results · "
-        f"updated {date.today().isoformat()}"
+    return T[lang]["stats"].format(
+        model=model,
+        agent=len(ds.benchmarks) - model,
+        evals=len(ds.evaluators),
+        results=n_results,
+        date=date.today().isoformat(),
     )
 
 
-def render_readme(ds: Dataset, text: str) -> str:
+def render_readme(ds: Dataset, text: str, lang: str = "en") -> str:
     blocks = {
-        "stats": readme_stats(ds),
-        "model": readme_benchmark_table(ds, "model"),
-        "agent": readme_benchmark_table(ds, "agent"),
-        "evaluators": readme_evaluator_table(ds),
+        "stats": readme_stats(ds, lang),
+        "model": readme_benchmark_table(ds, "model", lang),
+        "agent": readme_benchmark_table(ds, "agent", lang),
+        "evaluators": readme_evaluator_table(ds, lang),
         "timeline": readme_timeline(ds),
     }
     for name, body in blocks.items():
         pattern = re.compile(rf"(<!-- gen:{name} -->)\n(?:.*?\n)?(<!-- /gen:{name} -->)", re.S)
         if not pattern.search(text):
-            raise SystemExit(f"README.md is missing <!-- gen:{name} --> markers")
+            raise SystemExit(f"README is missing <!-- gen:{name} --> markers")
         text = pattern.sub(lambda m, body=body: f"{m.group(1)}\n{body}\n{m.group(2)}", text)
     return text
 
@@ -179,21 +212,25 @@ def _e(s: Any) -> str:
     return html.escape(str(s), quote=True)
 
 
-def html_benchmark_rows(ds: Dataset, layer: str) -> str:
+def html_benchmark_rows(ds: Dataset, layer: str, lang: str) -> str:
+    t = T[lang]
+    base = "../" if lang != "en" else ""
     rows = []
     for b in sort_benchmarks(ds, layer):
         sota = ds.sota(b["id"])
         hb = b.get("human_baseline")
+        desc = b[t["description"]]
         if sota:
             kind = sota["source"]["kind"]
+            label = kind_label(lang, kind)
             score_cell = (
                 f'<span class="score">{_e(fmt_value(b, sota["value"]))}</span> '
                 f'<span class="system">{_e(sota["system"])}</span><br>'
-                f'<a class="src src-{kind}" href="{_e(sota["source"]["url"])}" rel="noopener">{KIND_LABEL[kind]}</a> '
+                f'<a class="src src-{kind}" href="{_e(sota["source"]["url"])}" rel="noopener">{label}</a> '
                 f'<span class="muted">{_e(sota["date"])}</span>'
             )
         else:
-            score_cell = '<span class="muted">no sourced result</span>'
+            score_cell = f'<span class="muted">{t["no_result"]}</span>'
         human = f'{hb["value"]:g}% <span class="muted">{_e(hb["population"])}</span>' if hb else "—"
         risk = b.get("contamination_risk")
         risk_cell = f'<span class="pill risk-{risk}">{risk}</span>' if risk else "—"
@@ -202,20 +239,21 @@ def html_benchmark_rows(ds: Dataset, layer: str) -> str:
         rows.append(
             "<tr>"
             f'<td><a href="{_e(best_link(b))}" rel="noopener"><strong>{_e(b["name"])}</strong></a>'
-            f'<div class="muted small" title="{_e(b["description"])}">{_e(b["description"])}</div></td>'
+            f'<div class="muted small" title="{_e(desc)}">{_e(desc)}</div></td>'
             f'<td class="nowrap">{_e(b["released"])}</td>'
             f"<td>{domains}</td>"
             f'<td><span class="pill status-{b["status"]}">{b["status"]}</span></td>'
             f"<td>{risk_cell}</td>"
             f"<td>{score_cell}</td>"
             f"<td>{human}</td>"
-            f'<td class="nowrap"><a href="api/v1/results/{b["id"]}.json">{n} rows</a></td>'
+            f'<td class="nowrap"><a href="{base}api/v1/results/{b["id"]}.json">{t["rows"].format(n=n)}</a></td>'
             "</tr>"
         )
     return "\n".join(rows)
 
 
-def html_evaluator_rows(ds: Dataset) -> str:
+def html_evaluator_rows(ds: Dataset, lang: str) -> str:
+    key = T[lang]["description"]
     order = {"framework": 0, "leaderboard": 1, "independent-evaluator": 2, "aggregator": 3}
     rows = []
     for e in sorted(ds.evaluators.values(), key=lambda e: (order[e["kind"]], e["name"].lower())):
@@ -223,7 +261,7 @@ def html_evaluator_rows(ds: Dataset) -> str:
         rows.append(
             "<tr>"
             f'<td><a href="{_e(url)}" rel="noopener"><strong>{_e(e["name"])}</strong></a>'
-            f'<div class="muted small" title="{_e(e["description"])}">{_e(e["description"])}</div></td>'
+            f'<div class="muted small" title="{_e(e[key])}">{_e(e[key])}</div></td>'
             f'<td><span class="pill kind-{e["kind"]}">{e["kind"]}</span></td>'
             f'<td>{_e(e["maintainer"])}</td>'
             f'<td>{_e(e.get("methodology", "—"))}</td>'
@@ -278,11 +316,15 @@ def json_ld(ds: Dataset) -> str:
 
 
 
-def render_site(ds: Dataset) -> str:
+def render_site(ds: Dataset, lang: str) -> str:
     n_results = sum(len(v) for v in ds.results.values())
     model = sum(1 for b in ds.benchmarks.values() if b["layer"] == "model")
+    base = "../" if lang != "en" else ""
     ctx = {
         "SITE": SITE,
+        "BASE": base,
+        "PAGE_URL": f"{SITE}/" if lang == "en" else f"{SITE}/{lang}/",
+        "LANG_SWITCH": T[lang]["lang_switch"],
         "JSON_LD": json_ld(ds),
         "GENERATED": date.today().isoformat(),
         "N_MODEL": str(model),
@@ -290,17 +332,18 @@ def render_site(ds: Dataset) -> str:
         "N_BENCH": str(len(ds.benchmarks)),
         "N_EVALUATORS": str(len(ds.evaluators)),
         "N_RESULTS": str(n_results),
-        "MODEL_ROWS": html_benchmark_rows(ds, "model"),
-        "AGENT_ROWS": html_benchmark_rows(ds, "agent"),
-        "EVALUATOR_ROWS": html_evaluator_rows(ds),
+        "MODEL_ROWS": html_benchmark_rows(ds, "model", lang),
+        "AGENT_ROWS": html_benchmark_rows(ds, "agent", lang),
+        "EVALUATOR_ROWS": html_evaluator_rows(ds, lang),
         "TIMELINE": html_timeline(ds),
     }
-    text = TEMPLATE.read_text(encoding="utf-8")
+    template = TEMPLATE if lang == "en" else TEMPLATE.with_name(f"index.{lang}.html")
+    text = template.read_text(encoding="utf-8")
     for key, value in ctx.items():
         text = text.replace(f"{{{{{key}}}}}", value)
     leftover = re.findall(r"\{\{[A-Z_]+\}\}", text)
     if leftover:
-        raise SystemExit(f"template placeholders left unrendered: {leftover}")
+        raise SystemExit(f"{template.name}: placeholders left unrendered: {leftover}")
     return text
 
 
@@ -321,31 +364,39 @@ def main() -> int:
         print(f"{len(errors)} validation error(s); refusing to build", file=sys.stderr)
         return 1
 
-    current = README.read_text(encoding="utf-8")
-    rendered = render_readme(ds, current)
+    readmes = {README: render_readme(ds, README.read_text(encoding="utf-8"), "en")}
+    readmes[README_ZH] = render_readme(ds, README_ZH.read_text(encoding="utf-8"), "zh")
+    stale = [p for p, rendered in readmes.items() if rendered != p.read_text(encoding="utf-8")]
     if args.check:
-        if rendered != current:
-            print("README.md is stale: run `python scripts/build.py`", file=sys.stderr)
+        if stale:
+            print(f"stale: {', '.join(p.name for p in stale)} — run `python scripts/build.py`", file=sys.stderr)
             return 1
-        print("README.md up to date")
+        print("README files up to date")
         return 0
-
-    if rendered != current:
-        README.write_text(rendered, encoding="utf-8")
-        print("README.md updated")
+    for p in stale:
+        p.write_text(readmes[p], encoding="utf-8")
+        print(f"{p.name} updated")
 
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir()
-    (DIST / "index.html").write_text(render_site(ds), encoding="utf-8")
+    (DIST / "index.html").write_text(render_site(ds, "en"), encoding="utf-8")
+    (DIST / "zh").mkdir()
+    (DIST / "zh" / "index.html").write_text(render_site(ds, "zh"), encoding="utf-8")
     (DIST / ".nojekyll").touch()
     shutil.copytree(STATIC, DIST, dirs_exist_ok=True)
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
+    today = date.today().isoformat()
+    urls = [(f"{SITE}/", "weekly"), (f"{SITE}/zh/", "weekly"), (f"{SITE}/api/v1/index.json", None)]
+    entries = "".join(
+        f"  <url><loc>{loc}</loc><lastmod>{today}</lastmod>"
+        + (f"<changefreq>{freq}</changefreq>" if freq else "")
+        + "</url>\n"
+        for loc, freq in urls
+    )
     (DIST / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        f"  <url><loc>{SITE}/</loc><lastmod>{date.today().isoformat()}</lastmod><changefreq>weekly</changefreq></url>\n"
-        f"  <url><loc>{SITE}/api/v1/index.json</loc><lastmod>{date.today().isoformat()}</lastmod></url>\n"
-        "</urlset>\n",
+        f"{entries}</urlset>\n",
         encoding="utf-8",
     )
     shutil.copytree(SCHEMA, DIST / "schema")

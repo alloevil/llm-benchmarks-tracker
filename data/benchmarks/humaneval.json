@@ -6,6 +6,7 @@
   "released": "2021-07",
   "maintainer": "OpenAI",
   "description": "164 hand-written Python programming problems, each a function signature plus docstring, scored by running hidden unit tests and reporting pass@k (usually pass@1) for functional correctness. It introduced execution-based code evaluation and was the standard code benchmark from 2021 to 2024; frontier models now solve nearly every problem and the set is widely present in training data.",
+  "description_zh": "164 道手工编写的 Python 编程题,每题为函数签名加文档字符串,通过运行隐藏单元测试评分,以 pass@k(通常为 pass@1)报告功能正确性。它引入了基于执行的代码评估,是 2021 至 2024 年的标准代码基准;前沿模型如今几乎能解出所有题目,且该题集已广泛存在于训练数据中。",
   "domains": [
     "code"
   ],

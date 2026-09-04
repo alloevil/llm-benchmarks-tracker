@@ -6,6 +6,7 @@
   "released": "2023-08",
   "maintainer": "Tsinghua University KEG / Zhipu AI (Liu et al.)",
   "description": "Eight interactive environments (operating system shell, SQL database, knowledge graph, digital card game, lateral-thinking puzzles, ALFWorld household, WebShop, Mind2Web browsing) in which an LLM acts over multiple turns. Each environment has its own success metric and the overall score is a weighted average normalised across environments, so it measures breadth of agentic decision-making rather than one skill. An early standard for comparing API and open-weight models as agents.",
+  "description_zh": "包含八个交互式环境(操作系统 shell、SQL 数据库、知识图谱、数字卡牌游戏、横向思维谜题、ALFWorld 家居、WebShop、Mind2Web 网页浏览),LLM 需在其中进行多轮行动。每个环境有自己的成功指标,总分为跨环境归一化后的加权平均,因此衡量的是智能体决策的广度而非单一技能。是早期比较 API 模型与开放权重模型智能体能力的标准之一。",
   "domains": [
     "tool-use",
     "reasoning",

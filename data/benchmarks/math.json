@@ -6,6 +6,7 @@
   "released": "2021-03",
   "maintainer": "Dan Hendrycks et al. (UC Berkeley)",
   "description": "12,500 competition mathematics problems (7,500 train, 5,000 test) from AMC 10/12, AIME and similar contests across seven subjects and five difficulty levels, each with a full LaTeX step-by-step solution. Scored as exact match of the boxed final answer after normalization. It was the primary hard-math benchmark until reasoning models pushed it past 95%; the hardest Level 5 subset and the 500-problem MATH-500 split remain in use.",
+  "description_zh": "12,500 道竞赛数学题(7,500 训练、5,000 测试),来自 AMC 10/12、AIME 及类似竞赛,涵盖七个学科和五个难度等级,每题附完整的 LaTeX 分步解答。归一化后以加框最终答案的精确匹配评分。在推理模型将其推过 95% 之前,它是主要的高难数学基准;最难的 Level 5 子集和 500 题的 MATH-500 划分仍在使用。",
   "domains": [
     "math",
     "reasoning"

@@ -6,6 +6,7 @@
   "released": "2023-07",
   "maintainer": "Carnegie Mellon University (Zhou, Xu et al.)",
   "description": "812 long-horizon natural-language tasks on self-hosted, fully functional websites (e-commerce, forum, GitLab, CMS) plus a map, calculator and wiki. Agents act through a browser and are scored by programmatic functional checks on the final site state or answer rather than by matching action sequences. The first reproducible end-to-end web-agent benchmark and still the reference for text/DOM web agents.",
+  "description_zh": "812 个长程自然语言任务,运行于自托管、功能完整的网站(电商、论坛、GitLab、CMS)以及地图、计算器和 wiki。智能体通过浏览器行动,以对最终站点状态或答案的程序化功能检查评分,而非匹配动作序列。是首个可复现的端到端网页智能体基准,至今仍是文本/DOM 网页智能体的参考。",
   "domains": [
     "web",
     "tool-use",

@@ -6,6 +6,7 @@
   "released": "2023-11",
   "maintainer": "MMMU Team (Ohio State / Waterloo / CMU; Yue et al.)",
   "description": "11,500 college-level questions that pair text with images (charts, diagrams, maps, tables, chemical structures, music sheets) across six disciplines and 30 subjects, collected from exams, quizzes and textbooks. Scored as accuracy on the 900-question validation set (the test set of 10,500 is graded via EvalAI). The first broad expert-level multimodal benchmark; it is now close to expert-human accuracy and has been superseded by MMMU-Pro.",
+  "description_zh": "11,500 道大学水平的题目,将文本与图像(图表、示意图、地图、表格、化学结构、乐谱)配对,覆盖六个学科和 30 个科目,收集自考试、测验和教科书。以 900 题验证集上的准确率评分(10,500 题的测试集通过 EvalAI 评分)。首个广泛的专家级多模态基准;如今已接近专家人类准确率,并已被 MMMU-Pro 取代。",
   "domains": [
     "multimodal",
     "knowledge",

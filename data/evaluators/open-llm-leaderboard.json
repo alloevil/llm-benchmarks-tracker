@@ -5,6 +5,7 @@
   "maintainer": "Hugging Face",
   "released": "2023-04",
   "description": "Hugging Face's leaderboard for open-weight models. Anyone could submit a Hub checkpoint and it was evaluated automatically with a pinned lm-evaluation-harness version on identical prompts (v1: ARC, HellaSwag, MMLU, TruthfulQA, WinoGrande, GSM8K; v2 from June 2024: IFEval, BBH, MATH level 5, GPQA, MuSR, MMLU-Pro). It made reproducible, like-for-like comparison of thousands of open models possible, then saturated and was retired in March 2025.",
+  "description_zh": "Hugging Face 面向开放权重模型的排行榜。任何人都可提交 Hub 检查点,系统会用固定版本的 lm-evaluation-harness 在相同提示下自动评估(v1:ARC、HellaSwag、MMLU、TruthfulQA、WinoGrande、GSM8K;2024 年 6 月起的 v2:IFEval、BBH、MATH level 5、GPQA、MuSR、MMLU-Pro)。它使数千个开放模型的可复现、同等条件比较成为可能,随后趋于饱和并于 2025 年 3 月退役。",
   "status": "archived",
   "license": "Apache-2.0",
   "benchmarks": [

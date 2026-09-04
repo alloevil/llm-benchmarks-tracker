@@ -5,6 +5,7 @@
   "maintainer": "BenchLM.ai (independent, maintained by @glevd)",
   "released": "2025-08",
   "description": "Aggregator that collects published benchmark scores from model cards, launch posts, benchmark leaderboards and OpenBench into one table of 400+ models and normalises them into category and overall rankings with 'Supported' versus 'Estimated' evidence labels. It runs no evaluations of its own, so numbers inherit whatever scaffold and settings the original source used; its value is breadth, source links per score, and freshness/saturation tagging of benchmarks.",
+  "description_zh": "聚合器,从模型卡、发布博文、基准排行榜和 OpenBench 收集已发布的基准分数,汇成一张涵盖 400 多个模型的表格,归一化为类别与总体排名,并标注\"Supported\"与\"Estimated\"证据标签。它不自行运行任何评估,因此数值继承原始来源所用的脚手架和设置;其价值在于覆盖广度、每个分数附来源链接,以及对基准的新鲜度/饱和度标记。",
   "status": "active",
   "license": null,
   "benchmarks": [

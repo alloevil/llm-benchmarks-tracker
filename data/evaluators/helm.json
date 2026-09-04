@@ -5,6 +5,7 @@
   "maintainer": "Stanford CRFM",
   "released": "2022-11",
   "description": "Holistic Evaluation of Language Models, Stanford CRFM's open-source framework for reproducible, multi-metric evaluation. Scenarios wrap datasets in standard prompts, run-specs fix shots and decoding, and metrics cover accuracy plus efficiency, bias, toxicity and calibration; CRFM self-runs the framework to publish leaderboards such as HELM Capabilities (MMLU-Pro, GPQA, IFEval, WildBench, Omni-MATH). Useful as an independent cross-lab baseline, though it entered maintenance mode in June 2026.",
+  "description_zh": "Holistic Evaluation of Language Models,斯坦福 CRFM 的开源框架,用于可复现的多指标评估。场景以标准提示封装数据集,run-spec 固定 shot 数和解码方式,指标涵盖准确率以及效率、偏见、毒性和校准;CRFM 自行运行该框架发布 HELM Capabilities(MMLU-Pro、GPQA、IFEval、WildBench、Omni-MATH)等排行榜。可作为独立的跨实验室基线,但已于 2026 年 6 月进入维护模式。",
   "status": "archived",
   "license": "Apache-2.0",
   "benchmarks": [
