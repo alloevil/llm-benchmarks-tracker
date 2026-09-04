@@ -195,12 +195,13 @@ def html_benchmark_rows(ds: Dataset, layer: str) -> str:
         risk = b.get("contamination_risk")
         risk_cell = f'<span class="pill risk-{risk}">{risk}</span>' if risk else "—"
         n = len(ds.results.get(b["id"], []))
+        domains = " ".join(f'<span class="pill domain">{_e(d)}</span>' for d in b["domains"])
         rows.append(
             "<tr>"
             f'<td><a href="{_e(best_link(b))}" rel="noopener"><strong>{_e(b["name"])}</strong></a>'
             f'<div class="muted small" title="{_e(b["description"])}">{_e(b["description"])}</div></td>'
             f'<td class="nowrap">{_e(b["released"])}</td>'
-            f'<td>{" ".join(f"<span class=\"pill domain\">{_e(d)}</span>" for d in b["domains"])}</td>'
+            f"<td>{domains}</td>"
             f'<td><span class="pill status-{b["status"]}">{b["status"]}</span></td>'
             f"<td>{risk_cell}</td>"
             f"<td>{score_cell}</td>"
