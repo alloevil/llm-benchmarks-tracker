@@ -77,15 +77,29 @@ def test_supersession_chain_links_both_ways():
 def test_zh_site_uses_translations_and_relative_paths():
     ds = _ds()
     html = build.render_site(ds, "zh")
-    b = next(iter(ds.benchmarks.values()))
+    b = next(b for b in ds.benchmarks.values() if build.is_live(b))  # compact retired rows carry no description
     assert b["description_zh"] in html
     assert b["description"] not in html
     assert 'href="../api/v1/' in html and 'href="../style.css"' in html
     assert 'hreflang="en"' in html and 'lang="zh-CN"' in html
 
 
-def test_benchmarks_sorted_newest_first():
+def test_benchmarks_grouped_live_first_then_newest():
     ds = _ds()
     for layer in ("model", "agent"):
-        released = [b["released"] for b in build.sort_benchmarks(ds, layer)]
-        assert released == sorted(released, reverse=True), layer
+        rows = build.sort_benchmarks(ds, layer)
+        live = [build.is_live(b) for b in rows]
+        assert live == sorted(live, reverse=True), f"{layer}: retired rows before live rows"
+        for group in (True, False):
+            released = [b["released"] for b in rows if build.is_live(b) is group]
+            assert released == sorted(released, reverse=True), (layer, group)
+
+
+def test_retired_rows_are_compact_with_divider():
+    ds = _ds()
+    html = build.render_site(ds, "en")
+    assert html.count('<tr class="divider">') == 2  # one per layer table
+    retired = [b for b in ds.benchmarks.values() if not build.is_live(b)]
+    assert retired, "fixture assumption: some benchmark is saturated/retired"
+    assert html.count('<tr class="compact"') == len(retired)
+    assert "last reported" in html

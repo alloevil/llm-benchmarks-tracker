@@ -69,3 +69,15 @@ tr[hidden]{display:none}
   .sparkcell{grid-column:1/-1}.spark{width:100%;height:32px}
   .dgrid{grid-template-columns:1fr}.filters output{margin-left:0}
 }
+/* --- grouped tables: divider + compact retired rows --- */
+tr.divider td{padding:8px 12px;font-size:.75rem;color:var(--muted);background:var(--bg);border-top:2px solid var(--line);border-bottom:1px solid var(--line);letter-spacing:.02em}
+tr.compact td{padding:6px 12px;font-size:.82rem;color:var(--muted)}tr.compact a{color:var(--muted)}tr.compact strong{color:var(--fg);font-weight:600}
+tr.compact .chain{margin-left:6px}
+@media (max-width:760px){
+  tr.divider{display:block;padding:8px 12px}tr.divider td{display:block;border:0;padding:0}
+  .bench tr.compact{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;padding:8px 12px}
+  .bench tr.compact td,.bench tr.compact td[data-label=Benchmark]{display:inline;padding:0}
+  .bench tr.compact td[data-label]::before{display:none}
+  .bench tr.compact td[data-label="Released"],.bench tr.compact td[data-label="发布"],.bench tr.compact td[data-label="Domains"],.bench tr.compact td[data-label="领域"]{display:none}
+  .bench tr.compact td[colspan]{flex-basis:100%}
+}

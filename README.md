@@ -50,7 +50,6 @@ Static prompt-and-response scoring of the model itself. *Top score* is the best 
 | Benchmark | Released | Domains | Status | Top score | System | Source |
 |---|---|---|---|---|---|---|
 | [ARC-AGI-2](https://arcprize.org/leaderboard) | 2025-03 | reasoning | saturating | 95% | GPT-6 Astra (Max) | [official](https://arcprize.org/leaderboard) |
-| [AIME 2025](https://matharena.ai/) | 2025-02 | math, reasoning | saturated | 100% | GPT-5.2 (high) | [independent](https://matharena.ai/) |
 | [Humanity's Last Exam](https://lastexam.ai/) | 2025-01 | knowledge, reasoning, science, math, multimodal | active | 65% | Claude Fable 5.1 (with tools) | [self-reported](https://www.anthropic.com/claude-fable-and-mythos-5-1) |
 | [SimpleQA](https://openai.com/index/introducing-simpleqa/) | 2024-11 | factuality, knowledge | active | 62.5% | gpt-4.5-preview-2025-02-27 | [self-reported](https://github.com/openai/simple-evals) |
 | [FrontierMath](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) | 2024-11 | math, reasoning, research | saturating | 93.7% | gpt-6-astra (max) | [independent](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) |
@@ -62,17 +61,19 @@ Static prompt-and-response scoring of the model itself. *Top score* is the best 
 | [MMMU](https://mmmu-benchmark.github.io/#leaderboard) | 2023-11 | multimodal, knowledge, reasoning | saturating | 85.4% | GPT-5.1 | [self-reported](https://mmmu-benchmark.github.io/) |
 | [IFEval](https://github.com/google-research/google-research/tree/master/instruction_following_eval) | 2023-11 | instruction-following | saturating | 95% | Qwen3.5-27B | [self-reported](https://huggingface.co/Qwen/Qwen3.5-27B) |
 | [GPQA Diamond](https://github.com/idavidrein/gpqa) | 2023-11 | science, reasoning, knowledge | saturating | 96% | GPT-6 Astra | [aggregator](https://benchlm.ai/benchmarks/gpqa-diamond) |
-| [BIG-Bench Hard](https://github.com/suzgunmirac/BIG-Bench-Hard) | 2022-10 | reasoning | saturated | 87.5% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
-| [GSM8K](https://github.com/openai/grade-school-math) | 2021-10 | math, reasoning | saturated | 92.6% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
-| [TruthfulQA](https://github.com/sylinrl/TruthfulQA) | 2021-09 | factuality, safety | saturated | 58% | GPT-3-175B (helpful prompt) | [paper](https://arxiv.org/abs/2109.07958) |
-| [MBPP](https://github.com/google-research/google-research/tree/master/mbpp) | 2021-08 | code | saturated | 88.6% | Llama 3.1 405B Instruct | [self-reported](https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct) |
-| [HumanEval](https://github.com/openai/human-eval) | 2021-07 | code | saturated | 99.3% | o4-mini-high | [self-reported](https://github.com/openai/simple-evals) |
-| [MATH](https://epoch.ai/benchmarks/math-level-5) | 2021-03 | math, reasoning | saturated | 98.1% | o3-high | [self-reported](https://github.com/openai/simple-evals) |
-| [MMLU](https://github.com/hendrycks/test) | 2020-09 | knowledge, reasoning | saturated | 91.8% | o1 | [self-reported](https://github.com/openai/simple-evals) |
-| [ARC-AGI-1](https://arcprize.org/leaderboard) | 2019-11 | reasoning | saturated | 98.5% | GPT-6 Astra (XHigh) | [official](https://arcprize.org/leaderboard) |
-| [WinoGrande](https://winogrande.allenai.org/) | 2019-07 | commonsense, reasoning | saturated | 81.5% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
-| [HellaSwag](https://rowanzellers.com/hellaswag/) | 2019-05 | commonsense | saturated | 88% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
-| [DROP](https://github.com/allenai/allennlp-reading-comprehension) | 2019-03 | reasoning, knowledge | saturated | 90.2% | o1 | [self-reported](https://github.com/openai/simple-evals) |
+| *Saturated or retired — no longer used to compare frontier systems. Score shown is the last one reported, not a leaderboard top.* | | | | | | |
+| [AIME 2025](https://matharena.ai/) | 2025-02 | math, reasoning | saturated | last reported 100% | GPT-5.2 (high) | [independent](https://matharena.ai/) |
+| [BIG-Bench Hard](https://github.com/suzgunmirac/BIG-Bench-Hard) | 2022-10 | reasoning | saturated | last reported 87.5% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [GSM8K](https://github.com/openai/grade-school-math) | 2021-10 | math, reasoning | saturated | last reported 92.6% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [TruthfulQA](https://github.com/sylinrl/TruthfulQA) | 2021-09 | factuality, safety | saturated | last reported 58% | GPT-3-175B (helpful prompt) | [paper](https://arxiv.org/abs/2109.07958) |
+| [MBPP](https://github.com/google-research/google-research/tree/master/mbpp) | 2021-08 | code | saturated | last reported 88.6% | Llama 3.1 405B Instruct | [self-reported](https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct) |
+| [HumanEval](https://github.com/openai/human-eval) | 2021-07 | code | saturated | last reported 76.8% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [MATH](https://epoch.ai/benchmarks/math-level-5) | 2021-03 | math, reasoning | saturated | last reported 98.1% | o3-high | [self-reported](https://github.com/openai/simple-evals) |
+| [MMLU](https://github.com/hendrycks/test) | 2020-09 | knowledge, reasoning | saturated | last reported 90.1% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [ARC-AGI-1](https://arcprize.org/leaderboard) | 2019-11 | reasoning | saturated | last reported 98.5% | GPT-6 Astra (XHigh) | [official](https://arcprize.org/leaderboard) |
+| [WinoGrande](https://winogrande.allenai.org/) | 2019-07 | commonsense, reasoning | saturated | last reported 81.5% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [HellaSwag](https://rowanzellers.com/hellaswag/) | 2019-05 | commonsense | saturated | last reported 88% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [DROP](https://github.com/allenai/allennlp-reading-comprehension) | 2019-03 | reasoning, knowledge | saturated | last reported 88.7% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
 <!-- /gen:model -->
 
 ## Agent benchmarks
@@ -92,13 +93,14 @@ Interactive environments where the system acts, uses tools, and is scored on tas
 | [SWE-bench Multilingual](https://www.swebench.com/#multilingual) | 2025-03 | software-engineering, code, tool-use | active | 72.7% | Gemini 3 Flash | [official](https://www.swebench.com/#multilingual) |
 | [MLE-bench](https://github.com/openai/mle-bench) | 2024-10 | ml-engineering, code, tool-use | active | 64.44% | Famou-Agent 2.0 + Gemini-3-Pro-Preview | [official](https://github.com/openai/mle-bench) |
 | [SWE-bench Verified](https://www.swebench.com/#verified) | 2024-08 | software-engineering, code, tool-use | saturating | 96% | Claude Opus 5 | [aggregator](https://benchlm.ai/benchmarks/swe-bench-verified) |
-| [tau-bench](https://github.com/sierra-research/tau-bench) | 2024-06 | tool-use, instruction-following, general-assistant | retired | 69.2% | TC (claude-3-5-sonnet-20241022), retail | [official](https://github.com/sierra-research/tau-bench) |
 | [OSWorld](https://os-world.github.io) | 2024-04 | computer-use, multimodal, tool-use | active | 90.19% | Intelligence-Indeed Agent | [official](https://os-world.github.io) |
 | [VisualWebArena](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?gid=2044883967#gid=2044883967) | 2024-01 | web, multimodal, computer-use | active | 54% | Gemini 2.5 Flash (SGV) | [official](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?gid=2044883967#gid=2044883967) |
 | [GAIA](https://huggingface.co/spaces/gaia-benchmark/leaderboard) | 2023-11 | general-assistant, tool-use, web, reasoning, multimodal | saturating | 93.36% | CustomGPT.ai Research Lab v44 | [official](https://huggingface.co/spaces/gaia-benchmark/leaderboard) |
-| [SWE-bench](https://www.swebench.com/#test) | 2023-10 | software-engineering, code, tool-use | saturated | 52.62% | Sonar Foundation Agent + Claude 4.5 Opus | [official](https://www.swebench.com/#test) |
-| [AgentBench](https://docs.google.com/spreadsheets/d/e/2PACX-1vRR3Wl7wsCgHpwUw1_eUXW_fptAPLL3FkhnW_rua0O1Ji_GIVrpTjY5LaKAhwO-WeARjnY_KNw0SYNJ/pubhtml) | 2023-08 | tool-use, reasoning, web, code | retired | 4.01 | gpt-4 (0613) | [paper](https://arxiv.org/abs/2308.03688) |
 | [WebArena](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing) | 2023-07 | web, tool-use, computer-use | active | 74.3% | WebTactix + Deepseek v3.2 | [official](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing) |
+| *Saturated or retired — no longer used to compare frontier systems. Score shown is the last one reported, not a leaderboard top.* | | | | | | |
+| [tau-bench](https://github.com/sierra-research/tau-bench) | 2024-06 | tool-use, instruction-following, general-assistant | retired | last reported 69.2% | TC (claude-3-5-sonnet-20241022), retail | [official](https://github.com/sierra-research/tau-bench) |
+| [SWE-bench](https://www.swebench.com/#test) | 2023-10 | software-engineering, code, tool-use | saturated | last reported 52.62% | Sonar Foundation Agent + Claude 4.5 Opus | [official](https://www.swebench.com/#test) |
+| [AgentBench](https://docs.google.com/spreadsheets/d/e/2PACX-1vRR3Wl7wsCgHpwUw1_eUXW_fptAPLL3FkhnW_rua0O1Ji_GIVrpTjY5LaKAhwO-WeARjnY_KNw0SYNJ/pubhtml) | 2023-08 | tool-use, reasoning, web, code | retired | last reported 3.11 | claude-3 opus | [paper](https://arxiv.org/abs/2308.03688) |
 <!-- /gen:agent -->
 
 ## Evaluators

@@ -2,6 +2,13 @@
 
 All notable changes to the data model and tooling. Data additions are tracked in git history and the per-benchmark ledgers.
 
+## 1.3.0 — 2026-09-04
+
+### Changed
+- Benchmark tables (site + both READMEs) are grouped: active/saturating first, then a divider row, then saturated/retired. Newest-first inside each group.
+- Saturated/retired rows are compact (no description, no sparkline) and show "last reported <score>" plus the successor (`→ MMLU-Pro`) instead of a "top score", since frontier systems no longer report on them.
+- Filter/sort keep the two groups separate; the divider hides when no retired row matches.
+
 ## 1.2.0 — 2026-09-04
 
 ### Added

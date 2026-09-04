@@ -87,6 +87,9 @@ T: dict[str, dict[str, str]] = {
         "provenance": "of top scores are official or independent",
         "sort_hint": "click to sort",
         "no_baseline": "no measured baseline",
+        "last_reported": "last reported",
+        "divider": "Saturated or retired — no longer used to compare frontier systems. "
+        "Score shown is the last one reported, not a leaderboard top.",
     },
     "zh": {
         "bench_header": "| Benchmark | 发布 | 领域 | 状态 | 最高分 | 系统 | 来源 |",
@@ -138,6 +141,8 @@ T: dict[str, dict[str, str]] = {
         "provenance": "的最高分来自官方榜单或独立复现",
         "sort_hint": "点击排序",
         "no_baseline": "无实测基线",
+        "last_reported": "最后报告",
+        "divider": "已饱和或退役 —— 不再用于比较前沿系统。所示分数为最后一次报告值，不是榜首。",
     },
 }
 
@@ -196,10 +201,24 @@ def fmt_value(b: dict[str, Any], value: float) -> str:
     return f"{value:g}"
 
 
+LIVE = ("active", "saturating")
+
+
+def is_live(b: dict[str, Any]) -> bool:
+    return b["status"] in LIVE
+
+
 def sort_benchmarks(ds: Dataset, layer: str) -> list[dict[str, Any]]:
-    """Newest first; ties broken by id for determinism."""
+    """Live (active/saturating) first, then saturated/retired; newest first within each group."""
     rows = [b for b in ds.benchmarks.values() if b["layer"] == layer]
-    return sorted(rows, key=lambda b: (b["released"], b["id"]), reverse=True)
+    rows.sort(key=lambda b: (b["released"], b["id"]), reverse=True)
+    rows.sort(key=lambda b: not is_live(b))  # stable: preserves newest-first inside each group
+    return rows
+
+
+def last_reported(ds: Dataset, bid: str) -> dict[str, Any] | None:
+    rows = ds.results.get(bid)
+    return max(rows, key=lambda r: r["date"]) if rows else None
 
 
 def md_link(text: str, url: str | None) -> str:
@@ -215,13 +234,20 @@ def best_link(b: dict[str, Any]) -> str | None:
 
 
 def readme_benchmark_table(ds: Dataset, layer: str, lang: str = "en") -> str:
-    out = [T[lang]["bench_header"], "|---|---|---|---|---|---|---|"]
+    t = T[lang]
+    out = [t["bench_header"], "|---|---|---|---|---|---|---|"]
+    divider_done = False
     for b in sort_benchmarks(ds, layer):
-        sota = ds.sota(b["id"])
-        if sota:
-            score = fmt_value(b, sota["value"])
-            system = sota["system"]
-            src = md_link(kind_label(lang, sota["source"]["kind"]), sota["source"]["url"])
+        if not is_live(b) and not divider_done:
+            out.append(f"| *{t['divider']}* | | | | | | |")
+            divider_done = True
+        row = ds.sota(b["id"]) if is_live(b) else last_reported(ds, b["id"])
+        if row:
+            score = fmt_value(b, row["value"])
+            if not is_live(b):
+                score = f"{t['last_reported']} {score}"
+            system = row["system"]
+            src = md_link(kind_label(lang, row["source"]["kind"]), row["source"]["url"])
         else:
             score = system = src = "—"
         out.append(
@@ -362,11 +388,51 @@ def chain_html(ds: Dataset, b: dict[str, Any], lang: str, base: str) -> str:
     return " ".join(parts)
 
 
+def compact_row(ds: Dataset, b: dict[str, Any], lang: str, base: str) -> str:
+    """Single-line row for saturated/retired benchmarks: last reported score and successor, no SOTA framing."""
+    t = T[lang]
+    last = last_reported(ds, b["id"])
+    risk = b.get("contamination_risk") or ""
+    nxt = b.get("superseded_by")
+    succ = ""
+    if nxt and nxt in ds.benchmarks:
+        succ = f' <a class="chain" href="{base}b/{nxt}/">→ {_e(ds.benchmarks[nxt]["name"])}</a>'
+    if last:
+        kind = last["source"]["kind"]
+        score = (
+            f'<span class="muted">{t["last_reported"]}</span> <strong>{_e(fmt_value(b, last["value"]))}</strong> '
+            f'<a class="src src-{kind}" href="{_e(last["source"]["url"])}" rel="noopener">{kind_label(lang, kind)}</a> '
+            f'<time class="muted" datetime="{last["date"]}">{last["date"][:7]}</time>'
+        )
+    else:
+        score = f'<span class="muted">{t["no_result"]}</span>'
+    search = " ".join([b["name"], b.get("full_name", ""), *b["domains"]]).lower()
+    risk_cell = f'<span class="pill risk-{risk}">{risk}</span>' if risk else "—"
+    return (
+        f'<tr class="compact" data-status="{b["status"]}" data-risk="{risk}" data-domains="{_e(" ".join(b["domains"]))}" '
+        f'data-released="{b["released"]}" data-score="{last["value"] if last else -1}" data-search="{_e(search)}">'
+        f'<td data-label="Benchmark"><a href="{base}b/{b["id"]}/">{_e(b["name"])}</a>{succ}</td>'
+        f'<td data-label="{t["released"]}" class="nowrap muted">{_e(b["released"])}</td>'
+        f'<td data-label="{t["domains"]}" class="muted">{_e(", ".join(b["domains"]))}</td>'
+        f'<td data-label="{t["status"]}"><span class="pill status-{b["status"]}">{b["status"]}</span></td>'
+        f'<td data-label="{t["risk"]}">{risk_cell}</td>'
+        f'<td data-label="{t["top"]}" colspan="2">{score}</td>'
+        "</tr>"
+    )
+
+
 def html_benchmark_rows(ds: Dataset, layer: str, lang: str) -> str:
     t = T[lang]
     base = "../" if lang != "en" else ""
     rows = []
+    divider_done = False
     for b in sort_benchmarks(ds, layer):
+        if not is_live(b):
+            if not divider_done:
+                rows.append(f'<tr class="divider"><td colspan="7">{t["divider"]}</td></tr>')
+                divider_done = True
+            rows.append(compact_row(ds, b, lang, base))
+            continue
         sota = ds.sota(b["id"])
         desc = b[t["description"]]
         risk = b.get("contamination_risk") or ""

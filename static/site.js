@@ -5,7 +5,8 @@
     var table = document.getElementById("t-" + form.dataset.target);
     if (!table) return;
     form.hidden = false;
-    var rows = Array.prototype.slice.call(table.tBodies[0].rows);
+    var rows = Array.prototype.slice.call(table.tBodies[0].rows).filter(function (r) { return !r.classList.contains("divider"); });
+    var divider = table.querySelector("tr.divider");
     var search = form.querySelector("[data-search]");
     var count = form.querySelector("[data-count]");
     var active = {};
@@ -20,6 +21,7 @@
         tr.hidden = !ok;
         if (ok) shown++;
       });
+      if (divider) divider.hidden = !rows.some(function (r) { return !r.hidden && r.classList.contains("compact"); });
       count.value = shown + " / " + rows.length;
     }
     search.addEventListener("input", apply);
@@ -51,7 +53,11 @@
         th.setAttribute("aria-sort", dir);
         var sign = dir === "descending" ? -1 : 1;
         rows.sort(function (a, b) { var x = key(a), y = key(b); return x < y ? -sign : x > y ? sign : 0; });
-        rows.forEach(function (tr) { table.tBodies[0].appendChild(tr); });
+        var live = rows.filter(function (r) { return !r.classList.contains("compact"); });
+        var gone = rows.filter(function (r) { return r.classList.contains("compact"); });
+        live.forEach(function (tr) { table.tBodies[0].appendChild(tr); });
+        if (divider) table.tBodies[0].appendChild(divider);
+        gone.forEach(function (tr) { table.tBodies[0].appendChild(tr); });
       }
       th.addEventListener("click", sort);
       th.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); sort(); } });

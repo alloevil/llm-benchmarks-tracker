@@ -29,7 +29,6 @@
 | Benchmark | 发布 | 领域 | 状态 | 最高分 | 系统 | 来源 |
 |---|---|---|---|---|---|---|
 | [ARC-AGI-2](https://arcprize.org/leaderboard) | 2025-03 | reasoning | saturating | 95% | GPT-6 Astra (Max) | [官方榜单](https://arcprize.org/leaderboard) |
-| [AIME 2025](https://matharena.ai/) | 2025-02 | math, reasoning | saturated | 100% | GPT-5.2 (high) | [独立复现](https://matharena.ai/) |
 | [Humanity's Last Exam](https://lastexam.ai/) | 2025-01 | knowledge, reasoning, science, math, multimodal | active | 65% | Claude Fable 5.1 (with tools) | [厂商自报](https://www.anthropic.com/claude-fable-and-mythos-5-1) |
 | [SimpleQA](https://openai.com/index/introducing-simpleqa/) | 2024-11 | factuality, knowledge | active | 62.5% | gpt-4.5-preview-2025-02-27 | [厂商自报](https://github.com/openai/simple-evals) |
 | [FrontierMath](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) | 2024-11 | math, reasoning, research | saturating | 93.7% | gpt-6-astra (max) | [独立复现](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) |
@@ -41,17 +40,19 @@
 | [MMMU](https://mmmu-benchmark.github.io/#leaderboard) | 2023-11 | multimodal, knowledge, reasoning | saturating | 85.4% | GPT-5.1 | [厂商自报](https://mmmu-benchmark.github.io/) |
 | [IFEval](https://github.com/google-research/google-research/tree/master/instruction_following_eval) | 2023-11 | instruction-following | saturating | 95% | Qwen3.5-27B | [厂商自报](https://huggingface.co/Qwen/Qwen3.5-27B) |
 | [GPQA Diamond](https://github.com/idavidrein/gpqa) | 2023-11 | science, reasoning, knowledge | saturating | 96% | GPT-6 Astra | [聚合站](https://benchlm.ai/benchmarks/gpqa-diamond) |
-| [BIG-Bench Hard](https://github.com/suzgunmirac/BIG-Bench-Hard) | 2022-10 | reasoning | saturated | 87.5% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
-| [GSM8K](https://github.com/openai/grade-school-math) | 2021-10 | math, reasoning | saturated | 92.6% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
-| [TruthfulQA](https://github.com/sylinrl/TruthfulQA) | 2021-09 | factuality, safety | saturated | 58% | GPT-3-175B (helpful prompt) | [论文](https://arxiv.org/abs/2109.07958) |
-| [MBPP](https://github.com/google-research/google-research/tree/master/mbpp) | 2021-08 | code | saturated | 88.6% | Llama 3.1 405B Instruct | [厂商自报](https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct) |
-| [HumanEval](https://github.com/openai/human-eval) | 2021-07 | code | saturated | 99.3% | o4-mini-high | [厂商自报](https://github.com/openai/simple-evals) |
-| [MATH](https://epoch.ai/benchmarks/math-level-5) | 2021-03 | math, reasoning | saturated | 98.1% | o3-high | [厂商自报](https://github.com/openai/simple-evals) |
-| [MMLU](https://github.com/hendrycks/test) | 2020-09 | knowledge, reasoning | saturated | 91.8% | o1 | [厂商自报](https://github.com/openai/simple-evals) |
-| [ARC-AGI-1](https://arcprize.org/leaderboard) | 2019-11 | reasoning | saturated | 98.5% | GPT-6 Astra (XHigh) | [官方榜单](https://arcprize.org/leaderboard) |
-| [WinoGrande](https://winogrande.allenai.org/) | 2019-07 | commonsense, reasoning | saturated | 81.5% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
-| [HellaSwag](https://rowanzellers.com/hellaswag/) | 2019-05 | commonsense | saturated | 88% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
-| [DROP](https://github.com/allenai/allennlp-reading-comprehension) | 2019-03 | reasoning, knowledge | saturated | 90.2% | o1 | [厂商自报](https://github.com/openai/simple-evals) |
+| *已饱和或退役 —— 不再用于比较前沿系统。所示分数为最后一次报告值，不是榜首。* | | | | | | |
+| [AIME 2025](https://matharena.ai/) | 2025-02 | math, reasoning | saturated | 最后报告 100% | GPT-5.2 (high) | [独立复现](https://matharena.ai/) |
+| [BIG-Bench Hard](https://github.com/suzgunmirac/BIG-Bench-Hard) | 2022-10 | reasoning | saturated | 最后报告 87.5% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [GSM8K](https://github.com/openai/grade-school-math) | 2021-10 | math, reasoning | saturated | 最后报告 92.6% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [TruthfulQA](https://github.com/sylinrl/TruthfulQA) | 2021-09 | factuality, safety | saturated | 最后报告 58% | GPT-3-175B (helpful prompt) | [论文](https://arxiv.org/abs/2109.07958) |
+| [MBPP](https://github.com/google-research/google-research/tree/master/mbpp) | 2021-08 | code | saturated | 最后报告 88.6% | Llama 3.1 405B Instruct | [厂商自报](https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct) |
+| [HumanEval](https://github.com/openai/human-eval) | 2021-07 | code | saturated | 最后报告 76.8% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [MATH](https://epoch.ai/benchmarks/math-level-5) | 2021-03 | math, reasoning | saturated | 最后报告 98.1% | o3-high | [厂商自报](https://github.com/openai/simple-evals) |
+| [MMLU](https://github.com/hendrycks/test) | 2020-09 | knowledge, reasoning | saturated | 最后报告 90.1% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [ARC-AGI-1](https://arcprize.org/leaderboard) | 2019-11 | reasoning | saturated | 最后报告 98.5% | GPT-6 Astra (XHigh) | [官方榜单](https://arcprize.org/leaderboard) |
+| [WinoGrande](https://winogrande.allenai.org/) | 2019-07 | commonsense, reasoning | saturated | 最后报告 81.5% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [HellaSwag](https://rowanzellers.com/hellaswag/) | 2019-05 | commonsense | saturated | 最后报告 88% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
+| [DROP](https://github.com/allenai/allennlp-reading-comprehension) | 2019-03 | reasoning, knowledge | saturated | 最后报告 88.7% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
 <!-- /gen:model -->
 
 ## Agent 基准
@@ -71,13 +72,14 @@
 | [SWE-bench Multilingual](https://www.swebench.com/#multilingual) | 2025-03 | software-engineering, code, tool-use | active | 72.7% | Gemini 3 Flash | [官方榜单](https://www.swebench.com/#multilingual) |
 | [MLE-bench](https://github.com/openai/mle-bench) | 2024-10 | ml-engineering, code, tool-use | active | 64.44% | Famou-Agent 2.0 + Gemini-3-Pro-Preview | [官方榜单](https://github.com/openai/mle-bench) |
 | [SWE-bench Verified](https://www.swebench.com/#verified) | 2024-08 | software-engineering, code, tool-use | saturating | 96% | Claude Opus 5 | [聚合站](https://benchlm.ai/benchmarks/swe-bench-verified) |
-| [tau-bench](https://github.com/sierra-research/tau-bench) | 2024-06 | tool-use, instruction-following, general-assistant | retired | 69.2% | TC (claude-3-5-sonnet-20241022), retail | [官方榜单](https://github.com/sierra-research/tau-bench) |
 | [OSWorld](https://os-world.github.io) | 2024-04 | computer-use, multimodal, tool-use | active | 90.19% | Intelligence-Indeed Agent | [官方榜单](https://os-world.github.io) |
 | [VisualWebArena](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?gid=2044883967#gid=2044883967) | 2024-01 | web, multimodal, computer-use | active | 54% | Gemini 2.5 Flash (SGV) | [官方榜单](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?gid=2044883967#gid=2044883967) |
 | [GAIA](https://huggingface.co/spaces/gaia-benchmark/leaderboard) | 2023-11 | general-assistant, tool-use, web, reasoning, multimodal | saturating | 93.36% | CustomGPT.ai Research Lab v44 | [官方榜单](https://huggingface.co/spaces/gaia-benchmark/leaderboard) |
-| [SWE-bench](https://www.swebench.com/#test) | 2023-10 | software-engineering, code, tool-use | saturated | 52.62% | Sonar Foundation Agent + Claude 4.5 Opus | [官方榜单](https://www.swebench.com/#test) |
-| [AgentBench](https://docs.google.com/spreadsheets/d/e/2PACX-1vRR3Wl7wsCgHpwUw1_eUXW_fptAPLL3FkhnW_rua0O1Ji_GIVrpTjY5LaKAhwO-WeARjnY_KNw0SYNJ/pubhtml) | 2023-08 | tool-use, reasoning, web, code | retired | 4.01 | gpt-4 (0613) | [论文](https://arxiv.org/abs/2308.03688) |
 | [WebArena](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing) | 2023-07 | web, tool-use, computer-use | active | 74.3% | WebTactix + Deepseek v3.2 | [官方榜单](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing) |
+| *已饱和或退役 —— 不再用于比较前沿系统。所示分数为最后一次报告值，不是榜首。* | | | | | | |
+| [tau-bench](https://github.com/sierra-research/tau-bench) | 2024-06 | tool-use, instruction-following, general-assistant | retired | 最后报告 69.2% | TC (claude-3-5-sonnet-20241022), retail | [官方榜单](https://github.com/sierra-research/tau-bench) |
+| [SWE-bench](https://www.swebench.com/#test) | 2023-10 | software-engineering, code, tool-use | saturated | 最后报告 52.62% | Sonar Foundation Agent + Claude 4.5 Opus | [官方榜单](https://www.swebench.com/#test) |
+| [AgentBench](https://docs.google.com/spreadsheets/d/e/2PACX-1vRR3Wl7wsCgHpwUw1_eUXW_fptAPLL3FkhnW_rua0O1Ji_GIVrpTjY5LaKAhwO-WeARjnY_KNw0SYNJ/pubhtml) | 2023-08 | tool-use, reasoning, web, code | retired | 最后报告 3.11 | claude-3 opus | [论文](https://arxiv.org/abs/2308.03688) |
 <!-- /gen:agent -->
 
 ## 评测方
