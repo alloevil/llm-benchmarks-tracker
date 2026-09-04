@@ -1,10 +1,22 @@
+<div align="center">
+
 # LLM Benchmarks Tracker
 
-[![validate](https://github.com/alloevil/llm-benchmarks-tracker/actions/workflows/ci.yml/badge.svg)](https://github.com/alloevil/llm-benchmarks-tracker/actions/workflows/ci.yml)
-[![site](https://img.shields.io/badge/site-alloevil.github.io-blue)](https://alloevil.github.io/llm-benchmarks-tracker/)
-[![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+**A sourced, schema-validated catalogue of how language models and agents are measured.**
 
-A sourced, schema-validated catalogue of how language models and agents are measured: what each benchmark tests, whether it still discriminates between frontier systems, how contaminated it is, and who reported the top score under which conditions.
+[**Browse the site**](https://alloevil.github.io/llm-benchmarks-tracker/) · [**JSON API**](https://alloevil.github.io/llm-benchmarks-tracker/api/v1/index.json) · [**Add a result**](https://github.com/alloevil/llm-benchmarks-tracker/issues/new?template=result.yml) · [**Changelog**](CHANGELOG.md)
+
+[![CI](https://github.com/alloevil/llm-benchmarks-tracker/actions/workflows/ci.yml/badge.svg)](https://github.com/alloevil/llm-benchmarks-tracker/actions/workflows/ci.yml)
+[![Pages](https://github.com/alloevil/llm-benchmarks-tracker/actions/workflows/pages.yml/badge.svg)](https://alloevil.github.io/llm-benchmarks-tracker/)
+[![Release](https://img.shields.io/github/v/release/alloevil/llm-benchmarks-tracker)](https://github.com/alloevil/llm-benchmarks-tracker/releases)
+[![Last commit](https://img.shields.io/github/last-commit/alloevil/llm-benchmarks-tracker)](https://github.com/alloevil/llm-benchmarks-tracker/commits/main)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+[![LLM Benchmarks Tracker](static/og.png)](https://alloevil.github.io/llm-benchmarks-tracker/)
+
+</div>
+
+For every benchmark: what it tests, whether it still discriminates between frontier systems (`status`), how exposed its test set is (`contamination_risk`), a measured human baseline when one exists, and who reported the top score under which conditions.
 
 <!-- gen:stats -->
 **24** model benchmarks · **17** agent benchmarks · **18** evaluators · **179** sourced results · updated 2026-09-04
@@ -12,9 +24,13 @@ A sourced, schema-validated catalogue of how language models and agents are meas
 
 **Why another list?** Most benchmark pages copy vendor slide numbers with no provenance. Here every result row carries a source URL, a source *kind* (official leaderboard / paper / independent re-run / developer self-report / aggregator), the access date, and the evaluation conditions (tools, reasoning effort, scaffold, pass@k). Numbers without a source do not get in.
 
-- **Site:** <https://alloevil.github.io/llm-benchmarks-tracker/>
-- **JSON API:** <https://alloevil.github.io/llm-benchmarks-tracker/api/v1/index.json>
-- **Schemas:** [`schema/`](schema/) (JSON Schema 2020-12)
+| Resource | URL |
+|---|---|
+| Site | <https://alloevil.github.io/llm-benchmarks-tracker/> |
+| API index | <https://alloevil.github.io/llm-benchmarks-tracker/api/v1/index.json> |
+| All benchmarks + SOTA | <https://alloevil.github.io/llm-benchmarks-tracker/api/v1/benchmarks.json> |
+| Per-benchmark ledger | `https://alloevil.github.io/llm-benchmarks-tracker/api/v1/results/<id>.json` |
+| Schemas | [`schema/`](schema/) (JSON Schema 2020-12) |
 
 ## Contents
 

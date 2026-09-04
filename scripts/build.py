@@ -4,6 +4,7 @@
   dist/index.html          static site
   dist/api/v1/*.json       machine-readable export
   dist/schema/*.json       published schemas
+  dist/og.png, robots.txt, sitemap.xml
   README.md                tables between <!-- gen:* --> markers
 
 `--check` exits 1 if README.md would change (CI drift guard).
@@ -27,8 +28,10 @@ from dataset import ROOT, SCHEMA, Dataset, load, validate  # noqa: E402
 
 DIST = ROOT / "dist"
 TEMPLATE = ROOT / "templates" / "index.html"
+STATIC = ROOT / "static"
 README = ROOT / "README.md"
 SITE = "https://alloevil.github.io/llm-benchmarks-tracker"
+REPO = "https://github.com/alloevil/llm-benchmarks-tracker"
 
 STATUS_ORDER = {"active": 0, "saturating": 1, "saturated": 2, "retired": 3}
 KIND_LABEL = {
@@ -246,13 +249,45 @@ def html_timeline(ds: Dataset) -> str:
     return "\n".join(out)
 
 
+def json_ld(ds: Dataset) -> str:
+    """schema.org Dataset so search engines index this as data, not a blog post."""
+    keywords = sorted({d for b in ds.benchmarks.values() for d in b["domains"]})
+    keywords += sorted(b["name"] for b in ds.benchmarks.values() if b["status"] == "active")
+    doc = {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": "LLM Benchmarks Tracker",
+        "description": (
+            f"Schema-validated catalogue of {len(ds.benchmarks)} LLM and agent evaluation benchmarks and "
+            f"{len(ds.evaluators)} evaluators, with {sum(len(v) for v in ds.results.values())} sourced results. "
+            "Each result records the publishing URL, source kind and evaluation conditions."
+        ),
+        "url": f"{SITE}/",
+        "sameAs": REPO,
+        "license": "https://opensource.org/licenses/MIT",
+        "isAccessibleForFree": True,
+        "keywords": keywords,
+        "dateModified": date.today().isoformat(),
+        "creator": {"@type": "Organization", "name": "alloevil and contributors", "url": REPO},
+        "distribution": [
+            {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": f"{SITE}/api/v1/{name}.json"}
+            for name in ("benchmarks", "evaluators")
+        ],
+    }
+    return json.dumps(doc, ensure_ascii=False)
+
+
+
 def render_site(ds: Dataset) -> str:
     n_results = sum(len(v) for v in ds.results.values())
     model = sum(1 for b in ds.benchmarks.values() if b["layer"] == "model")
     ctx = {
+        "SITE": SITE,
+        "JSON_LD": json_ld(ds),
         "GENERATED": date.today().isoformat(),
         "N_MODEL": str(model),
         "N_AGENT": str(len(ds.benchmarks) - model),
+        "N_BENCH": str(len(ds.benchmarks)),
         "N_EVALUATORS": str(len(ds.evaluators)),
         "N_RESULTS": str(n_results),
         "MODEL_ROWS": html_benchmark_rows(ds, "model"),
@@ -304,6 +339,15 @@ def main() -> int:
     DIST.mkdir()
     (DIST / "index.html").write_text(render_site(ds), encoding="utf-8")
     (DIST / ".nojekyll").touch()
+    shutil.copytree(STATIC, DIST, dirs_exist_ok=True)
+    (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
+    (DIST / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"  <url><loc>{SITE}/</loc><lastmod>{date.today().isoformat()}</lastmod><changefreq>weekly</changefreq></url>\n"
+        f"  <url><loc>{SITE}/api/v1/index.json</loc><lastmod>{date.today().isoformat()}</lastmod></url>\n"
+        "</urlset>\n",
+        encoding="utf-8",
+    )
     shutil.copytree(SCHEMA, DIST / "schema")
     write_api(ds)
     print(f"built {DIST.relative_to(ROOT)}/ ({len(ds.benchmarks)} benchmarks, {len(ds.evaluators)} evaluators)")

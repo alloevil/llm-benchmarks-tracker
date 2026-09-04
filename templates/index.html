@@ -3,9 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LLM Benchmarks Tracker</title>
-<meta name="description" content="Sourced, schema-validated catalogue of LLM and agent evaluation benchmarks, evaluators, and top scores with provenance.">
+<title>LLM Benchmarks Tracker — {{N_MODEL}} model &amp; {{N_AGENT}} agent benchmarks with sourced scores</title>
+<meta name="description" content="Sourced, schema-validated catalogue of {{N_BENCH}} LLM and agent evaluation benchmarks (SWE-bench, GPQA, HLE, ARC-AGI, OSWorld…): what each tests, saturation and contamination status, and {{N_RESULTS}} top scores with provenance. Free JSON API.">
+<link rel="canonical" href="{{SITE}}/">
 <link rel="alternate" type="application/json" href="api/v1/index.json">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{SITE}}/">
+<meta property="og:title" content="LLM Benchmarks Tracker">
+<meta property="og:description" content="{{N_BENCH}} LLM &amp; agent benchmarks, {{N_EVALUATORS}} evaluators, {{N_RESULTS}} sourced scores. Every number links to where it was published.">
+<meta property="og:image" content="{{SITE}}/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LLM Benchmarks Tracker">
+<meta name="twitter:description" content="{{N_BENCH}} LLM &amp; agent benchmarks, {{N_EVALUATORS}} evaluators, {{N_RESULTS}} sourced scores with provenance.">
+<meta name="twitter:image" content="{{SITE}}/og.png">
+<script type="application/ld+json">{{JSON_LD}}</script>
 <style>
 :root{--bg:#0b0e14;--card:#121721;--line:#232a36;--fg:#e6e9ef;--muted:#8a94a6;--accent:#7aa2f7;--ok:#9ece6a;--warn:#e0af68;--bad:#f7768e;--violet:#bb9af7}
 @media (prefers-color-scheme:light){:root{--bg:#fafbfc;--card:#fff;--line:#e3e6ea;--fg:#1f2328;--muted:#656d76;--accent:#0969da;--ok:#1a7f37;--warn:#9a6700;--bad:#cf222e;--violet:#8250df}}
