@@ -2,6 +2,11 @@
 
 All notable changes to the data model and tooling. Data additions are tracked in git history and the per-benchmark ledgers.
 
+## 1.4.0 — 2026-09-04
+
+### Added
+- Interactive saturation chart in the Timeline section: one line per percent-metric benchmark from its earliest sourced result to its best, dashed human-baseline marker, arrows along `superseded_by` chains, de-overlapped labels for active benchmarks. Build-time SVG; each series is a link so it works without JS. `site.js` adds layer/status toggles (saturated/retired hidden by default), hover highlight and tooltip. Non-percent benchmarks are listed below the chart.
+
 ## 1.3.0 — 2026-09-04
 
 ### Changed

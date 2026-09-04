@@ -88,6 +88,10 @@ T: dict[str, dict[str, str]] = {
         "sort_hint": "click to sort",
         "no_baseline": "no measured baseline",
         "last_reported": "last reported",
+        "chart_title": "Top sourced score over time, per benchmark (percent metrics only)",
+        "chart_excluded": "Not charted (non-percent metric)",
+        "chart_hint": "Hover a line for details; click to open the benchmark. Dashed = human baseline. Arrows = superseded by.",
+        "layer": "Layer",
         "divider": "Saturated or retired — no longer used to compare frontier systems. "
         "Score shown is the last one reported, not a leaderboard top.",
     },
@@ -142,6 +146,10 @@ T: dict[str, dict[str, str]] = {
         "sort_hint": "点击排序",
         "no_baseline": "无实测基线",
         "last_reported": "最后报告",
+        "chart_title": "各基准有来源的最高分随时间变化（仅百分制指标）",
+        "chart_excluded": "未绘制（非百分制指标）",
+        "chart_hint": "悬停查看详情，点击进入基准页。虚线 = 人类基线。箭头 = 被取代。",
+        "layer": "层级",
         "divider": "已饱和或退役 —— 不再用于比较前沿系统。所示分数为最后一次报告值，不是榜首。",
     },
 }
@@ -609,6 +617,132 @@ def html_evaluator_rows(ds: Dataset, lang: str) -> str:
     return "\n".join(rows)
 
 
+CHART_W, CHART_H = 1000, 460
+CHART_PAD = {"l": 44, "r": 110, "t": 16, "b": 36}
+
+
+def saturation_chart(ds: Dataset, lang: str, base: str) -> str:
+    """Score-over-time chart: one polyline per percent-metric benchmark from its earliest sourced
+    result to its best, a dashed marker for the human baseline, and arrows along supersession chains.
+    Pure SVG; each series is an <a> so clicking works without JS. site.js adds hover/toggles."""
+    t = T[lang]
+    series = [
+        b for b in ds.benchmarks.values()
+        if b["metric"]["unit"] == "percent" and len(ds.results.get(b["id"], [])) >= 1
+    ]
+    if not series:
+        return ""
+    all_dates = [date.fromisoformat(r["date"]) for b in series for r in ds.results[b["id"]]]
+    all_dates += [date.fromisoformat(b["released"] + "-01") for b in series]
+    d0 = date(min(all_dates).year, 1, 1).toordinal()
+    d1 = date(max(all_dates).year + 1, 1, 1).toordinal()
+    x0, x1 = CHART_PAD["l"], CHART_W - CHART_PAD["r"]
+    y0, y1 = CHART_PAD["t"], CHART_H - CHART_PAD["b"]
+
+    def X(d: str) -> float:
+        return x0 + (date.fromisoformat(d if len(d) == 10 else d + "-01").toordinal() - d0) / (d1 - d0) * (x1 - x0)
+
+    def Y(v: float) -> float:
+        return y1 - max(0.0, min(100.0, v)) / 100.0 * (y1 - y0)
+
+    out = [
+        f'<svg class="chart" viewBox="0 0 {CHART_W} {CHART_H}" role="img" aria-labelledby="chart-title" '
+        f'xmlns="http://www.w3.org/2000/svg">',
+        f'<title id="chart-title">{t["chart_title"]}</title>',
+    ]
+    # grid
+    for v in (0, 25, 50, 75, 100):
+        y = Y(v)
+        out.append(f'<line class="grid" x1="{x0}" y1="{y:.1f}" x2="{x1}" y2="{y:.1f}"/>')
+        out.append(f'<text class="axis" x="{x0 - 8}" y="{y + 4:.1f}" text-anchor="end">{v}%</text>')
+    for year in range(date.fromordinal(d0).year, date.fromordinal(d1).year + 1):
+        x = X(f"{year}-01-01")
+        out.append(f'<line class="grid v" x1="{x:.1f}" y1="{y0}" x2="{x:.1f}" y2="{y1}"/>')
+        if year < date.fromordinal(d1).year:
+            out.append(f'<text class="axis" x="{x + 4:.1f}" y="{y1 + 16}">{year}</text>')
+    # supersession arrows (behind series)
+    pos: dict[str, tuple[float, float]] = {}
+    for b in series:
+        rows = sorted(ds.results[b["id"]], key=lambda r: r["date"])
+        pos[b["id"]] = (X(rows[0]["date"]), Y(rows[0]["value"]))
+    out.append('<defs><marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">'
+               '<path d="M0,0 L8,4 L0,8 z" class="arrhead"/></marker></defs>')
+    for b in series:
+        nxt = b.get("superseded_by")
+        if nxt in pos:
+            best = ds.sota(b["id"])
+            ax, ay = X(best["date"]), Y(best["value"])
+            bx, by = pos[nxt]
+            hid = "" if is_live(b) and is_live(ds.benchmarks[nxt]) else ' hidden="hidden"'
+            out.append(f'<line class="chain-arrow" x1="{ax:.1f}" y1="{ay:.1f}" x2="{bx:.1f}" y2="{by:.1f}" '
+                       f'marker-end="url(#arr)" data-from="{b["id"]}" data-to="{nxt}"{hid}/>')
+    # label positions: greedy vertical de-overlap for active benchmarks (others get no label)
+    label_y: dict[str, float] = {}
+    active = sorted(
+        (b for b in series if b["status"] == "active"),
+        key=lambda b: Y(ds.sota(b["id"])["value"]),
+    )
+    prev = -1e9
+    for b in active:
+        y = max(Y(ds.sota(b["id"])["value"]), prev + 13)
+        label_y[b["id"]] = y
+        prev = y
+    # series
+    for b in sorted(series, key=lambda b: b["released"]):
+        rows = sorted(ds.results[b["id"]], key=lambda r: r["date"])
+        pts = " ".join(f"{X(r['date']):.1f},{Y(r['value']):.1f}" for r in rows)
+        best = ds.sota(b["id"])
+        lx, ly = X(best["date"]), Y(best["value"])
+        hb = b.get("human_baseline")
+        human = ""
+        if hb:
+            hy = Y(hb["value"])
+            human = (f'<line class="human-line" x1="{X(rows[0]["date"]) - 6:.1f}" y1="{hy:.1f}" '
+                     f'x2="{lx + 6:.1f}" y2="{hy:.1f}"/>')
+        label = ""
+        if b["id"] in label_y:
+            ty = label_y[b["id"]]
+            leader = ""
+            if abs(ty - ly) > 6:
+                leader = f'<line class="leader" x1="{lx:.1f}" y1="{ly:.1f}" x2="{lx + 8:.1f}" y2="{ty:.1f}"/>'
+            label = f'{leader}<text class="slabel" x="{lx + 10:.1f}" y="{ty + 4:.1f}">{_e(b["name"])}</text>'
+        hidden = "" if is_live(b) else ' hidden="hidden"'
+        kind = kind_label(lang, best["source"]["kind"])
+        tip = f'{b["name"]} · {b["released"]} · {fmt_value(b, best["value"])} {best["system"]} ({kind})'
+        out.append(
+            f'<a href="{base}b/{b["id"]}/" class="series layer-{b["layer"]} status-{b["status"]}" '
+            f'data-id="{b["id"]}" data-layer="{b["layer"]}" data-status="{b["status"]}" data-tip="{_e(tip)}"{hidden}>'
+            f"<title>{_e(tip)}</title>{human}"
+            f'<polyline class="hit" points="{pts}"/><polyline points="{pts}"/>'
+            + "".join(f'<circle cx="{X(r["date"]):.1f}" cy="{Y(r["value"]):.1f}" r="2.5"/>' for r in rows)
+            + f'<circle class="last" cx="{lx:.1f}" cy="{ly:.1f}" r="4"/>{label}</a>'
+        )
+    out.append("</svg>")
+    others = [b for b in ds.benchmarks.values() if b["metric"]["unit"] != "percent" or b["id"] not in pos]
+    note = ""
+    if others:
+        names = ", ".join(f'<a href="{base}b/{b["id"]}/">{_e(b["name"])}</a>' for b in sorted(others, key=lambda b: b["name"]))
+        note = f'<p class="muted small-note">{t["chart_excluded"]}: {names}</p>'
+    controls = (
+        '<div class="chart-controls" hidden>'
+        f'<span class="fgroup"><span class="flabel">{t["layer"]}</span>'
+        + "".join(
+            f'<button type="button" class="pill tl-{k}" data-toggle="layer" data-value="{k}" aria-pressed="true">{k}</button>'
+            for k in ("model", "agent")
+        )
+        + "</span>"
+        f'<span class="fgroup"><span class="flabel">{t["status"]}</span>'
+        + "".join(
+            f'<button type="button" class="pill status-{s}" data-toggle="status" data-value="{s}" '
+            f'aria-pressed="{"true" if s in LIVE else "false"}">{s}</button>'
+            for s in ("active", "saturating", "saturated", "retired")
+        )
+        + f'</span><span class="muted chart-hint">{t["chart_hint"]}</span></div>'
+    )
+    tooltip = '<div class="tooltip" hidden></div>'
+    return f'<div class="chart-wrap">{controls}{"".join(out)}{tooltip}</div>{note}'
+
+
 def html_timeline(ds: Dataset) -> str:
     by_year: dict[str, list[tuple[str, str, str]]] = {}
     for b in ds.benchmarks.values():
@@ -704,6 +838,7 @@ def render_site(ds: Dataset, lang: str) -> str:
         "AGENT_ROWS": html_benchmark_rows(ds, "agent", lang),
         "EVALUATOR_ROWS": html_evaluator_rows(ds, lang),
         "TIMELINE": html_timeline(ds),
+        "CHART": saturation_chart(ds, lang, base),
     }
     template = TEMPLATE if lang == "en" else TEMPLATE.with_name(f"index.{lang}.html")
     text = template.read_text(encoding="utf-8")

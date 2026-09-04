@@ -64,3 +64,51 @@
     });
   });
 })();
+
+// Saturation chart: layer/status toggles, hover highlight, tooltip. Chart is complete without this.
+(function () {
+  "use strict";
+  var wrap = document.querySelector(".chart-wrap");
+  if (!wrap) return;
+  var svg = wrap.querySelector("svg.chart"), tip = wrap.querySelector(".tooltip");
+  var controls = wrap.querySelector(".chart-controls");
+  var series = Array.prototype.slice.call(svg.querySelectorAll(".series"));
+  var arrows = Array.prototype.slice.call(svg.querySelectorAll(".chain-arrow"));
+  var on = { layer: {}, status: {} };
+  controls.hidden = false;
+  controls.querySelectorAll("button[data-toggle]").forEach(function (b) {
+    on[b.dataset.toggle][b.dataset.value] = b.getAttribute("aria-pressed") === "true";
+    b.addEventListener("click", function () {
+      var v = !on[b.dataset.toggle][b.dataset.value];
+      on[b.dataset.toggle][b.dataset.value] = v;
+      b.setAttribute("aria-pressed", String(v));
+      apply();
+    });
+  });
+  // SVG elements have no `hidden` property; use the attribute (CSS hides [hidden]).
+  function setHidden(el, v) { if (v) el.setAttribute("hidden", "hidden"); else el.removeAttribute("hidden"); }
+  function visible(s) { return on.layer[s.dataset.layer] && on.status[s.dataset.status]; }
+  function apply() {
+    var shown = {};
+    series.forEach(function (s) { var v = visible(s); setHidden(s, !v); if (v) shown[s.dataset.id] = true; });
+    arrows.forEach(function (a) { setHidden(a, !(shown[a.dataset.from] && shown[a.dataset.to])); });
+  }
+  apply();
+  // Narrow screens: the chart overflows horizontally; start at the recent end where live series are.
+  if (wrap.scrollWidth > wrap.clientWidth) wrap.scrollLeft = wrap.scrollWidth;
+  series.forEach(function (s) {
+    s.addEventListener("mouseenter", function () {
+      wrap.classList.add("hovering"); s.classList.add("hot");
+      tip.textContent = s.dataset.tip; tip.hidden = false;
+    });
+    s.addEventListener("mousemove", function (e) {
+      var r = wrap.getBoundingClientRect();
+      var x = e.clientX - r.left + 12, y = e.clientY - r.top + 12;
+      if (x + tip.offsetWidth > r.width) x -= tip.offsetWidth + 24;
+      tip.style.left = x + "px"; tip.style.top = y + "px";
+    });
+    s.addEventListener("mouseleave", function () {
+      wrap.classList.remove("hovering"); s.classList.remove("hot"); tip.hidden = true;
+    });
+  });
+})();

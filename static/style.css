@@ -81,3 +81,23 @@ tr.compact .chain{margin-left:6px}
   .bench tr.compact td[data-label="Released"],.bench tr.compact td[data-label="发布"],.bench tr.compact td[data-label="Domains"],.bench tr.compact td[data-label="领域"]{display:none}
   .bench tr.compact td[colspan]{flex-basis:100%}
 }
+/* --- saturation chart --- */
+.chart-wrap{position:relative;border:1px solid var(--line);border-radius:8px;background:var(--card);padding:12px;margin:0 0 12px}
+.chart{display:block;width:100%;height:auto;font-family:inherit}
+.chart .grid{stroke:var(--line);stroke-width:1}.chart .grid.v{stroke-dasharray:2 4}
+.chart .axis{fill:var(--muted);font-size:11px}
+.chart .series polyline{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}.chart .series polyline.hit{stroke:transparent;stroke-width:12;pointer-events:stroke}
+.chart .leader{stroke:currentColor;stroke-width:.8;opacity:.6}
+.chart .series circle{fill:currentColor}.chart .series circle.last{stroke:var(--card);stroke-width:1.5}
+.chart .series{color:var(--accent);transition:opacity .15s}.chart .series.layer-agent{color:var(--violet)}
+.chart .series.status-saturated,.chart .series.status-retired{color:var(--muted);opacity:.45}
+.chart .series .human-line{stroke:currentColor;stroke-dasharray:3 3;stroke-width:1;opacity:.7}
+.chart .slabel{fill:currentColor;font-size:11px;font-weight:600;paint-order:stroke;stroke:var(--card);stroke-width:3px}
+.chart .chain-arrow{stroke:var(--muted);stroke-width:1;stroke-dasharray:4 3;opacity:.5}.chart .arrhead{fill:var(--muted)}
+.chart-wrap.hovering .series:not(.hot){opacity:.12}.chart .series.hot{color:var(--ok)}
+.chart [hidden]{display:none}
+.chart-controls{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-bottom:8px;font-size:.85rem}
+.chart-controls button.pill{cursor:pointer;background:transparent;font:inherit;font-size:.72rem;opacity:.5}.chart-controls button.pill[aria-pressed=true]{opacity:1;box-shadow:0 0 0 1px currentColor inset}
+.chart-hint{font-size:.75rem;margin-left:auto}
+.tooltip{position:absolute;pointer-events:none;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:.8rem;max-width:320px;box-shadow:0 4px 16px rgba(0,0,0,.3);z-index:2}
+@media (max-width:760px){.chart-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}.chart{min-width:720px}.chart-hint{display:none}}

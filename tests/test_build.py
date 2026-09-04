@@ -103,3 +103,17 @@ def test_retired_rows_are_compact_with_divider():
     assert retired, "fixture assumption: some benchmark is saturated/retired"
     assert html.count('<tr class="compact"') == len(retired)
     assert "last reported" in html
+
+
+def test_saturation_chart_covers_percent_benchmarks():
+    ds = _ds()
+    svg = build.saturation_chart(ds, "en", "")
+    pct = [b for b in ds.benchmarks.values() if b["metric"]["unit"] == "percent" and ds.results.get(b["id"])]
+    assert svg.count('class="series') == len(pct)
+    for b in pct:
+        assert f'data-id="{b["id"]}"' in svg
+        assert f'href="b/{b["id"]}/"' in svg
+    # retired series are hidden by default; live ones are not
+    assert all(f'data-id="{b["id"]}"' in svg for b in pct if not build.is_live(b))
+    assert svg.count('hidden="hidden"') >= sum(1 for b in pct if not build.is_live(b))
+    assert svg.count('class="human-line"') == sum(1 for b in pct if b.get("human_baseline"))
