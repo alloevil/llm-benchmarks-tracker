@@ -1,0 +1,154 @@
+{
+  "category": "evaluation_frameworks_and_leaderboards",
+  "description": "评测框架与排行榜，涵盖开源评测工具、众包排行榜、独立评测平台",
+  "last_updated": "2026-09-04",
+  "frameworks": [
+    {
+      "id": "lm-eval-harness",
+      "name": "LM Evaluation Harness",
+      "developer": "EleutherAI",
+      "year": 2021,
+      "paper_url": "https://arxiv.org/abs/2011.03375",
+      "website": "https://github.com/EleutherAI/lm-evaluation-harness",
+      "description": "最广泛使用的开源LLM评测框架，支持60+学术基准测试。HuggingFace Open LLM Leaderboard的底层引擎。",
+      "features": ["60+学术基准", "支持HuggingFace模型", "支持vLLM", "可扩展任务系统"],
+      "benchmark_count": "60+",
+      "status": "active_gold_standard"
+    },
+    {
+      "id": "opencompass",
+      "name": "OpenCompass",
+      "developer": "上海AI实验室",
+      "year": 2023,
+      "paper_url": null,
+      "website": "https://github.com/open-compass/opencompass",
+      "description": "开源开放的大模型评测平台，构建学科、语言、知识、理解、推理五大维度的通用能力评测体系。支持50+评测数据集和30万道评测题。",
+      "features": ["50+评测数据集", "30万道评测题", "五大维度评测", "中文支持优秀"],
+      "benchmark_count": "50+",
+      "status": "active"
+    },
+    {
+      "id": "helm",
+      "name": "HELM (Holistic Evaluation of Language Models)",
+      "developer": "Stanford CRFM",
+      "year": 2022,
+      "paper_url": "https://arxiv.org/abs/2211.09110",
+      "website": "https://crfm.stanford.edu/helm",
+      "description": "斯坦福大学的全面语言模型评估框架，强调多维度、可复现的评测。",
+      "features": ["多维度评估", "可复现性", "标准化场景", "透明度高"],
+      "benchmark_count": "42+",
+      "status": "active"
+    },
+    {
+      "id": "inspect-ai",
+      "name": "Inspect AI",
+      "developer": "UK AI Safety Institute",
+      "year": 2024,
+      "paper_url": null,
+      "website": "https://ukgovernmentbeis.github.io/inspect_ai",
+      "description": "2026年新兴的开源评测框架，由UK AI Safety Institute开发，支持Agent评测。",
+      "features": ["Agent评测支持", "安全评估", "可扩展", "活跃开发中"],
+      "status": "active_rising"
+    },
+    {
+      "id": "deepeval",
+      "name": "DeepEval",
+      "developer": "Confident AI",
+      "year": 2023,
+      "paper_url": null,
+      "website": "https://github.com/confident-ai/deepeval",
+      "description": "开源LLM评测框架，2026年与Inspect AI共同推动评测开源生态。",
+      "features": ["RAG评测", "对话评测", "CI/CD集成", "易用性好"],
+      "status": "active"
+    },
+    {
+      "id": "artificial-analysis",
+      "name": "Artificial Analysis",
+      "developer": "Artificial Analysis",
+      "year": 2023,
+      "paper_url": null,
+      "website": "https://artificialanalysis.ai",
+      "description": "独立评测机构，自行在标准化条件下运行每个模型，而非转载实验室自报数字。modelgrep.com等平台的数据源。",
+      "features": ["独立运行", "标准化条件", "实时更新", "339+模型"],
+      "status": "active_independent"
+    }
+  ],
+  "leaderboards": [
+    {
+      "id": "chatbot-arena",
+      "name": "Chatbot Arena (LMArena)",
+      "developer": "UC Berkeley SkyLab / LMArena",
+      "website": "https://lmarena.ai",
+      "description": "基于众包随机盲测的人类偏好排行榜，100万+用户投票。2026年最权威的整体偏好代理。",
+      "scoring_method": "Elo评分（基于盲测投票）",
+      "current_top": [
+        {"model": "Claude 4.6 / GPT-5.2", "note": "并列领先", "date": "2026-05"},
+        {"model": "Gemini 3.1 Pro", "note": "紧随其后", "date": "2026-05"}
+      ],
+      "status": "authoritative"
+    },
+    {
+      "id": "open-llm-leaderboard",
+      "name": "Open LLM Leaderboard",
+      "developer": "HuggingFace",
+      "website": "https://huggingface.co/open-llm-leaderboard",
+      "description": "HuggingFace的开源LLM排行榜，使用IFEval、BBH、MATH等多个基准测试。有v1（已归档）和v2两个版本。",
+      "scoring_method": "多基准平均分",
+      "benchmarks_used": ["IFEval", "BBH", "MATH", "GPQA", "MUSR", "MMLU-PRO"],
+      "status": "active"
+    },
+    {
+      "id": "vals-ai",
+      "name": "Vals.ai",
+      "website": "https://www.vals.ai",
+      "description": "独立评测平台，跨基准评估，作为自报数据的sanity check。自报分数通常比独立重跑低2-5分。",
+      "status": "active_independent"
+    },
+    {
+      "id": "swe-rebench",
+      "name": "SWE-rebench",
+      "website": "https://swe-rebench.com",
+      "description": "编码专用独立评测平台，重新运行SWE-bench等编码基准。",
+      "status": "active_independent"
+    },
+    {
+      "id": "lm-council",
+      "name": "LM Council",
+      "website": "https://lmcouncil.ai",
+      "description": "人类评判的模型对比平台。",
+      "status": "active"
+    },
+    {
+      "id": "benchlm",
+      "name": "BenchLM",
+      "website": null,
+      "description": "实时每周更新的评测平台，提供独立的GAIA、WebArena等基准评测结果。",
+      "status": "active"
+    },
+    {
+      "id": "modelgrep",
+      "name": "modelgrep",
+      "website": "https://modelgrep.com/benchmarks",
+      "description": "追踪10个独立AI基准的实时排行榜，339+模型，数据来自Artificial Analysis标准化运行。2026年9月更新。",
+      "benchmarks_tracked": 10,
+      "models_tracked": 339,
+      "status": "active"
+    },
+    {
+      "id": "epoch-ai",
+      "name": "Epoch AI",
+      "website": "https://epoch.ai",
+      "description": "独立研究机构，持续跟踪AI发展和基准测试，提供第三方SWE-bench等评测。",
+      "status": "active_independent"
+    }
+  ],
+  "key_insights_2026": [
+    "MMLU已饱和，不再用于前沿模型比较",
+    "污染(Contamination)是2026年基准测试的最大问题",
+    "自报分数通常比独立重跑高2-5分",
+    "2026年4月UC Berkeley研究显示8大Agent基准均可被reward hack到~100%",
+    "框架(scaffolding)对同一模型可造成5-15分差异",
+    "同一模型在不同评测框架下MMLU分数可能不同（解析器差异）",
+    "应始终交叉验证独立评测机构（Vals.ai、Artificial Analysis、Chatbot Arena）"
+  ]
+}
