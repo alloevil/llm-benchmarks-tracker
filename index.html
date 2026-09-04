@@ -6,291 +6,59 @@
   <title>LLM Benchmarks Tracker 📊</title>
   <style>
     :root {
-      --bg: #0d1117;
-      --card: #161b22;
-      --border: #30363d;
-      --text: #e6edf3;
-      --text-secondary: #8b949e;
-      --accent: #58a6ff;
-      --green: #3fb950;
-      --orange: #d29922;
-      --red: #f85149;
-      --purple: #bc8cff;
-      --pink: #f778ba;
+      --bg: #0d1117; --card: #161b22; --border: #30363d;
+      --text: #e6edf3; --text2: #8b949e;
+      --blue: #58a6ff; --green: #3fb950; --orange: #d29922;
+      --red: #f85149; --purple: #bc8cff; --pink: #f778ba;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    a { color: var(--accent); text-decoration: none; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
-
-    /* Header */
-    .header {
-      text-align: center;
-      padding: 60px 20px 40px;
-      background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1a1e2e 100%);
-      border-bottom: 1px solid var(--border);
-    }
-    .header h1 {
-      font-size: 3rem;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, var(--accent), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .header p {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto 24px;
-    }
-    .stats-bar {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-    .stat {
-      text-align: center;
-    }
-    .stat-num {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    /* Section */
-    .section {
-      margin-bottom: 48px;
-    }
-    .section-title {
-      font-size: 1.8rem;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .section-desc {
-      color: var(--text-secondary);
-      margin-bottom: 24px;
-      font-size: 0.95rem;
-    }
-
-    /* Table */
-    .table-wrapper {
-      overflow-x: auto;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-    }
-    th {
-      background: var(--card);
-      padding: 12px 16px;
-      text-align: left;
-      font-weight: 600;
-      color: var(--text-secondary);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-    }
-    td {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
-    }
+    .header { text-align: center; padding: 60px 20px 40px; background: linear-gradient(135deg, #0d1117, #161b22, #1a1e2e); border-bottom: 1px solid var(--border); }
+    .header h1 { font-size: 2.8rem; margin-bottom: 12px; background: linear-gradient(135deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .header p { font-size: 1.1rem; color: var(--text2); max-width: 700px; margin: 0 auto 8px; }
+    .header .source { font-size: 0.8rem; color: var(--text2); margin-top: 12px; }
+    .stats-bar { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-top: 24px; }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2.5rem; font-weight: 700; color: var(--blue); }
+    .stat-label { font-size: 0.8rem; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .section { margin-bottom: 48px; }
+    .section-title { font-size: 1.6rem; margin-bottom: 6px; }
+    .section-desc { color: var(--text2); margin-bottom: 20px; font-size: 0.9rem; }
+    .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th { background: var(--card); padding: 10px 14px; text-align: left; font-weight: 600; color: var(--text2); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
     tr:last-child td { border-bottom: none; }
-    tr:hover td { background: rgba(88, 166, 255, 0.04); }
-
-    /* Tags */
-    .tag {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: 500;
-    }
-    .tag-model { background: rgba(88, 166, 255, 0.15); color: var(--accent); }
-    .tag-agent { background: rgba(188, 140, 255, 0.15); color: var(--purple); }
-    .tag-harness { background: rgba(63, 185, 80, 0.15); color: var(--green); }
-    .tag-easy { background: rgba(63, 185, 80, 0.15); color: var(--green); }
-    .tag-medium { background: rgba(210, 153, 34, 0.15); color: var(--orange); }
-    .tag-hard { background: rgba(248, 81, 73, 0.15); color: var(--red); }
-    .tag-expert { background: rgba(247, 120, 186, 0.15); color: var(--pink); }
-
-    /* Timeline */
-    .timeline {
-      position: relative;
-      padding-left: 40px;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 16px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--border);
-    }
-    .timeline-year {
-      position: relative;
-      margin-bottom: 32px;
-    }
-    .timeline-year-label {
-      position: absolute;
-      left: -40px;
-      width: 32px;
-      height: 32px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--bg);
-      z-index: 1;
-    }
-    .timeline-events {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-    .timeline-event {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 12px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      font-size: 0.85rem;
-      transition: border-color 0.2s;
-    }
-    .timeline-event:hover { border-color: var(--accent); }
-    .timeline-event .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-    }
-    .dot-model { background: var(--accent); }
-    .dot-agent { background: var(--purple); }
-    .dot-harness { background: var(--green); }
-
-    /* Highlight */
-    .highlight-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .highlight-icon {
-      font-size: 2.5rem;
-      flex-shrink: 0;
-    }
-    .highlight-content h3 {
-      font-size: 1.1rem;
-      margin-bottom: 4px;
-    }
-    .highlight-content p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-    .highlight-score {
-      margin-left: auto;
-      text-align: center;
-      flex-shrink: 0;
-    }
-    .highlight-score .score {
-      font-size: 2rem;
-      font-weight: 700;
-    }
-    .highlight-score .label {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-    }
-
-    /* Chart placeholder */
-    .chart-container {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      text-align: center;
-    }
-    .bar-chart {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 12px;
-      height: 200px;
-      padding-top: 20px;
-    }
-    .bar-group {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
-    .bar {
-      width: 40px;
-      border-radius: 4px 4px 0 0;
-      transition: height 0.6s ease;
-    }
-    .bar-label {
-      font-size: 0.7rem;
-      color: var(--text-secondary);
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      max-height: 80px;
-      overflow: hidden;
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 40px 20px;
-      border-top: 1px solid var(--border);
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-    }
-
-    /* Responsive */
+    tr:hover td { background: rgba(88,166,255,0.04); }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 500; white-space: nowrap; }
+    .tag-model { background: rgba(88,166,255,0.15); color: var(--blue); }
+    .tag-agent { background: rgba(188,140,255,0.15); color: var(--purple); }
+    .tag-harness { background: rgba(63,185,80,0.15); color: var(--green); }
+    .tag-saturated { background: rgba(139,148,158,0.15); color: var(--text2); }
+    .tag-active { background: rgba(63,185,80,0.15); color: var(--green); }
+    .tag-frontier { background: rgba(248,81,73,0.15); color: var(--red); }
+    .tag-new { background: rgba(247,120,186,0.15); color: var(--pink); }
+    .highlight-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 16px; }
+    .highlight-icon { font-size: 2rem; flex-shrink: 0; }
+    .highlight-content h3 { font-size: 1rem; margin-bottom: 2px; }
+    .highlight-content p { color: var(--text2); font-size: 0.85rem; }
+    .highlight-score { margin-left: auto; text-align: center; flex-shrink: 0; }
+    .highlight-score .score { font-size: 1.8rem; font-weight: 700; }
+    .highlight-score .label { font-size: 0.7rem; color: var(--text2); }
+    .insight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+    .insight-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+    .insight-card h4 { font-size: 0.9rem; margin-bottom: 4px; }
+    .insight-card p { color: var(--text2); font-size: 0.8rem; }
+    .footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); color: var(--text2); font-size: 0.8rem; }
     @media (max-width: 768px) {
-      .header h1 { font-size: 2rem; }
+      .header h1 { font-size: 1.8rem; }
       .stats-bar { gap: 16px; }
       .stat-num { font-size: 1.8rem; }
       .highlight-card { flex-direction: column; text-align: center; }
-      .highlight-score { margin-left: 0; margin-top: 12px; }
-      .bar-chart { height: 150px; }
-      .bar { width: 28px; }
+      .highlight-score { margin-left: 0; margin-top: 8px; }
     }
   </style>
 </head>
@@ -298,24 +66,13 @@
 
 <div class="header">
   <h1>📊 LLM Benchmarks Tracker</h1>
-  <p>系统化追踪 LLM 领域的评测基准——模型、Agent、Harness 三维度全覆盖</p>
+  <p>系统化追踪 LLM 评测基准——模型、Agent、Harness 三维度全覆盖</p>
+  <p class="source">数据来源：论文、官方排行榜、独立评测机构（Artificial Analysis、Vals.ai、Chatbot Arena）交叉验证</p>
   <div class="stats-bar">
-    <div class="stat">
-      <div class="stat-num">17</div>
-      <div class="stat-label">Model Benchmarks</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">12</div>
-      <div class="stat-label">Agent Benchmarks</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">8</div>
-      <div class="stat-label">Harnesses</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">9</div>
-      <div class="stat-label">Years Covered</div>
-    </div>
+    <div class="stat"><div class="stat-num">14</div><div class="stat-label">Model Benchmarks</div></div>
+    <div class="stat"><div class="stat-num">12</div><div class="stat-label">Agent Benchmarks</div></div>
+    <div class="stat"><div class="stat-num">6+6</div><div class="stat-label">框架 + 排行榜</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">年份跨度</div></div>
   </div>
 </div>
 
@@ -323,150 +80,146 @@
 
   <!-- Key Highlights -->
   <div class="section">
-    <h2 class="section-title">🔥 关键发现</h2>
-    <p class="section-desc">当前 LLM 评测领域最重要的事实</p>
+    <h2 class="section-title">🔥 2026 关键发现</h2>
+    <p class="section-desc">基于论文和独立评测交叉验证的最新数据</p>
 
     <div class="highlight-card">
       <div class="highlight-icon">🤯</div>
       <div class="highlight-content">
         <h3>ARC-AGI-3：AI 全面翻车</h3>
-        <p>2026 年 3 月发布的首个交互式推理基准。人类 100% 通过，所有顶尖 AI 得分 < 1%</p>
+        <p>2026年3月发布的首个交互式推理基准。人类100%通过，最强AI仅0.37%。200万美元奖金无人认领。</p>
       </div>
-      <div class="highlight-score">
-        <div class="score" style="color: var(--red)">&lt;1%</div>
-        <div class="label">AI 最高分</div>
-      </div>
+      <div class="highlight-score"><div class="score" style="color:var(--red)">&lt;1%</div><div class="label">AI 最高分</div></div>
     </div>
 
     <div class="highlight-card">
       <div class="highlight-icon">💻</div>
       <div class="highlight-content">
         <h3>SWE-bench Verified：程序员替代进度</h3>
-        <p>AI 修复真实 GitHub Issue 的能力。Claude 4 Opus 达到 ~75%</p>
+        <p>Claude Opus 4.7 达到87.6%，超越人类开发者平均77%。但评测集泄漏问题严重，独立评测更可信。</p>
       </div>
-      <div class="highlight-score">
-        <div class="score" style="color: var(--orange)">~75%</div>
-        <div class="label">resolve rate</div>
-      </div>
+      <div class="highlight-score"><div class="score" style="color:var(--green)">87.6%</div><div class="label">Claude Opus 4.7</div></div>
     </div>
 
     <div class="highlight-card">
       <div class="highlight-icon">🧠</div>
       <div class="highlight-content">
-        <h3>GPQA：研究生级科学问答</h3>
-        <p>非专家+搜索引擎正确率仅 34%，领域专家 81%，o3 达到 ~75%</p>
+        <h3>GPQA Diamond：AI 超越人类专家</h3>
+        <p>Gemini 3.8 Flash 达95.3%，PhD专家在非自己领域仅69.7%。AI在科学问答上已超越人类。</p>
       </div>
-      <div class="highlight-score">
-        <div class="score" style="color: var(--green)">~75%</div>
-        <div class="label">o3 score</div>
+      <div class="highlight-score"><div class="score" style="color:var(--green)">95.3%</div><div class="label">Gemini 3.8 Flash</div></div>
+    </div>
+
+    <div class="highlight-card">
+      <div class="highlight-icon">🖥️</div>
+      <div class="highlight-content">
+        <h3>OSWorld：AI 首次超越人类专家</h3>
+        <p>GPT-5.4 在桌面自动化任务上达75%，超越人类专家的72%。Agent时代正在到来。</p>
       </div>
+      <div class="highlight-score"><div class="score" style="color:var(--green)">75%</div><div class="label">GPT-5.4 超人类</div></div>
+    </div>
+
+    <div class="highlight-card">
+      <div class="highlight-icon">📚</div>
+      <div class="highlight-content">
+        <h3>HLE：Humanity's Last Exam</h3>
+        <p>3000道顶级专家出的最难题目。Claude Mythos Preview 达64.7%，Grok 4 仅50.7%。无人超过70%。</p>
+      </div>
+      <div class="highlight-score"><div class="score" style="color:var(--orange)">64.7%</div><div class="label">Claude Mythos</div></div>
     </div>
   </div>
 
   <!-- Model Benchmarks -->
   <div class="section">
-    <h2 class="section-title">🧠 Model Benchmarks</h2>
-    <p class="section-desc">测试 LLM 本身的静态能力：知识、推理、代码、指令遵循</p>
-    <div class="table-wrapper">
+    <h2 class="section-title">🧠 模型 Benchmark</h2>
+    <p class="section-desc">测试 LLM 本身的静态能力</p>
+    <div class="table-wrap">
       <table>
-        <thead>
-          <tr>
-            <th>Benchmark</th>
-            <th>年份</th>
-            <th>测试维度</th>
-            <th>题量</th>
-            <th>难度</th>
-            <th>SOTA</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Benchmark</th><th>年份</th><th>测试维度</th><th>难度</th><th>状态</th><th>SOTA</th><th>人类基线</th></tr></thead>
         <tbody>
           <tr>
-            <td><a href="https://arxiv.org/abs/2009.03300">MMLU</a></td>
-            <td>2020</td>
-            <td>57 学科多选题</td>
-            <td>15,908</td>
-            <td><span class="tag tag-medium">medium</span></td>
-            <td>~90%</td>
+            <td><a href="https://lastexam.ai">HLE</a></td><td>2025</td>
+            <td>跨领域最难问题（含多模态）</td>
+            <td><span class="tag tag-frontier">expert</span></td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>64.7% — Claude Mythos</td><td>PhD专家 ~70-90%</td>
           </tr>
           <tr>
-            <td><a href="https://arxiv.org/abs/2406.01574">MMLU-Pro</a></td>
-            <td>2024</td>
-            <td>10 选项加强版</td>
-            <td>12,032</td>
-            <td><span class="tag tag-hard">hard</span></td>
-            <td>~78%</td>
+            <td><a href="https://github.com/idavidrein/gpqa">GPQA Diamond</a></td><td>2023</td>
+            <td>研究生级科学问答（198题）</td>
+            <td><span class="tag tag-frontier">expert</span></td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>95.3% — Gemini 3.8 Flash</td><td>~69.7% (PhD非本领域)</td>
           </tr>
           <tr>
-            <td><a href="https://arxiv.org/abs/2107.03374">HumanEval</a></td>
-            <td>2021</td>
-            <td>Python 代码生成</td>
-            <td>164</td>
-            <td><span class="tag tag-medium">medium</span></td>
-            <td>~95%</td>
-          </tr>
-          <tr>
-            <td><a href="https://arxiv.org/abs/2110.14168">GSM8K</a></td>
-            <td>2021</td>
-            <td>小学数学推理</td>
-            <td>8,500</td>
-            <td><span class="tag tag-medium">medium</span></td>
-            <td>~97%</td>
-          </tr>
-          <tr>
-            <td><a href="https://arxiv.org/abs/2103.03874">MATH</a></td>
-            <td>2021</td>
-            <td>竞赛级数学</td>
-            <td>12,500</td>
-            <td><span class="tag tag-hard">hard</span></td>
-            <td>~95%</td>
-          </tr>
-          <tr>
-            <td><a href="https://arxiv.org/abs/2311.12022">GPQA</a></td>
-            <td>2023</td>
-            <td>研究生级科学问答</td>
-            <td>448</td>
-            <td><span class="tag tag-expert">expert</span></td>
-            <td>~75%</td>
-          </tr>
-          <tr>
-            <td><a href="https://arxiv.org/abs/2311.07911">IFEval</a></td>
-            <td>2023</td>
-            <td>指令遵循约束</td>
-            <td>541</td>
-            <td><span class="tag tag-medium">medium</span></td>
-            <td>~92%</td>
-          </tr>
-          <tr>
-            <td><a href="https://arxiv.org/abs/2304.05128">BigBench-Hard</a></td>
-            <td>2022</td>
-            <td>23 个最难任务</td>
-            <td>6,511</td>
-            <td><span class="tag tag-hard">hard</span></td>
-            <td>~90%</td>
-          </tr>
-          <tr>
-            <td><a href="https://arxiv.org/abs/2109.07958">TruthfulQA</a></td>
-            <td>2021</td>
-            <td>真实性 / 幻觉</td>
-            <td>817</td>
-            <td><span class="tag tag-medium">medium</span></td>
-            <td>~75%</td>
-          </tr>
-          <tr>
-            <td><a href="https://arxiv.org/abs/1911.01547">ARC-AGI</a></td>
-            <td>2019</td>
+            <td><a href="https://arcprize.org">ARC-AGI-2</a></td><td>2025</td>
             <td>抽象推理</td>
-            <td>800</td>
-            <td><span class="tag tag-hard">hard</span></td>
-            <td>~88%</td>
+            <td><span class="tag tag-frontier">expert</span></td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>77.1% — Gemini 3.1 Pro</td><td>~85%</td>
           </tr>
           <tr>
-            <td><a href="https://arcprize.org/arc-agi/2">ARC-AGI-2</a></td>
-            <td>2025</td>
-            <td>抽象推理加强版</td>
-            <td>1,000</td>
-            <td><span class="tag tag-expert">expert</span></td>
-            <td>~60%</td>
+            <td><a href="https://arxiv.org/abs/2410.20268">MMMU-Pro</a></td><td>2024</td>
+            <td>多模态推理</td>
+            <td><span class="tag tag-frontier">hard</span></td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>Gemini 3.1 Pro leads</td><td>—</td>
+          </tr>
+          <tr>
+            <td><a href="https://arxiv.org/abs/2406.01574">MMLU-Pro</a></td><td>2024</td>
+            <td>10选项加强版多学科</td>
+            <td><span class="tag tag-frontier">hard</span></td>
+            <td><span class="tag tag-saturated">approaching</span></td>
+            <td>~90% — Gemini 3.1 Pro</td><td>—</td>
+          </tr>
+          <tr>
+            <td><a href="https://arxiv.org/abs/2404.15574">RULER</a></td><td>2024</td>
+            <td>真实有效上下文长度</td>
+            <td><span class="tag tag-frontier">medium</span></td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>各模型差异大</td><td>N/A</td>
+          </tr>
+          <tr>
+            <td><a href="https://arxiv.org/abs/2210.09261">BBH</a></td><td>2023</td>
+            <td>BIG-Bench 23个最难任务</td>
+            <td><span class="tag tag-frontier">hard</span></td>
+            <td><span class="tag tag-saturated">approaching</span></td>
+            <td>&gt;95% — 多个前沿模型</td><td>~84%</td>
+          </tr>
+          <tr>
+            <td><a href="https://arxiv.org/abs/2103.03874">MATH</a></td><td>2021</td>
+            <td>竞赛级数学（12500题）</td>
+            <td><span class="tag tag-frontier">hard</span></td>
+            <td><span class="tag tag-saturated">approaching</span></td>
+            <td>~95% — o3</td><td>—</td>
+          </tr>
+          <tr>
+            <td><a href="https://arxiv.org/abs/2107.03374">HumanEval</a></td><td>2021</td>
+            <td>Python代码生成（164题）</td>
+            <td><span class="tag tag-frontier">medium</span></td>
+            <td><span class="tag tag-saturated">approaching</span></td>
+            <td>97.5% — GPT-5.3 Codex</td><td>—</td>
+          </tr>
+          <tr>
+            <td><a href="https://arxiv.org/abs/2009.03300">MMLU</a></td><td>2021</td>
+            <td>57学科多选题（15908题）</td>
+            <td><span class="tag tag-frontier">medium</span></td>
+            <td><span class="tag tag-saturated">saturated</span></td>
+            <td>93.0% — GPT-5.2</td><td>~89.8%</td>
+          </tr>
+          <tr>
+            <td><a href="https://artofproblemsolving.com">AIME 2025</a></td><td>2025</td>
+            <td>美国数学邀请赛</td>
+            <td><span class="tag tag-frontier">expert</span></td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>100% — GPT-5.2</td><td>顶尖高中生 ~15/30</td>
+          </tr>
+          <tr>
+            <td><a href="https://arxiv.org/abs/1905.07830">HellaSwag</a></td><td>2019</td>
+            <td>常识推理</td>
+            <td><span class="tag tag-frontier">easy</span></td>
+            <td><span class="tag tag-saturated">saturated</span></td>
+            <td>98.4% — GPT-4o</td><td>~95.6%</td>
           </tr>
         </tbody>
       </table>
@@ -475,92 +228,83 @@
 
   <!-- Agent Benchmarks -->
   <div class="section">
-    <h2 class="section-title">🤖 Agent Benchmarks</h2>
+    <h2 class="section-title">🤖 Agent Benchmark</h2>
     <p class="section-desc">测试 Agent 在交互式环境中完成复杂任务的能力</p>
-    <div class="table-wrapper">
+    <div class="table-wrap">
       <table>
-        <thead>
-          <tr>
-            <th>Benchmark</th>
-            <th>年份</th>
-            <th>测试维度</th>
-            <th>题量</th>
-            <th>难度</th>
-            <th>SOTA</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Benchmark</th><th>年份</th><th>测试维度</th><th>状态</th><th>SOTA</th><th>人类基线</th></tr></thead>
         <tbody>
           <tr>
-            <td><a href="https://www.swebench.com">SWE-bench</a></td>
-            <td>2023</td>
-            <td>GitHub Issue 修复</td>
-            <td>2,294</td>
-            <td><span class="tag tag-expert">expert</span></td>
-            <td>~72%</td>
+            <td><a href="https://arcprize.org/arc-agi/3">ARC-AGI-3</a></td><td>2026</td>
+            <td>🔥 首个交互式推理基准</td>
+            <td><span class="tag tag-new">new 2026</span></td>
+            <td style="color:var(--red);font-weight:700">&lt;1% — 所有前沿模型</td><td>100%</td>
           </tr>
           <tr>
-            <td><a href="https://openai.com/index/introducing-swe-bench-verified">SWE-bench Verified</a></td>
-            <td>2024</td>
-            <td>人工验证子集</td>
-            <td>500</td>
-            <td><span class="tag tag-expert">expert</span></td>
-            <td>~75%</td>
+            <td><a href="https://www.swebench.com">SWE-bench Verified</a></td><td>2024</td>
+            <td>真实GitHub Issue修复（500题）</td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>87.6% — Claude Opus 4.7</td><td>~77% (开发者)</td>
           </tr>
           <tr>
-            <td><a href="https://webarena.dev">WebArena</a></td>
-            <td>2023</td>
-            <td>真实网站操作</td>
-            <td>812</td>
-            <td><span class="tag tag-hard">hard</span></td>
-            <td>~55%</td>
+            <td><a href="https://www.swebench.com">SWE-bench Pro</a></td><td>2025</td>
+            <td>更难版本，污染更少</td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>57.7% — GPT-5.4</td><td>—</td>
           </tr>
           <tr>
-            <td><a href="https://visualwebarena.github.io">VisualWebArena</a></td>
-            <td>2024</td>
-            <td>视觉网页操作</td>
-            <td>910</td>
-            <td><span class="tag tag-expert">expert</span></td>
-            <td>~30%</td>
+            <td><a href="https://huggingface.co/gaia-benchmark">GAIA</a></td><td>2023</td>
+            <td>通用AI助手（466题）</td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>74.6% — Claude Sonnet 4.5</td><td>~92%</td>
           </tr>
           <tr>
-            <td><a href="https://huggingface.co/spaces/gaia-benchmark/leaderboard">GAIA</a></td>
-            <td>2023</td>
-            <td>通用 AI 助手</td>
-            <td>466</td>
-            <td><span class="tag tag-expert">expert</span></td>
-            <td>~75%</td>
+            <td><a href="https://os-world.github.io">OSWorld</a></td><td>2024</td>
+            <td>真实操作系统操作（369题）</td>
+            <td><span class="tag tag-active">active</span></td>
+            <td style="color:var(--green)">75% — GPT-5.4 ⚡超人类</td><td>~72%</td>
           </tr>
           <tr>
-            <td><a href="https://os-world.github.io">OSWorld</a></td>
-            <td>2024</td>
-            <td>操作系统操作</td>
-            <td>369</td>
-            <td><span class="tag tag-expert">expert</span></td>
-            <td>~38%</td>
+            <td><a href="https://webarena.dev">WebArena</a></td><td>2023</td>
+            <td>真实网站操作（812题）</td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>68.7% — Claude Mythos</td><td>~78%</td>
           </tr>
           <tr>
-            <td><a href="https://arxiv.org/abs/2406.12045">τ-bench</a></td>
-            <td>2024</td>
-            <td>工具使用+规则遵循</td>
-            <td>300</td>
-            <td><span class="tag tag-hard">hard</span></td>
-            <td>~55%</td>
+            <td><a href="https://livecodebench.github.io">LiveCodeBench</a></td><td>2024</td>
+            <td>防污染编码评测（每周更新）</td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>Gemini 3.1 Pro leads</td><td>N/A</td>
           </tr>
           <tr>
-            <td><a href="https://arxiv.org/abs/2410.07095">MLE-bench</a></td>
-            <td>2024</td>
-            <td>Kaggle ML 工程</td>
-            <td>75</td>
-            <td><span class="tag tag-expert">expert</span></td>
-            <td>~15%</td>
+            <td><a href="https://gorilla.cs.berkeley.edu/leaderboard.html">BFCL v4</a></td><td>2024</td>
+            <td>函数调用/工具使用能力</td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>各模型差异大</td><td>N/A</td>
           </tr>
           <tr>
-            <td><a href="https://arcprize.org/arc-agi/3">ARC-AGI-3</a></td>
-            <td>2026</td>
-            <td>交互式推理 🔥</td>
-            <td>—</td>
-            <td><span class="tag tag-expert">expert</span></td>
-            <td style="color: var(--red); font-weight: 700">&lt;1%</td>
+            <td><a href="https://arxiv.org/abs/2406.12522">TAU-bench</a></td><td>2024</td>
+            <td>客服场景工具使用+规则遵循</td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>待确认</td><td>—</td>
+          </tr>
+          <tr>
+            <td><a href="https://arxiv.org/abs/2410.02841">BrowseComp</a></td><td>2024</td>
+            <td>网页浏览信息提取</td>
+            <td><span class="tag tag-active">emerging</span></td>
+            <td>各模型差异大</td><td>—</td>
+          </tr>
+          <tr>
+            <td><a href="https://arxiv.org/abs/2308.03688">AgentBench</a></td><td>2023</td>
+            <td>8环境Agent综合测试</td>
+            <td><span class="tag tag-active">active</span></td>
+            <td>综合分，各环境差异大</td><td>因环境而异</td>
+          </tr>
+          <tr>
+            <td>FieldWorkArena</td><td>2025</td>
+            <td>真实现场工作任务</td>
+            <td><span class="tag tag-new">new 2025</span></td>
+            <td>待确认</td><td>—</td>
           </tr>
         </tbody>
       </table>
@@ -569,144 +313,55 @@
 
   <!-- Harnesses -->
   <div class="section">
-    <h2 class="section-title">⚙️ Harnesses（评测框架）</h2>
-    <p class="section-desc">运行 Benchmark 的标准化评测工具</p>
-    <div class="table-wrapper">
+    <h2 class="section-title">⚙️ 评测框架 & 排行榜</h2>
+    <p class="section-desc">运行 Benchmark 的标准化工具和独立评测平台</p>
+    <div class="table-wrap">
       <table>
-        <thead>
-          <tr>
-            <th>框架</th>
-            <th>维护者</th>
-            <th>特点</th>
-            <th>适用场景</th>
-          </tr>
-        </thead>
+        <thead><tr><th>名称</th><th>维护者</th><th>特点</th><th>状态</th></tr></thead>
         <tbody>
-          <tr>
-            <td><a href="https://github.com/EleutherAI/lm-evaluation-harness">lm-eval-harness</a></td>
-            <td>EleutherAI</td>
-            <td>400+ benchmark，多后端支持</td>
-            <td>通用评测首选</td>
-          </tr>
-          <tr>
-            <td><a href="https://github.com/openai/evals">OpenAI Evals</a></td>
-            <td>OpenAI</td>
-            <td>Registry 机制，自定义 eval</td>
-            <td>自定义评测</td>
-          </tr>
-          <tr>
-            <td><a href="https://crfm.stanford.edu/helm">HELM</a></td>
-            <td>Stanford</td>
-            <td>42+ 场景，29+ 指标</td>
-            <td>全面评估+报告</td>
-          </tr>
-          <tr>
-            <td><a href="https://opencompass.org.cn">OpenCompass</a></td>
-            <td>上海 AI Lab</td>
-            <td>中文评测最完善</td>
-            <td>中文模型评测</td>
-          </tr>
-          <tr>
-            <td><a href="https://chat.lmsys.org">Chatbot Arena</a></td>
-            <td>LMSYS</td>
-            <td>人类盲评，ELO 排名</td>
-            <td>真实用户体验</td>
-          </tr>
-          <tr>
-            <td><a href="https://huggingface.co/spaces/open-llm-leaderboard">Open LLM Leaderboard</a></td>
-            <td>Hugging Face</td>
-            <td>开源模型标准排行</td>
-            <td>开源模型对比</td>
-          </tr>
-          <tr>
-            <td><a href="https://github.com/UKGovernmentBEIS/inspect_ai">Inspect AI</a></td>
-            <td>UK AISI</td>
-            <td>Solver/Tool/Scorer 模式</td>
-            <td>Agent 评测</td>
-          </tr>
-          <tr>
-            <td><a href="https://modelscope.cn">ModelScope 评测</a></td>
-            <td>阿里</td>
-            <td>中文生态，一键评测</td>
-            <td>中文生态快速评测</td>
-          </tr>
+          <tr><td><a href="https://github.com/EleutherAI/lm-evaluation-harness">lm-eval-harness</a></td><td>EleutherAI</td><td>60+学术基准，HF Leaderboard底层引擎</td><td><span class="tag tag-active">gold standard</span></td></tr>
+          <tr><td><a href="https://opencompass.org.cn">OpenCompass</a></td><td>上海AI实验室</td><td>50+数据集，30万道题，中文最佳</td><td><span class="tag tag-active">active</span></td></tr>
+          <tr><td><a href="https://crfm.stanford.edu/helm">HELM</a></td><td>Stanford CRFM</td><td>42+场景，29+指标，可复现</td><td><span class="tag tag-active">active</span></td></tr>
+          <tr><td><a href="https://ukgovernmentbeis.github.io/inspect_ai">Inspect AI</a></td><td>UK AISI</td><td>Agent评测，安全评估</td><td><span class="tag tag-new">rising</span></td></tr>
+          <tr><td><a href="https://github.com/confident-ai/deepeval">DeepEval</a></td><td>Confident AI</td><td>RAG评测，CI/CD集成</td><td><span class="tag tag-active">active</span></td></tr>
+          <tr><td><a href="https://artificialanalysis.ai">Artificial Analysis</a></td><td>独立机构</td><td>独立运行339+模型，标准化条件</td><td><span class="tag tag-active">independent</span></td></tr>
+          <tr><td><a href="https://lmarena.ai">Chatbot Arena</a></td><td>UC Berkeley / LMArena</td><td>100万+投票，Elo排名，最权威偏好榜</td><td><span class="tag tag-frontier">authoritative</span></td></tr>
+          <tr><td><a href="https://huggingface.co/open-llm-leaderboard">Open LLM Leaderboard</a></td><td>HuggingFace</td><td>开源模型标准排行</td><td><span class="tag tag-active">active</span></td></tr>
+          <tr><td><a href="https://www.vals.ai">Vals.ai</a></td><td>独立机构</td><td>独立重跑，自报分数通常低2-5分</td><td><span class="tag tag-active">independent</span></td></tr>
+          <tr><td><a href="https://swe-rebench.com">SWE-rebench</a></td><td>独立机构</td><td>编码专用独立评测</td><td><span class="tag tag-active">independent</span></td></tr>
+          <tr><td><a href="https://modelgrep.com/benchmarks">modelgrep</a></td><td>独立机构</td><td>10个基准，339+模型实时排行</td><td><span class="tag tag-active">active</span></td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- Timeline -->
+  <!-- Key Insights -->
   <div class="section">
-    <h2 class="section-title">📅 发展时间线</h2>
-    <p class="section-desc">从 2017 到 2026，LLM 评测如何演变</p>
-    <div class="chart-container">
-      <div class="bar-chart">
-        <div class="bar-group">
-          <div class="bar" style="height: 15px; background: var(--accent)"></div>
-          <div class="bar-label">2017</div>
-        </div>
-        <div class="bar-group">
-          <div class="bar" style="height: 60px; background: var(--accent)"></div>
-          <div class="bar-label">2019</div>
-        </div>
-        <div class="bar-group">
-          <div class="bar" style="height: 30px; background: var(--accent)"></div>
-          <div class="bar-label">2020</div>
-        </div>
-        <div class="bar-group">
-          <div class="bar" style="height: 60px; background: var(--accent)"></div>
-          <div class="bar-label">2021</div>
-        </div>
-        <div class="bar-group">
-          <div class="bar" style="height: 15px; background: var(--accent)"></div>
-          <div class="bar-label">2022</div>
-        </div>
-        <div class="bar-group">
-          <div class="bar" style="height: 150px; background: linear-gradient(var(--accent), var(--purple))"></div>
-          <div class="bar-label">2023</div>
-        </div>
-        <div class="bar-group">
-          <div class="bar" style="height: 120px; background: linear-gradient(var(--accent), var(--purple))"></div>
-          <div class="bar-label">2024</div>
-        </div>
-        <div class="bar-group">
-          <div class="bar" style="height: 30px; background: var(--accent)"></div>
-          <div class="bar-label">2025</div>
-        </div>
-        <div class="bar-group">
-          <div class="bar" style="height: 30px; background: linear-gradient(var(--purple), var(--pink))"></div>
-          <div class="bar-label">2026</div>
-        </div>
+    <h2 class="section-title">⚠️ 2026 评测领域关键洞察</h2>
+    <div class="insight-grid">
+      <div class="insight-card">
+        <h4>🦠 污染问题是最大威胁</h4>
+        <p>自报分数通常比独立重跑高2-5分。SWE-bench Verified 已确认评测集泄漏，OpenAI 停止报告分数。</p>
       </div>
-      <p style="margin-top: 16px; color: var(--text-secondary); font-size: 0.85rem;">
-        <span class="tag tag-model">2023 = Agent 元年</span> — SWE-bench、WebArena、GAIA、AgentBench 同年发布
-      </p>
-    </div>
-  </div>
-
-  <!-- Trend -->
-  <div class="section">
-    <h2 class="section-title">📈 趋势观察</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
-      <div class="highlight-card" style="flex-direction: column; text-align: center;">
-        <div class="highlight-icon">📊</div>
-        <h3>2019-2021：静态基准黄金期</h3>
-        <p style="color: var(--text-secondary); font-size: 0.9rem;">MMLU、HumanEval、GSM8K 定义了标准</p>
+      <div class="insight-card">
+        <h4>🔓 Agent 基准可被 reward hack</h4>
+        <p>2026年4月UC Berkeley研究显示8大Agent基准均可被reward hack到~100%，基准可信度受挑战。</p>
       </div>
-      <div class="highlight-card" style="flex-direction: column; text-align: center;">
-        <div class="highlight-icon">🤖</div>
-        <h3>2023：Agent 评测元年</h3>
-        <p style="color: var(--text-secondary); font-size: 0.9rem;">从"模型能做什么"转向"能完成什么任务"</p>
+      <div class="insight-card">
+        <h4>🏗️ 框架差异影响巨大</h4>
+        <p>同一模型在不同scaffolding框架下可造成5-15分差异。MMLU分数因解析器不同而不同。</p>
       </div>
-      <div class="highlight-card" style="flex-direction: column; text-align: center;">
-        <div class="highlight-icon">🔬</div>
-        <h3>2024：精细化 + 真实环境</h3>
-        <p style="color: var(--text-secondary); font-size: 0.9rem;">OSWorld、τ-bench 测试真实场景</p>
+      <div class="insight-card">
+        <h4>📊 交叉验证是必须的</h4>
+        <p>应始终交叉验证独立评测机构（Vals.ai、Artificial Analysis、Chatbot Arena），不要只信自报数字。</p>
       </div>
-      <div class="highlight-card" style="flex-direction: column; text-align: center;">
-        <div class="highlight-icon">⚡</div>
-        <h3>2026：交互式评测</h3>
-        <p style="color: var(--text-secondary); font-size: 0.9rem;">ARC-AGI-3 测试"学习能力"，AI 全面 &lt;1%</p>
+      <div class="insight-card">
+        <h4>📉 静态基准全面饱和</h4>
+        <p>MMLU 93%、HumanEval 97.5%、GSM8K 97%、HellaSwag 98.4%。前沿模型区分需要新基准。</p>
+      </div>
+      <div class="insight-card">
+        <h4>🆕 新基准在涌现</h4>
+        <p>HLE（64.7%）、ARC-AGI-3（&lt;1%）、SWE-bench Pro（57.7%）——2025-2026年新基准仍具区分力。</p>
       </div>
     </div>
   </div>
@@ -714,11 +369,12 @@
 </div>
 
 <div class="footer">
-  <p>📊 LLM Benchmarks Tracker · 数据更新于 2026-09-04</p>
-  <p style="margin-top: 8px;">
+  <p>📊 LLM Benchmarks Tracker · 数据更新于 2026-09-04 · 基于论文和独立评测机构交叉验证</p>
+  <p style="margin-top:8px">
     <a href="https://github.com/alloevil/llm-benchmarks-tracker">GitHub</a> ·
     <a href="https://github.com/alloevil/llm-benchmarks-tracker/tree/main/data">数据文件</a> ·
-    <a href="https://github.com/alloevil/llm-benchmarks-tracker/tree/main/docs">详细文档</a>
+    <a href="https://github.com/alloevil/llm-benchmarks-tracker/tree/main/docs">详细文档</a> ·
+    <a href="https://github.com/alloevil/llm-benchmarks-tracker/tree/main/research">研究原始数据</a>
   </p>
 </div>
 
