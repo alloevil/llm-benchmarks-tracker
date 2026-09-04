@@ -2,6 +2,11 @@
 
 All notable changes to the data model and tooling. Data additions are tracked in git history and the per-benchmark ledgers.
 
+## 1.7.0 — 2026-09-04
+
+### Added
+- Benchmark tables are grouped by release year with collapsible year headers (count + names shown while collapsed). Only the newest live year per table is expanded by default; "Expand all years" / "Collapse all" in the filter bar. Filtering auto-reveals matching rows and hides empty years; sorting stays within a year group.
+
 ## 1.6.0 — 2026-09-04
 
 ### Changed

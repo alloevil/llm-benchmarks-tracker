@@ -62,12 +62,24 @@ tr[hidden]{display:none}
   .pill{font-size:.75rem}.small{max-width:none;min-width:0;-webkit-line-clamp:2}
   .bench thead,.ledger thead{display:none}
   .bench tr,.ledger tr{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;padding:12px;border-bottom:1px solid var(--line)}
+  .bench tr[hidden],.bench tr.yhidden,.ledger tr[hidden]{display:none}
   .bench td,.ledger td{display:block;padding:0;border:0}
   .bench td[data-label=Benchmark],.ledger td:first-child{grid-column:1/-1}
   .bench td[data-label]:not([data-label=Benchmark])::before,.ledger td[data-label]::before{content:attr(data-label);display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:2px}
   .sparkcell{grid-column:1/-1}.spark{width:100%;height:32px}
   .dgrid{grid-template-columns:1fr}.filters output{margin-left:0}
 }
+/* --- year groups (collapsible) --- */
+tr.yhead td{padding:0;background:var(--bg);border-bottom:1px solid var(--line)}
+.ytoggle{all:unset;display:flex;gap:6px;align-items:baseline;width:100%;box-sizing:border-box;padding:8px 12px;cursor:pointer;font-size:.85rem;color:var(--fg)}
+.ytoggle:hover{background:var(--card)}.ytoggle:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.ytoggle .caret{display:inline-block;transition:transform .15s;color:var(--muted);width:1em}
+tr.yhead[data-expanded=false] .caret{transform:rotate(-90deg)}
+.ynames{font-size:.78rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+tr.yhead[data-expanded=true] .ynames{display:none}
+tr.compact.yhidden,tr.yhidden{display:none}
+.linkbtn{all:unset;cursor:pointer;color:var(--accent);font-size:.78rem}.linkbtn:hover{text-decoration:underline}
+@media (max-width:760px){.bench tr.yhead{display:block;padding:0}.bench tr.yhead td{display:block;padding:0}.bench tr.yhead td::before{display:none}.ynames{white-space:normal}}
 /* --- grouped tables: divider + compact retired rows --- */
 tr.divider td{padding:8px 12px;font-size:.75rem;color:var(--muted);background:var(--bg);border-top:2px solid var(--line);border-bottom:1px solid var(--line);letter-spacing:.02em}
 tr.compact td{padding:6px 12px;font-size:.82rem;color:var(--muted)}tr.compact a{color:var(--muted)}tr.compact strong{color:var(--fg);font-weight:600}

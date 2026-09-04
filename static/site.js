@@ -5,22 +5,42 @@
     var table = document.getElementById("t-" + form.dataset.target);
     if (!table) return;
     form.hidden = false;
-    var rows = Array.prototype.slice.call(table.tBodies[0].rows).filter(function (r) { return !r.classList.contains("divider"); });
+    var all = Array.prototype.slice.call(table.tBodies[0].rows);
+    var rows = all.filter(function (r) { return !r.classList.contains("divider") && !r.classList.contains("yhead"); });
+    var heads = all.filter(function (r) { return r.classList.contains("yhead"); });
     var divider = table.querySelector("tr.divider");
+    var open = {};
+    heads.forEach(function (h) { open[h.dataset.year] = h.dataset.expanded === "true"; });
+    function setYear(y, v) {
+      open[y] = v;
+      heads.forEach(function (h) { if (h.dataset.year === y) { h.dataset.expanded = String(v); h.querySelector(".ytoggle").setAttribute("aria-expanded", String(v)); } });
+      rows.forEach(function (r) { if (r.dataset.year === y) r.classList.toggle("yhidden", !v); });
+    }
+    heads.forEach(function (h) {
+      h.querySelector(".ytoggle").addEventListener("click", function () { setYear(h.dataset.year, !open[h.dataset.year]); });
+      setYear(h.dataset.year, open[h.dataset.year]);
+    });
+    form.querySelectorAll("button[data-expand]").forEach(function (b) {
+      b.addEventListener("click", function () { var v = b.dataset.expand === "1"; heads.forEach(function (h) { setYear(h.dataset.year, v); }); });
+    });
     var search = form.querySelector("[data-search]");
     var count = form.querySelector("[data-count]");
     var active = {};
 
     function apply() {
       var q = search.value.trim().toLowerCase();
-      var shown = 0;
+      var filtering = !!(q || active.status || active.risk);
+      var shown = 0, perYear = {};
       rows.forEach(function (tr) {
         var ok = (!q || tr.dataset.search.indexOf(q) !== -1) &&
           (!active.status || tr.dataset.status === active.status) &&
           (!active.risk || tr.dataset.risk === active.risk);
         tr.hidden = !ok;
-        if (ok) shown++;
+        if (ok) { shown++; perYear[tr.dataset.year] = (perYear[tr.dataset.year] || 0) + 1; }
+        // while filtering, matches are always visible regardless of collapsed state
+        tr.classList.toggle("yhidden", !filtering && !open[tr.dataset.year]);
       });
+      heads.forEach(function (h) { h.hidden = filtering && !perYear[h.dataset.year]; });
       if (divider) divider.hidden = !rows.some(function (r) { return !r.hidden && r.classList.contains("compact"); });
       count.value = shown + " / " + rows.length;
     }
@@ -53,11 +73,16 @@
         th.setAttribute("aria-sort", dir);
         var sign = dir === "descending" ? -1 : 1;
         rows.sort(function (a, b) { var x = key(a), y = key(b); return x < y ? -sign : x > y ? sign : 0; });
-        var live = rows.filter(function (r) { return !r.classList.contains("compact"); });
-        var gone = rows.filter(function (r) { return r.classList.contains("compact"); });
-        live.forEach(function (tr) { table.tBodies[0].appendChild(tr); });
-        if (divider) table.tBodies[0].appendChild(divider);
-        gone.forEach(function (tr) { table.tBodies[0].appendChild(tr); });
+        // Sorting happens inside each year group; year order itself is fixed (newest first).
+        var tb = table.tBodies[0];
+        heads.forEach(function (h) {
+          tb.appendChild(h);
+          rows.forEach(function (tr) { if (tr.dataset.year === h.dataset.year) tb.appendChild(tr); });
+          if (divider && h.dataset.year.indexOf("live-") === 0) {
+            var nextIsPast = heads[heads.indexOf(h) + 1] && heads[heads.indexOf(h) + 1].dataset.year.indexOf("past-") === 0;
+            if (nextIsPast) tb.appendChild(divider);
+          }
+        });
       }
       th.addEventListener("click", sort);
       th.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); sort(); } });

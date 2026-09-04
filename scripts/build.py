@@ -88,6 +88,9 @@ T: dict[str, dict[str, str]] = {
         "sort_hint": "click to sort",
         "no_baseline": "no measured baseline",
         "last_reported": "last reported",
+        "n_benchmarks": "{n} benchmarks",
+        "expand_all": "Expand all years",
+        "collapse_all": "Collapse all",
         "chart_title": "Benchmark lifespans: release, running best score, human baseline, successor (percent metrics only)",
         "today": "today",
         "show_retired": "Show saturated / retired ({n})",
@@ -155,6 +158,9 @@ T: dict[str, dict[str, str]] = {
         "sort_hint": "点击排序",
         "no_baseline": "无实测基线",
         "last_reported": "最后报告",
+        "n_benchmarks": "{n} 个基准",
+        "expand_all": "展开全部年份",
+        "collapse_all": "全部折叠",
         "chart_title": "基准生命周期：发布、逐步最高分、人类基线、后继（仅百分制指标）",
         "today": "今天",
         "show_retired": "显示已饱和 / 退役（{n}）",
@@ -447,17 +453,43 @@ def compact_row(ds: Dataset, b: dict[str, Any], lang: str, base: str) -> str:
     )
 
 
+def year_row(ds: Dataset, lang: str, layer: str, year: str, group: list[dict[str, Any]], expanded: bool) -> str:
+    """Collapsible year header. Shows count and names so a collapsed year still informs."""
+    t = T[lang]
+    names = ", ".join(b["name"] for b in group)
+    state = "true" if expanded else "false"
+    return (
+        f'<tr class="yhead" data-year="{year}" data-layer="{layer}" data-expanded="{state}">'
+        f'<td colspan="7"><button type="button" class="ytoggle" aria-expanded="{state}" aria-controls="y-{layer}-{year}">'
+        f'<span class="caret" aria-hidden="true">▾</span> <strong>{year.split("-")[1]}</strong> '
+        f'<span class="muted">· {t["n_benchmarks"].format(n=len(group))}</span> '
+        f'<span class="muted ynames">{_e(names)}</span></button></td></tr>'
+    )
+
+
 def html_benchmark_rows(ds: Dataset, layer: str, lang: str) -> str:
     t = T[lang]
     base = "../" if lang != "en" else ""
+    newest_live = max((b["released"][:4] for b in ds.benchmarks.values() if b["layer"] == layer and is_live(b)), default="")
     rows = []
     divider_done = False
-    for b in sort_benchmarks(ds, layer):
-        if not is_live(b):
-            if not divider_done:
-                rows.append(f'<tr class="divider"><td colspan="7">{t["divider"]}</td></tr>')
-                divider_done = True
-            rows.append(compact_row(ds, b, lang, base))
+    last_year: str | None = None
+    ordered = sort_benchmarks(ds, layer)
+    for b in ordered:
+        live = is_live(b)
+        if not live and not divider_done:
+            rows.append(f'<tr class="divider"><td colspan="7">{t["divider"]}</td></tr>')
+            divider_done = True
+            last_year = None
+        year = b["released"][:4]
+        if year != last_year:
+            group = [x for x in ordered if is_live(x) == live and x["released"][:4] == year]
+            expanded = live and year == newest_live
+            rows.append(year_row(ds, lang, layer, f"{'live' if live else 'past'}-{year}", group, expanded))
+            last_year = year
+        if not live:
+            row = compact_row(ds, b, lang, base)
+            rows.append(row.replace('<tr class="compact"', f'<tr class="compact" data-year="past-{year}"', 1))
             continue
         sota = ds.sota(b["id"])
         desc = b[t["description"]]
@@ -471,7 +503,7 @@ def html_benchmark_rows(ds: Dataset, layer: str, lang: str) -> str:
         domains_attr = _e(" ".join(b["domains"]))
         score_attr = sota["value"] if sota else -1
         rows.append(
-            f'<tr data-status="{b["status"]}" data-risk="{risk}" data-domains="{domains_attr}" '
+            f'<tr data-year="live-{year}" data-status="{b["status"]}" data-risk="{risk}" data-domains="{domains_attr}" '
             f'data-released="{b["released"]}" data-score="{score_attr}" data-search="{_e(search)}">'
             f'<td data-label="Benchmark"><a href="{base}b/{b["id"]}/"><strong>{_e(b["name"])}</strong></a>{chain_wrap}'
             f'<div class="muted small" title="{_e(desc)}">{_e(desc)}</div></td>'
@@ -872,6 +904,8 @@ def filter_bar(ds: Dataset, layer: str, lang: str) -> str:
         f'<input type="search" placeholder="{t["filter_placeholder"]}" aria-label="{t["filter_placeholder"]}" data-search>'
         f'{group("status", t["status"], statuses, "status")}'
         f'{group("risk", t["risk"], risks, "risk")}'
+        f'<button type="button" class="linkbtn" data-expand="1">{t["expand_all"]}</button>'
+        f'<button type="button" class="linkbtn" data-expand="0">{t["collapse_all"]}</button>'
         f'<output class="muted" data-count></output>'
         "</form>"
     )

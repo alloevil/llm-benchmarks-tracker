@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import re
+
 import pytest
 
 from scripts import build
@@ -103,6 +105,24 @@ def test_retired_rows_are_compact_with_divider():
     assert retired, "fixture assumption: some benchmark is saturated/retired"
     assert html.count('<tr class="compact"') == len(retired)
     assert "last reported" in html
+
+
+def test_year_groups_only_current_year_expanded():
+    ds = _ds()
+    html = build.render_site(ds, "en")
+    heads = re.findall(r'<tr class="yhead" data-year="(live|past)-(\d{4})" data-layer="\w+" data-expanded="(true|false)"', html)
+    assert heads, "no year headers"
+    pat = r'<tr class="yhead" data-year="(live|past)-(\d{4})" data-layer="(\w+)" data-expanded="(true|false)"'
+    heads_by_layer = re.findall(pat, html)
+    for layer in ("model", "agent"):
+        newest = max(b["released"][:4] for b in ds.benchmarks.values() if b["layer"] == layer and build.is_live(b))
+        for kind, year, lyr, expanded in heads_by_layer:
+            if lyr == layer:
+                assert (expanded == "true") == (kind == "live" and year == newest), (layer, kind, year, expanded)
+    # every benchmark row carries its year key
+    for b in ds.benchmarks.values():
+        key = f'data-year="{"live" if build.is_live(b) else "past"}-{b["released"][:4]}"'
+        assert key in html, b["id"]
 
 
 def test_lifespan_chart_covers_percent_benchmarks():
