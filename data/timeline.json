@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-09-04",
+  "timeline": [
+    {"year": 2017, "events": [
+      {"id": "triviaqa", "type": "model", "name": "TriviaQA", "note": "开放域问答"}
+    ]},
+    {"year": 2019, "events": [
+      {"id": "arc-agi", "type": "model", "name": "ARC-AGI", "note": "抽象推理基准（François Chollet）"},
+      {"id": "hellaswag", "type": "model", "name": "HellaSwag", "note": "常识推理"},
+      {"id": "winogrande", "type": "model", "name": "WinoGrande", "note": "代词消歧"},
+      {"id": "drop", "type": "model", "name": "DROP", "note": "离散推理阅读理解"}
+    ]},
+    {"year": 2020, "events": [
+      {"id": "mmlu", "type": "model", "name": "MMLU", "note": "多学科知识测试"},
+      {"id": "lm-eval-harness", "type": "harness", "name": "lm-eval-harness", "note": "EleutherAI 发布"}
+    ]},
+    {"year": 2021, "events": [
+      {"id": "humaneval", "type": "model", "name": "HumanEval", "note": "代码生成"},
+      {"id": "humaneval-plus", "type": "model", "name": "HumanEval+", "note": "HumanEval 增强版"},
+      {"id": "mbpp", "type": "model", "name": "MBPP", "note": "基础 Python 编程"},
+      {"id": "gsm8k", "type": "model", "name": "GSM8K", "note": "小学数学推理"},
+      {"id": "math", "type": "model", "name": "MATH", "note": "竞赛级数学"},
+      {"id": "truthfulqa", "type": "model", "name": "TruthfulQA", "note": "真实性测试"}
+    ]},
+    {"year": 2022, "events": [
+      {"id": "bigbench-hard", "type": "model", "name": "BigBench-Hard", "note": "综合推理难题"}
+    ]},
+    {"year": 2023, "events": [
+      {"id": "gpqa", "type": "model", "name": "GPQA", "note": "研究生级问答"},
+      {"id": "ifeval", "type": "model", "name": "IFEval", "note": "指令遵循评估"},
+      {"id": "swe-bench", "type": "agent", "name": "SWE-bench", "note": "真实 GitHub Issue 修复"},
+      {"id": "webarena", "type": "agent", "name": "WebArena", "note": "真实网站操作"},
+      {"id": "gaia", "type": "agent", "name": "GAIA", "note": "通用 AI 助手"},
+      {"id": "agentbench", "type": "agent", "name": "AgentBench", "note": "多环境 Agent"},
+      {"id": "helm", "type": "harness", "name": "HELM", "note": "斯坦福全面评测"},
+      {"id": "opencompass", "type": "harness", "name": "OpenCompass", "note": "中文评测平台"},
+      {"id": "chatbot-arena", "type": "harness", "name": "Chatbot Arena", "note": "人类偏好盲评"},
+      {"id": "open-llm-leaderboard", "type": "harness", "name": "Open LLM Leaderboard", "note": "开源模型排行"}
+    ]},
+    {"year": 2024, "events": [
+      {"id": "mmlu-pro", "type": "model", "name": "MMLU-Pro", "note": "MMLU 加强版"},
+      {"id": "swe-bench-verified", "type": "agent", "name": "SWE-bench Verified", "note": "人工验证子集"},
+      {"id": "visualwebarena", "type": "agent", "name": "VisualWebArena", "note": "视觉网页操作"},
+      {"id": "osworld", "type": "agent", "name": "OSWorld", "note": "操作系统操作"},
+      {"id": "tau-bench", "type": "agent", "name": "τ-bench", "note": "工具使用+规则遵循"},
+      {"id": "mle-bench", "type": "agent", "name": "MLE-bench", "note": "Kaggle ML 工程"},
+      {"id": "simpleqa", "type": "agent", "name": "SimpleQA", "note": "事实问答"},
+      {"id": "inspect-ai", "type": "harness", "name": "Inspect AI", "note": "UK AISI Agent 评测"}
+    ]},
+    {"year": 2025, "events": [
+      {"id": "arc-agi-2", "type": "model", "name": "ARC-AGI-2", "note": "抽象推理加强版"},
+      {"id": "browsecomp", "type": "agent", "name": "BrowseComp", "note": "网页浏览理解"}
+    ]},
+    {"year": 2026, "events": [
+      {"id": "arc-agi-3", "type": "agent", "name": "ARC-AGI-3", "note": "首个交互式推理基准，AI < 1%"}
+    ]}
+  ]
+}

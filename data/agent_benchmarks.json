@@ -1,0 +1,258 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-09-04",
+  "benchmarks": [
+    {
+      "id": "swe-bench",
+      "name": "SWE-bench",
+      "full_name": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+      "year": 2023,
+      "authors": ["Carlos E. Jimenez", "John Yang", "Alexander Wettig", "Shunyu Yao", "Kexin Pei", "Ofir Press", "Karthik Narasimhan"],
+      "institution": "Princeton",
+      "paper": "https://arxiv.org/abs/2310.06770",
+      "website": "https://www.swebench.com",
+      "description": "从 12 个 Python 仓库收集的真实 GitHub Issue，Agent 需理解问题描述、定位代码、生成 patch 并通过测试",
+      "metrics": ["resolve_rate"],
+      "task_count": 2294,
+      "difficulty": "expert",
+      "tags": ["code", "swe", "real-world", "github", "python"],
+      "current_sota": {
+        "score": "~72%",
+        "model": "Claude 4 Opus + scaffold",
+        "date": "2026-06"
+      },
+      "human_baseline": null
+    },
+    {
+      "id": "swe-bench-verified",
+      "name": "SWE-bench Verified",
+      "full_name": "SWE-bench Verified: Human-Validated Subset",
+      "year": 2024,
+      "authors": ["OpenAI"],
+      "institution": "OpenAI",
+      "paper": null,
+      "website": "https://openai.com/index/introducing-swe-bench-verified",
+      "description": "SWE-bench 的人工验证子集（500 题），确保问题描述清晰、测试正确、解法唯一",
+      "metrics": ["resolve_rate"],
+      "task_count": 500,
+      "difficulty": "expert",
+      "tags": ["code", "swe", "real-world", "validated", "python"],
+      "current_sota": {
+        "score": "~75%",
+        "model": "Claude 4 Opus",
+        "date": "2026-06"
+      },
+      "human_baseline": null
+    },
+    {
+      "id": "webarena",
+      "name": "WebArena",
+      "full_name": "WebArena: A Realistic Web Environment for Building Autonomous Agents",
+      "year": 2023,
+      "authors": ["Shuyan Zhou", "Frank F. Xu", "Hao Zhu", "Xuhui Zhou", "Robert Lo", "Abishek Sridhar", "Xianyi Cheng", "Tianyue Ou", "Yonatan Bisk", "Daniel Fried", "Uri Alon", "Graham Neubig"],
+      "institution": "CMU",
+      "paper": "https://arxiv.org/abs/2307.13854",
+      "website": "https://webarena.dev",
+      "description": "真实网站环境（Reddit、GitLab、购物网站等），Agent 需完成信息检索、表单提交、导航等 812 个任务",
+      "metrics": ["success_rate"],
+      "task_count": 812,
+      "difficulty": "hard",
+      "tags": ["web", "navigation", "real-world", "interactive"],
+      "current_sota": {
+        "score": "~55%",
+        "model": "GPT-5 + scaffold",
+        "date": "2026-06"
+      },
+      "human_baseline": "~78%"
+    },
+    {
+      "id": "visualwebarena",
+      "name": "VisualWebArena",
+      "full_name": "VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks",
+      "year": 2024,
+      "authors": ["Jing Yu Koh", "Robert Lo", "Lawrence Jang", "Vikram Duvvur", "Ming Chong Lim", "Po-Yu Huang", "Graham Neubig", "Shuyan Zhou", "Ruslan Salakhutdinov", "Daniel Fried"],
+      "institution": "CMU",
+      "paper": "https://arxiv.org/abs/2401.13649",
+      "website": "https://visualwebarena.github.io",
+      "description": "WebArena 的视觉扩展版，任务需要理解图像内容（如图标、图表、截图）才能完成",
+      "metrics": ["success_rate"],
+      "task_count": 910,
+      "difficulty": "expert",
+      "tags": ["web", "vision", "multimodal", "interactive"],
+      "current_sota": {
+        "score": "~30%",
+        "model": "GPT-5 + scaffold",
+        "date": "2026-06"
+      },
+      "human_baseline": "~88%"
+    },
+    {
+      "id": "gaia",
+      "name": "GAIA",
+      "full_name": "GAIA: A Benchmark for General AI Assistants",
+      "year": 2023,
+      "authors": ["Grégoire Mialon", "Clémentine Fourrier", "Craig Swift", "Thomas Wolf", "Yann LeCun", "Thomas Scialom"],
+      "institution": "Meta / Hugging Face",
+      "paper": "https://arxiv.org/abs/2311.12983",
+      "website": "https://huggingface.co/spaces/gaia-benchmark/leaderboard",
+      "description": "466 个真实世界问题，需要多步推理、工具使用（搜索、计算、文件处理），分 3 个难度级别",
+      "metrics": ["accuracy"],
+      "task_count": 466,
+      "difficulty": "expert",
+      "tags": ["general", "tool-use", "multi-step", "real-world", "multi-level"],
+      "current_sota": {
+        "score": "~75% (Level 1)",
+        "model": "GPT-5 + scaffold",
+        "date": "2026-06"
+      },
+      "human_baseline": "~92%"
+    },
+    {
+      "id": "agentbench",
+      "name": "AgentBench",
+      "full_name": "AgentBench: Evaluating LLMs as Agents",
+      "year": 2023,
+      "authors": ["Xiao Liu", "Hao Yu", "Hanchen Zhang", "Yifan Xu", "Xuanyu Lei", "Hanyu Lai", "Yu Gu", "Hangliang Ding", "Kaiwen Men", "Kejuan Yang"],
+      "institution": "Tsinghua / Zhipu AI",
+      "paper": "https://arxiv.org/abs/2308.03688",
+      "website": "https://github.com/THUDM/AgentBench",
+      "description": "8 个不同环境的 Agent 测试：OS、DB、知识图谱、数字卡牌游戏、家居、网页购物、网页浏览、coding",
+      "metrics": ["success_rate", "score"],
+      "task_count": 2000,
+      "difficulty": "hard",
+      "tags": ["multi-environment", "diverse", "comprehensive"],
+      "current_sota": {
+        "score": "~55% (overall)",
+        "model": "GPT-5",
+        "date": "2026-06"
+      },
+      "human_baseline": null
+    },
+    {
+      "id": "osworld",
+      "name": "OSWorld",
+      "full_name": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+      "year": 2024,
+      "authors": ["Tianbao Xie", "Danyang Zhang", "Jixuan Chen", "Xiaochuan Li", "Siheng Zhao", "Ruisheng Cao", "Toh Jing Hua", "Zhoujun Cheng", "Dongchan Shin", "Fangyu Lei"],
+      "institution": "HKU / Salesforce",
+      "paper": "https://arxiv.org/abs/2404.07972",
+      "website": "https://os-world.github.io",
+      "description": "在 Ubuntu/Fedora/Windows/macOS 真实操作系统中完成 369 个开放式任务（办公、开发、系统管理等）",
+      "metrics": ["success_rate"],
+      "task_count": 369,
+      "difficulty": "expert",
+      "tags": ["os", "desktop", "real-world", "multimodal", "open-ended"],
+      "current_sota": {
+        "score": "~38%",
+        "model": "GPT-5 + Computer Use",
+        "date": "2026-06"
+      },
+      "human_baseline": "~72%"
+    },
+    {
+      "id": "tau-bench",
+      "name": "τ-bench",
+      "full_name": "Tau-bench: A Benchmark for Tool-Agent-User Interaction",
+      "year": 2024,
+      "authors": ["Shunyu Yao", "Noah Shinn", "Pedro Razavi", "Karthik Narasimhan"],
+      "institution": "Princeton / Sierra AI",
+      "paper": "https://arxiv.org/abs/2406.12045",
+      "website": "https://sierra.ai/blog/tau-bench",
+      "description": "模拟客服场景，Agent 需与用户对话 + 调用 API 工具 + 遵循复杂政策规则来解决问题",
+      "metrics": ["pass_rate", "avg_turns"],
+      "task_count": 300,
+      "difficulty": "hard",
+      "tags": ["tool-use", "dialogue", "policy", "customer-service"],
+      "current_sota": {
+        "score": "~55%",
+        "model": "GPT-5",
+        "date": "2026-06"
+      },
+      "human_baseline": "~82%"
+    },
+    {
+      "id": "mle-bench",
+      "name": "MLE-bench",
+      "full_name": "MLE-bench: Evaluating Machine Learning Agents on Machine Learning Engineering",
+      "year": 2024,
+      "authors": ["Jun Shern Chan", "Neil Chowdhury", "Oliver Jaffe", "James Aung", "Dane Sherburn", "Evan Mays", "Rachel Dias", "Lilian Weng"],
+      "institution": "OpenAI",
+      "paper": "https://arxiv.org/abs/2410.07095",
+      "website": "https://github.com/openai/mle-bench",
+      "description": "75 个 Kaggle 竞赛，Agent 需从数据探索到模型训练到提交完整流程，评估 ML 工程能力",
+      "metrics": ["medal_rate", "submission_rate"],
+      "task_count": 75,
+      "difficulty": "expert",
+      "tags": ["ml-engineering", "kaggle", "end-to-end", "data-science"],
+      "current_sota": {
+        "score": "~15% (medal rate)",
+        "model": "o3 + scaffold",
+        "date": "2026-01"
+      },
+      "human_baseline": null
+    },
+    {
+      "id": "arc-agi-3",
+      "name": "ARC-AGI-3",
+      "full_name": "ARC-AGI-3: A New Challenge for Frontier Agentic Intelligence",
+      "year": 2026,
+      "authors": ["François Chollet", "Mike Knoop", "Greg Kamradt", "Bryan Landers"],
+      "institution": "ARC Prize Foundation",
+      "paper": "https://arxiv.org/abs/2603.24621",
+      "website": "https://arcprize.org/arc-agi/3",
+      "description": "首个交互式推理基准，Agent 需在环境中通过试错学习解决视觉推理任务，测试真正的泛化学习能力",
+      "metrics": ["score"],
+      "task_count": null,
+      "difficulty": "expert",
+      "tags": ["interactive", "reasoning", "learning", "visual", "first-of-kind"],
+      "current_sota": {
+        "score": "<1%",
+        "model": "所有顶尖模型",
+        "date": "2026-03"
+      },
+      "human_baseline": "100%"
+    },
+    {
+      "id": "browsecomp",
+      "name": "BrowseComp",
+      "full_name": "BrowseComp: A Simple Yet Challenging Benchmark for Browsing Agents",
+      "year": 2025,
+      "authors": ["OpenAI"],
+      "institution": "OpenAI",
+      "paper": "https://openai.com/index/browsecomp",
+      "website": "https://openai.com/index/browsecomp",
+      "description": "1000 个需要深度浏览网页才能回答的问题，测试 Agent 的信息检索和综合能力",
+      "metrics": ["accuracy"],
+      "task_count": 1000,
+      "difficulty": "hard",
+      "tags": ["web", "browsing", "information-retrieval"],
+      "current_sota": {
+        "score": "~60%",
+        "model": "GPT-5 + browsing",
+        "date": "2026-06"
+      },
+      "human_baseline": null
+    },
+    {
+      "id": "simpleqa",
+      "name": "SimpleQA",
+      "full_name": "SimpleQA: Measuring Short-Form Factuality",
+      "year": 2024,
+      "authors": ["OpenAI"],
+      "institution": "OpenAI",
+      "paper": "https://openai.com/index/simpleqa",
+      "website": "https://openai.com/index/simpleqa",
+      "description": "4326 个简短事实性问题，有明确的唯一正确答案，测试模型的事实准确性",
+      "metrics": ["accuracy", "f1"],
+      "task_count": 4326,
+      "difficulty": "easy",
+      "tags": ["factuality", "short-form", "accuracy"],
+      "current_sota": {
+        "score": "~85%",
+        "model": "GPT-5",
+        "date": "2026-06"
+      },
+      "human_baseline": null
+    }
+  ]
+}
