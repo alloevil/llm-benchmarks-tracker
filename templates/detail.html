@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0e14">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{META_DESC}}">
+<link rel="canonical" href="{{PAGE_URL}}">
+<link rel="alternate" hreflang="en" href="{{ALT_EN}}">
+<link rel="alternate" hreflang="zh-CN" href="{{ALT_ZH}}">
+<link rel="alternate" hreflang="x-default" href="{{ALT_EN}}">
+<link rel="alternate" type="application/json" href="{{JSON_URL}}">
+<link rel="icon" href="{{BASE}}favicon.svg" type="image/svg+xml">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{PAGE_URL}}">
+<meta property="og:title" content="{{NAME}} — LLM Benchmarks Tracker">
+<meta property="og:description" content="{{META_DESC}}">
+<meta property="og:image" content="{{SITE}}/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{NAME}} — LLM Benchmarks Tracker">
+<meta name="twitter:description" content="{{META_DESC}}">
+<meta name="twitter:image" content="{{SITE}}/og.png">
+<script type="application/ld+json">{{JSON_LD}}</script>
+<link rel="stylesheet" href="{{BASE}}style.css">
+</head>
+<body class="detail">
+<nav>
+  <a href="{{HOME}}">{{BACK}}</a>
+  <a href="{{JSON_URL}}">{{JSON_LABEL}}</a>
+  <a href="https://github.com/alloevil/llm-benchmarks-tracker">GitHub</a>
+  {{LANG_SWITCH}}
+</nav>
+<main id="main">
+  <header class="dhead">
+    <h1>{{NAME}}</h1>
+    <p class="fullname muted">{{FULL_NAME}}</p>
+    <p class="chainwrap">{{CHAIN}}</p>
+    <p class="desc">{{DESC}}</p>
+    <p class="links">{{LINKS}}</p>
+  </header>
+
+  <section class="dgrid">
+    <div class="card">
+      <div class="topscore">{{SCORE}}</div>
+      <div class="sparkbig">{{SPARK}}</div>
+    </div>
+    <dl class="facts card">{{FACTS}}</dl>
+  </section>
+
+  {{NOTES}}
+
+  <section id="ledger">
+    <h2>{{LEDGER_TITLE}}</h2>
+    {{LEDGER}}
+  </section>
+</main>
+<footer>
+  {{GENERATED}} · <a href="{{JSON_URL}}">{{JSON_LABEL}}</a> · <a href="https://github.com/alloevil/llm-benchmarks-tracker/tree/main/data">data/</a> · MIT
+</footer>
+</body>
+</html>

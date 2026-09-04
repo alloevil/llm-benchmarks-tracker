@@ -44,13 +44,49 @@ T: dict[str, dict[str, str]] = {
         "**{results}** sourced results · updated {date}",
         "no_result": "no sourced result",
         "rows": "{n} rows",
-        "lang_switch": '<a href="zh/" lang="zh-CN" hreflang="zh-CN">中文</a>',
+        "lang_switch": '<a href="{other}" lang="zh-CN" hreflang="zh-CN">中文</a>',
         "description": "description",
         "kind_official-leaderboard": "official",
         "kind_developer-report": "self-reported",
         "kind_independent-evaluation": "independent",
         "kind_paper": "paper",
         "kind_aggregator": "aggregator",
+        "human": "human",
+        "supersedes": "supersedes",
+        "superseded_by": "superseded by",
+        "ledger": "Full ledger",
+        "released": "Released",
+        "domains": "Domains",
+        "status": "Status",
+        "risk": "Contamination",
+        "top": "Top score",
+        "th_system": "System",
+        "th_developer": "Developer",
+        "th_value": "Score",
+        "th_date": "Date",
+        "th_source": "Source",
+        "th_conditions": "Conditions",
+        "json": "JSON",
+        "back": "← All benchmarks",
+        "meta_desc": "{name}: {desc} Top score {score} ({system}, {kind}). {n} sourced results with conditions.",
+        "meta_desc_none": "{name}: {desc}",
+        "detail_title": "{name} — scores, sources, status | LLM Benchmarks Tracker",
+        "maintainer": "Maintainer",
+        "task_count": "Tasks",
+        "metric": "Metric",
+        "links": "Links",
+        "paper": "paper",
+        "website": "website",
+        "leaderboard": "leaderboard",
+        "dataset": "dataset",
+        "code": "code",
+        "notes": "Notes",
+        "history": "Score history",
+        "filter_placeholder": "Filter by name, domain, system…",
+        "filter_all": "all",
+        "provenance": "of top scores are official or independent",
+        "sort_hint": "click to sort",
+        "no_baseline": "no measured baseline",
     },
     "zh": {
         "bench_header": "| Benchmark | 发布 | 领域 | 状态 | 最高分 | 系统 | 来源 |",
@@ -59,15 +95,94 @@ T: dict[str, dict[str, str]] = {
         "**{results}** 条有来源的结果 · 更新于 {date}",
         "no_result": "暂无有来源的结果",
         "rows": "{n} 条",
-        "lang_switch": '<a href="../" lang="en" hreflang="en">English</a>',
+        "lang_switch": '<a href="{other}" lang="en" hreflang="en">English</a>',
         "description": "description_zh",
         "kind_official-leaderboard": "官方榜单",
         "kind_developer-report": "厂商自报",
         "kind_independent-evaluation": "独立复现",
         "kind_paper": "论文",
         "kind_aggregator": "聚合站",
+        "human": "人类",
+        "supersedes": "取代",
+        "superseded_by": "被取代",
+        "ledger": "完整账本",
+        "released": "发布",
+        "domains": "领域",
+        "status": "状态",
+        "risk": "污染风险",
+        "top": "最高分",
+        "th_system": "系统",
+        "th_developer": "开发者",
+        "th_value": "分数",
+        "th_date": "日期",
+        "th_source": "来源",
+        "th_conditions": "条件",
+        "json": "JSON",
+        "back": "← 全部基准",
+        "meta_desc": "{name}：{desc} 最高分 {score}（{system}，{kind}）。{n} 条带条件的有来源结果。",
+        "meta_desc_none": "{name}：{desc}",
+        "detail_title": "{name} — 分数、来源、状态 | LLM Benchmarks Tracker",
+        "maintainer": "维护者",
+        "task_count": "题量",
+        "metric": "指标",
+        "links": "链接",
+        "paper": "论文",
+        "website": "官网",
+        "leaderboard": "榜单",
+        "dataset": "数据集",
+        "code": "代码",
+        "notes": "备注",
+        "history": "分数历史",
+        "filter_placeholder": "按名称、领域、系统筛选…",
+        "filter_all": "全部",
+        "provenance": "的最高分来自官方榜单或独立复现",
+        "sort_hint": "点击排序",
+        "no_baseline": "无实测基线",
     },
 }
+
+
+def lang_prefix(lang: str) -> str:
+    return "" if lang == "en" else f"{lang}/"
+
+
+def detail_url(lang: str, bid: str) -> str:
+    """Site-absolute path of a benchmark detail page, e.g. /zh/b/mmlu/."""
+    return f"/{lang_prefix(lang)}b/{bid}/"
+
+
+def sparkline(b: dict[str, Any], rows: list[dict[str, Any]], width: int = 120, height: int = 28) -> str:
+    """Inline SVG of value over time. Empty string when fewer than two points."""
+    if len(rows) < 2:
+        return ""
+    pts = sorted((r["date"], r["value"]) for r in rows)
+    d0 = date.fromisoformat(pts[0][0]).toordinal()
+    d1 = date.fromisoformat(pts[-1][0]).toordinal()
+    vals = [v for _, v in pts]
+    lo, hi = (0.0, 100.0) if b["metric"]["unit"] == "percent" else (min(vals), max(vals))
+    span_x = max(d1 - d0, 1)
+    span_y = max(hi - lo, 1e-9)
+    pad = 3
+    coords = []
+    for d, v in pts:
+        x = pad + (date.fromisoformat(d).toordinal() - d0) / span_x * (width - 2 * pad)
+        y = height - pad - (v - lo) / span_y * (height - 2 * pad)
+        coords.append(f"{x:.1f},{y:.1f}")
+    last = coords[-1].split(",")
+    title = f"{pts[0][0]} → {pts[-1][0]}: {fmt_value(b, vals[0])} → {fmt_value(b, vals[-1])}"
+    return (
+        f'<svg class="spark" viewBox="0 0 {width} {height}" width="{width}" height="{height}" role="img" '
+        f'aria-label="{_e(title)}"><title>{_e(title)}</title>'
+        f'<polyline fill="none" stroke="currentColor" stroke-width="1.5" points="{" ".join(coords)}"/>'
+        f'<circle cx="{last[0]}" cy="{last[1]}" r="2.2" fill="currentColor"/></svg>'
+    )
+
+
+def provenance_share(ds: Dataset) -> int:
+    """Percent of benchmarks whose top score comes from an official leaderboard, paper or independent run."""
+    sotas = [ds.sota(bid) for bid in ds.benchmarks if ds.sota(bid)]
+    trusted = sum(1 for s in sotas if s["source"]["kind"] in ("official-leaderboard", "independent-evaluation", "paper"))
+    return round(100 * trusted / len(sotas)) if sotas else 0
 
 
 def kind_label(lang: str, kind: str) -> str:
@@ -212,44 +327,201 @@ def _e(s: Any) -> str:
     return html.escape(str(s), quote=True)
 
 
+def score_html(ds: Dataset, b: dict[str, Any], lang: str) -> str:
+    """Top score + system + source badge + date, with the human baseline folded in."""
+    t = T[lang]
+    sota = ds.sota(b["id"])
+    hb = b.get("human_baseline")
+    if not sota:
+        return f'<span class="muted">{t["no_result"]}</span>'
+    kind = sota["source"]["kind"]
+    human = ""
+    if hb:
+        human = (
+            f' <span class="human" title="{_e(hb["population"])}">· {t["human"]} '
+            f'<a href="{_e(hb["source"])}" rel="noopener">{hb["value"]:g}%</a></span>'
+        )
+    return (
+        f'<span class="score">{_e(fmt_value(b, sota["value"]))}</span>{human}<br>'
+        f'<span class="system">{_e(sota["system"])}</span><br>'
+        f'<a class="src src-{kind}" href="{_e(sota["source"]["url"])}" rel="noopener">{kind_label(lang, kind)}</a> '
+        f'<time class="muted" datetime="{_e(sota["date"])}">{_e(sota["date"])}</time>'
+    )
+
+
+def chain_html(ds: Dataset, b: dict[str, Any], lang: str, base: str) -> str:
+    """Supersession arrows shown under the name."""
+    t = T[lang]
+    parts = []
+    for rel, arrow in (("supersedes", "↑"), ("superseded_by", "↓")):
+        target = b.get(rel)
+        if target and target in ds.benchmarks:
+            parts.append(
+                f'<a class="chain" href="{base}b/{target}/" title="{t[rel]}">{arrow} {_e(ds.benchmarks[target]["name"])}</a>'
+            )
+    return " ".join(parts)
+
+
 def html_benchmark_rows(ds: Dataset, layer: str, lang: str) -> str:
     t = T[lang]
     base = "../" if lang != "en" else ""
     rows = []
     for b in sort_benchmarks(ds, layer):
         sota = ds.sota(b["id"])
-        hb = b.get("human_baseline")
         desc = b[t["description"]]
-        if sota:
-            kind = sota["source"]["kind"]
-            label = kind_label(lang, kind)
-            score_cell = (
-                f'<span class="score">{_e(fmt_value(b, sota["value"]))}</span> '
-                f'<span class="system">{_e(sota["system"])}</span><br>'
-                f'<a class="src src-{kind}" href="{_e(sota["source"]["url"])}" rel="noopener">{label}</a> '
-                f'<span class="muted">{_e(sota["date"])}</span>'
-            )
-        else:
-            score_cell = f'<span class="muted">{t["no_result"]}</span>'
-        human = f'{hb["value"]:g}% <span class="muted">{_e(hb["population"])}</span>' if hb else "—"
-        risk = b.get("contamination_risk")
+        risk = b.get("contamination_risk") or ""
         risk_cell = f'<span class="pill risk-{risk}">{risk}</span>' if risk else "—"
-        n = len(ds.results.get(b["id"], []))
+        results = ds.results.get(b["id"], [])
         domains = " ".join(f'<span class="pill domain">{_e(d)}</span>' for d in b["domains"])
+        chain = chain_html(ds, b, lang, base)
+        chain_wrap = f' <span class="chainwrap">{chain}</span>' if chain else ""
+        search = " ".join([b["name"], b.get("full_name", ""), *b["domains"], sota["system"] if sota else ""]).lower()
+        domains_attr = _e(" ".join(b["domains"]))
+        score_attr = sota["value"] if sota else -1
         rows.append(
-            "<tr>"
-            f'<td><a href="{_e(best_link(b))}" rel="noopener"><strong>{_e(b["name"])}</strong></a>'
+            f'<tr data-status="{b["status"]}" data-risk="{risk}" data-domains="{domains_attr}" '
+            f'data-released="{b["released"]}" data-score="{score_attr}" data-search="{_e(search)}">'
+            f'<td data-label="Benchmark"><a href="{base}b/{b["id"]}/"><strong>{_e(b["name"])}</strong></a>{chain_wrap}'
             f'<div class="muted small" title="{_e(desc)}">{_e(desc)}</div></td>'
-            f'<td class="nowrap">{_e(b["released"])}</td>'
-            f"<td>{domains}</td>"
-            f'<td><span class="pill status-{b["status"]}">{b["status"]}</span></td>'
-            f"<td>{risk_cell}</td>"
-            f"<td>{score_cell}</td>"
-            f"<td>{human}</td>"
-            f'<td class="nowrap"><a href="{base}api/v1/results/{b["id"]}.json">{t["rows"].format(n=n)}</a></td>'
+            f'<td data-label="{t["released"]}" class="nowrap">{_e(b["released"])}</td>'
+            f'<td data-label="{t["domains"]}">{domains}</td>'
+            f'<td data-label="{t["status"]}"><span class="pill status-{b["status"]}">{b["status"]}</span></td>'
+            f'<td data-label="{t["risk"]}">{risk_cell}</td>'
+            f'<td data-label="{t["top"]}">{score_html(ds, b, lang)}</td>'
+            f'<td data-label="{t["history"]}" class="sparkcell">{sparkline(b, results)}'
+            f'<a class="muted small-link" href="{base}b/{b["id"]}/">{t["rows"].format(n=len(results))}</a></td>'
             "</tr>"
         )
     return "\n".join(rows)
+
+
+def conditions_html(c: dict[str, Any]) -> str:
+    if not c:
+        return '<span class="muted">—</span>'
+    parts = []
+    for k, v in c.items():
+        if k == "notes":
+            continue
+        if isinstance(v, bool):
+            parts.append(f'<span class="pill cond">{k}{"" if v else ": no"}</span>')
+        else:
+            parts.append(f'<span class="pill cond">{_e(k)}: {_e(v)}</span>')
+    out = " ".join(parts)
+    if c.get("notes"):
+        out += f'<div class="muted small-note">{_e(c["notes"])}</div>'
+    return out
+
+
+def html_ledger(ds: Dataset, b: dict[str, Any], lang: str) -> str:
+    t = T[lang]
+    rows = sorted(ds.results.get(b["id"], []), key=lambda r: (-r["value"], r["date"]))
+    if not b["metric"]["higher_is_better"]:
+        rows.sort(key=lambda r: (r["value"], r["date"]))
+    if not rows:
+        return f'<p class="muted">{t["no_result"]}</p>'
+    body = []
+    for r in rows:
+        kind = r["source"]["kind"]
+        body.append(
+            "<tr>"
+            f'<td data-label="{t["th_system"]}"><strong>{_e(r["system"])}</strong></td>'
+            f'<td data-label="{t["th_developer"]}">{_e(r["developer"])}</td>'
+            f'<td data-label="{t["th_value"]}" class="nowrap"><span class="score">{_e(fmt_value(b, r["value"]))}</span></td>'
+            f'<td data-label="{t["th_date"]}" class="nowrap"><time datetime="{r["date"]}">{r["date"]}</time></td>'
+            f'<td data-label="{t["th_source"]}"><a class="src src-{kind}" href="{_e(r["source"]["url"])}" rel="noopener">'
+            f"{kind_label(lang, kind)}</a></td>"
+            f'<td data-label="{t["th_conditions"]}">{conditions_html(r.get("conditions", {}))}</td>'
+            "</tr>"
+        )
+    head = "".join(
+        f'<th scope="col">{t[k]}</th>'
+        for k in ("th_system", "th_developer", "th_value", "th_date", "th_source", "th_conditions")
+    )
+    return f'<div class="wrap"><table class="ledger"><thead><tr>{head}</tr></thead><tbody>{"".join(body)}</tbody></table></div>'
+
+
+def render_detail(ds: Dataset, b: dict[str, Any], lang: str) -> str:
+    t = T[lang]
+    base = "../../" if lang == "en" else "../../../"
+    other_lang = "zh" if lang == "en" else "en"
+    sota = ds.sota(b["id"])
+    desc = b[t["description"]]
+    hb = b.get("human_baseline")
+    if sota:
+        meta_desc = t["meta_desc"].format(
+            name=b["name"], desc=desc, score=fmt_value(b, sota["value"]), system=sota["system"],
+            kind=kind_label(lang, sota["source"]["kind"]), n=len(ds.results.get(b["id"], [])),
+        )
+    else:
+        meta_desc = t["meta_desc_none"].format(name=b["name"], desc=desc)
+    facts = [
+        (t["released"], _e(b["released"])),
+        (t["maintainer"], _e(b["maintainer"])),
+        (t["status"], f'<span class="pill status-{b["status"]}">{b["status"]}</span>'),
+        (t["risk"], f'<span class="pill risk-{b["contamination_risk"]}">{b["contamination_risk"]}</span>'
+         if b.get("contamination_risk") else "—"),
+        (t["metric"], f'{_e(b["metric"]["name"])} ({b["metric"]["unit"]}, {"↑" if b["metric"]["higher_is_better"] else "↓"})'),
+        (t["task_count"], f'{b["task_count"]:,}' if b.get("task_count") else "—"),
+        (t["domains"], " ".join(f'<span class="pill domain">{_e(d)}</span>' for d in b["domains"])),
+        (t["human"], f'<a href="{_e(hb["source"])}" rel="noopener">{hb["value"]:g}%</a> '
+         f'<span class="muted">{_e(hb["population"])}</span>' if hb else f'<span class="muted">{t["no_baseline"]}</span>'),
+    ]
+    links = " · ".join(
+        f'<a href="{_e(url)}" rel="noopener">{t[k]}</a>' for k, url in b["links"].items() if url
+    )
+    chain = chain_html(ds, b, lang, base)
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": b["name"],
+        "alternateName": b.get("full_name"),
+        "description": desc,
+        "url": f"{SITE}{detail_url(lang, b['id'])}",
+        "datePublished": b["released"],
+        "creator": {"@type": "Organization", "name": b["maintainer"]},
+        "keywords": b["domains"],
+        "isPartOf": {"@type": "Dataset", "name": "LLM Benchmarks Tracker", "url": f"{SITE}/"},
+        "distribution": {"@type": "DataDownload", "encodingFormat": "application/json",
+                         "contentUrl": f"{SITE}/api/v1/results/{b['id']}.json"},
+    }
+    if b["links"].get("paper"):
+        ld["citation"] = b["links"]["paper"]
+    ctx = {
+        "LANG": "en" if lang == "en" else "zh-CN",
+        "TITLE": t["detail_title"].format(name=b["name"]),
+        "META_DESC": meta_desc,
+        "SITE": SITE,
+        "BASE": base,
+        "PAGE_URL": f"{SITE}{detail_url(lang, b['id'])}",
+        "ALT_EN": f"{SITE}{detail_url('en', b['id'])}",
+        "ALT_ZH": f"{SITE}{detail_url('zh', b['id'])}",
+        "LANG_SWITCH": t["lang_switch"].format(other=f"{SITE}{detail_url(other_lang, b['id'])}"),
+        "JSON_LD": json.dumps({k: v for k, v in ld.items() if v is not None}, ensure_ascii=False),
+        "NAME": _e(b["name"]),
+        "FULL_NAME": _e(b.get("full_name") or ""),
+        "DESC": _e(desc),
+        "SCORE": score_html(ds, b, lang),
+        "FACTS": "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in facts),
+        "LINKS": links,
+        "CHAIN": chain,
+        "NOTES": f'<p class="notes"><strong>{t["notes"]}.</strong> {_e(b["notes"])}</p>' if b.get("notes") else "",
+        "SPARK": sparkline(b, ds.results.get(b["id"], []), width=480, height=96),
+        "LEDGER": html_ledger(ds, b, lang),
+        "LEDGER_TITLE": t["ledger"],
+        "HISTORY_TITLE": t["history"],
+        "JSON_URL": f"{base}api/v1/results/{b['id']}.json",
+        "JSON_LABEL": t["json"],
+        "BACK": t["back"],
+        "HOME": f"{SITE}/{lang_prefix(lang)}",
+        "GENERATED": date.today().isoformat(),
+    }
+    text = (TEMPLATE.parent / "detail.html").read_text(encoding="utf-8")
+    for key, value in ctx.items():
+        text = text.replace(f"{{{{{key}}}}}", value)
+    leftover = re.findall(r"\{\{[A-Z_]+\}\}", text)
+    if leftover:
+        raise SystemExit(f"detail.html: placeholders left unrendered: {leftover}")
+    return text
 
 
 def html_evaluator_rows(ds: Dataset, lang: str) -> str:
@@ -316,15 +588,41 @@ def json_ld(ds: Dataset) -> str:
 
 
 
+def filter_bar(ds: Dataset, layer: str, lang: str) -> str:
+    """Progressive-enhancement filter controls; hidden until JS enables them."""
+    t = T[lang]
+    statuses = sorted({b["status"] for b in ds.benchmarks.values() if b["layer"] == layer}, key=lambda s: s)
+    risks = [r for r in ("low", "medium", "high") if any(
+        b.get("contamination_risk") == r for b in ds.benchmarks.values() if b["layer"] == layer)]
+
+    def group(name: str, label: str, values: list[str], cls: str) -> str:
+        btns = "".join(
+            f'<button type="button" class="pill {cls}-{v}" data-filter="{name}" data-value="{v}" '
+            f'aria-pressed="false">{v}</button>'
+            for v in values
+        )
+        return f'<span class="fgroup"><span class="flabel">{label}</span>{btns}</span>'
+
+    return (
+        f'<form class="filters" data-target="{layer}" hidden>'
+        f'<input type="search" placeholder="{t["filter_placeholder"]}" aria-label="{t["filter_placeholder"]}" data-search>'
+        f'{group("status", t["status"], statuses, "status")}'
+        f'{group("risk", t["risk"], risks, "risk")}'
+        f'<output class="muted" data-count></output>'
+        "</form>"
+    )
+
+
 def render_site(ds: Dataset, lang: str) -> str:
     n_results = sum(len(v) for v in ds.results.values())
     model = sum(1 for b in ds.benchmarks.values() if b["layer"] == "model")
     base = "../" if lang != "en" else ""
+    other = f"{SITE}/zh/" if lang == "en" else f"{SITE}/"
     ctx = {
         "SITE": SITE,
         "BASE": base,
         "PAGE_URL": f"{SITE}/" if lang == "en" else f"{SITE}/{lang}/",
-        "LANG_SWITCH": T[lang]["lang_switch"],
+        "LANG_SWITCH": T[lang]["lang_switch"].format(other=other),
         "JSON_LD": json_ld(ds),
         "GENERATED": date.today().isoformat(),
         "N_MODEL": str(model),
@@ -332,6 +630,10 @@ def render_site(ds: Dataset, lang: str) -> str:
         "N_BENCH": str(len(ds.benchmarks)),
         "N_EVALUATORS": str(len(ds.evaluators)),
         "N_RESULTS": str(n_results),
+        "PROVENANCE": str(provenance_share(ds)),
+        "PROVENANCE_LABEL": T[lang]["provenance"],
+        "MODEL_FILTERS": filter_bar(ds, "model", lang),
+        "AGENT_FILTERS": filter_bar(ds, "agent", lang),
         "MODEL_ROWS": html_benchmark_rows(ds, "model", lang),
         "AGENT_ROWS": html_benchmark_rows(ds, "agent", lang),
         "EVALUATOR_ROWS": html_evaluator_rows(ds, lang),
@@ -380,14 +682,20 @@ def main() -> int:
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir()
-    (DIST / "index.html").write_text(render_site(ds, "en"), encoding="utf-8")
-    (DIST / "zh").mkdir()
-    (DIST / "zh" / "index.html").write_text(render_site(ds, "zh"), encoding="utf-8")
+    for lang in ("en", "zh"):
+        out = DIST / lang_prefix(lang)
+        out.mkdir(exist_ok=True)
+        (out / "index.html").write_text(render_site(ds, lang), encoding="utf-8")
+        for b in ds.benchmarks.values():
+            d = out / "b" / b["id"]
+            d.mkdir(parents=True)
+            (d / "index.html").write_text(render_detail(ds, b, lang), encoding="utf-8")
     (DIST / ".nojekyll").touch()
     shutil.copytree(STATIC, DIST, dirs_exist_ok=True)
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
     today = date.today().isoformat()
     urls = [(f"{SITE}/", "weekly"), (f"{SITE}/zh/", "weekly"), (f"{SITE}/api/v1/index.json", None)]
+    urls += [(f"{SITE}{detail_url(lang, bid)}", "weekly") for lang in ("en", "zh") for bid in sorted(ds.benchmarks)]
     entries = "".join(
         f"  <url><loc>{loc}</loc><lastmod>{today}</lastmod>"
         + (f"<changefreq>{freq}</changefreq>" if freq else "")

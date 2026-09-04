@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0e14">
+<link rel="icon" href="{{BASE}}favicon.svg" type="image/svg+xml">
 <title>LLM Benchmarks Tracker — {{N_MODEL}} model &amp; {{N_AGENT}} agent benchmarks with sourced scores</title>
 <meta name="description" content="Sourced, schema-validated catalogue of {{N_BENCH}} LLM and agent evaluation benchmarks (SWE-bench, GPQA, HLE, ARC-AGI, OSWorld…): what each tests, saturation and contamination status, and {{N_RESULTS}} top scores with provenance. Free JSON API.">
 <link rel="canonical" href="{{PAGE_URL}}">
@@ -24,6 +26,7 @@
 <link rel="stylesheet" href="{{BASE}}style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <h1>LLM Benchmarks Tracker</h1>
   <p>A sourced, schema-validated catalogue of how we measure language models and agents. Every score links to where it was published and says whether it was self-reported, independently re-run, or taken from an official leaderboard.</p>
@@ -32,7 +35,9 @@
     <div class="stat"><b>{{N_AGENT}}</b><span>agent benchmarks</span></div>
     <div class="stat"><b>{{N_EVALUATORS}}</b><span>evaluators</span></div>
     <div class="stat"><b>{{N_RESULTS}}</b><span>sourced results</span></div>
+    <div class="stat"><b>{{PROVENANCE}}%</b><span>{{PROVENANCE_LABEL}}</span></div>
   </div>
+  <p class="updated muted">updated <time datetime="{{GENERATED}}">{{GENERATED}}</time></p>
 </header>
 <nav>
   <a href="#model">Model benchmarks</a>
@@ -43,7 +48,7 @@
   <a href="https://github.com/alloevil/llm-benchmarks-tracker">GitHub</a>
   {{LANG_SWITCH}}
 </nav>
-<main>
+<main id="main">
   <div class="callout">
     <strong>How to read scores.</strong> "Top score" is the best row in the results ledger, not a ranking of models: conditions (tools, reasoning effort, scaffold, pass@k) differ between rows and are recorded per result in the JSON. Prefer <span class="src src-official-leaderboard">official</span> and <span class="src src-independent-evaluation">independent</span> sources over <span class="src src-developer-report">self-reported</span> or <span class="src src-aggregator">aggregator</span> numbers. High contamination risk means the test set is public and static.
   </div>
@@ -51,8 +56,9 @@
   <section id="model">
     <h2>Model benchmarks</h2>
     <p class="lede">Static prompt-and-response scoring of the model itself: knowledge, reasoning, math, code, factuality, long context.</p>
-    <div class="wrap"><table>
-      <thead><tr><th>Benchmark</th><th>Released</th><th>Domains</th><th>Status</th><th>Contamination</th><th>Top score</th><th>Human baseline</th><th>Ledger</th></tr></thead>
+    {{MODEL_FILTERS}}
+    <div class="wrap"><table class="bench" id="t-model">
+      <thead><tr><th scope="col" data-sort="search">Benchmark</th><th scope="col" data-sort="released">Released</th><th scope="col">Domains</th><th scope="col" data-sort="status">Status</th><th scope="col" data-sort="risk">Contamination</th><th scope="col" data-sort="score">Top score</th><th scope="col">History</th></tr></thead>
       <tbody>
 {{MODEL_ROWS}}
       </tbody>
@@ -62,8 +68,9 @@
   <section id="agent">
     <h2>Agent benchmarks</h2>
     <p class="lede">Interactive environments: the system takes actions, uses tools, and is scored on task completion. Scores depend on scaffold and budget as much as on the model.</p>
-    <div class="wrap"><table>
-      <thead><tr><th>Benchmark</th><th>Released</th><th>Domains</th><th>Status</th><th>Contamination</th><th>Top score</th><th>Human baseline</th><th>Ledger</th></tr></thead>
+    {{AGENT_FILTERS}}
+    <div class="wrap"><table class="bench" id="t-agent">
+      <thead><tr><th scope="col" data-sort="search">Benchmark</th><th scope="col" data-sort="released">Released</th><th scope="col">Domains</th><th scope="col" data-sort="status">Status</th><th scope="col" data-sort="risk">Contamination</th><th scope="col" data-sort="score">Top score</th><th scope="col">History</th></tr></thead>
       <tbody>
 {{AGENT_ROWS}}
       </tbody>
@@ -74,7 +81,7 @@
     <h2>Evaluators</h2>
     <p class="lede">Frameworks you run, leaderboards run by benchmark maintainers, organisations that independently re-run models, and aggregators that republish reported numbers.</p>
     <div class="wrap"><table>
-      <thead><tr><th>Evaluator</th><th>Kind</th><th>Maintainer</th><th>Methodology</th><th>Status</th></tr></thead>
+      <thead><tr><th scope="col">Evaluator</th><th scope="col">Kind</th><th scope="col">Maintainer</th><th scope="col">Methodology</th><th scope="col">Status</th></tr></thead>
       <tbody>
 {{EVALUATOR_ROWS}}
       </tbody>
@@ -93,5 +100,6 @@
 <footer>
   Generated {{GENERATED}} from <a href="https://github.com/alloevil/llm-benchmarks-tracker/tree/main/data">data/</a> · <a href="{{BASE}}api/v1/index.json">API</a> · <a href="{{BASE}}schema/benchmark.schema.json">schemas</a> · MIT
 </footer>
+<script src="{{BASE}}site.js" defer></script>
 </body>
 </html>

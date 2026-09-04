@@ -2,6 +2,20 @@
 
 All notable changes to the data model and tooling. Data additions are tracked in git history and the per-benchmark ledgers.
 
+## 1.2.0 — 2026-09-04
+
+### Added
+- Per-benchmark pages at `/b/<id>/` and `/zh/b/<id>/`: metadata card, full sourced ledger with conditions, score-history chart, supersession chain, per-page JSON-LD and canonical/hreflang. 82 new sitemap URLs.
+- Filter bar (text search, status, contamination) and sortable columns on both benchmark tables; progressive enhancement in `static/site.js`, tables render fully without JS.
+- Inline SVG sparklines (build-time, no JS) for every ledger with 2+ points.
+- Header stat: share of top scores from official leaderboards, papers or independent re-runs.
+- Favicon, `theme-color`, skip link, `<main id>`, `th scope="col"`, `aria-sort`.
+
+### Changed
+- Mobile (<760px): tables render as labelled cards; no horizontal scrolling.
+- Human baseline folded into the top-score cell; supersession arrows shown under the name; benchmark names link to detail pages instead of external sites.
+- Ruff `line-length` 130.
+
 ## 1.1.0 — 2026-09-04
 
 ### Added

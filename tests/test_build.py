@@ -45,7 +45,33 @@ def test_site_renders_without_placeholders(lang):
     html = build.render_site(ds, lang)
     assert "{{" not in html
     for b in ds.benchmarks.values():
-        assert f"api/v1/results/{b['id']}.json" in html
+        assert f'b/{b["id"]}/' in html
+
+
+@pytest.mark.parametrize("lang", ["en", "zh"])
+def test_detail_pages_render(lang):
+    ds = _ds()
+    for b in ds.benchmarks.values():
+        page = build.render_detail(ds, b, lang)
+        assert "{{" not in page, b["id"]
+        assert f"api/v1/results/{b['id']}.json" in page
+        assert f'<link rel="canonical" href="{build.SITE}{build.detail_url(lang, b["id"])}">' in page
+        for r in ds.results.get(b["id"], []):
+            assert r["source"]["url"] in page, (b["id"], r["system"])
+
+
+def test_sparkline_shape():
+    b = {"metric": {"unit": "percent", "higher_is_better": True}}
+    rows = [{"date": "2024-01-01", "value": 10}, {"date": "2025-01-01", "value": 60}]
+    svg = build.sparkline(b, rows)
+    assert svg.startswith("<svg") and "polyline" in svg and "10% → 60%" in svg
+    assert build.sparkline(b, rows[:1]) == ""
+
+
+def test_supersession_chain_links_both_ways():
+    ds = _ds()
+    page = build.render_detail(ds, ds.benchmarks["swe-bench-verified"], "en")
+    assert 'b/swe-bench/"' in page and 'b/swe-bench-pro/"' in page
 
 
 def test_zh_site_uses_translations_and_relative_paths():

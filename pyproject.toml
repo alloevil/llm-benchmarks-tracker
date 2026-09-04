@@ -1,6 +1,6 @@
 [project]
 name = "llm-benchmarks-tracker"
-version = "1.1.0"
+version = "1.2.0"
 description = "Sourced, schema-validated catalogue of LLM and agent evaluation benchmarks"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -22,7 +22,7 @@ testpaths = ["tests"]
 addopts = "-q"
 
 [tool.ruff]
-line-length = 120
+line-length = 130
 target-version = "py311"
 required-version = ">=0.5"
 
