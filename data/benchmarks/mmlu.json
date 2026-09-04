@@ -1,0 +1,36 @@
+{
+  "id": "mmlu",
+  "name": "MMLU",
+  "full_name": "Measuring Massive Multitask Language Understanding",
+  "layer": "model",
+  "released": "2020-09",
+  "maintainer": "Dan Hendrycks et al. (UC Berkeley)",
+  "description": "14,042 four-option multiple-choice test questions across 57 subjects from elementary mathematics and US history to law and medicine, drawn from exams and textbooks (15,908 questions in total including dev and validation). Scored as accuracy, historically 5-shot. For three years it was the default measure of broad world knowledge; frontier models now cluster above 90%, and label noise in the test set limits further discrimination.",
+  "domains": [
+    "knowledge",
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 14042,
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": {
+    "value": 89.8,
+    "population": "estimated expert-level test takers (paper estimate from source-exam pass rates)",
+    "source": "https://arxiv.org/abs/2009.03300"
+  },
+  "supersedes": null,
+  "superseded_by": "mmlu-pro",
+  "links": {
+    "paper": "https://arxiv.org/abs/2009.03300",
+    "website": "https://github.com/hendrycks/test",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/cais/mmlu",
+    "code": "https://github.com/hendrycks/test"
+  },
+  "notes": "The paper's 89.8% expert figure is an estimate, not a measured panel; unspecialized crowd workers scored 34.5%. Roughly 6.5% of questions are estimated to contain errors (MMLU-Redux), so scores above ~90% are not reliably comparable."
+}

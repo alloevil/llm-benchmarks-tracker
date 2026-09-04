@@ -1,0 +1,29 @@
+{
+  "id": "open-llm-leaderboard",
+  "name": "Open LLM Leaderboard",
+  "kind": "leaderboard",
+  "maintainer": "Hugging Face",
+  "released": "2023-04",
+  "description": "Hugging Face's leaderboard for open-weight models. Anyone could submit a Hub checkpoint and it was evaluated automatically with a pinned lm-evaluation-harness version on identical prompts (v1: ARC, HellaSwag, MMLU, TruthfulQA, WinoGrande, GSM8K; v2 from June 2024: IFEval, BBH, MATH level 5, GPQA, MuSR, MMLU-Pro). It made reproducible, like-for-like comparison of thousands of open models possible, then saturated and was retired in March 2025.",
+  "status": "archived",
+  "license": "Apache-2.0",
+  "benchmarks": [
+    "hellaswag",
+    "mmlu",
+    "truthfulqa",
+    "winogrande",
+    "gsm8k",
+    "ifeval",
+    "bbh",
+    "math",
+    "gpqa-diamond",
+    "mmlu-pro"
+  ],
+  "methodology": "submission",
+  "links": {
+    "website": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard",
+    "repo": null,
+    "paper": null
+  },
+  "notes": "Space created 2023-04-17. v1 archived June 2024 (huggingface.co/docs/leaderboards/en/open_llm_leaderboard/archive); v2 stopped accepting submissions in March 2025 and Hugging Face lists it under 'Archived Open LLM Leaderboard (2024-2025)'. The Space still renders the final table. GPQA was run on all subsets; MATH used the level-5 subset only."
+}

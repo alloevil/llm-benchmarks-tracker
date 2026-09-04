@@ -1,0 +1,32 @@
+{
+  "id": "aime-2025",
+  "name": "AIME 2025",
+  "full_name": "American Invitational Mathematics Examination 2025 (I and II)",
+  "layer": "model",
+  "released": "2025-02",
+  "maintainer": "Mathematical Association of America (exam); evaluated by MathArena and model developers",
+  "description": "The 30 problems from the 2025 AIME I (6 February 2025) and AIME II (12 February 2025), each with an integer answer from 000 to 999. Scored as the fraction of problems answered exactly, usually averaged over several samples (mean pass@1). Because the exam is written fresh each year, it was a clean test of competition-math reasoning for models trained before February 2025; scores with a code interpreter are not comparable to no-tools runs.",
+  "domains": [
+    "math",
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 30,
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": null,
+    "website": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I",
+    "leaderboard": "https://matharena.ai/",
+    "dataset": null,
+    "code": "https://github.com/eth-sri/matharena"
+  },
+  "notes": "Scores are almost always reported on I+II combined (30 problems); a single exam has 15. Problems and solutions have been public since February 2025, so models released later have likely seen them. Several frontier systems report 100% (with or without tools), so the exam no longer separates them; MathArena marks AIME 2025 as deprecated in favour of newer competitions."
+}

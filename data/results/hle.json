@@ -1,0 +1,96 @@
+{
+  "benchmark": "hle",
+  "results": [
+    {
+      "system": "o1",
+      "developer": "OpenAI",
+      "value": 8.0,
+      "date": "2025-01-24",
+      "source": {
+        "url": "https://arxiv.org/abs/2501.14249",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": false,
+        "notes": "Table 1 of the HLE paper (pre-finalization question set of January 2025)."
+      }
+    },
+    {
+      "system": "o3-mini (high)",
+      "developer": "OpenAI",
+      "value": 13.4,
+      "date": "2025-01-24",
+      "source": {
+        "url": "https://arxiv.org/abs/2501.14249",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": false,
+        "split": "text-only",
+        "notes": "Table 1; model is not multimodal so scored on text-only questions. Pre-finalization set."
+      }
+    },
+    {
+      "system": "GPT-5 (no tools)",
+      "developer": "OpenAI",
+      "value": 24.8,
+      "date": "2025-08-07",
+      "source": {
+        "url": "https://openai.com/index/introducing-gpt-5/",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": false,
+        "notes": "With thinking; GPT-5 pro no-tools scored 30.7 and 42.0 with python + search in the same post."
+      }
+    },
+    {
+      "system": "Gemini 3 Pro",
+      "developer": "Google DeepMind",
+      "value": 38.3,
+      "date": "2025-11-18",
+      "source": {
+        "url": "https://lastexam.ai/",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": false,
+        "notes": "lastexam.ai leaderboard, judge o3-mini, finalized April 2025 set; Google's own post reports 37.5%."
+      }
+    },
+    {
+      "system": "Claude Fable 5.1 (no tools)",
+      "developer": "Anthropic",
+      "value": 60.9,
+      "date": "2026-09-01",
+      "source": {
+        "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": false,
+        "notes": "Launch post comparison table; Fable 5 scored 57.8 and Opus 5 56.6 without tools."
+      }
+    },
+    {
+      "system": "Claude Fable 5.1 (with tools)",
+      "developer": "Anthropic",
+      "value": 65.0,
+      "date": "2026-09-01",
+      "source": {
+        "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": true,
+        "notes": "Launch post; also republished by benchlm.ai as the current top. OpenAI's GPT-6 Astra post lists Astra at 57.2 with tools."
+      }
+    }
+  ]
+}

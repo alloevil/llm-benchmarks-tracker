@@ -1,0 +1,50 @@
+{
+  "id": "frontiermath",
+  "name": "FrontierMath",
+  "full_name": "FrontierMath: A Benchmark for Evaluating Advanced Mathematical Reasoning in AI (Tiers 1-4)",
+  "layer": "model",
+  "released": "2024-11",
+  "maintainer": "Epoch AI",
+  "description": "Hundreds of original, unpublished research-grade mathematics problems written and vetted by expert mathematicians, from hard undergraduate (Tier 1) through advanced graduate (Tier 3) to research-level Tier 4, each with an automatically verifiable answer. Models may reason and run Python within a token budget and submit an answer function; scored as the fraction of problems solved. Kept private to avoid contamination, it is the main measure of frontier mathematical reasoning, and Epoch runs all evaluations itself.",
+  "domains": [
+    "math",
+    "reasoning",
+    "research"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 338,
+  "splits": [
+    {
+      "name": "Tiers 1-3 (v2)",
+      "task_count": 295,
+      "note": "Core set after the June 2026 v2 correction; the headline FrontierMath number."
+    },
+    {
+      "name": "Tier 4 (v2)",
+      "task_count": 43,
+      "note": "Research-level expansion set released June 2025, corrected June 2026."
+    },
+    {
+      "name": "Tiers 1-3 (v1)",
+      "task_count": 300,
+      "note": "Original problem set used for all runs before 2026-06-12; not comparable with v2."
+    }
+  ],
+  "status": "saturating",
+  "contamination_risk": "low",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2411.04872",
+    "website": "https://epoch.ai/frontiermath",
+    "leaderboard": "https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2",
+    "dataset": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+    "code": null
+  },
+  "notes": "OpenAI funded the benchmark and holds exclusive access to a subset (Epoch's conflict-of-interest statement). On 2026-06-12 Epoch released v2, correcting errors in 42% of problems and removing 12; v1 and v2 scores are separate series. Epoch also runs FrontierMath Open Problems and FrontierMath Erdos, which are different benchmarks."
+}

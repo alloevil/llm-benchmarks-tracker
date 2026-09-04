@@ -1,0 +1,72 @@
+{
+  "benchmark": "paperbench",
+  "results": [
+    {
+      "system": "BasicAgent claude-3.5-sonnet",
+      "developer": "Anthropic",
+      "value": 21.0,
+      "date": "2025-04-02",
+      "source": {
+        "url": "https://github.com/openai/frontier-evals/tree/main/project/paperbench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "scaffold": "BasicAgent",
+        "notes": "Repository leaderboard, 3 runs, +/-0.8."
+      }
+    },
+    {
+      "system": "IterativeAgent o1-high (24h limit)",
+      "developer": "OpenAI",
+      "value": 24.4,
+      "date": "2025-04-02",
+      "source": {
+        "url": "https://github.com/openai/frontier-evals/tree/main/project/paperbench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "scaffold": "IterativeAgent",
+        "reasoning_effort": "high",
+        "notes": "Repository leaderboard, 3 runs, +/-0.7, 24-hour limit."
+      }
+    },
+    {
+      "system": "IterativeAgent o1-high (36h limit)",
+      "developer": "OpenAI",
+      "value": 26.0,
+      "date": "2025-04-02",
+      "source": {
+        "url": "https://github.com/openai/frontier-evals/tree/main/project/paperbench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "scaffold": "IterativeAgent",
+        "reasoning_effort": "high",
+        "notes": "Top of the repository leaderboard; 3 runs, +/-0.3, 36-hour limit."
+      }
+    },
+    {
+      "system": "IterativeAgent o1-high",
+      "developer": "OpenAI",
+      "value": 43.4,
+      "date": "2025-04-02",
+      "source": {
+        "url": "https://github.com/openai/frontier-evals/tree/main/project/paperbench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "code-dev",
+        "scaffold": "IterativeAgent",
+        "reasoning_effort": "high",
+        "notes": "PaperBench Code-Dev leaderboard, 3 runs, +/-0.8."
+      }
+    }
+  ]
+}

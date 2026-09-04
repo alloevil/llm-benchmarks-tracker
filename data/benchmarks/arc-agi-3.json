@@ -1,0 +1,53 @@
+{
+  "id": "arc-agi-3",
+  "name": "ARC-AGI-3",
+  "full_name": "ARC-AGI-3: A New Challenge for Frontier Agentic Intelligence",
+  "layer": "agent",
+  "released": "2026-03",
+  "maintainer": "ARC Prize Foundation",
+  "description": "Interactive, turn-based game-like environments built only from Core Knowledge priors, with no instructions: an agent must explore, infer the goal, build a world model and plan. 25 public demo environments plus 55 semi-private (API-tested) and 55 fully private (competition) environments, each verified fully solvable by untrained humans. Scoring is efficiency-based against human action baselines, so 100% means solving every level as efficiently as humans. The first interactive generation of the ARC-AGI series.",
+  "domains": [
+    "reasoning",
+    "tool-use"
+  ],
+  "metric": {
+    "name": "efficiency-weighted score",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 135,
+  "splits": [
+    {
+      "name": "public-demo",
+      "task_count": 25,
+      "note": "Public demonstration environments; playable on arcprize.org."
+    },
+    {
+      "name": "semi-private",
+      "task_count": 55,
+      "note": "Held-out set used by ARC Prize to test models behind external APIs; the official leaderboard split."
+    },
+    {
+      "name": "fully-private",
+      "task_count": 55,
+      "note": "Competition-only set given to very few partners."
+    }
+  ],
+  "status": "saturating",
+  "contamination_risk": "low",
+  "human_baseline": {
+    "value": 100.0,
+    "population": "untrained human test-takers (every environment solved by at least two of ten participants)",
+    "source": "https://arxiv.org/abs/2603.24621"
+  },
+  "supersedes": "arc-agi-2",
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2603.24621",
+    "website": "https://arcprize.org/arc-agi/3",
+    "leaderboard": "https://arcprize.org/leaderboard",
+    "dataset": "https://arcprize.org/tasks?v=3",
+    "code": "https://github.com/arcprize/arc-agi-3-benchmarking"
+  },
+  "notes": "ARC Prize reports two harness conditions on the leaderboard: the Standard harness (model carries forward its own notes; provider-neutral) and the Provider Adapter harness (preserves opaque reasoning state and compacts context). Frontier models scored below 1% at the March 2026 launch; GPT-6 Astra reached 99.9% under the Provider Adapter harness in September 2026, so status is 'saturating' even though the Standard-harness score is 62.7%."
+}

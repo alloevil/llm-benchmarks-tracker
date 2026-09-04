@@ -1,0 +1,35 @@
+{
+  "benchmark": "bbh",
+  "results": [
+    {
+      "system": "Codex (code-davinci-002), CoT",
+      "developer": "OpenAI (evaluated by Suzgun et al.)",
+      "value": 73.9,
+      "date": "2022-10-17",
+      "source": {
+        "url": "https://arxiv.org/abs/2210.09261",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "shots": 3,
+        "notes": "Table 2 of the BBH paper, all 23 tasks with chain-of-thought prompting (answer-only 56.6; PaLM 540B CoT 65.2; average human rater 67.7, max 94.4)."
+      }
+    },
+    {
+      "system": "DeepSeek-V4-Pro-Base",
+      "developer": "DeepSeek",
+      "value": 87.5,
+      "date": "2026-04-22",
+      "source": {
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "shots": 3,
+        "notes": "DeepSeek-V4 model card, base-model table (HF repo created 2026-04-22). Base model, exact match, 3-shot; V4-Flash-Base 86.9, V3.2-Base 87.6."
+      }
+    }
+  ]
+}

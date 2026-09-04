@@ -1,0 +1,49 @@
+{
+  "benchmark": "drop",
+  "results": [
+    {
+      "system": "NAQANet (paper baseline)",
+      "developer": "AI2 / UC Irvine (Dua et al.)",
+      "value": 47.0,
+      "date": "2019-03-01",
+      "source": {
+        "url": "https://arxiv.org/abs/1903.00161",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Complete model in Table 4, test F1 47.01; best prior baseline 32.7; expert humans 96.4."
+      }
+    },
+    {
+      "system": "o1",
+      "developer": "OpenAI",
+      "value": 90.2,
+      "date": "2024-12-17",
+      "source": {
+        "url": "https://github.com/openai/simple-evals",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "shots": 3,
+        "notes": "simple-evals README, DROP F1 3-shot; o3-high 89.8 (April 2025)."
+      }
+    },
+    {
+      "system": "DeepSeek-V4-Pro-Base",
+      "developer": "DeepSeek",
+      "value": 88.7,
+      "date": "2026-04-22",
+      "source": {
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "shots": 1,
+        "notes": "DeepSeek-V4 model card, base-model table (HF repo created 2026-04-22). Base model, F1, 1-shot."
+      }
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "benchmark": "mle-bench",
+  "results": [
+    {
+      "system": "AIDE + o1-preview",
+      "developer": "OpenAI",
+      "value": 17.12,
+      "date": "2024-10-08",
+      "source": {
+        "url": "https://github.com/openai/mle-bench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "all",
+        "scaffold": "AIDE",
+        "notes": "Paper-era baseline (16.9% in abstract, 17.12 +/- 0.61 on the leaderboard); 24h budget."
+      }
+    },
+    {
+      "system": "AIRA-dojo + o3",
+      "developer": "Meta FAIR",
+      "value": 31.6,
+      "date": "2025-05-15",
+      "source": {
+        "url": "https://github.com/openai/mle-bench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "all",
+        "scaffold": "AIRA-dojo",
+        "notes": "24h budget."
+      }
+    },
+    {
+      "system": "Famou-Agent + Gemini-2.5-Pro",
+      "developer": "Baidu",
+      "value": 43.56,
+      "date": "2025-10-10",
+      "source": {
+        "url": "https://github.com/openai/mle-bench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "all",
+        "scaffold": "Famou-Agent",
+        "notes": "24h budget."
+      }
+    },
+    {
+      "system": "Famou-Agent 2.0 + Gemini-3-Pro-Preview",
+      "developer": "Baidu",
+      "value": 64.44,
+      "date": "2026-02-23",
+      "source": {
+        "url": "https://github.com/openai/mle-bench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "all",
+        "scaffold": "Famou-Agent 2.0",
+        "notes": "Top of the main leaderboard as of access date; 24h budget."
+      }
+    },
+    {
+      "system": "AIBuildAI + Claude-Opus-4.6",
+      "developer": "AIBuildAI",
+      "value": 63.11,
+      "date": "2026-03-06",
+      "source": {
+        "url": "https://github.com/openai/mle-bench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "all",
+        "scaffold": "AIBuildAI",
+        "notes": "24h budget."
+      }
+    }
+  ]
+}

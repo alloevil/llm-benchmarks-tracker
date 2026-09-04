@@ -1,0 +1,69 @@
+{
+  "benchmark": "tau-bench",
+  "results": [
+    {
+      "system": "gpt-4o (function calling), tau-retail",
+      "developer": "OpenAI",
+      "value": 61.2,
+      "date": "2024-06-17",
+      "source": {
+        "url": "https://arxiv.org/abs/2406.12045",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "retail",
+        "scaffold": "function calling (TC)",
+        "notes": "Table 2 of the paper; user simulated by gpt-4."
+      }
+    },
+    {
+      "system": "gpt-4o (function calling), tau-airline",
+      "developer": "OpenAI",
+      "value": 35.2,
+      "date": "2024-06-17",
+      "source": {
+        "url": "https://arxiv.org/abs/2406.12045",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "airline",
+        "scaffold": "function calling (TC)",
+        "notes": "Table 2 of the paper; user simulated by gpt-4."
+      }
+    },
+    {
+      "system": "TC (claude-3-5-sonnet-20241022), retail",
+      "developer": "Anthropic",
+      "value": 69.2,
+      "date": "2024-10-22",
+      "source": {
+        "url": "https://github.com/sierra-research/tau-bench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "retail",
+        "scaffold": "function calling (TC)",
+        "notes": "Repository README leaderboard; date is the model's release date (README gives none)."
+      }
+    },
+    {
+      "system": "TC (claude-3-5-sonnet-20241022), airline",
+      "developer": "Anthropic",
+      "value": 46.0,
+      "date": "2024-10-22",
+      "source": {
+        "url": "https://github.com/sierra-research/tau-bench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "airline",
+        "scaffold": "function calling (TC)",
+        "notes": "Repository README leaderboard; date is the model's release date (README gives none)."
+      }
+    }
+  ]
+}

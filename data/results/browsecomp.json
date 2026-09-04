@@ -1,0 +1,92 @@
+{
+  "benchmark": "browsecomp",
+  "results": [
+    {
+      "system": "GPT-4o w/ browsing",
+      "developer": "OpenAI",
+      "value": 1.9,
+      "date": "2025-04-16",
+      "source": {
+        "url": "https://arxiv.org/abs/2504.12516",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": true,
+        "notes": "Table 3 of the paper."
+      }
+    },
+    {
+      "system": "OpenAI o1",
+      "developer": "OpenAI",
+      "value": 9.9,
+      "date": "2025-04-16",
+      "source": {
+        "url": "https://arxiv.org/abs/2504.12516",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": false,
+        "notes": "Table 3 of the paper (no browsing)."
+      }
+    },
+    {
+      "system": "Deep Research",
+      "developer": "OpenAI",
+      "value": 51.5,
+      "date": "2025-04-16",
+      "source": {
+        "url": "https://arxiv.org/abs/2504.12516",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": true,
+        "notes": "Table 3 of the paper; model trained specifically for browsing tasks."
+      }
+    },
+    {
+      "system": "Claude Opus 4.6",
+      "developer": "Anthropic",
+      "value": 83.7,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/browsecomp",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Developer-reported number republished by aggregator (page 'data verified' date used); browsing scaffold and effort unspecified."
+      }
+    },
+    {
+      "system": "Claude Opus 5",
+      "developer": "Anthropic",
+      "value": 90.8,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/browsecomp",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Developer-reported number republished by aggregator (page 'data verified' date used); browsing scaffold and effort unspecified."
+      }
+    },
+    {
+      "system": "GPT-5.6 Sol",
+      "developer": "OpenAI",
+      "value": 92.2,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/browsecomp",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Top of the aggregator table as of access date; developer-reported, scaffold and effort unspecified."
+      }
+    }
+  ]
+}

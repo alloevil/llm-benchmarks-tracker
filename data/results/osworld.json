@@ -1,0 +1,97 @@
+{
+  "benchmark": "osworld",
+  "results": [
+    {
+      "system": "GPT-4V (screenshot + a11y tree)",
+      "developer": "OpenAI",
+      "value": 12.24,
+      "date": "2024-04-11",
+      "source": {
+        "url": "https://arxiv.org/abs/2404.07972",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "original",
+        "notes": "Best model in the paper abstract."
+      }
+    },
+    {
+      "system": "claude-4-sonnet-20250514",
+      "developer": "Anthropic",
+      "value": 41.4,
+      "date": "2025-07-28",
+      "source": {
+        "url": "https://os-world.github.io",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "verified",
+        "notes": "XLANG re-evaluation at launch of OSWorld-Verified, 100 max steps."
+      }
+    },
+    {
+      "system": "claude-sonnet-4-5-20250929",
+      "developer": "Anthropic",
+      "value": 62.88,
+      "date": "2025-10-31",
+      "source": {
+        "url": "https://os-world.github.io",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "verified",
+        "notes": "Official verified run, 100 max steps."
+      }
+    },
+    {
+      "system": "agent s3 w/ Opus 4.5 + GPT-5 bBoN (N=10)",
+      "developer": "Simular",
+      "value": 72.58,
+      "date": "2025-12-11",
+      "source": {
+        "url": "https://os-world.github.io",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "verified",
+        "scaffold": "Agent S3 with behavior best-of-N (N=10)",
+        "notes": "Official verified run, 100 max steps."
+      }
+    },
+    {
+      "system": "Intelligence-Indeed Agent",
+      "developer": "Intelligence Indeed",
+      "value": 90.19,
+      "date": "2026-07-25",
+      "source": {
+        "url": "https://os-world.github.io",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "verified",
+        "scaffold": "Intelligence-Indeed Agent",
+        "notes": "Top of the verified leaderboard as of access date (agentic framework, 100 max steps)."
+      }
+    },
+    {
+      "system": "claude-fable-5[1m]",
+      "developer": "Anthropic",
+      "value": 85.96,
+      "date": "2026-08-01",
+      "source": {
+        "url": "https://os-world.github.io",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "verified",
+        "notes": "Official verified run, 100 max steps; general model without a bespoke framework."
+      }
+    }
+  ]
+}

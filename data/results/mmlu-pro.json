@@ -1,0 +1,62 @@
+{
+  "benchmark": "mmlu-pro",
+  "results": [
+    {
+      "system": "GPT-4o",
+      "developer": "OpenAI",
+      "value": 72.6,
+      "date": "2024-06-03",
+      "source": {
+        "url": "https://arxiv.org/abs/2406.01574",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "shots": 5,
+        "notes": "Table of the MMLU-Pro paper, CoT prompting."
+      }
+    },
+    {
+      "system": "DeepSeek-V4-Pro (Think Max)",
+      "developer": "DeepSeek",
+      "value": 87.5,
+      "date": "2026-04-22",
+      "source": {
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Model card comparison table; the same table lists Gemini-3.1-Pro (High) at 91.0 and Claude Opus 4.6 (Max) at 89.1 as run by DeepSeek."
+      }
+    },
+    {
+      "system": "Gemini 3.1 Pro (High)",
+      "developer": "Google DeepMind",
+      "value": 91.0,
+      "date": "2026-04-22",
+      "source": {
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Run by DeepSeek for its V4-Pro model card comparison table; setting not further specified."
+      }
+    },
+    {
+      "system": "Qwen3.7 Max",
+      "developer": "Alibaba",
+      "value": 89.6,
+      "date": "2026-05-16",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/mmlu-pro",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Developer-reported number republished by aggregator; prompt/effort setting unspecified. Date is the model release date shown by benchlm.ai."
+      }
+    }
+  ]
+}

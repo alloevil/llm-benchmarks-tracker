@@ -1,0 +1,101 @@
+{
+  "benchmark": "swe-bench-multilingual",
+  "results": [
+    {
+      "system": "SWE-agent + Claude 3.7 Sonnet",
+      "developer": "Anthropic",
+      "value": 43.0,
+      "date": "2025-03-01",
+      "source": {
+        "url": "https://www.swebench.com/multilingual.html",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "SWE-agent",
+        "notes": "Launch baseline from the introducing blog post ($2.50 cost limit, 128/300 resolved = 42.67%, reported as 43%). Exact post day not stated; month-start used."
+      }
+    },
+    {
+      "system": "GPT 5 mini",
+      "developer": "OpenAI",
+      "value": 39.7,
+      "date": "2026-02-13",
+      "source": {
+        "url": "https://www.swebench.com/#multilingual",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "bash-only",
+        "scaffold": "mini-SWE-agent",
+        "cost_usd_per_task": 0.05
+      }
+    },
+    {
+      "system": "Claude 4.5 Sonnet",
+      "developer": "Anthropic",
+      "value": 67.0,
+      "date": "2026-02-13",
+      "source": {
+        "url": "https://www.swebench.com/#multilingual",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "bash-only",
+        "scaffold": "mini-SWE-agent",
+        "cost_usd_per_task": 0.67
+      }
+    },
+    {
+      "system": "Claude 4.6 Opus",
+      "developer": "Anthropic",
+      "value": 72.0,
+      "date": "2026-02-13",
+      "source": {
+        "url": "https://www.swebench.com/#multilingual",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "bash-only",
+        "scaffold": "mini-SWE-agent",
+        "cost_usd_per_task": 0.66
+      }
+    },
+    {
+      "system": "Gemini 3 Flash",
+      "developer": "Google DeepMind",
+      "value": 72.7,
+      "date": "2026-02-13",
+      "source": {
+        "url": "https://www.swebench.com/#multilingual",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "bash-only",
+        "scaffold": "mini-SWE-agent",
+        "cost_usd_per_task": 0.35,
+        "notes": "Top of the Multilingual bash-only leaderboard as of access date."
+      }
+    },
+    {
+      "system": "MiniMax M2.5",
+      "developer": "MiniMax",
+      "value": 68.3,
+      "date": "2026-02-16",
+      "source": {
+        "url": "https://www.swebench.com/#multilingual",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "bash-only",
+        "scaffold": "mini-SWE-agent",
+        "cost_usd_per_task": 0.1
+      }
+    }
+  ]
+}

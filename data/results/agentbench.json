@@ -1,0 +1,47 @@
+{
+  "benchmark": "agentbench",
+  "results": [
+    {
+      "system": "gpt-4 (0613)",
+      "developer": "OpenAI",
+      "value": 4.01,
+      "date": "2023-08-07",
+      "source": {
+        "url": "https://arxiv.org/abs/2308.03688",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Overall AgentBench score (Table 3); weighted average, not a percentage."
+      }
+    },
+    {
+      "system": "gpt-3.5-turbo (0613)",
+      "developer": "OpenAI",
+      "value": 2.32,
+      "date": "2023-08-07",
+      "source": {
+        "url": "https://arxiv.org/abs/2308.03688",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Overall AgentBench score (Table 3)."
+      }
+    },
+    {
+      "system": "claude-3 opus",
+      "developer": "Anthropic",
+      "value": 3.11,
+      "date": "2025-10-04",
+      "source": {
+        "url": "https://arxiv.org/abs/2308.03688",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Overall score in Table 3 of arXiv v3 (October 2025 revision, which added later models)."
+      }
+    }
+  ]
+}

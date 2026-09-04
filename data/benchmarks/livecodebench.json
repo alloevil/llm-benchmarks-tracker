@@ -1,0 +1,47 @@
+{
+  "id": "livecodebench",
+  "name": "LiveCodeBench",
+  "full_name": "LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code",
+  "layer": "model",
+  "released": "2024-03",
+  "maintainer": "UC Berkeley / MIT / Cornell (Jain et al.)",
+  "description": "Competitive-programming problems continuously collected from LeetCode, AtCoder and Codeforces contests, each tagged with its release date so that models can be scored only on problems published after their training cutoff. Code generation is scored as pass@1 against hidden tests (averaged over samples); self-repair, code execution and test-output prediction are separate scenarios. The rolling release-date filter makes it the standard contamination-aware coding benchmark, though the window chosen changes the score.",
+  "domains": [
+    "code",
+    "reasoning"
+  ],
+  "metric": {
+    "name": "pass@1",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 1055,
+  "splits": [
+    {
+      "name": "v6 (2024-08 to 2025-05)",
+      "note": "Problems released August 2024 through May 2025; a common window in 2025 vendor reports."
+    },
+    {
+      "name": "v5 (2024-08 to 2025-02)",
+      "note": "Problems released August 2024 through February 2025; used by DeepSeek-R1, Qwen3 and similar 2025 reports."
+    },
+    {
+      "name": "full (2023-05 to 2025-04)",
+      "task_count": 1055,
+      "note": "All problems in the official leaderboard data as of the last public refresh."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "low",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2403.07974",
+    "website": "https://livecodebench.github.io/",
+    "leaderboard": "https://livecodebench.github.io/leaderboard.html",
+    "dataset": "https://huggingface.co/datasets/livecodebench/code_generation_lite",
+    "code": "https://github.com/LiveCodeBench/LiveCodeBench"
+  },
+  "notes": "Vendor numbers use different date windows (v5, v6, or custom) and are not comparable without the window; the public leaderboard's problem pool ends in April 2025, and the maintainers have since focused on LiveCodeBench Pro (Elo-rated). Task count is for the full public pool; each window is a subset."
+}

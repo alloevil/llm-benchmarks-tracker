@@ -1,0 +1,50 @@
+{
+  "id": "swe-bench-pro",
+  "name": "SWE-Bench Pro",
+  "full_name": "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?",
+  "layer": "agent",
+  "released": "2025-09",
+  "maintainer": "Scale AI",
+  "description": "1,865 human-verified, long-horizon software engineering tasks from 41 repositories (public set: 731 tasks from copyleft-licensed OSS repos; commercial set: 276 tasks from proprietary startup codebases; held-out set: 858 tasks). Each task gives an augmented problem statement, requirements and optional interface; the patch is scored by fail-to-pass and pass-to-pass tests. Reference solutions average about 107 changed lines across 4 files, so it measures multi-file, enterprise-style work that SWE-bench Verified no longer separates.",
+  "domains": [
+    "software-engineering",
+    "code",
+    "tool-use"
+  ],
+  "metric": {
+    "name": "resolve rate",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 1865,
+  "splits": [
+    {
+      "name": "public",
+      "task_count": 731,
+      "note": "Open-source copyleft repositories; tracked on the Scale public leaderboard."
+    },
+    {
+      "name": "commercial",
+      "task_count": 276,
+      "note": "Private startup codebases; results published on a separate Scale leaderboard."
+    },
+    {
+      "name": "held-out",
+      "task_count": 858,
+      "note": "Additional copyleft repositories kept private for future analysis; scores not published."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": "swe-bench-verified",
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2509.16941",
+    "website": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+    "leaderboard": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+    "dataset": "https://github.com/scaleapi/SWE-bench_Pro-os",
+    "code": "https://github.com/scaleapi/SWE-bench_Pro-os"
+  },
+  "notes": "Scale's current leaderboard runs models with an uncapped cost and a 250-turn limit; the paper-era runs (capped cost, 50 turns) are kept on a deprecated leaderboard and are not comparable. Rows marked with an asterisk on the leaderboard use the mini-swe-agent harness, the others SWE-Agent. Contamination is mitigated by GPL-style licensing rather than by secrecy, so 'medium'."
+}

@@ -1,0 +1,43 @@
+{
+  "id": "tau-bench",
+  "name": "tau-bench",
+  "full_name": "tau-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+  "layer": "agent",
+  "released": "2024-06",
+  "maintainer": "Sierra Research (Yao et al.)",
+  "description": "Simulated customer-service conversations in retail (115 tasks) and airline (50 tasks) domains where the agent must talk to an LLM-simulated user, call database APIs and follow a written policy. A task passes only if the final database state matches the annotated goal; pass^k measures whether the same task succeeds in all k independent trials, exposing agent inconsistency. The reference benchmark for policy-following tool agents.",
+  "domains": [
+    "tool-use",
+    "instruction-following",
+    "general-assistant"
+  ],
+  "metric": {
+    "name": "pass^1",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 165,
+  "splits": [
+    {
+      "name": "retail",
+      "task_count": 115
+    },
+    {
+      "name": "airline",
+      "task_count": 50
+    }
+  ],
+  "status": "retired",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": "tau2-bench",
+  "links": {
+    "paper": "https://arxiv.org/abs/2406.12045",
+    "website": "https://taubench.com",
+    "leaderboard": "https://github.com/sierra-research/tau-bench",
+    "dataset": "https://github.com/sierra-research/tau-bench",
+    "code": "https://github.com/sierra-research/tau-bench"
+  },
+  "notes": "The repository README now warns that its airline and retail tasks are outdated and directs users to the tau2-bench repository (tau^3-bench) for fixed tasks; developer reports of 'tau-bench' after mid-2025 usually mean tau2-bench. Scores depend on the user-simulator model, which is not standardised."
+}

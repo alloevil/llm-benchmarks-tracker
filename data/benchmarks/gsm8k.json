@@ -1,0 +1,32 @@
+{
+  "id": "gsm8k",
+  "name": "GSM8K",
+  "full_name": "Grade School Math 8K",
+  "layer": "model",
+  "released": "2021-10",
+  "maintainer": "OpenAI (Cobbe et al.)",
+  "description": "8,500 linguistically diverse grade-school math word problems (7,473 train, 1,319 test) that take two to eight elementary arithmetic steps to solve, with natural-language step-by-step solutions. Scored as exact match of the final numeric answer on the test split. It drove chain-of-thought research and was the standard math-reasoning check from 2021 to 2024; frontier models now exceed 95%, and errors are dominated by label noise.",
+  "domains": [
+    "math",
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 1319,
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2110.14168",
+    "website": "https://github.com/openai/grade-school-math",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/openai/gsm8k",
+    "code": "https://github.com/openai/grade-school-math"
+  },
+  "notes": "Roughly 1-2% of test items are believed mislabeled, so scores above ~97% are within noise. Few-shot count (0, 5 or 8) and use of a calculator or code affect comparability."
+}

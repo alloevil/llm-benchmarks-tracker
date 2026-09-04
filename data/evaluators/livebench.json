@@ -1,0 +1,18 @@
+{
+  "id": "livebench",
+  "name": "LiveBench",
+  "kind": "leaderboard",
+  "maintainer": "LiveBench team (Abacus.AI, NYU and collaborators)",
+  "released": "2024-06",
+  "description": "Contamination-limited LLM benchmark and leaderboard. Questions are refreshed monthly and drawn from recent arXiv papers, news, datasets and IMDb synopses across math, coding, reasoning, language, data analysis and instruction following; every question has an objective ground-truth answer so scoring is automatic with no LLM judge. The maintainers run all listed models themselves, and the newest question sets are held back from public release, making it a useful check on lab-reported scores.",
+  "status": "active",
+  "license": "Apache-2.0",
+  "benchmarks": [],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://livebench.ai",
+    "repo": "https://github.com/LiveBench/LiveBench",
+    "paper": "https://arxiv.org/abs/2406.19314"
+  },
+  "notes": "Paper arXiv 2406.19314 verified: 'LiveBench: A Challenging, Contamination-Limited LLM Benchmark' (published 2024-06-27; ICLR 2025 spotlight). Repo LICENSE combines the FastChat Apache-2.0 licence with LiveCodeBench's MIT for vendored code. Its own question sets are not separate benchmark ids in this repo, so `benchmarks` is empty."
+}

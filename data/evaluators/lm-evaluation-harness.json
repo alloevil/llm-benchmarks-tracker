@@ -1,0 +1,35 @@
+{
+  "id": "lm-evaluation-harness",
+  "name": "LM Evaluation Harness",
+  "kind": "framework",
+  "maintainer": "EleutherAI",
+  "released": "2021-09",
+  "description": "The most widely used open-source framework for running academic benchmarks against language models. Tasks are declared in YAML, backends include Hugging Face transformers, vLLM, SGLang and hosted APIs, and results are cached and reproducible. Powered the Hugging Face Open LLM Leaderboard; you run it yourself, so scores depend on your prompt and shot settings.",
+  "status": "active",
+  "license": "MIT",
+  "benchmarks": [
+    "mmlu",
+    "mmlu-pro",
+    "gpqa-diamond",
+    "aime-2025",
+    "humaneval",
+    "mbpp",
+    "gsm8k",
+    "math",
+    "hellaswag",
+    "bbh",
+    "ifeval",
+    "truthfulqa",
+    "winogrande",
+    "drop",
+    "ruler",
+    "mmmu"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": null,
+    "repo": "https://github.com/EleutherAI/lm-evaluation-harness",
+    "paper": "https://zenodo.org/records/12608602"
+  },
+  "notes": "Benchmark list taken from lm_eval/tasks/README.md (task families aime incl. aime25, gpqa incl. gpqa_diamond variants, hendrycks_math/minerva_math for MATH, mmlu, mmlu_pro, humaneval, mbpp, gsm8k, hellaswag, bbh, ifeval, truthfulqa, winogrande, drop, ruler, mmmu). First release v0.0.1 on 2021-09-02 (GitHub releases and PyPI lm-eval)."
+}

@@ -1,0 +1,87 @@
+{
+  "benchmark": "gaia",
+  "results": [
+    {
+      "system": "GPT4 + plugins",
+      "developer": "OpenAI",
+      "value": 15.0,
+      "date": "2023-11-21",
+      "source": {
+        "url": "https://arxiv.org/abs/2311.12983",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": true,
+        "notes": "Headline figure from the abstract; Table 4 gives 30.3 / 9.7 / 0 by level."
+      }
+    },
+    {
+      "system": "HAL Generalist Agent + Claude Sonnet 4.5",
+      "developer": "Anthropic",
+      "value": 74.55,
+      "date": "2025-09-01",
+      "source": {
+        "url": "https://hal.cs.princeton.edu/gaia",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "validation",
+        "scaffold": "HAL Generalist Agent",
+        "tools": true,
+        "notes": "HAL re-run on the validation set, 2 runs, $178 total cost. Month-only date on the leaderboard; 1st used."
+      }
+    },
+    {
+      "system": "Nemotron-ToolOrchestra",
+      "developer": "NVIDIA",
+      "value": 87.38,
+      "date": "2025-12-02",
+      "source": {
+        "url": "https://huggingface.co/spaces/gaia-benchmark/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "test",
+        "scaffold": "ToolOrchestra (Nemotron-ToolOrchestrator-8B orchestrating GPT-5, Claude Opus 4.1, Qwen2.5-Math-72B)",
+        "tools": true
+      }
+    },
+    {
+      "system": "Co-Sight Pro v1.0.1",
+      "developer": "ZTE-AICloud",
+      "value": 93.02,
+      "date": "2026-05-16",
+      "source": {
+        "url": "https://huggingface.co/spaces/gaia-benchmark/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "test",
+        "scaffold": "Co-Sight Pro",
+        "tools": true,
+        "notes": "Ensemble of ZTE Nebula LLM, Gemini 3.1 Pro, GPT 5.5 and Claude Opus 4.7 (self-submitted, auto-scored)."
+      }
+    },
+    {
+      "system": "CustomGPT.ai Research Lab v44",
+      "developer": "CustomGPT.ai",
+      "value": 93.36,
+      "date": "2026-06-03",
+      "source": {
+        "url": "https://huggingface.co/spaces/gaia-benchmark/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "test",
+        "scaffold": "CustomGPT.ai enterprise agent",
+        "tools": true,
+        "notes": "Top of the test leaderboard as of access date; ensemble of Claude, Gemini and GPT models (self-submitted, auto-scored)."
+      }
+    }
+  ]
+}

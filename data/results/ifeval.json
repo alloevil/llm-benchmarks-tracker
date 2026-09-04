@@ -1,0 +1,62 @@
+{
+  "benchmark": "ifeval",
+  "results": [
+    {
+      "system": "GPT-4",
+      "developer": "OpenAI",
+      "value": 76.89,
+      "date": "2023-11-14",
+      "source": {
+        "url": "https://arxiv.org/abs/2311.07911",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "prompt-level strict",
+        "notes": "Table 3 of the IFEval paper (responses collected November 2023); instruction-level strict 83.57, loose 79.30/85.37."
+      }
+    },
+    {
+      "system": "Llama 3.1 405B Instruct",
+      "developer": "Meta",
+      "value": 88.6,
+      "date": "2024-07-23",
+      "source": {
+        "url": "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Llama 3.1 model card benchmark table (70B: 87.5, 8B: 80.4); Meta does not state which IFEval variant. Date is the Llama 3.1 release."
+      }
+    },
+    {
+      "system": "Qwen3-235B-A22B-Instruct-2507",
+      "developer": "Alibaba",
+      "value": 88.7,
+      "date": "2025-07-21",
+      "source": {
+        "url": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Model card 'Alignment' table; the same table lists Kimi K2 at 89.8, Claude Opus 4 (non-thinking) 87.4 and GPT-4o-0327 83.9 as run by Qwen. Variant not stated."
+      }
+    },
+    {
+      "system": "Qwen3.5-27B",
+      "developer": "Alibaba",
+      "value": 95.0,
+      "date": "2026-02-24",
+      "source": {
+        "url": "https://huggingface.co/Qwen/Qwen3.5-27B",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Model card benchmark table; same table lists GPT-5-mini (2025-08-07) at 93.9 as run by Qwen. Variant not stated. Also the top row on benchlm.ai's IFEval page."
+      }
+    }
+  ]
+}

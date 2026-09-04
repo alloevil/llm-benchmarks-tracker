@@ -1,0 +1,47 @@
+{
+  "id": "arc-agi-1",
+  "name": "ARC-AGI-1",
+  "full_name": "Abstraction and Reasoning Corpus for Artificial General Intelligence, version 1",
+  "layer": "model",
+  "released": "2019-11",
+  "maintainer": "ARC Prize Foundation (created by Francois Chollet)",
+  "description": "Grid-based visual puzzles: given a few input-output example pairs, the system must infer the transformation rule and produce the exact output grid for a new input. 400 public training and 400 public evaluation tasks plus 100-task semi-private and private sets; scored as the percentage of test outputs exactly correct within two attempts (pass@2). Built to measure skill acquisition on novel problems rather than memorized knowledge; it resisted LLM scaling until test-time reasoning arrived in late 2024.",
+  "domains": [
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy (pass@2)",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 400,
+  "splits": [
+    {
+      "name": "Semi-Private",
+      "task_count": 100,
+      "note": "Held-out set used by the official ARC Prize leaderboard for API-tested models."
+    },
+    {
+      "name": "Public Eval",
+      "task_count": 400,
+      "note": "Public evaluation set; may be in training data."
+    }
+  ],
+  "status": "saturated",
+  "contamination_risk": "medium",
+  "human_baseline": {
+    "value": 98.0,
+    "population": "ARC Prize human panel (STEM graduates); average MTurk worker scored 77%",
+    "source": "https://arcprize.org/leaderboard"
+  },
+  "supersedes": null,
+  "superseded_by": "arc-agi-2",
+  "links": {
+    "paper": "https://arxiv.org/abs/1911.01547",
+    "website": "https://arcprize.org/arc-agi/1",
+    "leaderboard": "https://arcprize.org/leaderboard",
+    "dataset": "https://github.com/fchollet/ARC-AGI",
+    "code": "https://github.com/arcprize/arc-agi-benchmarking"
+  },
+  "notes": "Official leaderboard scores are on the Semi-Private set and report cost per task alongside accuracy; only runs under $10k total are listed. The December 2024 o3-preview result (75.7% high-efficiency, 87.5% at 172x compute) was the first to approach the human panel; frontier models now score above 97%."
+}

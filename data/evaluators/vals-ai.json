@@ -1,0 +1,26 @@
+{
+  "id": "vals-ai",
+  "name": "Vals AI",
+  "kind": "independent-evaluator",
+  "maintainer": "Vals AI",
+  "released": "2024-04",
+  "description": "Independent evaluator that runs frontier models and agents on domain benchmarks for law, finance, tax, healthcare, coding and math. Most test sets are private and expert-built (Finance Agent, Legal Research Bench, TaxEval, Vibe Code Bench, Excel Modeling) so they cannot leak into training data; it also re-runs some public academic benchmarks. Scores report accuracy with standard errors plus cost and latency, and all evaluations are run in-house rather than collected from vendors, which is why its numbers often differ from lab-reported ones.",
+  "status": "active",
+  "license": null,
+  "benchmarks": [
+    "terminal-bench",
+    "swe-bench-verified",
+    "livecodebench",
+    "gpqa-diamond",
+    "mmlu-pro",
+    "mmmu-pro",
+    "aime-2025"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://www.vals.ai",
+    "repo": "https://github.com/vals-ai/Valkyrie",
+    "paper": null
+  },
+  "notes": "Leaderboards (ContractLaw, CorpFin, TaxEval, LegalBench) were live by April 2024 (The Batch, 2024-04-24); company founded 2024 per a16z. Benchmarks from vals.ai/benchmarks: Terminal-Bench 2.1 active; SWE-bench Verified, LiveCodeBench, GPQA Diamond, MMLU Pro, MMMU Pro and AIME are listed as archived leaderboards but still published. Its AIME page is not year-labelled; mapped to aime-2025 as the contract's only AIME id."
+}

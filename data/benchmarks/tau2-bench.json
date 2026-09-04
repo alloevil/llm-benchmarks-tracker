@@ -1,0 +1,53 @@
+{
+  "id": "tau2-bench",
+  "name": "tau2-bench",
+  "full_name": "tau^2-Bench: Evaluating Conversational Agents in a Dual-Control Environment",
+  "layer": "agent",
+  "released": "2025-06",
+  "maintainer": "Sierra Research (Barres et al.)",
+  "description": "Successor to tau-bench that adds a telecom troubleshooting domain (114 tasks) in which both the agent and the simulated user have tools, so the agent must coordinate and guide the user rather than act alone; the verified retail (115) and airline (50) domains are retained. Tasks are generated compositionally from atomic sub-tasks and scored on final database state; pass^k measures reliability across repeated trials. Now maintained as tau^3-bench with a banking knowledge domain and a voice modality.",
+  "domains": [
+    "tool-use",
+    "instruction-following",
+    "general-assistant"
+  ],
+  "metric": {
+    "name": "pass^1",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 279,
+  "splits": [
+    {
+      "name": "retail",
+      "task_count": 115
+    },
+    {
+      "name": "airline",
+      "task_count": 50
+    },
+    {
+      "name": "telecom",
+      "task_count": 114,
+      "note": "Dual-control domain; subsampled from 2,285 generated tasks."
+    },
+    {
+      "name": "core",
+      "task_count": 279,
+      "note": "taubench.com 'tau2-bench' text leaderboard: retail, airline and telecom combined."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": "tau-bench",
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2506.07982",
+    "website": "https://taubench.com",
+    "leaderboard": "https://taubench.com/leaderboard?benchmark=core",
+    "dataset": "https://github.com/sierra-research/tau2-bench",
+    "code": "https://github.com/sierra-research/tau2-bench"
+  },
+  "notes": "Task fixes in February 2026 (tau^3-bench v1.0) and a July 2026 grading update mean pre- and post-fix scores are not strictly comparable; taubench.com re-graded affected submissions. Domains, tools and policies are public, but tasks are compositional and the user simulator adds variance."
+}

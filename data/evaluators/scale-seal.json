@@ -1,0 +1,21 @@
+{
+  "id": "scale-seal",
+  "name": "Scale SEAL Leaderboards",
+  "kind": "independent-evaluator",
+  "maintainer": "Scale AI (SEAL Research Lab)",
+  "released": "2024-05",
+  "description": "Scale AI's expert-driven leaderboards. Most prompt sets are private and written by vetted domain experts, models are run by Scale, and answers are graded by experts or rubric-guided LLM judges with error bars; a model is normally only listed the first time its developer encounters the prompts. It also hosts official leaderboards for public benchmarks Scale co-authored such as Humanity's Last Exam and SWE-Bench Pro. Independent of the labs it ranks, though Scale is itself a data vendor to many of them.",
+  "status": "active",
+  "license": null,
+  "benchmarks": [
+    "hle",
+    "swe-bench-pro"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://scale.com/leaderboard",
+    "repo": null,
+    "paper": null
+  },
+  "notes": "Launched 2024-05-29 (scale.com/blog/leaderboard); now served from labs.scale.com/leaderboard. Benchmarks confirmed from the leaderboard index: Humanity's Last Exam (full and text-only) and SWE-Bench Pro (public and private datasets)."
+}

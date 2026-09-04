@@ -1,0 +1,78 @@
+{
+  "benchmark": "bfcl",
+  "results": [
+    {
+      "system": "Llama-3.3-70B-Instruct (FC)",
+      "developer": "Meta",
+      "value": 31.9,
+      "date": "2026-04-12",
+      "source": {
+        "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "FC",
+        "notes": "BFCL V4 overall accuracy, leaderboard snapshot last updated 2026-04-12 (commit f7cf735); date is the snapshot date, not the model's."
+      }
+    },
+    {
+      "system": "GPT-4.1-2025-04-14 (FC)",
+      "developer": "OpenAI",
+      "value": 53.96,
+      "date": "2026-04-12",
+      "source": {
+        "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "FC",
+        "notes": "BFCL V4 overall; snapshot date."
+      }
+    },
+    {
+      "system": "o3-2025-04-16 (Prompt)",
+      "developer": "OpenAI",
+      "value": 63.05,
+      "date": "2026-04-12",
+      "source": {
+        "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "BFCL V4 overall, prompt (non-FC) mode; snapshot date."
+      }
+    },
+    {
+      "system": "Gemini-3-Pro-Preview (Prompt)",
+      "developer": "Google",
+      "value": 72.51,
+      "date": "2026-04-12",
+      "source": {
+        "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "BFCL V4 overall; FC mode scored 68.14. Snapshot date."
+      }
+    },
+    {
+      "system": "Claude-Opus-4-5-20251101 (FC)",
+      "developer": "Anthropic",
+      "value": 77.47,
+      "date": "2026-04-12",
+      "source": {
+        "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "FC",
+        "notes": "Rank 1 of 109 on BFCL V4 (multi-turn 68.38%); total run cost $86.55. Newer models (Opus 5, GPT-6 Astra) have not been added since the 2026-04-12 update."
+      }
+    }
+  ]
+}

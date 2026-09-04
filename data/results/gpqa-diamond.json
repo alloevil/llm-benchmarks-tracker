@@ -1,0 +1,99 @@
+{
+  "benchmark": "gpqa-diamond",
+  "results": [
+    {
+      "system": "GPT-4",
+      "developer": "OpenAI",
+      "value": 39.4,
+      "date": "2023-11-20",
+      "source": {
+        "url": "https://arxiv.org/abs/2311.12022",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "shots": 0,
+        "notes": "Table 1 of the GPQA paper."
+      }
+    },
+    {
+      "system": "o1-2024-12-17 (high)",
+      "developer": "OpenAI",
+      "value": 76.8,
+      "date": "2025-02-13",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/gpqa-diamond",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Epoch AI Benchmarking Hub run (data export); gpt-4o-2024-08-06 scored 49.2 and claude-3-5-sonnet-20241022 55.3 in January 2025 runs."
+      }
+    },
+    {
+      "system": "o3-2025-04-16 (high)",
+      "developer": "OpenAI",
+      "value": 81.8,
+      "date": "2025-04-16",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/gpqa-diamond",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Epoch AI Benchmarking Hub; OpenAI's own o3 launch figure was 83.3."
+      }
+    },
+    {
+      "system": "Gemini 3 Pro",
+      "developer": "Google DeepMind",
+      "value": 91.9,
+      "date": "2025-11-18",
+      "source": {
+        "url": "https://blog.google/products/gemini/gemini-3/",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": false,
+        "notes": "Gemini 3 launch post; Epoch's independent run of gemini-3-pro-preview scored 92.6 the next day."
+      }
+    },
+    {
+      "system": "Gemini 3.1 Pro",
+      "developer": "Google DeepMind",
+      "value": 94.3,
+      "date": "2026-05-01",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/gpqa-diamond",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      }
+    },
+    {
+      "system": "GPT-6 Astra",
+      "developer": "OpenAI",
+      "value": 96.0,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/gpqa-diamond",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      }
+    },
+    {
+      "system": "GPT-6 Astra (max)",
+      "developer": "OpenAI",
+      "value": 95.8,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/gpqa-diamond",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Epoch AI Benchmarking Hub run started 2026-08-30 (stderr 1.3); OpenAI's launch table reports 96.0, which benchlm.ai republishes."
+      }
+    }
+  ]
+}

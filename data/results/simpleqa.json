@@ -1,0 +1,64 @@
+{
+  "benchmark": "simpleqa",
+  "results": [
+    {
+      "system": "GPT-4o",
+      "developer": "OpenAI",
+      "value": 38.2,
+      "date": "2024-11-07",
+      "source": {
+        "url": "https://arxiv.org/abs/2411.04368",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": false,
+        "notes": "Table 3 of the SimpleQA paper: percent correct; o1-preview scored 42.7."
+      }
+    },
+    {
+      "system": "gpt-4.5-preview-2025-02-27",
+      "developer": "OpenAI",
+      "value": 62.5,
+      "date": "2025-02-27",
+      "source": {
+        "url": "https://github.com/openai/simple-evals",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": false,
+        "notes": "simple-evals README benchmark table (repo deprecated July 2025)."
+      }
+    },
+    {
+      "system": "o3",
+      "developer": "OpenAI",
+      "value": 49.4,
+      "date": "2025-04-16",
+      "source": {
+        "url": "https://github.com/openai/simple-evals",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": false,
+        "notes": "simple-evals README; o3-high 48.6, o4-mini 20.2."
+      }
+    },
+    {
+      "system": "DeepSeek V4 Pro 0813",
+      "developer": "DeepSeek",
+      "value": 57.9,
+      "date": "2026-08-13",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/simpleqa",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "benchlm.ai lists this under SimpleQA, but DeepSeek's own model card reports 57.9 as SimpleQA-Verified (Pass@1), a different 1,000-question variant; treat as not comparable with the rows above."
+      }
+    }
+  ]
+}

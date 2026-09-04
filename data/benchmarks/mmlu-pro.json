@@ -1,0 +1,32 @@
+{
+  "id": "mmlu-pro",
+  "name": "MMLU-Pro",
+  "full_name": "MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark",
+  "layer": "model",
+  "released": "2024-06",
+  "maintainer": "TIGER-Lab (University of Waterloo)",
+  "description": "About 12,000 questions across 14 disciplines built from MMLU, STEM sites, TheoremQA and SciBench, with the answer set expanded from four to ten options and trivial or noisy items removed. Scored as accuracy with chain-of-thought (5-shot in the official setup). Reduces guessing headroom and prompt sensitivity, making it the standard replacement for MMLU when comparing knowledge and reasoning.",
+  "domains": [
+    "knowledge",
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 12032,
+  "status": "saturating",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": "mmlu",
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2406.01574",
+    "website": "https://github.com/TIGER-AI-Lab/MMLU-Pro",
+    "leaderboard": "https://huggingface.co/spaces/TIGER-Lab/MMLU-Pro",
+    "dataset": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+    "code": "https://github.com/TIGER-AI-Lab/MMLU-Pro"
+  },
+  "notes": "Developer-reported numbers vary by prompt (CoT vs direct) and shots; the official leaderboard uses 5-shot CoT. A January 2026 formatting fix to answer options can shift older STEM-subset scores slightly."
+}

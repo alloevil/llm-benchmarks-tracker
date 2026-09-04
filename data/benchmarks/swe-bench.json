@@ -1,0 +1,45 @@
+{
+  "id": "swe-bench",
+  "name": "SWE-bench",
+  "full_name": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+  "layer": "agent",
+  "released": "2023-10",
+  "maintainer": "Princeton NLP / SWE-bench team (Jimenez et al.)",
+  "description": "2,294 task instances built from real GitHub issues and their resolving pull requests across 12 popular Python repositories. Given the issue text and a repository snapshot, an agent must produce a patch; it is scored by running the PR's FAIL_TO_PASS and PASS_TO_PASS unit tests. The original agentic-coding benchmark and the template for the Verified, Lite, Multimodal, Multilingual and Pro descendants.",
+  "domains": [
+    "software-engineering",
+    "code",
+    "tool-use"
+  ],
+  "metric": {
+    "name": "% resolved",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 2294,
+  "splits": [
+    {
+      "name": "full",
+      "task_count": 2294,
+      "note": "Original test set; listed as 'Full' on swebench.com."
+    },
+    {
+      "name": "lite",
+      "task_count": 300,
+      "note": "Subset curated for less costly evaluation (SWE-bench Lite, March 2024)."
+    }
+  ],
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": "swe-bench-verified",
+  "links": {
+    "paper": "https://arxiv.org/abs/2310.06770",
+    "website": "https://www.swebench.com",
+    "leaderboard": "https://www.swebench.com/#test",
+    "dataset": "https://huggingface.co/datasets/SWE-bench/SWE-bench",
+    "code": "https://github.com/SWE-bench/SWE-bench"
+  },
+  "notes": "The full 2,294-instance set contains under-specified and untestable tasks (the reason OpenAI and the maintainers curated SWE-bench Verified). Almost all frontier evaluation moved to Verified after August 2024; the Full leaderboard still accepts submissions but receives few, so treat it as historical."
+}

@@ -1,0 +1,66 @@
+{
+  "benchmark": "swe-bench-verified",
+  "results": [
+    {
+      "system": "mini-SWE-agent + Claude Sonnet 4",
+      "developer": "Anthropic",
+      "value": 65.0,
+      "date": "2025-07-01",
+      "source": {
+        "url": "https://github.com/SWE-agent/mini-swe-agent",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "bash-only",
+        "scaffold": "mini-SWE-agent"
+      }
+    },
+    {
+      "system": "Claude 4.5 Opus (high)",
+      "developer": "Anthropic",
+      "value": 76.8,
+      "date": "2026-02-17",
+      "source": {
+        "url": "https://www.swebench.com/#verified",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "bash-only",
+        "scaffold": "mini-SWE-agent",
+        "reasoning_effort": "high",
+        "cost_usd_per_task": 0.75,
+        "notes": "Highest bash-only (same-environment) entry on the official Verified leaderboard as of access date."
+      }
+    },
+    {
+      "system": "Claude Opus 4.7",
+      "developer": "Anthropic",
+      "value": 87.6,
+      "date": "2026-04-15",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Developer-reported number republished by aggregator; scaffold unspecified."
+      }
+    },
+    {
+      "system": "Claude Opus 5",
+      "developer": "Anthropic",
+      "value": 96.0,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Developer-reported number republished by aggregator; scaffold unspecified."
+      }
+    }
+  ]
+}

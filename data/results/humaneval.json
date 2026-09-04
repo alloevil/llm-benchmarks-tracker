@@ -1,0 +1,68 @@
+{
+  "benchmark": "humaneval",
+  "results": [
+    {
+      "system": "Codex 12B",
+      "developer": "OpenAI",
+      "value": 28.8,
+      "date": "2021-07-07",
+      "source": {
+        "url": "https://arxiv.org/abs/2107.03374",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "pass_k": 1,
+        "notes": "Codex paper abstract; Codex-S 37.7, GPT-J 11.4, GPT-3 0. 70.2% with 100 samples per problem."
+      }
+    },
+    {
+      "system": "gpt-4-turbo-2024-04-09",
+      "developer": "OpenAI",
+      "value": 88.2,
+      "date": "2024-04-09",
+      "source": {
+        "url": "https://github.com/openai/simple-evals",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "pass_k": 1,
+        "shots": 0,
+        "notes": "simple-evals README."
+      }
+    },
+    {
+      "system": "o4-mini-high",
+      "developer": "OpenAI",
+      "value": 99.3,
+      "date": "2025-04-16",
+      "source": {
+        "url": "https://github.com/openai/simple-evals",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "pass_k": 1,
+        "shots": 0,
+        "notes": "simple-evals README; effectively the ceiling (163 of 164)."
+      }
+    },
+    {
+      "system": "DeepSeek-V4-Pro-Base",
+      "developer": "DeepSeek",
+      "value": 76.8,
+      "date": "2026-04-22",
+      "source": {
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "pass_k": 1,
+        "shots": 0,
+        "notes": "DeepSeek-V4 model card, base-model table (HF repo created 2026-04-22). Base (pre-trained, not instruction-tuned) model, so lower than chat models above."
+      }
+    }
+  ]
+}

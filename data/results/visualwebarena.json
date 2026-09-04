@@ -1,0 +1,80 @@
+{
+  "benchmark": "visualwebarena",
+  "results": [
+    {
+      "system": "GPT-4V (SoM)",
+      "developer": "OpenAI",
+      "value": 16.37,
+      "date": "2024-01-24",
+      "source": {
+        "url": "https://arxiv.org/abs/2401.13649",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "VisualWebArena SoM agent",
+        "notes": "Paper baseline, Set-of-Marks + captions + image inputs."
+      }
+    },
+    {
+      "system": "GPT-4o (SoM)",
+      "developer": "OpenAI",
+      "value": 19.78,
+      "date": "2024-06-01",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?gid=2044883967#gid=2044883967",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "VisualWebArena SoM agent",
+        "notes": "Maintainer sheet, month only; 1st used."
+      }
+    },
+    {
+      "system": "GPT-4o + R-MCTS (ExACT)",
+      "developer": "ExACT (leaderboard result source)",
+      "value": 33.7,
+      "date": "2024-10-01",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?gid=2044883967#gid=2044883967",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "ExACT R-MCTS",
+        "notes": "Month only; 1st used."
+      }
+    },
+    {
+      "system": "Gemini 2.5 Flash (SGV)",
+      "developer": "Google DeepMind",
+      "value": 54.0,
+      "date": "2025-07-01",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?gid=2044883967#gid=2044883967",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "SGV",
+        "notes": "Top of the sheet as of access date. Month only; 1st used."
+      }
+    },
+    {
+      "system": "GPT-5 (WALT)",
+      "developer": "OpenAI",
+      "value": 52.9,
+      "date": "2025-10-01",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?gid=2044883967#gid=2044883967",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "WALT",
+        "notes": "Month only; 1st used."
+      }
+    }
+  ]
+}

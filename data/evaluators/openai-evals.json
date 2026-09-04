@@ -1,0 +1,20 @@
+{
+  "id": "openai-evals",
+  "name": "OpenAI Evals",
+  "kind": "framework",
+  "maintainer": "OpenAI",
+  "released": "2023-03",
+  "description": "OpenAI's open-source framework and registry for evaluating LLMs and LLM systems. Evals are declared in YAML and scored by templates such as exact match, fuzzy match and model-graded comparison; the registry mixes standard datasets with hundreds of community-contributed tasks. You run it yourself against the OpenAI API, so results are self-run. Historically influential, but the repository has had no release since 2024 and OpenAI now points users to hosted Evals in its dashboard.",
+  "status": "archived",
+  "license": "MIT",
+  "benchmarks": [
+    "mmlu"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://platform.openai.com/docs/guides/evals",
+    "repo": "https://github.com/openai/evals",
+    "paper": null
+  },
+  "notes": "GitHub repo is not formally archived (checked 2026-09-04) but the last PyPI release (3.0.1.post1) was 2024-05-01 and the README redirects to the hosted OpenAI dashboard; recorded as archived on that basis. Repo created 2023-01; first PyPI release 0.1.1 on 2023-03-14. Registry only covers MMLU among the contract benchmarks (evals/registry/evals/mmlu.yaml); its 'arc' eval is a small custom sample, not ARC-AGI. License is MIT per LICENSE.md (GitHub shows 'Other' because dataset licences are appended)."
+}

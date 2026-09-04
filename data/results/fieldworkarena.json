@@ -1,0 +1,47 @@
+{
+  "benchmark": "fieldworkarena",
+  "results": [
+    {
+      "system": "GPT-4o (2024-08-06)",
+      "developer": "OpenAI",
+      "value": 35.0,
+      "date": "2026-06-07",
+      "source": {
+        "url": "https://arxiv.org/abs/2505.19662",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Table 2 total score 0.35 in arXiv v4 (7 Jun 2026); models run as agents with default parameters."
+      }
+    },
+    {
+      "system": "Gemini 2.5 Pro",
+      "developer": "Google DeepMind",
+      "value": 46.0,
+      "date": "2026-06-07",
+      "source": {
+        "url": "https://arxiv.org/abs/2505.19662",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Table 2 total score 0.46 in arXiv v4."
+      }
+    },
+    {
+      "system": "GPT-5.2 (2025-12-11)",
+      "developer": "OpenAI",
+      "value": 52.0,
+      "date": "2026-06-07",
+      "source": {
+        "url": "https://arxiv.org/abs/2505.19662",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Table 2 total score 0.52 in arXiv v4; best model in the paper."
+      }
+    }
+  ]
+}

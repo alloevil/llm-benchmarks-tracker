@@ -1,0 +1,81 @@
+{
+  "benchmark": "livecodebench",
+  "results": [
+    {
+      "system": "GPT-4-Turbo-2024-04-09",
+      "developer": "OpenAI",
+      "value": 41.1,
+      "date": "2024-03-12",
+      "source": {
+        "url": "https://arxiv.org/abs/2403.07974",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "pass_k": 1,
+        "notes": "Paper Table 3, code generation total (later arXiv version); GPT-4O-2024-05-13 scored 41.9. Problems May 2023 onward."
+      }
+    },
+    {
+      "system": "DeepSeek-R1-0528",
+      "developer": "DeepSeek",
+      "value": 84.4,
+      "date": "2025-05-28",
+      "source": {
+        "url": "https://livecodebench.github.io/leaderboard.html",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full (2023-05 to 2025-04)",
+        "pass_k": 1,
+        "notes": "Mean pass@1 over all 1,055 problems in the leaderboard data (performances_generation.json); date is model release."
+      }
+    },
+    {
+      "system": "O4-Mini (High)",
+      "developer": "OpenAI",
+      "value": 87.3,
+      "date": "2025-06-05",
+      "source": {
+        "url": "https://livecodebench.github.io/leaderboard.html",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full (2023-05 to 2025-04)",
+        "pass_k": 1,
+        "notes": "Top of the official leaderboard over all 1,055 problems; on the 2025-01 to 2025-04 window it scores 75.8. Date is the leaderboard data's last update (HF dataset lastModified 2025-06-05)."
+      }
+    },
+    {
+      "system": "DeepSeek-V4-Pro (Think Max)",
+      "developer": "DeepSeek",
+      "value": 93.5,
+      "date": "2026-04-22",
+      "source": {
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "pass_k": 1,
+        "notes": "Model card comparison table; problem window not stated. Same table: Gemini-3.1-Pro (High) 91.7, Kimi K2.6 89.6, Claude Opus 4.6 88.8."
+      }
+    },
+    {
+      "system": "Qwen3.7 Max",
+      "developer": "Alibaba",
+      "value": 91.6,
+      "date": "2026-05-16",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/livecodebench",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Developer-reported number republished by aggregator; prompt/effort setting unspecified. Problem window unspecified; date is model release per benchlm.ai."
+      }
+    }
+  ]
+}

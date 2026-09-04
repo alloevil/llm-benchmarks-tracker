@@ -1,0 +1,28 @@
+{
+  "id": "helm",
+  "name": "HELM",
+  "kind": "framework",
+  "maintainer": "Stanford CRFM",
+  "released": "2022-11",
+  "description": "Holistic Evaluation of Language Models, Stanford CRFM's open-source framework for reproducible, multi-metric evaluation. Scenarios wrap datasets in standard prompts, run-specs fix shots and decoding, and metrics cover accuracy plus efficiency, bias, toxicity and calibration; CRFM self-runs the framework to publish leaderboards such as HELM Capabilities (MMLU-Pro, GPQA, IFEval, WildBench, Omni-MATH). Useful as an independent cross-lab baseline, though it entered maintenance mode in June 2026.",
+  "status": "archived",
+  "license": "Apache-2.0",
+  "benchmarks": [
+    "mmlu",
+    "mmlu-pro",
+    "gpqa-diamond",
+    "ifeval",
+    "gsm8k",
+    "math",
+    "humaneval",
+    "hellaswag",
+    "truthfulqa"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://crfm.stanford.edu/helm/",
+    "repo": "https://github.com/stanford-crfm/helm",
+    "paper": "https://arxiv.org/abs/2211.09110"
+  },
+  "notes": "Marked archived because HELM entered maintenance mode on 2026-06-01: no new features and no new evaluations added to leaderboards (docs/maintenance_mode.md). First release v0.1.0 on 2022-11-17. Benchmarks from src/helm/benchmark/scenarios (mmlu, mmlu_pro, gpqa with gpqa_diamond subset, ifeval, gsm, math, code_scenario humaneval, commonsense_scenario hellaswag, truthful_qa). arXiv 2211.09110 title verified: Holistic Evaluation of Language Models."
+}

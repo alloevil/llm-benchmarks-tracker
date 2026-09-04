@@ -1,0 +1,43 @@
+{
+  "id": "mbpp",
+  "name": "MBPP",
+  "full_name": "Mostly Basic Programming Problems",
+  "layer": "model",
+  "released": "2021-08",
+  "maintainer": "Google Research (Austin et al.)",
+  "description": "974 crowd-sourced short Python programming tasks aimed at entry-level programmers, each with a natural-language description, a reference solution and three test cases; a 427-problem hand-verified 'sanitized' subset is also used. Scored by executing the model's program against the tests (pass@1 or fraction solved). One of the two canonical early code-synthesis benchmarks alongside HumanEval; now saturated and largely contaminated.",
+  "domains": [
+    "code"
+  ],
+  "metric": {
+    "name": "pass@1",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 974,
+  "splits": [
+    {
+      "name": "sanitized",
+      "task_count": 427,
+      "note": "Hand-verified subset with cleaned descriptions."
+    },
+    {
+      "name": "test",
+      "task_count": 500,
+      "note": "The 500-problem test split most commonly reported."
+    }
+  ],
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2108.07732",
+    "website": "https://github.com/google-research/google-research/tree/master/mbpp",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/google-research-datasets/mbpp",
+    "code": "https://github.com/google-research/google-research/tree/master/mbpp"
+  },
+  "notes": "Reported numbers mix the full set, the 500-problem test split, the sanitized subset and EvalPlus MBPP+, so compare only like with like."
+}

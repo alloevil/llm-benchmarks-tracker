@@ -1,0 +1,46 @@
+{
+  "id": "paperbench",
+  "name": "PaperBench",
+  "full_name": "PaperBench: Evaluating AI's Ability to Replicate AI Research",
+  "layer": "agent",
+  "released": "2025-04",
+  "maintainer": "OpenAI (Starace et al.)",
+  "description": "Agents must replicate 20 ICML 2024 Spotlight and Oral papers from scratch: understand the paper, write a codebase and run the experiments, in a container with GPU access. Grading uses author-co-developed hierarchical rubrics (8,316 gradable leaf nodes) applied by an LLM judge, giving a replication score from 0 to 100. The Code-Dev variant grades code only. It measures long-horizon research engineering, with a measured human (ML PhD) baseline for comparison.",
+  "domains": [
+    "research",
+    "ml-engineering",
+    "code",
+    "tool-use"
+  ],
+  "metric": {
+    "name": "replication score",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 20,
+  "splits": [
+    {
+      "name": "full",
+      "task_count": 20,
+      "note": "Full rubric including code development, execution and result match."
+    },
+    {
+      "name": "code-dev",
+      "task_count": 20,
+      "note": "PaperBench Code-Dev: grades code development only, no execution."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2504.01848",
+    "website": "https://github.com/openai/frontier-evals/tree/main/project/paperbench",
+    "leaderboard": "https://github.com/openai/frontier-evals/tree/main/project/paperbench",
+    "dataset": "https://github.com/openai/frontier-evals/tree/main/project/paperbench",
+    "code": "https://github.com/openai/frontier-evals"
+  },
+  "notes": "The paper reports that top ML PhDs outperformed models on a 3-paper subset over 48 hours, but the figure is on a subset and not comparable to the full 20-paper score, so no human_baseline is recorded. The repository leaderboard has not been updated since the April 2025 launch; papers and rubrics are public."
+}

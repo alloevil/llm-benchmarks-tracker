@@ -1,0 +1,49 @@
+{
+  "id": "mmmu",
+  "name": "MMMU",
+  "full_name": "MMMU: A Massive Multi-discipline Multimodal Understanding and Reasoning Benchmark for Expert AGI",
+  "layer": "model",
+  "released": "2023-11",
+  "maintainer": "MMMU Team (Ohio State / Waterloo / CMU; Yue et al.)",
+  "description": "11,500 college-level questions that pair text with images (charts, diagrams, maps, tables, chemical structures, music sheets) across six disciplines and 30 subjects, collected from exams, quizzes and textbooks. Scored as accuracy on the 900-question validation set (the test set of 10,500 is graded via EvalAI). The first broad expert-level multimodal benchmark; it is now close to expert-human accuracy and has been superseded by MMMU-Pro.",
+  "domains": [
+    "multimodal",
+    "knowledge",
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 900,
+  "splits": [
+    {
+      "name": "validation",
+      "task_count": 900,
+      "note": "Publicly labeled split; the one almost all vendors report."
+    },
+    {
+      "name": "test",
+      "task_count": 10500,
+      "note": "Hidden labels, scored via the EvalAI server."
+    }
+  ],
+  "status": "saturating",
+  "contamination_risk": "high",
+  "human_baseline": {
+    "value": 88.6,
+    "population": "best of three human experts on the validation set (medium expert 82.6%)",
+    "source": "https://arxiv.org/abs/2311.16502"
+  },
+  "supersedes": null,
+  "superseded_by": "mmmu-pro",
+  "links": {
+    "paper": "https://arxiv.org/abs/2311.16502",
+    "website": "https://mmmu-benchmark.github.io/",
+    "leaderboard": "https://mmmu-benchmark.github.io/#leaderboard",
+    "dataset": "https://huggingface.co/datasets/MMMU/MMMU",
+    "code": "https://github.com/MMMU-Benchmark/MMMU"
+  },
+  "notes": "Vendors sometimes report the average of standard and vision settings or use tools; the official leaderboard lists validation accuracy without tools. Many questions can be answered from text alone, which motivated MMMU-Pro."
+}

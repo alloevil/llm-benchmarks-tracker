@@ -1,0 +1,47 @@
+{
+  "id": "arc-agi-2",
+  "name": "ARC-AGI-2",
+  "full_name": "Abstraction and Reasoning Corpus for Artificial General Intelligence, version 2",
+  "layer": "model",
+  "released": "2025-03",
+  "maintainer": "ARC Prize Foundation",
+  "description": "Second-generation ARC grid puzzles designed to defeat brute-force search and test symbolic interpretation, compositional reasoning and context-dependent rule application. 1,000 public training tasks plus calibrated 120-task public, semi-private and private evaluation sets; every task was solved by at least two humans within two attempts. Scored as the percentage of test outputs exactly correct within two attempts, always reported together with cost per task. It launched with ARC Prize 2025 as the successor to ARC-AGI-1.",
+  "domains": [
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy (pass@2)",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 120,
+  "splits": [
+    {
+      "name": "Semi-Private",
+      "task_count": 120,
+      "note": "Held-out set used by the official ARC Prize leaderboard for API-tested models."
+    },
+    {
+      "name": "Public Eval",
+      "task_count": 120,
+      "note": "Public evaluation set, statistically calibrated to match the private sets."
+    }
+  ],
+  "status": "saturating",
+  "contamination_risk": "medium",
+  "human_baseline": {
+    "value": 100.0,
+    "population": "ARC Prize human panel (every task solved by at least two of 400+ general-public testers); 66% of individual attempts succeeded",
+    "source": "https://arxiv.org/abs/2505.11831"
+  },
+  "supersedes": "arc-agi-1",
+  "superseded_by": "arc-agi-3",
+  "links": {
+    "paper": "https://arxiv.org/abs/2505.11831",
+    "website": "https://arcprize.org/arc-agi/2",
+    "leaderboard": "https://arcprize.org/leaderboard",
+    "dataset": "https://github.com/arcprize/ARC-AGI-2",
+    "code": "https://github.com/arcprize/arc-agi-benchmarking"
+  },
+  "notes": "Announced 2025-03-24; the arXiv paper followed in May 2025. The ARC Prize grand-prize threshold is 85% on the private set under Kaggle compute limits, which no open solution has met. Frontier API models passed 90% on the Semi-Private set in mid-2026 at several dollars per task, so the benchmark is saturating for unconstrained systems while remaining open for efficient ones."
+}

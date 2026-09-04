@@ -1,0 +1,80 @@
+{
+  "benchmark": "ruler",
+  "results": [
+    {
+      "system": "GPT-4 (gpt-4-1106-preview)",
+      "developer": "OpenAI",
+      "value": 81.2,
+      "date": "2024-04-09",
+      "source": {
+        "url": "https://arxiv.org/abs/2404.06654",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "128K",
+        "notes": "Paper Table 3; 4K-128K average 91.6, effective length 64K. Llama-2-7B threshold at 4K is 85.6."
+      }
+    },
+    {
+      "system": "Gemini-1.5-pro",
+      "developer": "Google DeepMind",
+      "value": 94.4,
+      "date": "2024-04-09",
+      "source": {
+        "url": "https://arxiv.org/abs/2404.06654",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "128K",
+        "notes": "Paper Table 3; 4K-128K average 95.8, effective length >128K (top of the paper's table)."
+      }
+    },
+    {
+      "system": "Jamba-1.5-large",
+      "developer": "AI21 Labs",
+      "value": 95.1,
+      "date": "2024-08-22",
+      "source": {
+        "url": "https://github.com/NVIDIA/RULER",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "128K",
+        "notes": "README main table, author-reported from the Jamba-1.5 report (arXiv 2408.12570); 4K-128K average 96.0, ranked 1st on both weighted averages. Date is the Jamba report's arXiv date."
+      }
+    },
+    {
+      "system": "Qwen2.5-14B-Instruct-1M",
+      "developer": "Alibaba",
+      "value": 92.2,
+      "date": "2025-01-26",
+      "source": {
+        "url": "https://github.com/NVIDIA/RULER",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "128K",
+        "notes": "README main table, author-reported from the Qwen2.5-1M report (arXiv 2501.15383); 4K-128K average 95.7. Date is that report's arXiv date."
+      }
+    },
+    {
+      "system": "Qwen3-235B-A22B",
+      "developer": "Alibaba",
+      "value": 90.6,
+      "date": "2025-05-14",
+      "source": {
+        "url": "https://github.com/NVIDIA/RULER",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "128K",
+        "notes": "README main table, author-reported from the Qwen3 technical report (arXiv 2505.09388); 4K-128K average 95.0. Date is that report's arXiv date."
+      }
+    }
+  ]
+}

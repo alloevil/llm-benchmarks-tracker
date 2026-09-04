@@ -1,0 +1,36 @@
+{
+  "id": "drop",
+  "name": "DROP",
+  "full_name": "DROP: Discrete Reasoning Over the content of Paragraphs",
+  "layer": "model",
+  "released": "2019-03",
+  "maintainer": "Allen Institute for AI / UC Irvine (Dua et al.)",
+  "description": "96,000 crowd-sourced, adversarially created reading-comprehension questions over Wikipedia paragraphs that require discrete operations such as addition, counting, sorting and date arithmetic, with span, number or date answers. Scored by exact match and a numerically-aware F1 (the headline metric), usually 3-shot on the 9,535-question dev set. Once a hard test of grounded numerical reasoning; frontier models now approach expert human F1.",
+  "domains": [
+    "reasoning",
+    "knowledge"
+  ],
+  "metric": {
+    "name": "F1",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 9535,
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": {
+    "value": 96.4,
+    "population": "expert annotators (paper Table 4, test F1)",
+    "source": "https://arxiv.org/abs/1903.00161"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/1903.00161",
+    "website": "https://github.com/allenai/allennlp-reading-comprehension",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/ucinlp/drop",
+    "code": "https://github.com/allenai/allennlp-reading-comprehension"
+  },
+  "notes": "Model-vendor reports use the dev split (test labels are hidden) and vary in shots and answer normalization; DROP was dropped from most vendor cards after 2025."
+}

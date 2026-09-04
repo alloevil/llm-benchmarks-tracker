@@ -1,0 +1,82 @@
+{
+  "benchmark": "tau2-bench",
+  "results": [
+    {
+      "system": "gpt-4.1",
+      "developer": "OpenAI",
+      "value": 34.0,
+      "date": "2025-06-09",
+      "source": {
+        "url": "https://arxiv.org/abs/2506.07982",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "telecom",
+        "scaffold": "function calling",
+        "notes": "Paper abstract/Section 4.2 (pass^1 on the new telecom tasks)."
+      }
+    },
+    {
+      "system": "claude-3.7-sonnet",
+      "developer": "Anthropic",
+      "value": 49.0,
+      "date": "2025-06-09",
+      "source": {
+        "url": "https://arxiv.org/abs/2506.07982",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "telecom",
+        "scaffold": "function calling",
+        "notes": "Paper abstract (pass^1 on the new telecom tasks)."
+      }
+    },
+    {
+      "system": "Claude Opus 4.5",
+      "developer": "Anthropic",
+      "value": 85.3,
+      "date": "2026-09-04",
+      "source": {
+        "url": "https://taubench.com",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "core",
+        "notes": "taubench.com tau2-bench text leaderboard (retail, airline, telecom). Site shows no per-row date; date is the day observed."
+      }
+    },
+    {
+      "system": "Gemini 3.0 Pro",
+      "developer": "Google DeepMind",
+      "value": 85.4,
+      "date": "2026-09-04",
+      "source": {
+        "url": "https://taubench.com",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "core",
+        "notes": "taubench.com tau2-bench text leaderboard. Site shows no per-row date; date is the day observed."
+      }
+    },
+    {
+      "system": "Qwen3.5-397B-A17B",
+      "developer": "Alibaba Cloud",
+      "value": 87.9,
+      "date": "2026-09-04",
+      "source": {
+        "url": "https://taubench.com",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "core",
+        "notes": "Top of the taubench.com tau2-bench text leaderboard as of access date. No per-row date; date is the day observed."
+      }
+    }
+  ]
+}

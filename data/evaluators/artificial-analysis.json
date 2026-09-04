@@ -1,0 +1,27 @@
+{
+  "id": "artificial-analysis",
+  "name": "Artificial Analysis",
+  "kind": "independent-evaluator",
+  "maintainer": "Artificial Analysis",
+  "released": "2024-01",
+  "description": "Independent benchmarking company that self-runs a fixed suite of evaluations against every major model and API endpoint under identical zero-shot prompts, temperature and repeat settings, and publishes an Intelligence Index alongside speed, latency and price. Answers are scored by regex extraction, code execution or an LLM equality checker; agentic evals run in its open-source Stirrup harness. Labs do not pay for placement and a 'mystery shopper' policy re-tests public endpoints, which makes it a useful cross-lab reference for otherwise self-reported numbers.",
+  "status": "active",
+  "license": null,
+  "benchmarks": [
+    "gpqa-diamond",
+    "hle",
+    "mmlu-pro",
+    "aime-2025",
+    "livecodebench",
+    "mmmu-pro",
+    "terminal-bench",
+    "tau2-bench"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://artificialanalysis.ai",
+    "repo": "https://github.com/ArtificialAnalysis/Stirrup",
+    "paper": null
+  },
+  "notes": "Public launch January 2024 (co-founders on Latent Space, 2026-01-08). Benchmarks from artificialanalysis.ai/methodology/intelligence-benchmarking (Index v4.1.1: GPQA Diamond, HLE, Terminal-Bench 2.1; additional: MMMU Pro; legacy: tau2-Bench Telecom, MMLU-Pro, AIME 2025, LiveCodeBench). MATH-500 is a subset and not listed as `math`."
+}

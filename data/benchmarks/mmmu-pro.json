@@ -1,0 +1,49 @@
+{
+  "id": "mmmu-pro",
+  "name": "MMMU-Pro",
+  "full_name": "MMMU-Pro: A More Robust Multi-discipline Multimodal Understanding Benchmark",
+  "layer": "model",
+  "released": "2024-09",
+  "maintainer": "MMMU Team (Yue et al.)",
+  "description": "1,730 MMMU questions that survived filtering out items answerable by text-only models, each with the option set expanded to ten candidates, plus a vision-only setting in which the question is rendered inside the image so the model must read and see at once. Scored as accuracy; the headline number averages the standard (10-option) and vision settings. It is the current standard for expert-level multimodal reasoning because it removes the text-only shortcuts that inflated MMMU.",
+  "domains": [
+    "multimodal",
+    "knowledge",
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy (average of standard and vision)",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 1730,
+  "splits": [
+    {
+      "name": "standard",
+      "task_count": 1730,
+      "note": "Text question plus image, 10 answer options."
+    },
+    {
+      "name": "vision",
+      "task_count": 1730,
+      "note": "Question embedded in the image; no separate text."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": {
+    "value": 85.4,
+    "population": "estimated high-expert performance derived from MMMU human data (medium 80.8%)",
+    "source": "https://arxiv.org/abs/2409.02813"
+  },
+  "supersedes": "mmmu",
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2409.02813",
+    "website": "https://mmmu-benchmark.github.io/",
+    "leaderboard": "https://mmmu-benchmark.github.io/#leaderboard",
+    "dataset": "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+    "code": "https://github.com/MMMU-Benchmark/MMMU"
+  },
+  "notes": "Some vendors report only the standard setting or use tools; the ledger notes the setting where the source states it. The human baseline is an approximation from MMMU annotations, not a fresh expert study on MMMU-Pro."
+}

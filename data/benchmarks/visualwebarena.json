@@ -1,0 +1,37 @@
+{
+  "id": "visualwebarena",
+  "name": "VisualWebArena",
+  "full_name": "VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks",
+  "layer": "agent",
+  "released": "2024-01",
+  "maintainer": "Carnegie Mellon University (Koh et al.)",
+  "description": "910 web tasks on Classifieds, Shopping and Reddit sites that require reading images (product photos, listings, posted pictures) to complete, extending WebArena's functional evaluation with visually grounded checks. Agents receive screenshots (optionally Set-of-Marks annotated) plus the accessibility tree and must act in the browser. It isolates the multimodal-perception gap that text-only web agents cannot close.",
+  "domains": [
+    "web",
+    "multimodal",
+    "computer-use"
+  ],
+  "metric": {
+    "name": "success rate",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 910,
+  "status": "active",
+  "contamination_risk": "high",
+  "human_baseline": {
+    "value": 88.7,
+    "population": "human annotators (paper)",
+    "source": "https://jykoh.com/vwa"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2401.13649",
+    "website": "https://jykoh.com/vwa",
+    "leaderboard": "https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?gid=2044883967#gid=2044883967",
+    "dataset": "https://github.com/web-arena-x/visualwebarena/tree/main/config_files",
+    "code": "https://github.com/web-arena-x/visualwebarena"
+  },
+  "notes": "Shares the WebArena maintainer Google Sheet (separate tab) and the same self-reporting caveats. Best systems are still more than 30 points below the human baseline."
+}

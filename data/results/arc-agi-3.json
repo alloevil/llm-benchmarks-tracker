@@ -1,0 +1,88 @@
+{
+  "benchmark": "arc-agi-3",
+  "results": [
+    {
+      "system": "Opus 4.6 (Max)",
+      "developer": "Anthropic",
+      "value": 0.5,
+      "date": "2026-03-24",
+      "source": {
+        "url": "https://arxiv.org/abs/2603.24621",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "semi-private",
+        "reasoning_effort": "max",
+        "notes": "Table 2 of the paper: semi-private leaderboard scores for frontier models at release."
+      }
+    },
+    {
+      "system": "Gemini 3.1 Pro Preview",
+      "developer": "Google DeepMind",
+      "value": 0.4,
+      "date": "2026-03-24",
+      "source": {
+        "url": "https://arxiv.org/abs/2603.24621",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "semi-private",
+        "notes": "Table 2 of the paper: semi-private leaderboard scores at release."
+      }
+    },
+    {
+      "system": "GPT 5.4 (High)",
+      "developer": "OpenAI",
+      "value": 0.2,
+      "date": "2026-03-24",
+      "source": {
+        "url": "https://arxiv.org/abs/2603.24621",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "semi-private",
+        "reasoning_effort": "high",
+        "notes": "Table 2 of the paper: semi-private leaderboard scores at release."
+      }
+    },
+    {
+      "system": "GPT-6 Astra (max)",
+      "developer": "OpenAI",
+      "value": 62.7,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://arcprize.org/blog/astra",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "semi-private",
+        "scaffold": "Standard harness",
+        "reasoning_effort": "max",
+        "cost_usd_per_task": 474.51,
+        "notes": "ARC Prize verified run; $26,098 total across 55 semi-private environments (cost per environment shown). Best Standard-harness result."
+      }
+    },
+    {
+      "system": "GPT-6 Astra (high)",
+      "developer": "OpenAI",
+      "value": 99.9,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://arcprize.org/blog/astra",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "semi-private",
+        "scaffold": "Provider Adapter",
+        "reasoning_effort": "high",
+        "cost_usd_per_task": 342.13,
+        "notes": "ARC Prize verified run; $18,817 total across 55 semi-private environments (cost per environment shown). Best Provider Adapter result; verified table shows 99.95%."
+      }
+    }
+  ]
+}

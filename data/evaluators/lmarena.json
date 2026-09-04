@@ -1,0 +1,18 @@
+{
+  "id": "lmarena",
+  "name": "LMArena",
+  "kind": "leaderboard",
+  "maintainer": "Arena (LMArena, spun out of LMSYS / UC Berkeley)",
+  "released": "2023-05",
+  "description": "Crowdsourced human-preference leaderboard, originally Chatbot Arena. Visitors chat with two anonymous models side by side and vote; ratings are fit with a Bradley-Terry model (initially Elo) over millions of pairwise votes, with style-controlled variants that discount length and formatting. Because it measures what real users prefer rather than answer correctness, it complements accuracy benchmarks and is hard to contaminate, but it rewards persuasiveness and is sensitive to vote sourcing and model-sampling policies.",
+  "status": "active",
+  "license": null,
+  "benchmarks": [],
+  "methodology": "crowdsourced",
+  "links": {
+    "website": "https://lmarena.ai",
+    "repo": "https://github.com/lmarena/arena-rank",
+    "paper": "https://arxiv.org/abs/2403.04132"
+  },
+  "notes": "Launched as Chatbot Arena by LMSYS on 2023-05-03 (lmsys.org blog). Paper arXiv 2403.04132 verified: 'Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference'. Ranking code (Arena-Rank, Apache-2.0) open-sourced at lmarena/arena-rank; the site now also lives at arena.ai. It ranks models, not any benchmark in this repo, so `benchmarks` is empty."
+}

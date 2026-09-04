@@ -1,0 +1,86 @@
+{
+  "benchmark": "arc-agi-2",
+  "results": [
+    {
+      "system": "o3 (Medium)",
+      "developer": "OpenAI",
+      "value": 3.0,
+      "date": "2025-05-17",
+      "source": {
+        "url": "https://arxiv.org/abs/2505.11831",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Semi-Private",
+        "pass_k": 2,
+        "notes": "Table 1 of the ARC-AGI-2 paper (scores as of 14 May 2025); the same model scored 53% on ARC-AGI-1."
+      }
+    },
+    {
+      "system": "GPT-5.2 (XHigh)",
+      "developer": "OpenAI",
+      "value": 52.9,
+      "date": "2025-12-11",
+      "source": {
+        "url": "https://arcprize.org/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Semi-Private",
+        "pass_k": 2,
+        "cost_usd_per_task": 1.9
+      }
+    },
+    {
+      "system": "Gemini 3 Deep Think (2/26)",
+      "developer": "Google DeepMind",
+      "value": 84.6,
+      "date": "2026-02-12",
+      "source": {
+        "url": "https://arcprize.org/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Semi-Private",
+        "pass_k": 2,
+        "cost_usd_per_task": 13.62
+      }
+    },
+    {
+      "system": "GPT-5.6 Sol (Max)",
+      "developer": "OpenAI",
+      "value": 92.5,
+      "date": "2026-07-09",
+      "source": {
+        "url": "https://arcprize.org/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Semi-Private",
+        "pass_k": 2,
+        "cost_usd_per_task": 1.44
+      }
+    },
+    {
+      "system": "GPT-6 Astra (Max)",
+      "developer": "OpenAI",
+      "value": 95.0,
+      "date": "2026-09-02",
+      "source": {
+        "url": "https://arcprize.org/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Semi-Private",
+        "pass_k": 2,
+        "cost_usd_per_task": 1.12,
+        "notes": "ARC Prize verified; also republished by benchlm.ai and in OpenAI's GPT-6 Astra launch table (95.0%)."
+      }
+    }
+  ]
+}

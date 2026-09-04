@@ -1,0 +1,35 @@
+{
+  "id": "hellaswag",
+  "name": "HellaSwag",
+  "full_name": "HellaSwag: Can a Machine Really Finish Your Sentence?",
+  "layer": "model",
+  "released": "2019-05",
+  "maintainer": "Allen Institute for AI / University of Washington (Zellers et al.)",
+  "description": "Commonsense sentence-completion: given a context from ActivityNet captions or WikiHow, pick the most plausible continuation among four options, where the wrong endings were adversarially filtered to fool 2019-era models. 10,042 validation and 10,003 test items, scored as accuracy (typically 10-shot). Trivial for humans and once a headline pretraining benchmark; modern models exceed 95%, so it no longer separates systems.",
+  "domains": [
+    "commonsense"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 10042,
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": {
+    "value": 95.6,
+    "population": "crowd workers (paper Table 1, overall)",
+    "source": "https://arxiv.org/abs/1905.07830"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/1905.07830",
+    "website": "https://rowanzellers.com/hellaswag/",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/Rowan/hellaswag",
+    "code": "https://github.com/rowanz/hellaswag"
+  },
+  "notes": "Reported scores use the validation split because test labels are hidden. Roughly a third of items contain grammatical or labeling errors, which caps meaningful accuracy."
+}

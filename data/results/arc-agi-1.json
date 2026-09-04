@@ -1,0 +1,103 @@
+{
+  "benchmark": "arc-agi-1",
+  "results": [
+    {
+      "system": "GPT-4o",
+      "developer": "OpenAI",
+      "value": 4.5,
+      "date": "2024-12-20",
+      "source": {
+        "url": "https://arcprize.org/blog/oai-o3-pub-breakthrough",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Semi-Private",
+        "notes": "ARC Prize testing; the blog states GPT-4o reached 5% in 2024 and the leaderboard lists 4.5%."
+      }
+    },
+    {
+      "system": "o3-preview (high efficiency)",
+      "developer": "OpenAI",
+      "value": 75.7,
+      "date": "2024-12-20",
+      "source": {
+        "url": "https://arcprize.org/blog/oai-o3-pub-breakthrough",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Semi-Private",
+        "pass_k": 2,
+        "cost_usd_per_task": 26,
+        "notes": "ARC Prize verified; the 172x-compute configuration scored 87.5% at about $4,560 per task. Model was trained on 75% of the public training set."
+      }
+    },
+    {
+      "system": "o3 (High)",
+      "developer": "OpenAI",
+      "value": 60.8,
+      "date": "2025-04-16",
+      "source": {
+        "url": "https://arcprize.org/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Semi-Private",
+        "pass_k": 2,
+        "cost_usd_per_task": 0.5,
+        "notes": "Publicly released o3, ARC Prize leaderboard; lower than the December 2024 preview."
+      }
+    },
+    {
+      "system": "GPT-5.2 (XHigh)",
+      "developer": "OpenAI",
+      "value": 86.2,
+      "date": "2025-12-11",
+      "source": {
+        "url": "https://arcprize.org/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Semi-Private",
+        "pass_k": 2,
+        "cost_usd_per_task": 0.96
+      }
+    },
+    {
+      "system": "Gemini 3 Deep Think (2/26)",
+      "developer": "Google DeepMind",
+      "value": 96.0,
+      "date": "2026-02-12",
+      "source": {
+        "url": "https://arcprize.org/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Semi-Private",
+        "pass_k": 2,
+        "cost_usd_per_task": 7.17
+      }
+    },
+    {
+      "system": "GPT-6 Astra (XHigh)",
+      "developer": "OpenAI",
+      "value": 98.5,
+      "date": "2026-09-02",
+      "source": {
+        "url": "https://arcprize.org/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Semi-Private",
+        "pass_k": 2,
+        "cost_usd_per_task": 0.35,
+        "notes": "Ties Claude Fable 5 (Max/XHigh, 98.5%, June 2026) at far lower cost; matches the 98% human panel."
+      }
+    }
+  ]
+}

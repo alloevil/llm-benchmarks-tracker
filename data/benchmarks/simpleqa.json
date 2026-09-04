@@ -1,0 +1,32 @@
+{
+  "id": "simpleqa",
+  "name": "SimpleQA",
+  "full_name": "SimpleQA: Measuring short-form factuality in large language models",
+  "layer": "model",
+  "released": "2024-11",
+  "maintainer": "OpenAI (Wei et al.)",
+  "description": "4,326 short fact-seeking questions with a single indisputable answer, adversarially collected against GPT-4o and verified by two independent annotators, spanning science, history, art, geography and more. A grader model marks each answer correct, incorrect or not attempted; the headline metric is percent correct, with F-score and calibration also reported. It measures whether models know what they know: hallucination-prone models score low even when otherwise capable.",
+  "domains": [
+    "factuality",
+    "knowledge"
+  ],
+  "metric": {
+    "name": "accuracy (correct)",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 4326,
+  "status": "active",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2411.04368",
+    "website": "https://openai.com/index/introducing-simpleqa/",
+    "leaderboard": null,
+    "dataset": "https://github.com/openai/simple-evals",
+    "code": "https://github.com/openai/simple-evals"
+  },
+  "notes": "Answers are static facts, so retrieval or web search makes the test trivial; only no-tools runs are comparable. Google's SimpleQA Verified (1,000 relabeled questions, 2025) is a separate, stricter variant and its scores should not be mixed with the original. OpenAI stopped reporting SimpleQA in simple-evals in July 2025."
+}

@@ -1,0 +1,85 @@
+{
+  "benchmark": "frontiermath",
+  "results": [
+    {
+      "system": "gpt-4o-2024-11-20",
+      "developer": "OpenAI",
+      "value": 0.3,
+      "date": "2025-03-06",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v1",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Tiers 1-3 (v1)",
+        "tools": true,
+        "notes": "Epoch AI Benchmarking Hub run of 2025-03-06 (data export); the Nov 2024 paper reported all models under 2%."
+      }
+    },
+    {
+      "system": "gpt-5.4-pro-2026-03-05 (xhigh)",
+      "developer": "OpenAI",
+      "value": 50.0,
+      "date": "2026-03-06",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v1",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Tiers 1-3 (v1)",
+        "tools": true,
+        "notes": "Epoch run on v1 problem set; the highest v1 score was gpt-5.5-pro (high) at 52.4 on 2026-04-23."
+      }
+    },
+    {
+      "system": "claude-fable-5 (max)",
+      "developer": "Anthropic",
+      "value": 87.0,
+      "date": "2026-06-09",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Tiers 1-3 (v2)",
+        "tools": true,
+        "notes": "First v2 run after the 2026-06-12 correction (Epoch data export, started 2026-06-09)."
+      }
+    },
+    {
+      "system": "gpt-5.6-sol (max)",
+      "developer": "OpenAI",
+      "value": 89.1,
+      "date": "2026-07-09",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Tiers 1-3 (v2)",
+        "tools": true,
+        "notes": "Epoch AI Benchmarking Hub, stderr 1.8."
+      }
+    },
+    {
+      "system": "gpt-6-astra (max)",
+      "developer": "OpenAI",
+      "value": 93.7,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Tiers 1-3 (v2)",
+        "tools": true,
+        "notes": "Epoch AI Benchmarking Hub (run started 2026-08-30, published with the model on 2026-09-03), stderr 1.4; Tier 4 (v2): 95.1 at max, 97.6 at medium effort."
+      }
+    }
+  ]
+}

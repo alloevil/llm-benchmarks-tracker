@@ -1,0 +1,22 @@
+{
+  "id": "hal-leaderboard",
+  "name": "Holistic Agent Leaderboard (HAL)",
+  "kind": "leaderboard",
+  "maintainer": "Princeton University (SAgE team)",
+  "released": "2025-02",
+  "description": "Princeton's third-party, cost-aware leaderboard for AI agents. The HAL harness runs agents across benchmarks (GAIA, SWE-bench Verified Mini, tau-bench, CORE-Bench, USACO, AssistantBench, Online Mind2Web, ScienceAgentBench, SciCode) with identical orchestration, logging every model call and dollar spent so results are plotted on an accuracy-cost Pareto frontier. Traces are published encrypted. It shows how much scaffold choice and cost matter, which single-number lab reports hide; new-model updates paused in 2026 in favour of reliability work.",
+  "status": "active",
+  "license": null,
+  "benchmarks": [
+    "gaia",
+    "swe-bench-verified",
+    "tau-bench"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://hal.cs.princeton.edu",
+    "repo": "https://github.com/princeton-pli/hal-harness",
+    "paper": "https://arxiv.org/abs/2510.11977"
+  },
+  "notes": "Release month taken from the Princeton CITP news item 'SAgE Team at Princeton releases Holistic Agent Leaderboard (HAL)' dated 2025 (indexed as roughly 19 months before 2026-09; page itself returned 403, so the month is approximate). Paper arXiv 2510.11977 verified: 'Holistic Agent Leaderboard: The Missing Infrastructure for AI Agent Evaluation' (ICLR 2026). Harness repo archived 2026-07-01 and the site says leaderboard updates are paused, but the leaderboard and Reliability Dashboard remain live, so status is active. SWE-bench Verified is run as the 50-task 'Mini' subset."
+}

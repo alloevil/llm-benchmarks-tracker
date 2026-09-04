@@ -1,0 +1,41 @@
+{
+  "id": "hle",
+  "name": "Humanity's Last Exam",
+  "full_name": "Humanity's Last Exam (HLE)",
+  "layer": "model",
+  "released": "2025-01",
+  "maintainer": "Center for AI Safety / Scale AI",
+  "description": "2,500 expert-written closed-ended questions (multiple choice and exact-match short answer, about 14% with images) across mathematics, natural sciences, humanities and more, filtered so frontier models failed them at collection time. Scored as accuracy by an LLM judge (o3-mini) against the reference answer; calibration error is also reported. Designed as the final broad academic benchmark, it is now the main frontier knowledge-reasoning test.",
+  "domains": [
+    "knowledge",
+    "reasoning",
+    "science",
+    "math",
+    "multimodal"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 2500,
+  "splits": [
+    {
+      "name": "text-only",
+      "note": "Subset without image questions, used for models that are not multimodal."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2501.14249",
+    "website": "https://lastexam.ai/",
+    "leaderboard": "https://lastexam.ai/",
+    "dataset": "https://huggingface.co/datasets/cais/hle",
+    "code": "https://github.com/centerforaisafety/hle"
+  },
+  "notes": "Finalized at 2,500 questions on 2025-04-03 after a bug bounty; earlier scores used a different question set. Published in Nature (649, 1139-1146) on 2026-01-28. A private held-out set exists to detect overfitting, and an HLE-Rolling fork was released in October 2025. Tool-assisted (search/code) and no-tools runs are not comparable; the ledger marks tools explicitly."
+}

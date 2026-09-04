@@ -1,0 +1,45 @@
+{
+  "id": "mle-bench",
+  "name": "MLE-bench",
+  "full_name": "MLE-bench: Evaluating Machine Learning Agents on Machine Learning Engineering",
+  "layer": "agent",
+  "released": "2024-10",
+  "maintainer": "OpenAI (Chan et al.)",
+  "description": "75 Kaggle competitions (22 low, 38 medium, 15 high complexity) in which an agent must read the task, prepare data, train models and submit predictions inside a sandbox within a compute budget. The score is the fraction of competitions in which the submission would have earned at least a bronze medal on the real Kaggle leaderboard. The standard test of end-to-end ML engineering rather than isolated coding.",
+  "domains": [
+    "ml-engineering",
+    "code",
+    "tool-use"
+  ],
+  "metric": {
+    "name": "any-medal rate",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 75,
+  "splits": [
+    {
+      "name": "all",
+      "task_count": 75,
+      "note": "Full benchmark; the leaderboard's 'All (%)' column."
+    },
+    {
+      "name": "lite",
+      "task_count": 22,
+      "note": "Low-complexity subset (MLE-bench Lite)."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2410.07095",
+    "website": "https://github.com/openai/mle-bench",
+    "leaderboard": "https://github.com/openai/mle-bench",
+    "dataset": "https://github.com/openai/mle-bench",
+    "code": "https://github.com/openai/mle-bench"
+  },
+  "notes": "Competitions are public Kaggle data and the paper documents contamination checks. Leaderboard rows are self-submitted with grading reports; as of April 2026 OpenAI paused new submissions while redesigning the process. Runs use 24h (sometimes 12h/36h) budgets, which affects comparability."
+}

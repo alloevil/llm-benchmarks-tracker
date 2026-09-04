@@ -1,0 +1,31 @@
+{
+  "id": "humaneval",
+  "name": "HumanEval",
+  "full_name": "HumanEval: hand-written Python programming problems (Codex paper)",
+  "layer": "model",
+  "released": "2021-07",
+  "maintainer": "OpenAI",
+  "description": "164 hand-written Python programming problems, each a function signature plus docstring, scored by running hidden unit tests and reporting pass@k (usually pass@1) for functional correctness. It introduced execution-based code evaluation and was the standard code benchmark from 2021 to 2024; frontier models now solve nearly every problem and the set is widely present in training data.",
+  "domains": [
+    "code"
+  ],
+  "metric": {
+    "name": "pass@1",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 164,
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2107.03374",
+    "website": "https://github.com/openai/human-eval",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/openai/openai_humaneval",
+    "code": "https://github.com/openai/human-eval"
+  },
+  "notes": "Many papers report EvalPlus (HumanEval+) numbers with extra tests, which are lower and not directly comparable. OpenAI's simple-evals stopped reporting new models in July 2025."
+}

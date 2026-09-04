@@ -1,0 +1,52 @@
+{
+  "id": "fieldworkarena",
+  "name": "FieldWorkArena",
+  "full_name": "FieldWorkArena: Agentic AI Benchmark for Real Field Work Tasks",
+  "layer": "agent",
+  "released": "2025-05",
+  "maintainer": "Fujitsu Research (with Carnegie Mellon University)",
+  "description": "886 tasks over on-site images, videos and documents captured in real factories, warehouses and retail stores (711 perception, 121 decision-making, 54 combination tasks), written from interviews with site workers and managers. An agent must extract information, detect safety or procedural violations and produce reports; answers are scored against ground truth with a weighted mix of exact and near-match scoring on a 0-1 scale (reported here as percent). It tests multimodal agents on physical-world field operations rather than digital environments.",
+  "domains": [
+    "multimodal",
+    "general-assistant",
+    "safety",
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy rate (total)",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 886,
+  "splits": [
+    {
+      "name": "perception",
+      "task_count": 711
+    },
+    {
+      "name": "decision-making",
+      "task_count": 121
+    },
+    {
+      "name": "combination",
+      "task_count": 54
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "low",
+  "human_baseline": {
+    "value": 74.0,
+    "population": "human evaluators on a random sample of perception tasks (paper, score 0.74)",
+    "source": "https://arxiv.org/abs/2505.19662"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2505.19662",
+    "website": "https://en-documents.research.global.fujitsu.com/fieldworkarena/",
+    "leaderboard": null,
+    "dataset": "https://en-documents.research.global.fujitsu.com/fieldworkarena/",
+    "code": "https://github.com/FujitsuResearch/FieldWorkArena"
+  },
+  "notes": "Factory dataset (V1.0) was released on the Fujitsu site in February 2025, before the May 2025 arXiv paper. Dataset access requires an application form (gated HuggingFace), and the site lists its leaderboard as 'coming soon', so the only public numbers are the authors' own MLLM evaluations in the paper (v4, June 2026); task counts and the human figure are from that revision. The paper's 0-1 scores are multiplied by 100 here."
+}

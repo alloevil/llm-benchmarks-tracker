@@ -1,0 +1,41 @@
+{
+  "id": "bfcl",
+  "name": "BFCL",
+  "full_name": "Berkeley Function Calling Leaderboard (V4)",
+  "layer": "model",
+  "released": "2024-02",
+  "maintainer": "UC Berkeley Gorilla team (Patil, Mao et al.)",
+  "description": "Evaluates how accurately a model produces function (tool) calls from natural-language requests. V1 introduced abstract-syntax-tree matching of single, multiple and parallel calls in Python, Java, JavaScript and REST; V2 added user-contributed live functions; V3 added multi-turn, multi-step and state-tracking scenarios; V4 added web-search and memory agentic tasks and format-sensitivity checks. The overall score is an unweighted average of sub-category accuracies, reported with cost and latency. The de-facto standard for tool-calling ability.",
+  "domains": [
+    "tool-use"
+  ],
+  "metric": {
+    "name": "overall accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": null,
+  "splits": [
+    {
+      "name": "multi-turn",
+      "note": "V3 multi-turn accuracy (base, missing function, missing parameter, long context)."
+    },
+    {
+      "name": "FC",
+      "note": "Native function-calling mode; 'Prompt' rows use plain text generation instead."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html",
+    "website": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "leaderboard": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "dataset": "https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard",
+    "code": "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"
+  },
+  "notes": "The 'paper' link is the launch blog (February 2024); the ICML 2025 paper describes V4, and the related Gorilla paper is arXiv 2305.15334. Overall scores changed with each version (V1 to V4), so only compare rows from the same leaderboard version. The official leaderboard was last updated 2026-04-12 and models released after that are absent."
+}

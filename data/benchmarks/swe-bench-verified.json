@@ -1,0 +1,28 @@
+{
+  "id": "swe-bench-verified",
+  "name": "SWE-bench Verified",
+  "full_name": "SWE-bench Verified: human-validated subset of SWE-bench",
+  "layer": "agent",
+  "released": "2024-08",
+  "maintainer": "Princeton NLP / OpenAI (curation)",
+  "description": "500 real GitHub issues from 12 Python repositories, filtered by human annotators to remove under-specified or untestable tasks. An agent receives the issue text and the repository, must produce a patch, and is scored by hidden FAIL_TO_PASS and PASS_TO_PASS tests. The de-facto standard for agentic coding; scores depend heavily on scaffold and step/cost limits.",
+  "domains": ["software-engineering", "code", "tool-use"],
+  "metric": { "name": "% resolved", "unit": "percent", "higher_is_better": true },
+  "task_count": 500,
+  "splits": [
+    { "name": "bash-only", "task_count": 500, "note": "Official default view: every model in the same mini-SWE-agent environment." }
+  ],
+  "status": "saturating",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": "swe-bench",
+  "superseded_by": "swe-bench-pro",
+  "links": {
+    "paper": "https://arxiv.org/abs/2310.06770",
+    "website": "https://www.swebench.com",
+    "leaderboard": "https://www.swebench.com/#verified",
+    "dataset": "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified",
+    "code": "https://github.com/SWE-bench/SWE-bench"
+  },
+  "notes": "Test instances are public and predate most frontier training cutoffs; treat developer-reported gains with care and prefer the official bash-only view or independent re-runs (SWE-rebench, Epoch AI) when comparing systems."
+}

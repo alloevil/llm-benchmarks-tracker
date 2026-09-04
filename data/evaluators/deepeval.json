@@ -1,0 +1,26 @@
+{
+  "id": "deepeval",
+  "name": "DeepEval",
+  "kind": "framework",
+  "maintainer": "Confident AI",
+  "released": "2023-08",
+  "description": "Open-source, pytest-style LLM evaluation framework aimed at application testing: metrics such as G-Eval, answer relevancy, faithfulness and tool-correctness are computed with LLM-as-a-judge or local NLP models. It also bundles implementations of several public benchmarks (MMLU, HellaSwag, BBH, DROP, TruthfulQA, HumanEval, GSM8K) that follow the original papers' prompting. Scores are self-run by the user; the company sells a hosted platform (Confident AI) around it.",
+  "status": "active",
+  "license": "Apache-2.0",
+  "benchmarks": [
+    "mmlu",
+    "hellaswag",
+    "bbh",
+    "drop",
+    "truthfulqa",
+    "humaneval",
+    "gsm8k"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://deepeval.com",
+    "repo": "https://github.com/confident-ai/deepeval",
+    "paper": null
+  },
+  "notes": "First PyPI release 0.2.0 on 2023-08-15 (repo created 2023-08-10). Benchmark list from deepeval.com/docs/benchmarks-introduction."
+}

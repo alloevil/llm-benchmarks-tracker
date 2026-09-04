@@ -1,0 +1,36 @@
+{
+  "id": "lighteval",
+  "name": "Lighteval",
+  "kind": "framework",
+  "maintainer": "Hugging Face",
+  "released": "2024-02",
+  "description": "Hugging Face's evaluation toolkit, built by the team that ran the Open LLM Leaderboard. It supports 1000+ tasks across transformers, vLLM, SGLang, Nanotron and API endpoints, saves sample-level outputs for debugging, and since 2025 uses Inspect AI as its preferred execution backend. Scores are self-run by the user, with task configs (prompts, metrics, few-shot) versioned in the repo so numbers can be reproduced.",
+  "status": "active",
+  "license": "MIT",
+  "benchmarks": [
+    "mmlu",
+    "mmlu-pro",
+    "gpqa-diamond",
+    "hle",
+    "aime-2025",
+    "gsm8k",
+    "math",
+    "hellaswag",
+    "bbh",
+    "ifeval",
+    "simpleqa",
+    "mmmu-pro",
+    "livecodebench",
+    "drop",
+    "winogrande",
+    "truthfulqa",
+    "arc-agi-2"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://huggingface.co/docs/lighteval/en/index",
+    "repo": "https://github.com/huggingface/lighteval",
+    "paper": null
+  },
+  "notes": "First GitHub release v0.1.1 on 2024-02-09 (an internal 0.0.1 appeared on PyPI 2023-10). Benchmarks from src/lighteval/tasks/tasks: mmlu, mmlu_pro, gpqa (gpqa:diamond), hle, aime (aime25), gsm8k, math, hellaswag, bigbench_hard, ifeval, simpleqa, mmmu_pro, lcb (LiveCodeBench), drop_qa, winogrande, truthfulqa, arc_agi_2. README lists RULER but no ruler task file was found in the current tree, so it is omitted."
+}

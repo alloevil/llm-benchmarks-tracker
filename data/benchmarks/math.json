@@ -1,0 +1,48 @@
+{
+  "id": "math",
+  "name": "MATH",
+  "full_name": "MATH: Measuring Mathematical Problem Solving",
+  "layer": "model",
+  "released": "2021-03",
+  "maintainer": "Dan Hendrycks et al. (UC Berkeley)",
+  "description": "12,500 competition mathematics problems (7,500 train, 5,000 test) from AMC 10/12, AIME and similar contests across seven subjects and five difficulty levels, each with a full LaTeX step-by-step solution. Scored as exact match of the boxed final answer after normalization. It was the primary hard-math benchmark until reasoning models pushed it past 95%; the hardest Level 5 subset and the 500-problem MATH-500 split remain in use.",
+  "domains": [
+    "math",
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 5000,
+  "splits": [
+    {
+      "name": "MATH-500",
+      "task_count": 500,
+      "note": "Uniform 500-problem subset introduced by OpenAI's PRM800K work; the most commonly reported split since 2024."
+    },
+    {
+      "name": "Level 5",
+      "task_count": 1324,
+      "note": "Hardest difficulty tier of the test split, used by Epoch AI's benchmarking hub."
+    }
+  ],
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": {
+    "value": 90.0,
+    "population": "three-time IMO gold medalist (single participant; a CS PhD student scored about 40%)",
+    "source": "https://arxiv.org/abs/2103.03874"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2103.03874",
+    "website": "https://github.com/hendrycks/math",
+    "leaderboard": "https://epoch.ai/benchmarks/math-level-5",
+    "dataset": "https://huggingface.co/datasets/EleutherAI/hendrycks_math",
+    "code": "https://github.com/hendrycks/math"
+  },
+  "notes": "Answer-equivalence checking differs across harnesses (string match vs sympy vs LLM grader) and can move scores by several points. The human numbers in the paper are anecdotal single-person measurements."
+}

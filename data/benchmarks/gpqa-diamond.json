@@ -1,0 +1,29 @@
+{
+  "id": "gpqa-diamond",
+  "name": "GPQA Diamond",
+  "full_name": "Graduate-Level Google-Proof Q&A Benchmark, Diamond subset",
+  "layer": "model",
+  "released": "2023-11",
+  "maintainer": "NYU / Cohere / Anthropic (Rein et al.)",
+  "description": "198 four-option multiple-choice questions in biology, physics and chemistry written by domain PhDs and validated so that experts agree while skilled non-experts with unrestricted web access fail. The Diamond subset keeps only questions both experts answered correctly and most non-experts missed. The standard frontier science-reasoning benchmark; noise floor is roughly plus or minus 3 points at n=198.",
+  "domains": ["science", "reasoning", "knowledge"],
+  "metric": { "name": "accuracy", "unit": "percent", "higher_is_better": true },
+  "task_count": 198,
+  "status": "saturating",
+  "contamination_risk": "medium",
+  "human_baseline": {
+    "value": 69.7,
+    "population": "domain PhD experts (per-question, in-domain)",
+    "source": "https://arxiv.org/abs/2311.12022"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2311.12022",
+    "website": "https://github.com/idavidrein/gpqa",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/Idavidrein/gpqa",
+    "code": "https://github.com/idavidrein/gpqa"
+  },
+  "notes": "Answer options are public; the maintainers ask that the dataset never be posted in plain text. Scores above ~92% are within noise of each other."
+}

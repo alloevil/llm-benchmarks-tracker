@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLM Benchmarks Tracker</title>
+<meta name="description" content="Sourced, schema-validated catalogue of LLM and agent evaluation benchmarks, evaluators, and top scores with provenance.">
+<link rel="alternate" type="application/json" href="api/v1/index.json">
+<style>
+:root{--bg:#0b0e14;--card:#121721;--line:#232a36;--fg:#e6e9ef;--muted:#8a94a6;--accent:#7aa2f7;--ok:#9ece6a;--warn:#e0af68;--bad:#f7768e;--violet:#bb9af7}
+@media (prefers-color-scheme:light){:root{--bg:#fafbfc;--card:#fff;--line:#e3e6ea;--fg:#1f2328;--muted:#656d76;--accent:#0969da;--ok:#1a7f37;--warn:#9a6700;--bad:#cf222e;--violet:#8250df}}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+header{padding:56px 20px 32px;border-bottom:1px solid var(--line);text-align:center}
+header h1{margin:0 0 8px;font-size:2.2rem;letter-spacing:-.02em}
+header p{margin:0 auto;max-width:720px;color:var(--muted)}
+.stats{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.stat b{display:block;font-size:1.8rem;color:var(--accent)}.stat span{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 20px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-size:.9rem;z-index:1}
+main{max-width:1280px;margin:0 auto;padding:32px 20px}
+section{margin-bottom:48px}
+h2{font-size:1.4rem;margin:0 0 4px}
+.lede{color:var(--muted);margin:0 0 16px}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{text-align:left;padding:10px 12px;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.muted{color:var(--muted)}.small{font-size:.8rem;margin-top:4px;min-width:30ch;max-width:52ch;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.nowrap{white-space:nowrap}
+.score{font-weight:700;font-size:1.05rem}.system{font-weight:500}
+.pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:.72rem;font-weight:500;white-space:nowrap;border:1px solid var(--line);margin:1px 2px 1px 0}
+.domain{color:var(--muted)}
+.status-active{color:var(--ok);border-color:var(--ok)}.status-saturating{color:var(--warn);border-color:var(--warn)}.status-saturated,.status-retired,.status-archived{color:var(--muted)}
+.risk-low{color:var(--ok)}.risk-medium{color:var(--warn)}.risk-high{color:var(--bad)}
+.kind-framework{color:var(--accent)}.kind-leaderboard{color:var(--violet)}.kind-independent-evaluator{color:var(--ok)}.kind-aggregator{color:var(--muted)}
+.src{font-size:.75rem;padding:0 6px;border-radius:4px;border:1px solid var(--line)}
+.src-official-leaderboard,.src-independent-evaluation{color:var(--ok)}.src-paper{color:var(--accent)}.src-developer-report{color:var(--warn)}.src-aggregator{color:var(--muted)}
+.tl-row{display:flex;gap:16px;padding:8px 0;border-bottom:1px dashed var(--line)}.tl-year{width:56px;font-weight:700;color:var(--accent);flex:none}.tl-items{display:flex;flex-wrap:wrap;gap:4px}
+.tl-model{color:var(--accent)}.tl-agent{color:var(--violet)}.tl-evaluator{color:var(--ok)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin:8px 0 0}
+.callout{border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:6px;padding:12px 16px;background:var(--card);font-size:.9rem;margin:0 0 20px}
+footer{border-top:1px solid var(--line);padding:32px 20px;text-align:center;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <h1>LLM Benchmarks Tracker</h1>
+  <p>A sourced, schema-validated catalogue of how we measure language models and agents. Every score links to where it was published and says whether it was self-reported, independently re-run, or taken from an official leaderboard.</p>
+  <div class="stats">
+    <div class="stat"><b>{{N_MODEL}}</b><span>model benchmarks</span></div>
+    <div class="stat"><b>{{N_AGENT}}</b><span>agent benchmarks</span></div>
+    <div class="stat"><b>{{N_EVALUATORS}}</b><span>evaluators</span></div>
+    <div class="stat"><b>{{N_RESULTS}}</b><span>sourced results</span></div>
+  </div>
+</header>
+<nav>
+  <a href="#model">Model benchmarks</a>
+  <a href="#agent">Agent benchmarks</a>
+  <a href="#evaluators">Evaluators</a>
+  <a href="#timeline">Timeline</a>
+  <a href="api/v1/index.json">JSON API</a>
+  <a href="https://github.com/alloevil/llm-benchmarks-tracker">GitHub</a>
+</nav>
+<main>
+  <div class="callout">
+    <strong>How to read scores.</strong> "Top score" is the best row in the results ledger, not a ranking of models: conditions (tools, reasoning effort, scaffold, pass@k) differ between rows and are recorded per result in the JSON. Prefer <span class="src src-official-leaderboard">official</span> and <span class="src src-independent-evaluation">independent</span> sources over <span class="src src-developer-report">self-reported</span> or <span class="src src-aggregator">aggregator</span> numbers. High contamination risk means the test set is public and static.
+  </div>
+
+  <section id="model">
+    <h2>Model benchmarks</h2>
+    <p class="lede">Static prompt-and-response scoring of the model itself: knowledge, reasoning, math, code, factuality, long context.</p>
+    <div class="wrap"><table>
+      <thead><tr><th>Benchmark</th><th>Released</th><th>Domains</th><th>Status</th><th>Contamination</th><th>Top score</th><th>Human baseline</th><th>Ledger</th></tr></thead>
+      <tbody>
+{{MODEL_ROWS}}
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="agent">
+    <h2>Agent benchmarks</h2>
+    <p class="lede">Interactive environments: the system takes actions, uses tools, and is scored on task completion. Scores depend on scaffold and budget as much as on the model.</p>
+    <div class="wrap"><table>
+      <thead><tr><th>Benchmark</th><th>Released</th><th>Domains</th><th>Status</th><th>Contamination</th><th>Top score</th><th>Human baseline</th><th>Ledger</th></tr></thead>
+      <tbody>
+{{AGENT_ROWS}}
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="evaluators">
+    <h2>Evaluators</h2>
+    <p class="lede">Frameworks you run, leaderboards run by benchmark maintainers, organisations that independently re-run models, and aggregators that republish reported numbers.</p>
+    <div class="wrap"><table>
+      <thead><tr><th>Evaluator</th><th>Kind</th><th>Maintainer</th><th>Methodology</th><th>Status</th></tr></thead>
+      <tbody>
+{{EVALUATOR_ROWS}}
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="timeline">
+    <h2>Timeline</h2>
+    <p class="lede">Release year of every tracked benchmark and evaluator.</p>
+    <div class="wrap" style="padding:8px 16px">
+{{TIMELINE}}
+    </div>
+    <div class="legend"><span class="pill tl-model">model benchmark</span><span class="pill tl-agent">agent benchmark</span><span class="pill tl-evaluator">evaluator</span></div>
+  </section>
+</main>
+<footer>
+  Generated {{GENERATED}} from <a href="https://github.com/alloevil/llm-benchmarks-tracker/tree/main/data">data/</a> · <a href="api/v1/index.json">API</a> · <a href="schema/benchmark.schema.json">schemas</a> · MIT
+</footer>
+</body>
+</html>

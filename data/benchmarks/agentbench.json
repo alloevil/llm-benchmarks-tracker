@@ -1,0 +1,34 @@
+{
+  "id": "agentbench",
+  "name": "AgentBench",
+  "full_name": "AgentBench: Evaluating LLMs as Agents",
+  "layer": "agent",
+  "released": "2023-08",
+  "maintainer": "Tsinghua University KEG / Zhipu AI (Liu et al.)",
+  "description": "Eight interactive environments (operating system shell, SQL database, knowledge graph, digital card game, lateral-thinking puzzles, ALFWorld household, WebShop, Mind2Web browsing) in which an LLM acts over multiple turns. Each environment has its own success metric and the overall score is a weighted average normalised across environments, so it measures breadth of agentic decision-making rather than one skill. An early standard for comparing API and open-weight models as agents.",
+  "domains": [
+    "tool-use",
+    "reasoning",
+    "web",
+    "code"
+  ],
+  "metric": {
+    "name": "overall score (weighted average)",
+    "unit": "score",
+    "higher_is_better": true
+  },
+  "task_count": null,
+  "status": "retired",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2308.03688",
+    "website": "https://github.com/THUDM/AgentBench",
+    "leaderboard": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRR3Wl7wsCgHpwUw1_eUXW_fptAPLL3FkhnW_rua0O1Ji_GIVrpTjY5LaKAhwO-WeARjnY_KNw0SYNJ/pubhtml",
+    "dataset": "https://github.com/THUDM/AgentBench",
+    "code": "https://github.com/THUDM/AgentBench"
+  },
+  "notes": "The original v0.2 leaderboard stopped being updated after the paper era; in October 2025 the repository was repurposed as 'AgentBench FC', a function-calling variant on five containerised tasks with its own leaderboard, and scores are not comparable to the original overall score. Marked retired because the maintainers no longer accept results for the original benchmark."
+}

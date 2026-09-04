@@ -1,0 +1,109 @@
+{
+  "benchmark": "terminal-bench",
+  "results": [
+    {
+      "system": "Claude Opus 4.5 + Terminus 2",
+      "developer": "Anthropic",
+      "value": 57.8,
+      "date": "2026-01-17",
+      "source": {
+        "url": "https://arxiv.org/abs/2601.11868",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "2.0",
+        "scaffold": "Terminus 2",
+        "notes": "Table 2 of the paper (Terminal-Bench 2.0)."
+      }
+    },
+    {
+      "system": "GPT-5.2 + Codex CLI",
+      "developer": "OpenAI",
+      "value": 62.9,
+      "date": "2026-01-17",
+      "source": {
+        "url": "https://arxiv.org/abs/2601.11868",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "2.0",
+        "scaffold": "Codex CLI",
+        "notes": "Best result in Table 2 of the paper (Terminal-Bench 2.0)."
+      }
+    },
+    {
+      "system": "Opus 4.8 + Claude Code (max)",
+      "developer": "Anthropic",
+      "value": 23.64,
+      "date": "2026-08-27",
+      "source": {
+        "url": "https://www.tbench.ai/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "4.0",
+        "scaffold": "Claude Code",
+        "reasoning_effort": "max",
+        "cost_usd_per_task": 19.64,
+        "notes": "Leaderboard 'created_at' date; 330 trials. Cost is total run cost / 330 trials."
+      }
+    },
+    {
+      "system": "Opus 5 + Claude Code (max)",
+      "developer": "Anthropic",
+      "value": 51.82,
+      "date": "2026-08-27",
+      "source": {
+        "url": "https://www.tbench.ai/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "4.0",
+        "scaffold": "Claude Code",
+        "reasoning_effort": "max",
+        "cost_usd_per_task": 18.09,
+        "notes": "Leaderboard 'created_at' date; 330 trials. Cost is total run cost / 330 trials."
+      }
+    },
+    {
+      "system": "Fable 5.1 + Claude Code (max)",
+      "developer": "Anthropic",
+      "value": 57.88,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://www.tbench.ai/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "4.0",
+        "scaffold": "Claude Code",
+        "reasoning_effort": "max",
+        "cost_usd_per_task": 18.92,
+        "notes": "+/-3.8 CI over 330 trials."
+      }
+    },
+    {
+      "system": "GPT-6 Astra + Codex (max)",
+      "developer": "OpenAI",
+      "value": 58.18,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://www.tbench.ai/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "4.0",
+        "scaffold": "Codex",
+        "reasoning_effort": "max",
+        "cost_usd_per_task": 9.9,
+        "notes": "Rank 1 on Terminal-Bench 4.0 as of access date; +/-2.8 CI over 330 trials."
+      }
+    }
+  ]
+}

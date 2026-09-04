@@ -1,0 +1,37 @@
+{
+  "id": "webarena",
+  "name": "WebArena",
+  "full_name": "WebArena: A Realistic Web Environment for Building Autonomous Agents",
+  "layer": "agent",
+  "released": "2023-07",
+  "maintainer": "Carnegie Mellon University (Zhou, Xu et al.)",
+  "description": "812 long-horizon natural-language tasks on self-hosted, fully functional websites (e-commerce, forum, GitLab, CMS) plus a map, calculator and wiki. Agents act through a browser and are scored by programmatic functional checks on the final site state or answer rather than by matching action sequences. The first reproducible end-to-end web-agent benchmark and still the reference for text/DOM web agents.",
+  "domains": [
+    "web",
+    "tool-use",
+    "computer-use"
+  ],
+  "metric": {
+    "name": "success rate",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 812,
+  "status": "active",
+  "contamination_risk": "high",
+  "human_baseline": {
+    "value": 78.24,
+    "population": "human annotators (paper, end-to-end task success)",
+    "source": "https://arxiv.org/abs/2307.13854"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2307.13854",
+    "website": "https://webarena.dev",
+    "leaderboard": "https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing",
+    "dataset": "https://github.com/web-arena-x/webarena/blob/main/config_files/test.raw.json",
+    "code": "https://github.com/web-arena-x/webarena"
+  },
+  "notes": "Leaderboard is a maintainer-curated Google Sheet of self-reported results (trajectories required since September 2024). Environments are public Docker images, so task configs are widely available. Top systems now approach the 78% human figure; the maintainers point to WebArena-Infinity and TheAgentCompany as successors, neither of which is tracked here yet."
+}

@@ -1,0 +1,40 @@
+{
+  "id": "swe-bench-multilingual",
+  "name": "SWE-bench Multilingual",
+  "full_name": "SWE-bench Multilingual: SWE-bench-style tasks across 9 programming languages",
+  "layer": "agent",
+  "released": "2025-03",
+  "maintainer": "SWE-bench team (Khandpur, Lieret, Jimenez, Press, Yang)",
+  "description": "300 curated issue-resolution tasks from 42 repositories in C, C++, Go, Java, JavaScript/TypeScript, PHP, Ruby and Rust, built with the SWE-bench collection pipeline and scored by fail-to-pass and pass-to-pass tests. It checks whether agentic coding ability transfers beyond Python, where scaffolds and models are heavily tuned to SWE-bench Verified.",
+  "domains": [
+    "software-engineering",
+    "code",
+    "tool-use"
+  ],
+  "metric": {
+    "name": "% resolved",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 300,
+  "splits": [
+    {
+      "name": "bash-only",
+      "task_count": 300,
+      "note": "Official leaderboard view: every model in the same mini-SWE-agent environment, run by the SWE-bench team."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": null,
+    "website": "https://www.swebench.com/multilingual.html",
+    "leaderboard": "https://www.swebench.com/#multilingual",
+    "dataset": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+    "code": "https://github.com/SWE-bench/SWE-bench"
+  },
+  "notes": "No standalone paper; introduced as a blog post (kabirk.com/multilingual, mirrored on swebench.com). Released month taken from the March 2025 blog post. Task instances are public GitHub issues predating training cutoffs."
+}

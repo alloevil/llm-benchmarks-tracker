@@ -1,0 +1,36 @@
+{
+  "id": "winogrande",
+  "name": "WinoGrande",
+  "full_name": "WinoGrande: An Adversarial Winograd Schema Challenge at Scale",
+  "layer": "model",
+  "released": "2019-07",
+  "maintainer": "Allen Institute for AI (Sakaguchi et al.)",
+  "description": "44,000 binary fill-in-the-blank pronoun-resolution problems inspired by the Winograd Schema Challenge, crowd-sourced and then debiased with the AfLite adversarial filter to remove word-association shortcuts. Scored as accuracy on the 1,267-item validation set (test labels are hidden). A long-running commonsense probe in pretraining evaluations; frontier models are within a few points of the 94% human figure.",
+  "domains": [
+    "commonsense",
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 1267,
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": {
+    "value": 94.0,
+    "population": "crowd workers (paper Table 3, test set)",
+    "source": "https://arxiv.org/abs/1907.10641"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/1907.10641",
+    "website": "https://winogrande.allenai.org/",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/allenai/winogrande",
+    "code": "https://github.com/allenai/winogrande"
+  },
+  "notes": "Most harnesses report 5-shot accuracy on the validation split of the 'xl' (40k-train) configuration."
+}

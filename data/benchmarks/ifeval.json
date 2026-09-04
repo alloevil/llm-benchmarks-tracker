@@ -1,0 +1,42 @@
+{
+  "id": "ifeval",
+  "name": "IFEval",
+  "full_name": "Instruction-Following Evaluation for Large Language Models",
+  "layer": "model",
+  "released": "2023-11",
+  "maintainer": "Google (Zhou et al.)",
+  "description": "541 prompts each containing one or more of 25 types of verifiable instructions, such as 'write at least 400 words', 'respond in JSON', 'include the keyword X three times' or 'no commas'. Compliance is checked programmatically, giving prompt-level and instruction-level accuracy under strict and loose matching. Cheap, reproducible and free of LLM judges, it is the standard check that a chat model actually obeys formatting constraints.",
+  "domains": [
+    "instruction-following"
+  ],
+  "metric": {
+    "name": "prompt-level strict accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 541,
+  "splits": [
+    {
+      "name": "prompt-level strict",
+      "task_count": 541,
+      "note": "All instructions in a prompt must be satisfied; the headline metric."
+    },
+    {
+      "name": "instruction-level loose",
+      "note": "Per-instruction accuracy with relaxed matching; some vendors report this higher number."
+    }
+  ],
+  "status": "saturating",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2311.07911",
+    "website": "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/google/IFEval",
+    "code": "https://github.com/google-research/google-research/tree/master/instruction_following_eval"
+  },
+  "notes": "Vendors frequently report instruction-level or loose accuracy without saying so, which inflates numbers by 5-10 points; check the variant before comparing. Most frontier models exceed 90% prompt-level strict, and IFBench and IFEval-Hard have emerged as harder follow-ups."
+}

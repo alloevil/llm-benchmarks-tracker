@@ -1,0 +1,20 @@
+{
+  "id": "swe-rebench",
+  "name": "SWE-rebench",
+  "kind": "leaderboard",
+  "maintainer": "Nebius",
+  "released": "2025-05",
+  "description": "Nebius' continuously refreshed leaderboard for agentic software engineering. New GitHub issues are mined monthly into executable tasks, every model is run with the same fixed scaffold, and success is the fraction of tasks whose hidden tests pass (with pass@5, cost and tokens per problem). Tasks are dated so contamination relative to each model's release can be flagged. Because it is self-run under one harness on fresh problems, it is a cleaner comparison than lab-reported SWE-bench Verified numbers.",
+  "status": "active",
+  "license": null,
+  "benchmarks": [
+    "swe-bench-verified"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://swe-rebench.com",
+    "repo": null,
+    "paper": "https://arxiv.org/abs/2505.20411"
+  },
+  "notes": "Announced 2025-05-14 (nebius.com/blog/posts/introducing-swe-rebench). Paper arXiv 2505.20411 verified: 'SWE-rebench: An Automated Pipeline for Task Collection and Decontaminated Evaluation of Software Engineering Agents'. The leaderboard's own task set is not a benchmark id in this repo; swe-bench-verified is listed because the paper compares its results against it and the leaderboard is positioned as its decontaminated counterpart."
+}

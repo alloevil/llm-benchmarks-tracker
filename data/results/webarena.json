@@ -1,0 +1,79 @@
+{
+  "benchmark": "webarena",
+  "results": [
+    {
+      "system": "gpt-4-0613",
+      "developer": "OpenAI",
+      "value": 14.9,
+      "date": "2023-06-01",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "WebArena team baseline without the 'not achievable' hint (paper reports 14.41% with it). Sheet gives month only; 1st used."
+      }
+    },
+    {
+      "system": "SteP",
+      "developer": "SteP (leaderboard result source)",
+      "value": 33.5,
+      "date": "2024-04-01",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "SteP",
+        "notes": "Sheet notes high-level plans are human-derived. Month only; 1st used."
+      }
+    },
+    {
+      "system": "OpenAI Operator",
+      "developer": "OpenAI",
+      "value": 58.1,
+      "date": "2025-01-01",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "OpenAI CUA",
+        "notes": "Self-reported by OpenAI (system card), listed on the maintainer sheet. Month only; 1st used."
+      }
+    },
+    {
+      "system": "ColorBrowserAgent",
+      "developer": "ColorBrowserAgent",
+      "value": 71.2,
+      "date": "2025-12-01",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "ColorBrowserAgent",
+        "notes": "Open-source entry with trajectories. Month only; 1st used."
+      }
+    },
+    {
+      "system": "WebTactix + Deepseek v3.2",
+      "developer": "WebTactix",
+      "value": 74.3,
+      "date": "2026-02-01",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "WebTactix",
+        "notes": "Top of the maintainer sheet as of access date. Month only; 1st used."
+      }
+    }
+  ]
+}

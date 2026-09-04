@@ -1,0 +1,41 @@
+{
+  "id": "ruler",
+  "name": "RULER",
+  "full_name": "RULER: What's the Real Context Size of Your Long-Context Language Models?",
+  "layer": "model",
+  "released": "2024-04",
+  "maintainer": "NVIDIA (Hsieh et al.)",
+  "description": "A synthetic long-context suite of 13 tasks in four categories (needle-in-a-haystack retrieval variants, multi-hop variable tracing, aggregation of frequent words, and question answering over long inputs) generated at configurable lengths from 4K to 128K tokens or more. Scored as accuracy averaged across tasks at each length; a model's 'effective context' is the longest length at which it beats a fixed threshold (Llama-2-7B at 4K, 85.6%). It exposes the gap between claimed and usable context windows.",
+  "domains": [
+    "long-context"
+  ],
+  "metric": {
+    "name": "accuracy (average over 13 tasks)",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 13,
+  "splits": [
+    {
+      "name": "128K",
+      "note": "Average across the 13 tasks at 128K tokens; the hardest standard length and the one most often quoted."
+    },
+    {
+      "name": "Avg. 4K-128K",
+      "note": "Unweighted mean over the six standard lengths (4K, 8K, 16K, 32K, 64K, 128K)."
+    }
+  ],
+  "status": "saturating",
+  "contamination_risk": "low",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2404.06654",
+    "website": "https://github.com/NVIDIA/RULER",
+    "leaderboard": "https://github.com/NVIDIA/RULER",
+    "dataset": null,
+    "code": "https://github.com/NVIDIA/RULER"
+  },
+  "notes": "Inputs are generated on the fly, so there is nothing to memorize, but the tasks are synthetic and easier than realistic long-document work; strong models now score above 90% at 128K. The maintainers' table mixes their own runs with author-reported numbers (marked with an asterisk), and closed models (GPT-4, Gemini 1.5 Pro) were last run in 2024."
+}

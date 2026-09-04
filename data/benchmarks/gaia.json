@@ -1,0 +1,51 @@
+{
+  "id": "gaia",
+  "name": "GAIA",
+  "full_name": "GAIA: a benchmark for General AI Assistants",
+  "layer": "agent",
+  "released": "2023-11",
+  "maintainer": "Meta FAIR / Hugging Face / AutoGPT (Mialon et al.)",
+  "description": "466 real-world questions (166 public validation, 300 private test) that need web browsing, file handling, multimodal reading and tool use to reach a short, unambiguous answer; scored by quasi-exact match after normalisation. Three difficulty levels, with Level 3 requiring long tool-use chains. Questions are easy for humans, so the gap to human accuracy is the headline signal for general assistants.",
+  "domains": [
+    "general-assistant",
+    "tool-use",
+    "web",
+    "reasoning",
+    "multimodal"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 466,
+  "splits": [
+    {
+      "name": "test",
+      "task_count": 300,
+      "note": "Private-answer test set scored on the Hugging Face leaderboard; the only leaderboard still open."
+    },
+    {
+      "name": "validation",
+      "task_count": 166,
+      "note": "Public dev set with answers; the validation leaderboard was closed by the maintainers."
+    }
+  ],
+  "status": "saturating",
+  "contamination_risk": "medium",
+  "human_baseline": {
+    "value": 92.0,
+    "population": "human annotators (validation phase, average over levels)",
+    "source": "https://arxiv.org/abs/2311.12983"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2311.12983",
+    "website": "https://huggingface.co/gaia-benchmark",
+    "leaderboard": "https://huggingface.co/spaces/gaia-benchmark/leaderboard",
+    "dataset": "https://huggingface.co/datasets/gaia-benchmark/GAIA",
+    "code": "https://huggingface.co/spaces/gaia-benchmark/leaderboard/blob/main/scorer.py"
+  },
+  "notes": "Test answers are private but the leaderboard is self-submitted and dominated by multi-model ensembles; top scores are within a few points of the 92% human figure. HAL (hal.cs.princeton.edu/gaia) re-runs open scaffolds on the validation set for independent numbers."
+}

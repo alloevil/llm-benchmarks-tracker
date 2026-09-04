@@ -1,0 +1,46 @@
+{
+  "id": "terminal-bench",
+  "name": "Terminal-Bench",
+  "full_name": "Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command Line Interfaces",
+  "layer": "agent",
+  "released": "2026-01",
+  "maintainer": "Stanford / Laude Institute / Harbor (Merrill, Shaw et al.)",
+  "description": "Hard, human-authored tasks that an agent must complete inside a real terminal environment (software engineering, scientific computing, ML, security, data processing). Each task ships its own container, a human solution and tests; the score is the fraction of tasks whose tests pass, averaged over several trials with 95% confidence intervals. The de-facto benchmark for CLI coding agents, run through the Harbor framework.",
+  "domains": [
+    "software-engineering",
+    "code",
+    "tool-use",
+    "ml-engineering"
+  ],
+  "metric": {
+    "name": "resolution rate",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 66,
+  "splits": [
+    {
+      "name": "2.0",
+      "task_count": 89,
+      "note": "Terminal-Bench 2.0 (November 2025), the version described in the paper."
+    },
+    {
+      "name": "4.0",
+      "task_count": 66,
+      "note": "Current official leaderboard version; 5 trials per task (330 trials)."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2601.11868",
+    "website": "https://www.tbench.ai",
+    "leaderboard": "https://www.tbench.ai/leaderboard",
+    "dataset": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4?tab=tasks",
+    "code": "https://github.com/laude-institute/terminal-bench"
+  },
+  "notes": "Versioned benchmark: tasks are refreshed between releases (2.0 had 89 tasks, 4.0 has 66), so scores are only comparable within a version. Public tasks carry a canary string and the site asks that benchmark data never appear in training corpora."
+}

@@ -1,0 +1,53 @@
+{
+  "id": "truthfulqa",
+  "name": "TruthfulQA",
+  "full_name": "TruthfulQA: Measuring How Models Mimic Human Falsehoods",
+  "layer": "model",
+  "released": "2021-09",
+  "maintainer": "University of Oxford / OpenAI (Lin, Hilton, Evans)",
+  "description": "817 questions across 38 categories (health, law, finance, politics, conspiracies) crafted so that some humans would answer falsely because of common misconceptions. Models are scored either on free-form generation (judged truthful and informative by a fine-tuned judge or human raters) or on multiple-choice variants MC1 and MC2 (probability mass on true answers). It exposed the 'inverse scaling' of imitative falsehoods and remains a reference point for factuality and sycophancy work, though the questions are widely trained on.",
+  "domains": [
+    "factuality",
+    "safety"
+  ],
+  "metric": {
+    "name": "MC2 accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 817,
+  "splits": [
+    {
+      "name": "MC1",
+      "task_count": 817,
+      "note": "Single-correct-answer multiple choice."
+    },
+    {
+      "name": "MC2",
+      "task_count": 817,
+      "note": "Normalized probability on the set of true answers; the Open LLM Leaderboard v1 metric."
+    },
+    {
+      "name": "generation",
+      "task_count": 817,
+      "note": "Free-form answers judged for truthfulness and informativeness."
+    }
+  ],
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": {
+    "value": 94.0,
+    "population": "one human participant answering the generation task (94% true, 87% true and informative)",
+    "source": "https://arxiv.org/abs/2109.07958"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2109.07958",
+    "website": "https://github.com/sylinrl/TruthfulQA",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/truthfulqa/truthful_qa",
+    "code": "https://github.com/sylinrl/TruthfulQA"
+  },
+  "notes": "The 94% human figure is a single participant on the generation task and is not comparable with MC2. The benchmark was retired from the Open LLM Leaderboard in mid-2024 because of saturation and contamination, and frontier vendors no longer report it, so the ledger holds only the paper baseline."
+}

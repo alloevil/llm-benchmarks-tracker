@@ -1,0 +1,35 @@
+{
+  "id": "bbh",
+  "name": "BIG-Bench Hard",
+  "full_name": "BIG-Bench Hard (BBH): 23 challenging BIG-Bench tasks",
+  "layer": "model",
+  "released": "2022-10",
+  "maintainer": "Google Research / Stanford (Suzgun et al.)",
+  "description": "A suite of 23 BIG-Bench tasks (6,511 examples) on which 2022 language models scored below the average human rater: multi-step arithmetic, logical deduction, tracking shuffled objects, causal judgement, date understanding and others. Scored as exact-match accuracy averaged over tasks, usually 3-shot with chain-of-thought exemplars. It showed that CoT prompting unlocks emergent gains and became a standard reasoning check; frontier models now exceed the best human rater on most tasks.",
+  "domains": [
+    "reasoning"
+  ],
+  "metric": {
+    "name": "accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 6511,
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": {
+    "value": 67.7,
+    "population": "average BIG-Bench human rater (max rater: 94.4%)",
+    "source": "https://arxiv.org/abs/2210.09261"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2210.09261",
+    "website": "https://github.com/suzgunmirac/BIG-Bench-Hard",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/lukaemon/bbh",
+    "code": "https://github.com/suzgunmirac/BIG-Bench-Hard"
+  },
+  "notes": "Answer-only vs CoT prompting changes scores by 10-20 points; the Open LLM Leaderboard v2 reported a 3-shot answer-only variant, so numbers across harnesses are not comparable."
+}

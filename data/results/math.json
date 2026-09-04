@@ -1,0 +1,66 @@
+{
+  "benchmark": "math",
+  "results": [
+    {
+      "system": "GPT-3 175B (few-shot)",
+      "developer": "OpenAI",
+      "value": 5.2,
+      "date": "2021-03-05",
+      "source": {
+        "url": "https://arxiv.org/abs/2103.03874",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Table 2 of the MATH paper, overall accuracy (175B*, few-shot). The paper's human anchors: CS PhD student about 40%, three-time IMO gold medalist 90%."
+      }
+    },
+    {
+      "system": "gpt-4-turbo-2024-04-09",
+      "developer": "OpenAI",
+      "value": 73.4,
+      "date": "2024-04-09",
+      "source": {
+        "url": "https://github.com/openai/simple-evals",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "MATH-500",
+        "shots": 0,
+        "notes": "simple-evals README; the MATH column is the 500-problem subset, zero-shot CoT."
+      }
+    },
+    {
+      "system": "o1-2024-12-17 (medium)",
+      "developer": "OpenAI",
+      "value": 94.4,
+      "date": "2025-01-27",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/math-level-5",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "Level 5",
+        "notes": "Epoch AI Benchmarking Hub run of 2025-01-27 on the 1,324 Level-5 test problems (data export)."
+      }
+    },
+    {
+      "system": "o3-high",
+      "developer": "OpenAI",
+      "value": 98.1,
+      "date": "2025-04-16",
+      "source": {
+        "url": "https://github.com/openai/simple-evals",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "MATH-500",
+        "shots": 0,
+        "notes": "simple-evals README; o4-mini-high 98.2 on the same table. Epoch's Level-5 run of gpt-5 (high) reached 98.1 in October 2025."
+      }
+    }
+  ]
+}

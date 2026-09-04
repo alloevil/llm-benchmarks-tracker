@@ -1,0 +1,39 @@
+{
+  "id": "opencompass",
+  "name": "OpenCompass",
+  "kind": "framework",
+  "maintainer": "Shanghai AI Laboratory (OpenCompass team)",
+  "released": "2023-07",
+  "description": "Open-source evaluation platform from Shanghai AI Laboratory covering 100+ datasets with configurable prompts, LLM-judge and math-verify evaluators, and inference backends including LMDeploy, vLLM and API models. Scores are produced by running the framework yourself; the same team self-runs it to publish the CompassRank leaderboard. Widely used for Chinese and English open-weight model reports, so numbers labelled 'OpenCompass' are usually reproducible from its configs.",
+  "status": "active",
+  "license": "Apache-2.0",
+  "benchmarks": [
+    "mmlu",
+    "mmlu-pro",
+    "gpqa-diamond",
+    "hle",
+    "aime-2025",
+    "humaneval",
+    "mbpp",
+    "gsm8k",
+    "math",
+    "hellaswag",
+    "bbh",
+    "ifeval",
+    "simpleqa",
+    "mmmu-pro",
+    "ruler",
+    "livecodebench",
+    "truthfulqa",
+    "winogrande",
+    "drop",
+    "arc-agi-1"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://opencompass.org.cn/",
+    "repo": "https://github.com/open-compass/opencompass",
+    "paper": null
+  },
+  "notes": "First GitHub release 0.1.0 on 2023-07-06. Benchmarks from dataset-index.yml (ifeval, livecodebench, ruler, aime2025, arc_prize_public_eval for ARC-AGI-1, bbh, drop, gpqa incl. diamond split, gsm8k, hle, hellaswag, humaneval, math, mbpp, mmlu, mmlu_pro, simpleqa, truthfulqa, winogrande) plus MMMU-Pro via the VLMEvalKit integration announced 2026-08-25."
+}

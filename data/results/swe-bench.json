@@ -1,0 +1,82 @@
+{
+  "benchmark": "swe-bench",
+  "results": [
+    {
+      "system": "RAG + Claude 2",
+      "developer": "Anthropic",
+      "value": 1.96,
+      "date": "2023-10-10",
+      "source": {
+        "url": "https://www.swebench.com/#test",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "scaffold": "RAG baseline",
+        "notes": "Paper baseline (BM25 retrieval, no agent), checked by the SWE-bench team."
+      }
+    },
+    {
+      "system": "SWE-agent + GPT 4 (1106)",
+      "developer": "OpenAI",
+      "value": 12.47,
+      "date": "2024-04-02",
+      "source": {
+        "url": "https://www.swebench.com/#test",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "scaffold": "SWE-agent"
+      }
+    },
+    {
+      "system": "OpenHands + CodeAct v2.1 (claude-3-5-sonnet-20241022)",
+      "developer": "Anthropic",
+      "value": 29.38,
+      "date": "2024-11-03",
+      "source": {
+        "url": "https://www.swebench.com/#test",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "scaffold": "OpenHands CodeAct v2.1"
+      }
+    },
+    {
+      "system": "SWE-agent 1.0 (Claude 3.7 Sonnet)",
+      "developer": "Anthropic",
+      "value": 33.83,
+      "date": "2025-02-27",
+      "source": {
+        "url": "https://www.swebench.com/#test",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "scaffold": "SWE-agent 1.0"
+      }
+    },
+    {
+      "system": "Sonar Foundation Agent + Claude 4.5 Opus",
+      "developer": "Anthropic",
+      "value": 52.62,
+      "date": "2025-12-19",
+      "source": {
+        "url": "https://www.swebench.com/#test",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "scaffold": "Sonar Foundation Agent",
+        "notes": "Top of the Full leaderboard; submission not run or checked by the SWE-bench team."
+      }
+    }
+  ]
+}

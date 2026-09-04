@@ -1,0 +1,102 @@
+{
+  "benchmark": "swe-bench-pro",
+  "results": [
+    {
+      "system": "OpenAI GPT-5 (medium)",
+      "developer": "OpenAI",
+      "value": 23.3,
+      "date": "2025-09-21",
+      "source": {
+        "url": "https://arxiv.org/abs/2509.16941",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "public",
+        "scaffold": "SWE-Agent",
+        "notes": "Table 5 of the paper; capped at 50 turns and a cost limit."
+      }
+    },
+    {
+      "system": "Claude Opus 4.1",
+      "developer": "Anthropic",
+      "value": 22.7,
+      "date": "2025-09-21",
+      "source": {
+        "url": "https://arxiv.org/abs/2509.16941",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "public",
+        "scaffold": "SWE-Agent",
+        "notes": "Table 5 of the paper; capped at 50 turns and a cost limit."
+      }
+    },
+    {
+      "system": "Claude Opus 4.1 (commercial set)",
+      "developer": "Anthropic",
+      "value": 17.8,
+      "date": "2025-09-21",
+      "source": {
+        "url": "https://arxiv.org/abs/2509.16941",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "commercial",
+        "scaffold": "SWE-Agent",
+        "notes": "Commercial (private startup) subset, Table 2 of the paper."
+      }
+    },
+    {
+      "system": "claude-opus-4-5-20251101",
+      "developer": "Anthropic",
+      "value": 45.89,
+      "date": "2026-09-04",
+      "source": {
+        "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "public",
+        "scaffold": "SWE-Agent",
+        "notes": "Uncapped cost, 250-turn limit. Leaderboard shows no per-row date; date is the day observed."
+      }
+    },
+    {
+      "system": "gpt-5.4 (xHigh)",
+      "developer": "OpenAI",
+      "value": 59.1,
+      "date": "2026-09-04",
+      "source": {
+        "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "public",
+        "scaffold": "mini-swe-agent",
+        "reasoning_effort": "xhigh",
+        "notes": "Uncapped cost, 250-turn limit. Leaderboard shows no per-row date; date is the day observed."
+      }
+    },
+    {
+      "system": "Muse Spark 1.1",
+      "developer": "Meta",
+      "value": 61.5,
+      "date": "2026-09-04",
+      "source": {
+        "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "public",
+        "scaffold": "mini-swe-agent",
+        "notes": "Marked NEW on the leaderboard, +/-3.10 CI. Uncapped cost, 250-turn limit. No per-row date; date is the day observed."
+      }
+    }
+  ]
+}

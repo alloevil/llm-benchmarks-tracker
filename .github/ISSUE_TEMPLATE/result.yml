@@ -1,0 +1,40 @@
+name: Add or correct a result
+description: Report a benchmark score that is missing or wrong.
+labels: [data]
+body:
+  - type: input
+    id: benchmark
+    attributes:
+      label: Benchmark id
+      placeholder: swe-bench-verified
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: System (model / agent, as the source names it)
+    validations:
+      required: true
+  - type: input
+    id: value
+    attributes:
+      label: Score
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Source URL showing the score
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Source kind
+      options: [official-leaderboard, paper, independent-evaluation, developer-report, aggregator]
+    validations:
+      required: true
+  - type: textarea
+    id: conditions
+    attributes:
+      label: Conditions stated by the source (tools, reasoning effort, scaffold, pass@k, split)

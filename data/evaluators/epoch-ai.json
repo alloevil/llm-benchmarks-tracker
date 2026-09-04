@@ -1,0 +1,28 @@
+{
+  "id": "epoch-ai",
+  "name": "Epoch AI Benchmarking Hub",
+  "kind": "independent-evaluator",
+  "maintainer": "Epoch AI",
+  "released": "2024-11",
+  "description": "Epoch AI's database of benchmark results for frontier models. Some benchmarks (GPQA Diamond, FrontierMath, SWE-bench Verified, SimpleQA Verified, MirrorCode) are evaluated internally with Inspect AI under documented, consistent settings and error bars; others (ARC-AGI, Terminal-Bench, HLE, MMLU) are collected from official leaderboards or primary sources and labelled as such. Data are CC-BY and downloadable, making it a standard source for capability trend analysis independent of lab marketing.",
+  "status": "active",
+  "license": "CC-BY-4.0",
+  "benchmarks": [
+    "gpqa-diamond",
+    "frontiermath",
+    "swe-bench-verified",
+    "simpleqa",
+    "hle",
+    "arc-agi-1",
+    "arc-agi-2",
+    "terminal-bench",
+    "mmlu"
+  ],
+  "methodology": "self-run",
+  "links": {
+    "website": "https://epoch.ai/benchmarks",
+    "repo": null,
+    "paper": null
+  },
+  "notes": "Launched 2024-11-27 (epoch.ai/latest/introducing-benchmarks-dashboard). Methodology is mixed: internal runs via Inspect plus externally collected results; recorded as self-run since that is its distinguishing feature. Benchmark pages verified at epoch.ai/benchmarks/{gpqa-diamond,frontiermath,swe-bench-verified,simple-qa-verified,hle,arc-agi,arc-agi-2,terminal-bench,mmlu}. License applies to Epoch's own data."
+}

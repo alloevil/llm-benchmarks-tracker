@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alloevil.github.io/llm-benchmarks-tracker/schema/results.schema.json",
+  "title": "Benchmark results ledger",
+  "description": "Append-only list of reported scores for one benchmark. File name must equal `benchmark` (data/results/<benchmark>.json). Never overwrite a row; add a new one with a newer date.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["benchmark", "results"],
+  "properties": {
+    "benchmark": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "results": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/result" }
+    }
+  },
+  "$defs": {
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system", "developer", "value", "date", "source"],
+      "properties": {
+        "system": {
+          "description": "Model or agent name exactly as reported by the source, including variant (e.g. 'o3 (high)', 'Claude Opus 4.1 + SWE-agent').",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "developer": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "value": { "type": "number" },
+        "date": {
+          "description": "Date the score was published or first observed (YYYY-MM-DD). Not the model release date.",
+          "type": "string",
+          "format": "date"
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["url", "kind", "accessed"],
+          "properties": {
+            "url": { "type": "string", "format": "uri" },
+            "kind": {
+              "description": "official-leaderboard = run/verified by the benchmark maintainer; developer-report = model vendor self-report; independent-evaluation = third party re-ran it; paper = number from a paper; aggregator = site that collects reported numbers.",
+              "enum": ["official-leaderboard", "developer-report", "independent-evaluation", "paper", "aggregator"]
+            },
+            "accessed": { "type": "string", "format": "date" }
+          }
+        },
+        "conditions": {
+          "description": "Anything that changes comparability. Omit keys that are unknown; never guess.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "split": { "type": "string" },
+            "tools": { "description": "Web search / code execution allowed.", "type": "boolean" },
+            "reasoning_effort": { "type": "string" },
+            "scaffold": { "description": "Agent harness used, e.g. 'mini-SWE-agent', 'Provider Adapter'.", "type": "string" },
+            "pass_k": { "type": "integer", "minimum": 1 },
+            "shots": { "type": "integer", "minimum": 0 },
+            "cost_usd_per_task": { "type": "number", "minimum": 0 },
+            "notes": { "type": "string", "maxLength": 300 }
+          }
+        }
+      }
+    }
+  }
+}

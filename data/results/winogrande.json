@@ -1,0 +1,34 @@
+{
+  "benchmark": "winogrande",
+  "results": [
+    {
+      "system": "RoBERTa (fine-tuned)",
+      "developer": "Facebook AI (evaluated by Sakaguchi et al.)",
+      "value": 79.1,
+      "date": "2019-07-24",
+      "source": {
+        "url": "https://arxiv.org/abs/1907.10641",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Table 3 of the WinoGrande paper, test accuracy on the debiased set; human performance 94.0."
+      }
+    },
+    {
+      "system": "DeepSeek-V4-Pro-Base",
+      "developer": "DeepSeek",
+      "value": 81.5,
+      "date": "2026-04-22",
+      "source": {
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "shots": 0,
+        "notes": "DeepSeek-V4 model card, base-model table (HF repo created 2026-04-22). Base model, exact match, zero-shot."
+      }
+    }
+  ]
+}
