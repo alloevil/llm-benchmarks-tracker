@@ -1,0 +1,39 @@
+{
+  "id": "lmarena-text",
+  "name": "LMArena Text",
+  "full_name": "LMArena (Chatbot Arena) Text leaderboard",
+  "layer": "model",
+  "released": "2023-05",
+  "maintainer": "LMArena (Arena; formerly LMSYS / UC Berkeley)",
+  "description": "Live crowdsourced human-preference ranking of chat models. Visitors type any prompt, receive answers from two anonymous models side by side and vote; millions of pairwise votes are fit with a Bradley-Terry model (originally online Elo) to produce an Arena score with bootstrap confidence intervals, plus style-controlled and category views. Because prompts are fresh and judged by real users it is hard to contaminate and captures perceived helpfulness, but it rewards persuasive formatting and depends on which models are sampled.",
+  "description_zh": "实时众包的人类偏好排行榜。访问者输入任意提示,并排收到两个匿名模型的回答后投票;数百万成对投票以 Bradley-Terry 模型(最初为在线 Elo)拟合得到 Arena 分数及自举置信区间,另有风格控制与分类视图。提示新鲜且由真实用户评判,难以污染并反映感知有用性,但会奖励有说服力的排版并受模型采样策略影响。",
+  "domains": [
+    "human-preference",
+    "general-assistant"
+  ],
+  "metric": {
+    "name": "Arena score (Bradley-Terry Elo scale)",
+    "unit": "elo",
+    "higher_is_better": true
+  },
+  "task_count": null,
+  "splits": [
+    {
+      "name": "style-control",
+      "note": "Default view since 2025 that regresses out response length and markdown formatting."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "low",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2403.04132",
+    "website": "https://lmarena.ai",
+    "leaderboard": "https://lmarena.ai/leaderboard/text",
+    "dataset": "https://huggingface.co/spaces/lmarena-ai/arena-leaderboard",
+    "code": "https://github.com/lmarena/arena-rank"
+  },
+  "notes": "Launched 2023-05-03 as Chatbot Arena (lmsys.org blog); paper arXiv 2403.04132 verified. Ledger rows are the top text model at dated snapshots taken from LMSYS blog tables and the maintainer's leaderboard data files (elo_results_YYYYMMDD.pkl in the lmarena-ai/arena-leaderboard Space, whose last committed snapshot is 2025-08-29). Scores are only comparable within one snapshot: the scale drifts as models are added and the rating system moved from online Elo to Bradley-Terry in December 2023. The live site (lmarena.ai / arena.ai) was unreachable from this environment on 2026-09-04, so no 2026 snapshot is recorded."
+}

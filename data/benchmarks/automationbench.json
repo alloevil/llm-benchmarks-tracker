@@ -1,0 +1,46 @@
+{
+  "id": "automationbench",
+  "name": "AutomationBench",
+  "full_name": "AutomationBench: cross-application business workflow orchestration via REST APIs",
+  "layer": "agent",
+  "released": "2026-04",
+  "maintainer": "Zapier (Daniel Shepard, Robin Salimans)",
+  "description": "Business-workflow tasks across Sales, Marketing, Operations, Support, Finance and HR in which an agent, given one trigger message, must discover the right REST endpoints (BM25 search over ~500 endpoint schemas from 47 simulated SaaS apps), follow policy documents hidden in the environment, avoid decoy records, and mutate the state of a simulated company. Grading is deterministic end-state assertions, including negative ones; the official score is the strict fraction of tasks with every assertion passing on a private held-out set (600+ tasks); a 600-task public set is released for research.",
+  "description_zh": "覆盖销售、市场、运营、客服、财务和 HR 的业务流程任务:智能体接收单条触发消息后,需在 47 个模拟 SaaS 应用的约 500 个 REST 端点中(BM25 检索)自行发现接口,遵循隐藏在环境中的政策文档,避开干扰记录,并修改模拟公司的状态。评分为确定性的最终状态断言(含负向断言);官方得分为所有断言全部通过的任务比例,在私有保留集(600+ 任务)上运行,另有 600 个公开任务供研究。",
+  "domains": [
+    "tool-use",
+    "general-assistant",
+    "instruction-following"
+  ],
+  "metric": {
+    "name": "task pass rate (all assertions)",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 600,
+  "splits": [
+    {
+      "name": "private",
+      "task_count": null,
+      "note": "Held-out private set (600+ tasks, 100+ per domain) scored on the official zapier.com/benchmarks leaderboard; version 1.0.6 as of access date. Private tasks are periodically hardened."
+    },
+    {
+      "name": "public",
+      "task_count": 600,
+      "note": "Public research set in the GitHub repo (100 tasks per domain plus a 200-task 'simple' baseline domain that is not scored). Public scores run higher than private ones."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "low",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2604.18934",
+    "website": "https://zapier.com/benchmarks",
+    "leaderboard": "https://zapier.com/benchmarks",
+    "dataset": "https://github.com/zapier/AutomationBench",
+    "code": "https://github.com/zapier/AutomationBench"
+  },
+  "notes": "Tasks were synthetically generated from the shape of real Zapier customer workflows and hardened; partial_credit (fraction of assertions) is reported as a diagnostic and RL reward but is not the headline score. Artificial Analysis runs an independent variant, AutomationBench-AA, whose headline is the share of objectives completed without guardrail violations, so AA numbers are on a different scale from Zapier's strict pass rate. Zapier's own leaderboard is a single run per model at its highest reasoning effort; the rank-1 Fable 5.1 entry uses an Opus 5 fallback for ~40% of tasks."
+}

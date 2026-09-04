@@ -1,0 +1,103 @@
+{
+  "benchmark": "tool-decathlon",
+  "results": [
+    {
+      "system": "Claude-4.5-Sonnet",
+      "developer": "Anthropic",
+      "value": 38.6,
+      "date": "2025-10-29",
+      "source": {
+        "url": "https://arxiv.org/abs/2510.25726",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "original",
+        "notes": "Best model in the paper abstract (20.2 tool-calling turns on average); original October 2025 task release."
+      }
+    },
+    {
+      "system": "DeepSeek-V3.2-Exp",
+      "developer": "DeepSeek",
+      "value": 20.1,
+      "date": "2025-10-29",
+      "source": {
+        "url": "https://arxiv.org/abs/2510.25726",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "original",
+        "notes": "Top open-weights model in the paper abstract; original October 2025 task release."
+      }
+    },
+    {
+      "system": "Claude Opus 4.8 (max)",
+      "developer": "Anthropic",
+      "value": 76.2,
+      "date": "2026-06-30",
+      "source": {
+        "url": "https://toolathlon.xyz/docs/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "verified",
+        "scaffold": "Default",
+        "reasoning_effort": "max",
+        "notes": "Evaluated by the Toolathlon team; +/-3.4 over 3 runs; Pass@3 84.3, Pass^3 66.7; 19.9 turns, 36.3 tool calls per task."
+      }
+    },
+    {
+      "system": "GPT-5.5 (xhigh)",
+      "developer": "OpenAI",
+      "value": 73.5,
+      "date": "2026-06-30",
+      "source": {
+        "url": "https://toolathlon.xyz/docs/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "verified",
+        "scaffold": "Default",
+        "reasoning_effort": "xhigh",
+        "notes": "Evaluated by the Toolathlon team; +/-1.2 over 3 runs; Pass@3 82.4, Pass^3 62.0."
+      }
+    },
+    {
+      "system": "Kimi K3 (max)",
+      "developer": "Moonshot AI",
+      "value": 76.5,
+      "date": "2026-07-16",
+      "source": {
+        "url": "https://toolathlon.xyz/docs/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "verified",
+        "scaffold": "Default",
+        "reasoning_effort": "max",
+        "notes": "Evaluated by the Toolathlon team; +/-1.9 over 3 runs; Pass@3 83.3, Pass^3 68.5 (highest Pass^3 on the board)."
+      }
+    },
+    {
+      "system": "GLM 5.3 Flash (max)",
+      "developer": "Z.ai",
+      "value": 78.4,
+      "date": "2026-08-30",
+      "source": {
+        "url": "https://toolathlon.xyz/docs/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "verified",
+        "scaffold": "Default",
+        "reasoning_effort": "max",
+        "notes": "Rank 1 Pass@1 as of access date; +/-1.9 over 3 runs; Pass@3 / Pass^3 not yet published."
+      }
+    }
+  ]
+}

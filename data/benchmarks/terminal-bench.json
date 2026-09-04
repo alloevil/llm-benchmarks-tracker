@@ -29,6 +29,11 @@
       "name": "4.0",
       "task_count": 66,
       "note": "Current official leaderboard version; 5 trials per task (330 trials)."
+    },
+    {
+      "name": "science",
+      "task_count": 70,
+      "note": "Terminal-Bench-Science 0.1 (August 2026): separate Stanford-led task set of 70 expert-curated scientific research workflows (life, physical, Earth, mathematical, engineering sciences); 3 trials per task; own leaderboard at terminal-bench-science.ai. Not comparable to the 4.0 numbers."
     }
   ],
   "status": "active",
@@ -43,5 +48,5 @@
     "dataset": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4?tab=tasks",
     "code": "https://github.com/laude-institute/terminal-bench"
   },
-  "notes": "Versioned benchmark: tasks are refreshed between releases (2.0 had 89 tasks, 4.0 has 66), so scores are only comparable within a version. Public tasks carry a canary string and the site asks that benchmark data never appear in training corpora."
+  "notes": "Versioned benchmark: tasks are refreshed between releases (2.0 had 89 tasks, 4.0 has 66), so scores are only comparable within a version. Public tasks carry a canary string and the site asks that benchmark data never appear in training corpora. Terminal-Bench-Science (harbor-framework/terminal-bench-science, DOI 10.5281/zenodo.22110253) is a sibling benchmark in the same family and Harbor framework, tracked here as the 'science' split."
 }

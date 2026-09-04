@@ -1,0 +1,46 @@
+{
+  "id": "tool-decathlon",
+  "name": "Tool Decathlon (Toolathlon)",
+  "full_name": "The Tool Decathlon: Benchmarking Language Agents for Diverse, Realistic, and Long-Horizon Task Execution",
+  "layer": "agent",
+  "released": "2025-10",
+  "maintainer": "HKUST NLP (Junlong Li, Junxian He et al.) with CMU / OpenHands collaborators",
+  "description": "108 manually sourced tasks that require an agent to drive 32 real software applications through 604 tools (mostly MCP servers) such as Google Calendar, Notion, Canvas, WooCommerce, Kubernetes and BigQuery, starting from realistic seeded environment states and taking roughly 20 turns each. Every task is graded by a dedicated execution-based evaluation script on the resulting state; the leaderboard reports Pass@1 over three runs plus Pass@3 and Pass^3. It is the broadest public test of general MCP-style tool use across heterogeneous apps.",
+  "description_zh": "108 个人工采集或构造的任务,要求智能体通过 604 个工具(主要为 MCP server)操作 32 个真实软件应用,如 Google Calendar、Notion、Canvas、WooCommerce、Kubernetes 和 BigQuery,从真实的初始环境状态出发,平均约 20 轮交互。每个任务由专用的基于执行的评测脚本对最终状态评分;榜单报告三次运行的 Pass@1 以及 Pass@3 和 Pass^3。是目前覆盖最广的通用 MCP 风格跨应用工具使用公开测试。",
+  "domains": [
+    "tool-use",
+    "general-assistant",
+    "software-engineering"
+  ],
+  "metric": {
+    "name": "Pass@1 (mean of 3 runs)",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 108,
+  "splits": [
+    {
+      "name": "original",
+      "task_count": 108,
+      "note": "October 2025 release described in the ICLR 2026 paper; score series retired when Toolathlon-Verified launched."
+    },
+    {
+      "name": "verified",
+      "task_count": 108,
+      "note": "Toolathlon-Verified (2026-06-30): same 108 tasks with repaired instructions, initial states, ground truth and evaluators across 83 task packages. Starts a new official score series, not comparable to the original."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2510.25726",
+    "website": "https://toolathlon.xyz/introduction",
+    "leaderboard": "https://toolathlon.xyz/docs/leaderboard",
+    "dataset": "https://huggingface.co/datasets/hkust-nlp/Toolathlon-Verified_Trajectories/tree/main",
+    "code": "https://github.com/hkust-nlp/Toolathlon"
+  },
+  "notes": "Rows marked with a check on the leaderboard are run by the Toolathlon team in the Default agent configuration, three runs each, with +/- standard deviation shown. Tasks touch live services (Canvas, Notion, WooCommerce, Google APIs), so results can drift with the services themselves; the Verified release added bounded retries and per-instance isolation to reduce this. Task files and evaluators are public on GitHub."
+}

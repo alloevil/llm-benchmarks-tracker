@@ -1,0 +1,35 @@
+{
+  "id": "deepsearchqa",
+  "name": "DeepSearchQA",
+  "full_name": "DeepSearchQA: Bridging the Comprehensiveness Gap for Deep Research Agents",
+  "layer": "agent",
+  "released": "2025-12",
+  "maintainer": "Google DeepMind (Gupta, Chatterjee, Haas, Tao et al.); leaderboard run by Kaggle",
+  "description": "900 hand-crafted, time-anchored web-research prompts across 17 fields whose answers are exhaustive sets rather than single facts (65% set answers). Each prompt is a causal chain of dependent look-ups, so agents must plan multi-step searches, collate fragments from many sources, de-duplicate entities and decide when to stop. Answers are judged for semantic set match by a fixed Gemini 2.5 Flash autorater; the primary metric is mean per-prompt F1, with fully-correct and fully-incorrect rates as diagnostics. It targets the comprehensiveness gap that single-answer benchmarks like BrowseComp miss.",
+  "description_zh": "900 个人工构造、时间锚定的网页研究问题,覆盖 17 个领域,答案为完整集合而非单一事实(65% 为集合型答案)。每题是一条依赖链式检索,智能体需规划多步搜索、汇总多来源碎片、消歧去重并判断何时停止。由固定的 Gemini 2.5 Flash 自动评审判定语义集合匹配;主指标为逐题平均 F1(精确率对召回率),并报告完全正确、完全错误和多答比例作为诊断。针对 BrowseComp 等单答案基准忽视的全面性缺口。",
+  "domains": [
+    "web",
+    "research",
+    "factuality",
+    "tool-use"
+  ],
+  "metric": {
+    "name": "F1 (mean over prompts)",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 900,
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2601.20975",
+    "website": "https://deepmind.google/research/evals/",
+    "leaderboard": "https://www.kaggle.com/benchmarks/google/dsqa/leaderboard",
+    "dataset": "https://huggingface.co/datasets/google/deepsearchqa",
+    "code": "https://www.kaggle.com/code/andrewmingwang/deepsearchqa-starter-code"
+  },
+  "notes": "Announced 2025-12-11 with the Gemini Deep Research agent; arXiv paper followed 2026-01-28. The official Kaggle leaderboard (last updated 2025-12-11, 13 systems) is independently run by Kaggle and reports F1 with 95% CIs; the dataset card warns that a different autorater or grading prompt gives statistically different scores, so vendor-reported numbers (Meta, Anthropic, Moonshot via aggregators) may not be comparable. Prompts and gold answers are public on Hugging Face/Kaggle, and ground truth can drift as web sources change."
+}

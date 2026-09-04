@@ -16,7 +16,8 @@
     "livecodebench",
     "mmmu-pro",
     "terminal-bench",
-    "tau2-bench"
+    "tau2-bench",
+    "aa-omniscience"
   ],
   "methodology": "self-run",
   "links": {

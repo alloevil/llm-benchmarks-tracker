@@ -1,0 +1,80 @@
+{
+  "benchmark": "deepsearchqa",
+  "results": [
+    {
+      "system": "Gemini Deep Research Agent",
+      "developer": "Google",
+      "value": 81.9,
+      "date": "2025-12-11",
+      "source": {
+        "url": "https://www.kaggle.com/benchmarks/google/dsqa/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": true,
+        "notes": "Kaggle-run leaderboard, rank 1; 66.1% fully correct, 10.0% fully incorrect, 10.3% correct with excessive answers. Leaderboard last updated 2025-12-11."
+      }
+    },
+    {
+      "system": "GPT-5 Pro",
+      "developer": "OpenAI",
+      "value": 79.0,
+      "date": "2025-12-11",
+      "source": {
+        "url": "https://www.kaggle.com/benchmarks/google/dsqa/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": true,
+        "notes": "Kaggle-run leaderboard, rank 2; 65.2% fully correct, 14.1% fully incorrect."
+      }
+    },
+    {
+      "system": "GPT-5.4",
+      "developer": "OpenAI",
+      "value": 78.6,
+      "date": "2025-12-11",
+      "source": {
+        "url": "https://www.kaggle.com/benchmarks/google/dsqa/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": true,
+        "notes": "Kaggle-run leaderboard, rank 3; 63.7% fully correct. Date is the leaderboard's 'last updated' stamp."
+      }
+    },
+    {
+      "system": "Claude Sonnet 4.6",
+      "developer": "Anthropic",
+      "value": 56.5,
+      "date": "2025-12-11",
+      "source": {
+        "url": "https://www.kaggle.com/benchmarks/google/dsqa/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": true,
+        "notes": "Kaggle-run leaderboard, rank 6; 50.8% fully correct, 41.1% fully incorrect. Date is the leaderboard's 'last updated' stamp."
+      }
+    },
+    {
+      "system": "Claude Opus 5",
+      "developer": "Anthropic",
+      "value": 95.0,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/deepsearchqa",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "tools": true,
+        "notes": "Vendor-published number republished by aggregator (tied with Kimi K3 at 95.0); harness and autorater unspecified, so not comparable to the Kaggle-run board."
+      }
+    }
+  ]
+}

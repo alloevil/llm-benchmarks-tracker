@@ -38,7 +38,7 @@
     "source": "https://arxiv.org/abs/2404.07972"
   },
   "supersedes": null,
-  "superseded_by": null,
+  "superseded_by": "osworld-2",
   "links": {
     "paper": "https://arxiv.org/abs/2404.07972",
     "website": "https://os-world.github.io",
@@ -46,5 +46,5 @@
     "dataset": "https://github.com/xlang-ai/OSWorld/tree/main/evaluation_examples",
     "code": "https://github.com/xlang-ai/OSWorld"
   },
-  "notes": "Official 'Verified' leaderboard rows are run by the XLANG team under unified settings (source: static/data/osworld_verified_results.xlsx on the site); self-reported rows are listed separately. Scores depend strongly on the max-step budget, so compare within the same budget. Task configs and evaluators are public, but live-environment execution limits memorisation. OSWorld 2.0 (June 2026) is a separate successor not tracked here."
+  "notes": "Official 'Verified' leaderboard rows are run by the XLANG team under unified settings (source: static/data/osworld_verified_results.xlsx on the site); self-reported rows are listed separately. Scores depend strongly on the max-step budget, so compare within the same budget. Task configs and evaluators are public, but live-environment execution limits memorisation. Superseded by OSWorld 2.0 (June 2026, 108 long-horizon tasks, tracked as `osworld-2`); the site now lives at osworld-v1.xlang.ai and the Verified leaderboard is still updated."
 }

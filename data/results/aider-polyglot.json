@@ -1,0 +1,92 @@
+{
+  "benchmark": "aider-polyglot",
+  "results": [
+    {
+      "system": "o1-2024-12-17 (high)",
+      "developer": "OpenAI",
+      "value": 61.7,
+      "date": "2024-12-21",
+      "source": {
+        "url": "https://aider.chat/2024/12/21/polyglot.html",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "aider",
+        "reasoning_effort": "high",
+        "pass_k": 2,
+        "cost_usd_per_task": 0.833,
+        "notes": "Launch result; diff edit format."
+      }
+    },
+    {
+      "system": "gemini-2.5-pro-preview-06-05 (32k think)",
+      "developer": "Google",
+      "value": 83.1,
+      "date": "2025-06-06",
+      "source": {
+        "url": "https://aider.chat/docs/leaderboards/",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "aider",
+        "pass_k": 2,
+        "cost_usd_per_task": 0.222,
+        "notes": "diff-fenced edit format; 32k thinking tokens."
+      }
+    },
+    {
+      "system": "o3-pro (high)",
+      "developer": "OpenAI",
+      "value": 84.9,
+      "date": "2025-06-28",
+      "source": {
+        "url": "https://aider.chat/docs/leaderboards/",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "aider",
+        "reasoning_effort": "high",
+        "pass_k": 2,
+        "cost_usd_per_task": 0.65
+      }
+    },
+    {
+      "system": "gpt-5 (high)",
+      "developer": "OpenAI",
+      "value": 88.0,
+      "date": "2025-08-23",
+      "source": {
+        "url": "https://aider.chat/docs/leaderboards/",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "aider",
+        "reasoning_effort": "high",
+        "pass_k": 2,
+        "cost_usd_per_task": 0.129,
+        "notes": "Top of the official leaderboard as of its 2025-11-20 update; diff edit format."
+      }
+    },
+    {
+      "system": "DeepSeek-V3.2-Exp (Reasoner)",
+      "developer": "DeepSeek",
+      "value": 74.2,
+      "date": "2025-10-03",
+      "source": {
+        "url": "https://aider.chat/docs/leaderboards/",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "aider",
+        "pass_k": 2,
+        "cost_usd_per_task": 0.006,
+        "notes": "Cheapest run above 70% on the leaderboard."
+      }
+    }
+  ]
+}

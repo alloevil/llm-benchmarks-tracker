@@ -1,0 +1,35 @@
+name: staleness
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e .
+      - name: Compare ledgers with official sources
+        run: python scripts/check_staleness.py
+      - name: Anything to report?
+        id: any
+        run: |
+          if grep -q "Nothing to report" staleness.md; then echo "report=false" >> "$GITHUB_OUTPUT"; else echo "report=true" >> "$GITHUB_OUTPUT"; fi
+      - name: Open or update the tracking issue
+        if: steps.any.outputs.report == 'true'
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Weekly staleness report"
+          content-filepath: staleness.md
+          labels: data, automated
+          issue-number: ${{ vars.STALENESS_ISSUE || '' }}

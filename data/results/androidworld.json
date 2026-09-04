@@ -1,0 +1,80 @@
+{
+  "benchmark": "androidworld",
+  "results": [
+    {
+      "system": "M3A (GPT-4 Turbo, a11y tree)",
+      "developer": "Google Research",
+      "value": 30.6,
+      "date": "2024-05-23",
+      "source": {
+        "url": "https://arxiv.org/abs/2405.14573",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "M3A",
+        "notes": "Best agent in the paper abstract."
+      }
+    },
+    {
+      "system": "AutoGLM-Mobile (9B)",
+      "developer": "Zhipu AI",
+      "value": 80.2,
+      "date": "2025-09-26",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1cchzP9dlTZ3WXQTfYNhh3avxoLipqHN75v1Tb86uhHo/edit?gid=0#gid=0",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "pass_k": 1,
+        "notes": "Self-reported entry on the official community leaderboard sheet (screenshot + a11y tree); updated 2025-09-26 from 75.8. No independent verification."
+      }
+    },
+    {
+      "system": "Gemini 2.5 Computer Use",
+      "developer": "Google",
+      "value": 69.7,
+      "date": "2025-10-01",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1cchzP9dlTZ3WXQTfYNhh3avxoLipqHN75v1Tb86uhHo/edit?gid=0#gid=0",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "pass_k": 1,
+        "notes": "Self-reported entry on the community leaderboard sheet (screenshot only, single model); sheet gives only 10/2025, 1st used."
+      }
+    },
+    {
+      "system": "FluizAI agent (gpt-4o / gpt-5.6-sol)",
+      "developer": "FluizAI",
+      "value": 100.0,
+      "date": "2026-08-01",
+      "source": {
+        "url": "https://docs.google.com/spreadsheets/d/1cchzP9dlTZ3WXQTfYNhh3avxoLipqHN75v1Tb86uhHo/edit?gid=0#gid=0",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "pass_k": 1,
+        "scaffold": "FluizAI",
+        "notes": "Rank 1 on the community sheet as of access date; screenshot + a11y tree; code not open-sourced. Sheet gives only 08/2026, 1st used. No independent verification."
+      }
+    },
+    {
+      "system": "Qwen3.8 Max",
+      "developer": "Alibaba",
+      "value": 85.3,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://benchlm.ai/benchmarks/androidworld",
+        "kind": "aggregator",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Vendor-published number republished by aggregator; harness and observation space unspecified."
+      }
+    }
+  ]
+}

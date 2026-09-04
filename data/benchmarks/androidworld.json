@@ -1,0 +1,38 @@
+{
+  "id": "androidworld",
+  "name": "AndroidWorld",
+  "full_name": "AndroidWorld: A Dynamic Benchmarking Environment for Autonomous Agents",
+  "layer": "agent",
+  "released": "2024-05",
+  "maintainer": "Google Research / DeepMind (Rawles, Clinckemaillie, Riva et al.)",
+  "description": "116 hand-crafted tasks across 20 real Android apps, executed in a live Android emulator. Each task is parameterised and instantiated with random values (names, dates, amounts), so the suite yields millions of unique variants; dedicated set-up, success-check and tear-down logic inspect device state to produce a durable reward. Agents observe screenshots and/or the accessibility tree and emit touch, type and navigation actions; the score is the task success rate. It is the reference benchmark for mobile GUI agents and also hosts MiniWoB++ web tasks.",
+  "description_zh": "116 个人工设计的任务,覆盖 20 个真实 Android 应用,在实时 Android 模拟器中执行。任务带参数并随机实例化(姓名、日期、金额等),可生成数百万个变体;专用的初始化、成功检查和清理逻辑读取设备状态给出可靠奖励。智能体观察截图和/或无障碍树,输出点击、输入和导航动作,得分为任务成功率。是移动端 GUI 智能体的参考基准,并兼容 MiniWoB++ 网页任务。",
+  "domains": [
+    "computer-use",
+    "multimodal",
+    "tool-use"
+  ],
+  "metric": {
+    "name": "task success rate",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 116,
+  "status": "saturated",
+  "contamination_risk": "medium",
+  "human_baseline": {
+    "value": 80.0,
+    "population": "human annotators, 3 trials (paper / leaderboard sheet)",
+    "source": "https://arxiv.org/abs/2405.14573"
+  },
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2405.14573",
+    "website": "https://google-research.github.io/android_world/",
+    "leaderboard": "https://docs.google.com/spreadsheets/d/1cchzP9dlTZ3WXQTfYNhh3avxoLipqHN75v1Tb86uhHo/edit?gid=0#gid=0",
+    "dataset": "https://google-research.github.io/android_world/task_list.html",
+    "code": "https://github.com/google-research/android_world"
+  },
+  "notes": "The leaderboard is a Google Sheet of community-submitted, self-reported pass@1 numbers with no independent verification; several entries have been disputed or revised. Since 2024-11-18 the per-task step budget is about 2x the human completion time. Task templates and success checkers are public and the top agents now exceed the 80% human baseline, with a 100% entry in August 2026, so the benchmark no longer separates frontier systems."
+}

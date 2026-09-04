@@ -1,0 +1,84 @@
+{
+  "benchmark": "osworld-2",
+  "results": [
+    {
+      "system": "Claude Opus 4.8 (max, batched tool calls)",
+      "developer": "Anthropic",
+      "value": 20.6,
+      "date": "2026-06-28",
+      "source": {
+        "url": "https://arxiv.org/abs/2606.29537",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "reasoning_effort": "max",
+        "notes": "Best model in the paper abstract; 500-step budget, task release v2026.06.24, partial score 54.8%."
+      }
+    },
+    {
+      "system": "GPT-5.5 (xhigh, batch tool)",
+      "developer": "OpenAI",
+      "value": 13.0,
+      "date": "2026-06-28",
+      "source": {
+        "url": "https://arxiv.org/abs/2606.29537",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "reasoning_effort": "xhigh",
+        "notes": "Paper abstract ('plateaus near 13%'); official leaderboard lists 13.0 binary / 49.5 partial at 500 steps, release v2026.06.24."
+      }
+    },
+    {
+      "system": "Claude Fable 5.1",
+      "developer": "Anthropic",
+      "value": 41.7,
+      "date": "2026-09-01",
+      "source": {
+        "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "notes": "Anthropic 'strict' score on the August 2026 task release with production safeguards on (partial 77.9%); post dated only 'September 2026', 1st used. OpenAI notes Anthropic used modified tasks and grading, so not leaderboard-comparable."
+      }
+    },
+    {
+      "system": "GPT-5.6 Sol (max, batch tool)",
+      "developer": "OpenAI",
+      "value": 27.34,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://osworld-v2.xlang.ai/",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "reasoning_effort": "max",
+        "notes": "Official XLANG run, 500 steps, release v2026.08.08, partial 62.72%. Leaderboard updatedAt 2026-09-03 used as date."
+      }
+    },
+    {
+      "system": "Claude Opus 5 (max, batch tool)",
+      "developer": "Anthropic",
+      "value": 31.43,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://osworld-v2.xlang.ai/",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "reasoning_effort": "max",
+        "notes": "Top of the official leaderboard as of access date; 500 steps, release v2026.08.08, partial 68.31%. Leaderboard updatedAt 2026-09-03 used as date."
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "benchmark": "cybench",
+  "results": [
+    {
+      "system": "Claude 3.5 Sonnet",
+      "developer": "Anthropic",
+      "value": 17.5,
+      "date": "2024-08-15",
+      "source": {
+        "url": "https://arxiv.org/abs/2408.08926",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "Cybench agent (structured bash)",
+        "notes": "Paper release; 7/40 tasks unguided; subtask-guided 15%, 43.9% of subtasks solved."
+      }
+    },
+    {
+      "system": "GPT-4o",
+      "developer": "OpenAI",
+      "value": 12.5,
+      "date": "2024-08-15",
+      "source": {
+        "url": "https://arxiv.org/abs/2408.08926",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "scaffold": "Cybench agent (structured bash)",
+        "notes": "Paper release; 5/40 tasks unguided; subtask-guided 17.5%."
+      }
+    },
+    {
+      "system": "Claude Opus 4.5",
+      "developer": "Anthropic",
+      "value": 82.0,
+      "date": "2025-11-24",
+      "source": {
+        "url": "https://cybench.github.io",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Claude Opus 4.5 System Card number republished on the official leaderboard (footnote 3): 39-task subset, average pass@1. Dated to the model's release day."
+      }
+    },
+    {
+      "system": "Claude Mythos Preview",
+      "developer": "Anthropic",
+      "value": 100.0,
+      "date": "2026-04-07",
+      "source": {
+        "url": "https://cybench.github.io",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Claude Mythos Preview System Card number republished on the official leaderboard (footnote 6): 35-task subset. Dated to the model's announcement day."
+      }
+    },
+    {
+      "system": "Claude Opus 4.7",
+      "developer": "Anthropic",
+      "value": 96.0,
+      "date": "2026-04-16",
+      "source": {
+        "url": "https://cybench.github.io",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Claude Opus 4.7 System Card number republished on the official leaderboard (footnote 8): 35-task subset. Dated to the model's release day."
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "benchcad",
+  "name": "BenchCAD",
+  "full_name": "BenchCAD: A Comprehensive, Industry-Standard Benchmark for Programmatic CAD",
+  "layer": "model",
+  "released": "2026-05",
+  "maintainer": "BenchCAD team (Rice University, University of Virginia, UC San Diego; Zhang, Liu, Chen et al.)",
+  "description": "17,900 execution-verified CadQuery programs across 106 industrial part families (gears, springs, drills, fittings), about half anchored to real ISO/DIN/EN/ASME/IEC specification tables. The prime task, Vision2Code, shows four orthographic renders and asks for a CadQuery program that is re-executed and scored by IoU-score (voxel IoU times execution rate); matched Vision QA, Code QA and Code Edit tasks isolate perception, parametric abstraction and program synthesis. An agentic variant adds a Python sandbox to render, measure and iterate. It is the yardstick vendors cite for AI-for-hardware.",
+  "description_zh": "17,900 个经执行验证的 CadQuery 程序,覆盖 106 个工业零件族(齿轮、弹簧、钻头、管件等),约半数锚定真实 ISO/DIN/EN/ASME/IEC 规范表。主任务 Vision2Code 给出四视图渲染,要求生成 CadQuery 程序并重新执行,以 IoU-score(体素 IoU 乘执行率)评分;配套的 Vision QA、Code QA 和 Code Edit 任务分别隔离感知、参数抽象和程序合成能力。智能体变体提供 Python 沙箱用于渲染、测量和迭代。是各厂商引用的 AI for hardware 标尺。",
+  "domains": [
+    "multimodal",
+    "code",
+    "reasoning"
+  ],
+  "metric": {
+    "name": "Vision2Code IoU-score (voxel IoU x exec rate)",
+    "unit": "score",
+    "higher_is_better": true
+  },
+  "task_count": 17900,
+  "splits": [
+    {
+      "name": "vision2code",
+      "task_count": null,
+      "note": "Prime task: image to CadQuery, no tools, scored on the full split by the official re-grader."
+    },
+    {
+      "name": "vision2code-tools",
+      "task_count": null,
+      "note": "Agentic setting with a Python sandbox ('IoU - tools'). Vendor numbers are self-reported voxel IoU, often on a random 1,000-file subset (Anthropic) or an unstated split (OpenAI), so not directly comparable to re-graded rows."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2605.10865",
+    "website": "https://benchcad.com/",
+    "leaderboard": "https://benchcad.com/leaderboard",
+    "dataset": "https://huggingface.co/datasets/BenchCAD/BenchCAD",
+    "code": "https://github.com/BenchCAD/BenchCAD-main"
+  },
+  "notes": "Scores are 0-1 (IoU-score), not percentages. The official leaderboard (assets/data/leaderboard.json) marks self-reported vendor rows with an asterisk and re-grades submissions itself; OpenAI's GPT-6 Astra table quotes BenchCAD as 95.9% and notes Anthropic's Claude scores used three modifications to the eval, so launch-table percentages are on a different scale from the site's IoU-score. Dataset (CC-BY-4.0) is public on Hugging Face; a BenchCAD 2.0 with explicit parametric designs is in development at BenchCAD-org/benchcad-2."
+}

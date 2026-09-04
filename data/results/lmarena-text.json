@@ -1,0 +1,75 @@
+{
+  "benchmark": "lmarena-text",
+  "results": [
+    {
+      "system": "GPT-4",
+      "developer": "OpenAI",
+      "value": 1227,
+      "date": "2023-06-22",
+      "source": {
+        "url": "https://lmsys.org/blog/2023-06-22-leaderboard/",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Online Elo over 42K votes (Apr 24 - Jun 19, 2023)."
+      }
+    },
+    {
+      "system": "GPT-4-Turbo",
+      "developer": "OpenAI",
+      "value": 1217,
+      "date": "2023-12-07",
+      "source": {
+        "url": "https://lmsys.org/blog/2023-12-07-leaderboard/",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "First Bradley-Terry (MLE) leaderboard; 7,007 votes for this model, 130K total."
+      }
+    },
+    {
+      "system": "gpt-4o-2024-05-13",
+      "developer": "OpenAI",
+      "value": 1287,
+      "date": "2024-07-06",
+      "source": {
+        "url": "https://huggingface.co/spaces/lmarena-ai/arena-leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "elo_results_20240706.pkl text/full table; 55,826 battles. Rounded from 1287.4."
+      }
+    },
+    {
+      "system": "gemini-exp-1206",
+      "developer": "Google",
+      "value": 1374,
+      "date": "2025-01-05",
+      "source": {
+        "url": "https://huggingface.co/spaces/lmarena-ai/arena-leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "elo_results_20250105.pkl text/full table; 18,068 battles. Rounded from 1374.2."
+      }
+    },
+    {
+      "system": "gemini-2.5-pro",
+      "developer": "Google",
+      "value": 1466,
+      "date": "2025-08-29",
+      "source": {
+        "url": "https://huggingface.co/spaces/lmarena-ai/arena-leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "elo_results_20250829.pkl text/full table; 35,586 battles; rounded from 1466.2. Under style control the same snapshot ranks gemini-2.5-pro 1456, gpt-5-high 1447, claude-opus-4-1 thinking 1447."
+      }
+    }
+  ]
+}

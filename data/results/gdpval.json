@@ -1,0 +1,100 @@
+{
+  "benchmark": "gdpval",
+  "results": [
+    {
+      "system": "GPT-4o",
+      "developer": "OpenAI",
+      "value": 12.5,
+      "date": "2025-10-05",
+      "source": {
+        "url": "https://arxiv.org/abs/2510.04374",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "gold",
+        "notes": "Table 2 of the paper; expert pairwise grading, 220 gold tasks."
+      }
+    },
+    {
+      "system": "o3",
+      "developer": "OpenAI",
+      "value": 35.2,
+      "date": "2025-10-05",
+      "source": {
+        "url": "https://arxiv.org/abs/2510.04374",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "gold",
+        "notes": "Table 2 of the paper; expert pairwise grading."
+      }
+    },
+    {
+      "system": "GPT-5 (high)",
+      "developer": "OpenAI",
+      "value": 39.0,
+      "date": "2025-10-05",
+      "source": {
+        "url": "https://arxiv.org/abs/2510.04374",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "gold",
+        "reasoning_effort": "high",
+        "tools": true,
+        "notes": "Table 2; web search and code interpreter enabled. OpenAI's 2025-12 post cites 38.8% for the same model."
+      }
+    },
+    {
+      "system": "Claude Opus 4.1",
+      "developer": "Anthropic",
+      "value": 47.6,
+      "date": "2025-10-05",
+      "source": {
+        "url": "https://arxiv.org/abs/2510.04374",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "gold",
+        "notes": "Best model in the paper; sampled via the Claude UI with file-creation features. Run by OpenAI, not Anthropic."
+      }
+    },
+    {
+      "system": "GPT-5.2 Thinking",
+      "developer": "OpenAI",
+      "value": 70.9,
+      "date": "2025-12-11",
+      "source": {
+        "url": "https://openai.com/index/introducing-gpt-5-2/",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "gold",
+        "reasoning_effort": "heavy",
+        "tools": true,
+        "notes": "Wins-or-ties with expert human judges; run with ChatGPT spreadsheet/presentation tools not available to GPT-5."
+      }
+    },
+    {
+      "system": "GPT-5.2 Pro",
+      "developer": "OpenAI",
+      "value": 74.1,
+      "date": "2025-12-11",
+      "source": {
+        "url": "https://openai.com/index/introducing-gpt-5-2/",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "gold",
+        "tools": true,
+        "notes": "Wins-or-ties, from the appendix table of the GPT-5.2 announcement."
+      }
+    }
+  ]
+}

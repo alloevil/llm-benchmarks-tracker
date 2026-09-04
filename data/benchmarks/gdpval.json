@@ -1,0 +1,46 @@
+{
+  "id": "gdpval",
+  "name": "GDPval",
+  "full_name": "GDPval: Evaluating AI Model Performance on Real-World Economically Valuable Tasks",
+  "layer": "model",
+  "released": "2025-09",
+  "maintainer": "OpenAI",
+  "description": "Real work deliverables (legal briefs, spreadsheets, slide decks, CAD, schedules, video edits) drawn from 44 occupations in the 9 US sectors that contribute most to GDP, written and reviewed by professionals averaging 14 years of experience. A model receives the request plus reference files and produces the deliverable in one shot; occupational experts blindly compare it with the human expert's work and the score is the share of comparisons rated better than or as good as the expert. The main public yardstick for economically valuable knowledge work.",
+  "description_zh": "取自美国 GDP 贡献最大的 9 个行业、44 个职业的真实工作交付物(法律文书、电子表格、幻灯片、CAD、排班、视频剪辑),由平均 14 年经验的专业人士编写与审核。模型一次性根据任务描述和参考文件生成交付物,由同职业专家盲评与人类专家作品比较,得分为被评为优于或不逊于专家的比例。是衡量有经济价值的知识工作的主要公开标尺。",
+  "domains": [
+    "general-assistant",
+    "knowledge",
+    "instruction-following"
+  ],
+  "metric": {
+    "name": "win-or-tie rate vs industry experts",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 220,
+  "splits": [
+    {
+      "name": "gold",
+      "task_count": 220,
+      "note": "Open-sourced subset (5 tasks per occupation) used for all public results."
+    },
+    {
+      "name": "full",
+      "task_count": 1320,
+      "note": "Private full set, 30 tasks per occupation; OpenAI-internal."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2510.04374",
+    "website": "https://openai.com/index/gdpval/",
+    "leaderboard": null,
+    "dataset": "https://huggingface.co/datasets/openai/gdpval",
+    "code": null
+  },
+  "notes": "Announced 2025-09-25; arXiv 2510.04374 verified (Patwardhan et al., posted 2025-10-05). Grading is pairwise by human experts (3 samples x 3 graders per task); an experimental automated grader is offered at evals.openai.com but is not a substitute. 50% is expert parity by construction. Artificial Analysis runs the same 220 tasks agentically as GDPval-AA with Elo scoring, which is a different metric and is not recorded here. Vendor-reported 2025-12 and later numbers use newer ChatGPT tools not available to earlier models."
+}

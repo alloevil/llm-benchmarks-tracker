@@ -70,6 +70,86 @@
       }
     },
     {
+      "system": "Claude Opus 5 + Claude Code",
+      "developer": "Anthropic",
+      "value": 30.0,
+      "date": "2026-08-27",
+      "source": {
+        "url": "https://www.tbench.ai/news/terminal-bench-science-0-1",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "science",
+        "scaffold": "Claude Code",
+        "notes": "Terminal-Bench-Science 0.1 launch post (2026-08-27); 3 trials per task over 70 tasks; total run cost $7.0k. Best model at launch. Effort level not stated."
+      }
+    },
+    {
+      "system": "GPT-5.6 Sol + Codex",
+      "developer": "OpenAI",
+      "value": 22.4,
+      "date": "2026-08-27",
+      "source": {
+        "url": "https://www.tbench.ai/news/terminal-bench-science-0-1",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "science",
+        "scaffold": "Codex",
+        "notes": "Terminal-Bench-Science 0.1 launch post; 3 trials per task; total run cost $4.2k. Effort level not stated."
+      }
+    },
+    {
+      "system": "Claude Fable 5 + Claude Code",
+      "developer": "Anthropic",
+      "value": 21.4,
+      "date": "2026-08-27",
+      "source": {
+        "url": "https://www.tbench.ai/news/terminal-bench-science-0-1",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "science",
+        "scaffold": "Claude Code",
+        "notes": "Terminal-Bench-Science 0.1 launch post; 3 trials per task; total run cost $14.2k. Effort level not stated."
+      }
+    },
+    {
+      "system": "Claude Fable 5.1 (max)",
+      "developer": "Anthropic",
+      "value": 52.6,
+      "date": "2026-09-01",
+      "source": {
+        "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "science",
+        "reasoning_effort": "max",
+        "cost_usd_per_task": 37.9,
+        "notes": "Anthropic's own harness (reproduces public Opus 5 at 29.0%, Fable 5 at 24.7%); SE +/-3.5-4.5 pts. Post dated 'September 2026', 1st used. Scaffold not stated."
+      }
+    },
+    {
+      "system": "GPT-6 Astra",
+      "developer": "OpenAI",
+      "value": 64.6,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://openai.com/index/gpt-6-astra/",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "science",
+        "notes": "OpenAI launch table (Academic section), maximum at any effort; run in OpenAI's research environment, scaffold not stated. Same table quotes Fable 5.1 at 52.6% and Opus 5 at 30.0%."
+      }
+    },
+    {
       "system": "Fable 5.1 + Claude Code (max)",
       "developer": "Anthropic",
       "value": 57.88,

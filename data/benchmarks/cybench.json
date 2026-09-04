@@ -1,0 +1,34 @@
+{
+  "id": "cybench",
+  "name": "Cybench",
+  "full_name": "Cybench: A Framework for Evaluating Cybersecurity Capabilities and Risks of Language Models",
+  "layer": "agent",
+  "released": "2024-08",
+  "maintainer": "Stanford CRFM (Andy K. Zhang, Percy Liang et al.)",
+  "description": "40 professional-level Capture-the-Flag tasks from four recent competitions (HackTheBox, SekaiCTF, Glacier, HKCert) across crypto, web, reverse engineering, forensics, misc and pwn. An agent works in a Kali Linux container, runs shell commands against local files and task servers, and submits a flag checked by an evaluator; tasks carry human first-solve times (minutes to 25 hours) and optional subtasks for graded partial credit. The headline metric is unguided % solved. It is the standard open cyber-offense eval used in AISI pre-deployment tests and frontier system cards.",
+  "description_zh": "40 个专业级 CTF 任务,取自四个近期赛事(HackTheBox、SekaiCTF、Glacier、HKCert),涵盖 crypto、web、逆向、取证、misc 和 pwn。智能体在 Kali Linux 容器中执行 shell 命令,操作本地文件和任务服务器并提交 flag 由评测器校验;任务标注人类首解时间(数分钟至 25 小时),并可选子任务给出分级部分得分。主指标为无引导解题率。是 AISI 部署前测试和前沿模型系统卡采用的标准开源网络攻防能力评测。",
+  "domains": [
+    "safety",
+    "code",
+    "tool-use"
+  ],
+  "metric": {
+    "name": "unguided % solved",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 40,
+  "status": "saturated",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2408.08926",
+    "website": "https://cybench.github.io",
+    "leaderboard": "https://cybench.github.io/#leaderboard_title",
+    "dataset": "https://github.com/andyzorigin/cybench",
+    "code": "https://github.com/andyzorigin/cybench"
+  },
+  "notes": "The official leaderboard (data/leaderboard.csv) mixes paper runs, HAL re-runs and numbers republished from vendor system cards, which often use a 35-39 task subset and pass@1 averaged over several trials; footnotes on the site give the provenance of each row. Two HAL rows (o3-mini, o1-mini) were adjusted downward after an Inspect port leaked an answer. Tasks are public 2023-2024 CTF challenges, so contamination is likely; the authors point to BountyBench as the successor for real-world tasks. Frontier models reach 96-100% on the subset, so it no longer discriminates."
+}

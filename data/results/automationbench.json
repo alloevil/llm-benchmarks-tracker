@@ -1,0 +1,103 @@
+{
+  "benchmark": "automationbench",
+  "results": [
+    {
+      "system": "Opus 4.7 (max)",
+      "developer": "Anthropic",
+      "value": 9.9,
+      "date": "2026-04-21",
+      "source": {
+        "url": "https://arxiv.org/abs/2604.18934",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "private",
+        "reasoning_effort": "max",
+        "cost_usd_per_task": 1.8,
+        "notes": "Top of the leaderboard table in the white paper (API toolset, single run)."
+      }
+    },
+    {
+      "system": "Gemini 3.1 Pro (high)",
+      "developer": "Google",
+      "value": 9.6,
+      "date": "2026-04-21",
+      "source": {
+        "url": "https://arxiv.org/abs/2604.18934",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "private",
+        "reasoning_effort": "high",
+        "cost_usd_per_task": 0.54,
+        "notes": "White paper leaderboard table (API toolset, single run)."
+      }
+    },
+    {
+      "system": "GPT-6 Astra",
+      "developer": "OpenAI",
+      "value": 41.4,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://openai.com/index/gpt-6-astra/",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "OpenAI launch table (Professional section), maximum at any effort; set (public/private) and toolset not stated. Same table quotes Fable 5.1 at 31.4%, Opus 5 26.9%, GPT-5.6 Sol 18.1%. Not yet on Zapier's leaderboard as of access date."
+      }
+    },
+    {
+      "system": "Claude Opus 5 (max)",
+      "developer": "Anthropic",
+      "value": 50.3,
+      "date": "2026-09-04",
+      "source": {
+        "url": "https://github.com/zapier/AutomationBench",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "public",
+        "reasoning_effort": "max",
+        "notes": "README table of pass rates on the 600-task public set; README undated, access date used. Public set is easier than the private leaderboard set."
+      }
+    },
+    {
+      "system": "Claude Fable 5.1 with Opus 5 fallback (max)",
+      "developer": "Anthropic",
+      "value": 31.4,
+      "date": "2026-09-04",
+      "source": {
+        "url": "https://zapier.com/benchmarks",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "private",
+        "reasoning_effort": "max",
+        "cost_usd_per_task": 2.45,
+        "notes": "Rank 1 on leaderboard v1.0.6 as of access date; Opus 5 completed ~40% of tasks (260/657) after Fable safety refusals and cost excludes fallback tokens. Leaderboard undated, access date used."
+      }
+    },
+    {
+      "system": "Gemini 3.7 Flash (High)",
+      "developer": "Google",
+      "value": 30.44,
+      "date": "2026-09-04",
+      "source": {
+        "url": "https://zapier.com/benchmarks",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "private",
+        "reasoning_effort": "high",
+        "cost_usd_per_task": 0.61,
+        "notes": "Rank 2 on leaderboard v1.0.6 as of access date; best standalone model. Leaderboard undated, access date used."
+      }
+    }
+  ]
+}

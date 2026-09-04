@@ -1,0 +1,46 @@
+{
+  "id": "osworld-2",
+  "name": "OSWorld 2.0",
+  "full_name": "OSWorld 2.0: Benchmarking Computer-Use Agents on Long-Horizon Real-World Tasks",
+  "layer": "agent",
+  "released": "2026-06",
+  "maintainer": "XLANG Lab, University of Hong Kong (Yuan, Zhou, Xiong, Xie, Yu et al.)",
+  "description": "108 long-horizon computer-use workflows (median human time about 1.6 hours, roughly 300 agent tool calls) spanning research, creative, engineering, finance, administrative and healthcare work across desktop apps and 31 self-hosted websites. Tasks are graded on an average of 27 execution-based checkpoints, yielding a binary completion rate (primary metric, reported at a 500-step budget) and a partial score. Tasks include dynamic mid-task events, hidden state and simulated-user clarification, so it probes the failure modes OSWorld 1.0 no longer separates.",
+  "description_zh": "108 个长程计算机使用工作流(人类完成中位时间约 1.6 小时,智能体约 300 次工具调用),覆盖科研、创意、工程、财务、行政和医疗场景,涉及桌面应用与 31 个自托管网站。每个任务平均设 27 个基于执行的检查点,给出二元完成率(主指标,500 步预算)和部分得分。任务包含任务中途的动态事件、隐藏状态和模拟用户澄清,用于区分 OSWorld 1.0 已无法分辨的失败模式。",
+  "domains": [
+    "computer-use",
+    "multimodal",
+    "tool-use"
+  ],
+  "metric": {
+    "name": "binary completion rate (500 steps)",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 108,
+  "splits": [
+    {
+      "name": "full",
+      "task_count": 108,
+      "note": "All 108 tasks, including those that need live internet services. Task releases v2026.06.24 (paper) and v2026.08.08 (current) differ, so compare within a release."
+    },
+    {
+      "name": "offline",
+      "task_count": null,
+      "note": "OSWorld V2-Offline: subset that runs without internet access (test_v2_offline_no_internet.json); used by OpenAI for its GPT-6 Astra comparison."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": "osworld",
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2606.29537",
+    "website": "https://osworld-v2.xlang.ai/",
+    "leaderboard": "https://osworld-v2.xlang.ai/",
+    "dataset": "https://huggingface.co/datasets/xlangai/osworld_v2_tasks",
+    "code": "https://github.com/xlang-ai/OSWorld-V2"
+  },
+  "notes": "Official rows are run by the XLANG team (static/data/leaderboard/official-results.json) at 150/300/500 step budgets with either the standard or a 'batch tool' action setting; the 500-step binary metric is primary. Vendor launch tables often quote the partial score or the offline subset, and Anthropic's Fable 5.1 system card used modified tasks and grading, so treat developer-reported numbers as non-comparable to the leaderboard unless the release version, set and metric match."
+}

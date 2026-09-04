@@ -1,0 +1,89 @@
+{
+  "benchmark": "benchcad",
+  "results": [
+    {
+      "system": "Gemini 3.1 Pro (thinking)",
+      "developer": "Google",
+      "value": 0.289,
+      "date": "2026-06-01",
+      "source": {
+        "url": "https://benchcad.com/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "vision2code",
+        "tools": false,
+        "notes": "Re-graded by the BenchCAD team on the full split; best no-tools row among models it ran itself. Leaderboard gives 'tested 2026-06' only, 1st used."
+      }
+    },
+    {
+      "system": "Claude Opus 4.7 (max)",
+      "developer": "Anthropic",
+      "value": 0.2692,
+      "date": "2026-06-01",
+      "source": {
+        "url": "https://benchcad.com/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "vision2code",
+        "tools": false,
+        "reasoning_effort": "max",
+        "notes": "Re-graded by the BenchCAD team; exec rate 96.5%. Leaderboard gives 'tested 2026-06' only, 1st used."
+      }
+    },
+    {
+      "system": "GPT-5.6 Sol (max)",
+      "developer": "OpenAI",
+      "value": 0.706,
+      "date": "2026-07-01",
+      "source": {
+        "url": "https://benchcad.com/leaderboard",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "vision2code",
+        "tools": false,
+        "reasoning_effort": "max",
+        "notes": "Self-reported (asterisk) from OpenAI's GPT-5.6 launch table, republished on the official leaderboard, not re-graded; harness undisclosed. With-tools 0.834. Leaderboard gives 2026-07 only, 1st used."
+      }
+    },
+    {
+      "system": "Grok 4.6 (xhigh, Python sandbox)",
+      "developer": "SpaceXAI",
+      "value": 0.8055,
+      "date": "2026-08-01",
+      "source": {
+        "url": "https://benchcad.com/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "vision2code-tools",
+        "tools": true,
+        "reasoning_effort": "xhigh",
+        "notes": "BenchCAD team's own agentic run on its scorer (run arranged by SpaceXAI); no-tools IoU-score 0.3638. Leaderboard gives 2026-08 only, 1st used."
+      }
+    },
+    {
+      "system": "Claude Fable 5.1 (max, Python tools)",
+      "developer": "Anthropic",
+      "value": 0.843,
+      "date": "2026-09-01",
+      "source": {
+        "url": "https://benchcad.com/leaderboard",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "vision2code-tools",
+        "tools": true,
+        "reasoning_effort": "max",
+        "notes": "Self-reported voxel IoU from the Fable 5.1 / Mythos 5.1 system card (fig. 8.14.2.A) on a random 1,000-file subset, averaged over five runs; republished on the official leaderboard. No-tools 0.437. Highest with-tools figure as of access date."
+      }
+    }
+  ]
+}

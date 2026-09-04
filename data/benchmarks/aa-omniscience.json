@@ -1,0 +1,33 @@
+{
+  "id": "aa-omniscience",
+  "name": "AA-Omniscience",
+  "full_name": "AA-Omniscience: Knowledge and Hallucination Benchmark",
+  "layer": "model",
+  "released": "2025-11",
+  "maintainer": "Artificial Analysis",
+  "description": "6,000 short-answer factual questions generated from authoritative academic and industry sources across 42 topics in six domains (business, humanities, health, law, software engineering, science and engineering). An LLM grader labels each answer correct, partial, incorrect or not attempted; the Omniscience Index (-100 to 100) awards correct answers, subtracts incorrect ones and leaves abstentions neutral, so it measures knowledge calibration rather than raw recall. Accuracy and hallucination rate are reported separately and feed the Artificial Analysis Intelligence Index.",
+  "description_zh": "6,000 道由权威学术与行业来源生成的短答事实题,覆盖商业、人文社科、健康、法律、软件工程、科学工程数学六大领域 42 个主题。LLM 评分器将答案标为正确、部分正确、错误或未作答;Omniscience Index(-100 至 100)对正确加分、错误扣分、弃答不计,衡量知识校准而非单纯记忆。准确率与幻觉率另行报告并计入 Artificial Analysis Intelligence Index。",
+  "domains": [
+    "knowledge",
+    "factuality"
+  ],
+  "metric": {
+    "name": "Omniscience Index",
+    "unit": "score",
+    "higher_is_better": true
+  },
+  "task_count": 6000,
+  "status": "active",
+  "contamination_risk": "low",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2511.13029",
+    "website": "https://artificialanalysis.ai/evaluations/omniscience",
+    "leaderboard": "https://artificialanalysis.ai/evaluations/omniscience",
+    "dataset": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public",
+    "code": null
+  },
+  "notes": "arXiv 2511.13029 verified (Jackson, Keating, Cameron, Hill-Smith; posted 2025-11-17). Only a public subset of questions is released; the full 6,000 are held privately, hence low contamination risk. Index of 0 means as many correct as incorrect answers. All rows are Artificial Analysis's own runs (independent-evaluation); the current leaderboard shows rounded integer index values for 31 tracked models, while the paper reports one decimal. Methodology: artificialanalysis.ai/methodology/intelligence-benchmarking#aa-omniscience (grader GPT-5.6 Luna medium as of 2026-09)."
+}

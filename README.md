@@ -19,7 +19,7 @@
 For every benchmark: what it tests, whether it still discriminates between frontier systems (`status`), how exposed its test set is (`contamination_risk`), a measured human baseline when one exists, and who reported the top score under which conditions.
 
 <!-- gen:stats -->
-**24** model benchmarks · **17** agent benchmarks · **18** evaluators · **179** sourced results · updated 2026-09-04
+**31** model benchmarks · **23** agent benchmarks · **18** evaluators · **250** sourced results · updated 2026-09-04
 <!-- /gen:stats -->
 
 **Why another list?** Most benchmark pages copy vendor slide numbers with no provenance. Here every result row carries a source URL, a source *kind* (official leaderboard / paper / independent re-run / developer self-report / aggregator), the access date, and the evaluation conditions (tools, reasoning effort, scaffold, pass@k). Numbers without a source do not get in.
@@ -49,8 +49,14 @@ Static prompt-and-response scoring of the model itself. *Top score* is the best 
 <!-- gen:model -->
 | Benchmark | Released | Domains | Status | Top score | System | Source |
 |---|---|---|---|---|---|---|
+| [BenchCAD](https://benchcad.com/leaderboard) | 2026-05 | multimodal, code, reasoning | active | 0.843 | Claude Fable 5.1 (max, Python tools) | [self-reported](https://benchcad.com/leaderboard) |
+| [AA-Omniscience](https://artificialanalysis.ai/evaluations/omniscience) | 2025-11 | knowledge, factuality | active | 44 | GPT-6 Astra (high) | [independent](https://artificialanalysis.ai/evaluations/omniscience) |
+| [GDPval](https://openai.com/index/gdpval/) | 2025-09 | general-assistant, knowledge, instruction-following | active | 74.1% | GPT-5.2 Pro | [self-reported](https://openai.com/index/introducing-gpt-5-2/) |
+| [HealthBench](https://openai.com/index/healthbench/) | 2025-05 | knowledge, safety, instruction-following | active | 59.9% | o3 | [paper](https://arxiv.org/abs/2505.08775) |
 | [ARC-AGI-2](https://arcprize.org/leaderboard) | 2025-03 | reasoning | saturating | 95% | GPT-6 Astra (Max) | [official](https://arcprize.org/leaderboard) |
+| [ScreenSpot-Pro](https://gui-agent.github.io/grounding-leaderboard/) | 2025-01 | computer-use, multimodal | saturating | 92.7% | GPT-6 Astra | [self-reported](https://openai.com/index/gpt-6-astra/) |
 | [Humanity's Last Exam](https://lastexam.ai/) | 2025-01 | knowledge, reasoning, science, math, multimodal | active | 65% | Claude Fable 5.1 (with tools) | [self-reported](https://www.anthropic.com/claude-fable-and-mythos-5-1) |
+| [Aider Polyglot](https://aider.chat/docs/leaderboards/) | 2024-12 | code, instruction-following | saturating | 88% | gpt-5 (high) | [official](https://aider.chat/docs/leaderboards/) |
 | [SimpleQA](https://openai.com/index/introducing-simpleqa/) | 2024-11 | factuality, knowledge | active | 62.5% | gpt-4.5-preview-2025-02-27 | [self-reported](https://github.com/openai/simple-evals) |
 | [FrontierMath](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) | 2024-11 | math, reasoning, research | saturating | 93.7% | gpt-6-astra (max) | [independent](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) |
 | [MMMU-Pro](https://mmmu-benchmark.github.io/#leaderboard) | 2024-09 | multimodal, knowledge, reasoning | active | 86.9% | Chance Vision 1.5 | [self-reported](https://mmmu-benchmark.github.io/) |
@@ -61,6 +67,7 @@ Static prompt-and-response scoring of the model itself. *Top score* is the best 
 | [MMMU](https://mmmu-benchmark.github.io/#leaderboard) | 2023-11 | multimodal, knowledge, reasoning | saturating | 85.4% | GPT-5.1 | [self-reported](https://mmmu-benchmark.github.io/) |
 | [IFEval](https://github.com/google-research/google-research/tree/master/instruction_following_eval) | 2023-11 | instruction-following | saturating | 95% | Qwen3.5-27B | [self-reported](https://huggingface.co/Qwen/Qwen3.5-27B) |
 | [GPQA Diamond](https://github.com/idavidrein/gpqa) | 2023-11 | science, reasoning, knowledge | saturating | 96% | GPT-6 Astra | [aggregator](https://benchlm.ai/benchmarks/gpqa-diamond) |
+| [LMArena Text](https://lmarena.ai/leaderboard/text) | 2023-05 | human-preference, general-assistant | active | 1466 | gemini-2.5-pro | [official](https://huggingface.co/spaces/lmarena-ai/arena-leaderboard) |
 | *Saturated or retired — no longer used to compare frontier systems. Score shown is the last one reported, not a leaderboard top.* | | | | | | |
 | [AIME 2025](https://matharena.ai/) | 2025-02 | math, reasoning | saturated | last reported 100% | GPT-5.2 (high) | [independent](https://matharena.ai/) |
 | [BIG-Bench Hard](https://github.com/suzgunmirac/BIG-Bench-Hard) | 2022-10 | reasoning | saturated | last reported 87.5% | DeepSeek-V4-Pro-Base | [self-reported](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
@@ -83,8 +90,12 @@ Interactive environments where the system acts, uses tools, and is scored on tas
 <!-- gen:agent -->
 | Benchmark | Released | Domains | Status | Top score | System | Source |
 |---|---|---|---|---|---|---|
+| [OSWorld 2.0](https://osworld-v2.xlang.ai/) | 2026-06 | computer-use, multimodal, tool-use | active | 41.7% | Claude Fable 5.1 | [self-reported](https://www.anthropic.com/claude-fable-and-mythos-5-1) |
+| [AutomationBench](https://zapier.com/benchmarks) | 2026-04 | tool-use, general-assistant, instruction-following | active | 50.3% | Claude Opus 5 (max) | [official](https://github.com/zapier/AutomationBench) |
 | [ARC-AGI-3](https://arcprize.org/leaderboard) | 2026-03 | reasoning, tool-use | saturating | 99.9% | GPT-6 Astra (high) | [official](https://arcprize.org/blog/astra) |
-| [Terminal-Bench](https://www.tbench.ai/leaderboard) | 2026-01 | software-engineering, code, tool-use, ml-engineering | active | 62.9% | GPT-5.2 + Codex CLI | [paper](https://arxiv.org/abs/2601.11868) |
+| [Terminal-Bench](https://www.tbench.ai/leaderboard) | 2026-01 | software-engineering, code, tool-use, ml-engineering | active | 64.6% | GPT-6 Astra | [self-reported](https://openai.com/index/gpt-6-astra/) |
+| [DeepSearchQA](https://www.kaggle.com/benchmarks/google/dsqa/leaderboard) | 2025-12 | web, research, factuality, tool-use | active | 95% | Claude Opus 5 | [aggregator](https://benchlm.ai/benchmarks/deepsearchqa) |
+| [Tool Decathlon (Toolathlon)](https://toolathlon.xyz/docs/leaderboard) | 2025-10 | tool-use, general-assistant, software-engineering | active | 78.4% | GLM 5.3 Flash (max) | [official](https://toolathlon.xyz/docs/leaderboard) |
 | [SWE-Bench Pro](https://labs.scale.com/leaderboard/swe_bench_pro_public) | 2025-09 | software-engineering, code, tool-use | active | 61.5% | Muse Spark 1.1 | [official](https://labs.scale.com/leaderboard/swe_bench_pro_public) |
 | [tau2-bench](https://taubench.com/leaderboard?benchmark=core) | 2025-06 | tool-use, instruction-following, general-assistant | active | 87.9% | Qwen3.5-397B-A17B | [official](https://taubench.com) |
 | [FieldWorkArena](https://en-documents.research.global.fujitsu.com/fieldworkarena/) | 2025-05 | multimodal, general-assistant, safety, reasoning | active | 52% | GPT-5.2 (2025-12-11) | [paper](https://arxiv.org/abs/2505.19662) |
@@ -98,7 +109,9 @@ Interactive environments where the system acts, uses tools, and is scored on tas
 | [GAIA](https://huggingface.co/spaces/gaia-benchmark/leaderboard) | 2023-11 | general-assistant, tool-use, web, reasoning, multimodal | saturating | 93.36% | CustomGPT.ai Research Lab v44 | [official](https://huggingface.co/spaces/gaia-benchmark/leaderboard) |
 | [WebArena](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing) | 2023-07 | web, tool-use, computer-use | active | 74.3% | WebTactix + Deepseek v3.2 | [official](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing) |
 | *Saturated or retired — no longer used to compare frontier systems. Score shown is the last one reported, not a leaderboard top.* | | | | | | |
+| [Cybench](https://cybench.github.io/#leaderboard_title) | 2024-08 | safety, code, tool-use | saturated | last reported 96% | Claude Opus 4.7 | [self-reported](https://cybench.github.io) |
 | [tau-bench](https://github.com/sierra-research/tau-bench) | 2024-06 | tool-use, instruction-following, general-assistant | retired | last reported 69.2% | TC (claude-3-5-sonnet-20241022), retail | [official](https://github.com/sierra-research/tau-bench) |
+| [AndroidWorld](https://docs.google.com/spreadsheets/d/1cchzP9dlTZ3WXQTfYNhh3avxoLipqHN75v1Tb86uhHo/edit?gid=0#gid=0) | 2024-05 | computer-use, multimodal, tool-use | saturated | last reported 85.3% | Qwen3.8 Max | [aggregator](https://benchlm.ai/benchmarks/androidworld) |
 | [SWE-bench](https://www.swebench.com/#test) | 2023-10 | software-engineering, code, tool-use | saturated | last reported 52.62% | Sonar Foundation Agent + Claude 4.5 Opus | [official](https://www.swebench.com/#test) |
 | [AgentBench](https://docs.google.com/spreadsheets/d/e/2PACX-1vRR3Wl7wsCgHpwUw1_eUXW_fptAPLL3FkhnW_rua0O1Ji_GIVrpTjY5LaKAhwO-WeARjnY_KNw0SYNJ/pubhtml) | 2023-08 | tool-use, reasoning, web, code | retired | last reported 3.11 | claude-3 opus | [paper](https://arxiv.org/abs/2308.03688) |
 <!-- /gen:agent -->
@@ -137,10 +150,10 @@ Frameworks you run, leaderboards run by maintainers, organisations that independ
 - **2020** — MMLU
 - **2021** — GSM8K, HumanEval, LM Evaluation Harness (framework), MATH, MBPP, TruthfulQA
 - **2022** — BIG-Bench Hard, HELM (framework)
-- **2023** — AgentBench, DeepEval (framework), GAIA, GPQA Diamond, IFEval, LMArena (leaderboard), MMMU, Open LLM Leaderboard (leaderboard), OpenAI Evals (framework), OpenCompass (framework), SWE-bench, WebArena
-- **2024** — Artificial Analysis (independent-evaluator), BFCL, Epoch AI Benchmarking Hub (independent-evaluator), EvalScope (framework), FrontierMath, Inspect AI (framework), Lighteval (framework), LiveBench (leaderboard), LiveCodeBench, MLE-bench, MMLU-Pro, MMMU-Pro, OSWorld, RULER, Scale SEAL Leaderboards (independent-evaluator), SimpleQA, SWE-bench Verified, tau-bench, Vals AI (independent-evaluator), VisualWebArena
-- **2025** — AIME 2025, ARC-AGI-2, BenchLM (aggregator), BrowseComp, FieldWorkArena, Holistic Agent Leaderboard (HAL) (leaderboard), Humanity's Last Exam, PaperBench, SWE-bench Multilingual, SWE-Bench Pro, SWE-rebench (leaderboard), tau2-bench
-- **2026** — ARC-AGI-3, Terminal-Bench
+- **2023** — AgentBench, DeepEval (framework), GAIA, GPQA Diamond, IFEval, LMArena (leaderboard), LMArena Text, MMMU, Open LLM Leaderboard (leaderboard), OpenAI Evals (framework), OpenCompass (framework), SWE-bench, WebArena
+- **2024** — Aider Polyglot, AndroidWorld, Artificial Analysis (independent-evaluator), BFCL, Cybench, Epoch AI Benchmarking Hub (independent-evaluator), EvalScope (framework), FrontierMath, Inspect AI (framework), Lighteval (framework), LiveBench (leaderboard), LiveCodeBench, MLE-bench, MMLU-Pro, MMMU-Pro, OSWorld, RULER, Scale SEAL Leaderboards (independent-evaluator), SimpleQA, SWE-bench Verified, tau-bench, Vals AI (independent-evaluator), VisualWebArena
+- **2025** — AA-Omniscience, AIME 2025, ARC-AGI-2, BenchLM (aggregator), BrowseComp, DeepSearchQA, FieldWorkArena, GDPval, HealthBench, Holistic Agent Leaderboard (HAL) (leaderboard), Humanity's Last Exam, PaperBench, ScreenSpot-Pro, SWE-bench Multilingual, SWE-Bench Pro, SWE-rebench (leaderboard), tau2-bench, Tool Decathlon (Toolathlon)
+- **2026** — ARC-AGI-3, AutomationBench, BenchCAD, OSWorld 2.0, Terminal-Bench
 <!-- /gen:timeline -->
 
 ## Data model
@@ -189,7 +202,7 @@ pytest                              # validator contract tests
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: edit or add a JSON file under `data/`, run `python scripts/validate.py && python scripts/build.py`, open a PR. CI rejects schema violations, dangling references, unsourced rows, and stale README tables.
+Data is curated, not scraped: a weekly job ([`staleness.yml`](.github/workflows/staleness.yml)) compares ledgers with official and independent sources and files an issue when a source shows a higher score or a benchmark goes quiet; a human verifies and adds the row. See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: edit or add a JSON file under `data/`, run `python scripts/validate.py && python scripts/build.py`, open a PR. CI rejects schema violations, dangling references, unsourced rows, and stale README tables.
 
 ## Citation
 

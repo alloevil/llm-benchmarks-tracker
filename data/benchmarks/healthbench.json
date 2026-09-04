@@ -1,0 +1,46 @@
+{
+  "id": "healthbench",
+  "name": "HealthBench",
+  "full_name": "HealthBench: Evaluating Large Language Models Towards Improved Human Health",
+  "layer": "model",
+  "released": "2025-05",
+  "maintainer": "OpenAI",
+  "description": "5,000 realistic multi-turn, multilingual health conversations between a model and a layperson or clinician, spanning seven themes such as emergency referrals, context seeking and global health. Each conversation carries a physician-written rubric (48,562 criteria from 262 physicians in 60 countries); a GPT-4.1 grader checks which criteria the final response meets and the score is points earned over the maximum. Hard (1,000) and Consensus (3,671) subsets isolate unsaturated and physician-validated criteria. The reference evaluation for medical helpfulness and safety.",
+  "description_zh": "5,000 段模型与普通用户或临床人员之间的真实多轮、多语言健康对话,涵盖急诊转诊、追问上下文、全球健康等七类主题。每段对话附医生撰写的评分细则(来自 60 国 262 名医生的 48,562 条标准);GPT-4.1 评分器判断末轮回复满足哪些标准,得分为所得分值占满分的比例。Hard(1,000)与 Consensus(3,671)子集分别隔离未饱和与医生共识标准。医疗有用性与安全性的参考评估。",
+  "domains": [
+    "knowledge",
+    "safety",
+    "instruction-following"
+  ],
+  "metric": {
+    "name": "rubric score",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 5000,
+  "splits": [
+    {
+      "name": "hard",
+      "task_count": 1000,
+      "note": "HealthBench Hard: examples frontier models struggled with at release."
+    },
+    {
+      "name": "consensus",
+      "task_count": 3671,
+      "note": "HealthBench Consensus: criteria multiply validated by physician agreement; reported as error rate in the paper."
+    }
+  ],
+  "status": "active",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2505.08775",
+    "website": "https://openai.com/index/healthbench/",
+    "leaderboard": null,
+    "dataset": "https://github.com/openai/simple-evals",
+    "code": "https://github.com/openai/simple-evals"
+  },
+  "notes": "Announced 2025-05-12; arXiv 2505.08775 verified (Arora et al., posted 2025-05-13). Scores are 0-1 in the paper and shown here as percent. Physician responses without model help scored below the September 2024 models, and physicians could not improve on o3/GPT-4.1 responses, so no human baseline is recorded. OpenAI's 2026 launch posts report a 'HealthBench Professional (length-adjusted)' variant graded by GPT-5.4; it is not documented publicly and is not tracked here. Conversations are public with a canary string."
+}

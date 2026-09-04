@@ -1,0 +1,33 @@
+{
+  "id": "screenspot-pro",
+  "name": "ScreenSpot-Pro",
+  "full_name": "ScreenSpot-Pro: GUI Grounding for Professional High-Resolution Computer Use",
+  "layer": "model",
+  "released": "2025-01",
+  "maintainer": "National University of Singapore / HKBU (Kaixin Li et al.)",
+  "description": "1,581 GUI grounding instructions, each on a unique authentic high-resolution screenshot from 23 professional applications (CAD, IDEs, creative suites, scientific tools, office) and three operating systems. The model must output the click point or box for the element an instruction refers to; targets average 0.07% of the screen, and accuracy is the share of predictions landing inside the ground-truth box (micro-averaged over text and icon targets). The standard stress test for the visual grounding that computer-use agents depend on.",
+  "description_zh": "1,581 条 GUI 定位指令,每条对应一张来自 23 个专业应用(CAD、IDE、创意套件、科学工具、办公)与三种操作系统的真实高分辨率截图。模型需输出指令所指元素的点击点或框;目标平均仅占屏幕 0.07%,准确率为预测落入真值框的比例(文本与图标目标微平均)。是计算机使用智能体所依赖的视觉定位能力的标准压力测试。",
+  "domains": [
+    "computer-use",
+    "multimodal"
+  ],
+  "metric": {
+    "name": "grounding accuracy",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 1581,
+  "status": "saturating",
+  "contamination_risk": "high",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": "https://arxiv.org/abs/2504.07981",
+    "website": "https://gui-agent.github.io/grounding-leaderboard/",
+    "leaderboard": "https://gui-agent.github.io/grounding-leaderboard/",
+    "dataset": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro",
+    "code": "https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding"
+  },
+  "notes": "Paper and dataset released 2025-01-04 (GitHub changelog); arXiv 2504.07981 verified (posted 2025-04-04; ICLR 2025 workshop). Official leaderboard entries use greedy decoding and are contributed by model authors; frontier labs report their own runs, often with tools (OpenAI: Python zoom tool) or agentic zoom-in, which inflates scores versus single-shot grounding. Images and annotations are fully public, so contamination risk is high."
+}

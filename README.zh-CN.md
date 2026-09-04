@@ -16,7 +16,7 @@
 对每个基准记录：它测什么、是否仍能区分前沿系统（`status`）、测试集暴露程度（`contamination_risk`）、有出处的人类基线（若存在），以及最高分由谁、在什么条件下报告。
 
 <!-- gen:stats -->
-**24** 个模型基准 · **17** 个 Agent 基准 · **18** 个评测方 · **179** 条有来源的结果 · 更新于 2026-09-04
+**31** 个模型基准 · **23** 个 Agent 基准 · **18** 个评测方 · **250** 条有来源的结果 · 更新于 2026-09-04
 <!-- /gen:stats -->
 
 **为什么再做一个列表？** 多数基准页面照搬厂商幻灯片上的数字，没有出处。这里每一行结果都带有来源 URL、来源类型（官方榜单 / 论文 / 独立复现 / 厂商自报 / 聚合站）、访问日期和评测条件（工具、推理强度、scaffold、pass@k）。没有来源的数字不收录。
@@ -28,8 +28,14 @@
 <!-- gen:model -->
 | Benchmark | 发布 | 领域 | 状态 | 最高分 | 系统 | 来源 |
 |---|---|---|---|---|---|---|
+| [BenchCAD](https://benchcad.com/leaderboard) | 2026-05 | multimodal, code, reasoning | active | 0.843 | Claude Fable 5.1 (max, Python tools) | [厂商自报](https://benchcad.com/leaderboard) |
+| [AA-Omniscience](https://artificialanalysis.ai/evaluations/omniscience) | 2025-11 | knowledge, factuality | active | 44 | GPT-6 Astra (high) | [独立复现](https://artificialanalysis.ai/evaluations/omniscience) |
+| [GDPval](https://openai.com/index/gdpval/) | 2025-09 | general-assistant, knowledge, instruction-following | active | 74.1% | GPT-5.2 Pro | [厂商自报](https://openai.com/index/introducing-gpt-5-2/) |
+| [HealthBench](https://openai.com/index/healthbench/) | 2025-05 | knowledge, safety, instruction-following | active | 59.9% | o3 | [论文](https://arxiv.org/abs/2505.08775) |
 | [ARC-AGI-2](https://arcprize.org/leaderboard) | 2025-03 | reasoning | saturating | 95% | GPT-6 Astra (Max) | [官方榜单](https://arcprize.org/leaderboard) |
+| [ScreenSpot-Pro](https://gui-agent.github.io/grounding-leaderboard/) | 2025-01 | computer-use, multimodal | saturating | 92.7% | GPT-6 Astra | [厂商自报](https://openai.com/index/gpt-6-astra/) |
 | [Humanity's Last Exam](https://lastexam.ai/) | 2025-01 | knowledge, reasoning, science, math, multimodal | active | 65% | Claude Fable 5.1 (with tools) | [厂商自报](https://www.anthropic.com/claude-fable-and-mythos-5-1) |
+| [Aider Polyglot](https://aider.chat/docs/leaderboards/) | 2024-12 | code, instruction-following | saturating | 88% | gpt-5 (high) | [官方榜单](https://aider.chat/docs/leaderboards/) |
 | [SimpleQA](https://openai.com/index/introducing-simpleqa/) | 2024-11 | factuality, knowledge | active | 62.5% | gpt-4.5-preview-2025-02-27 | [厂商自报](https://github.com/openai/simple-evals) |
 | [FrontierMath](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) | 2024-11 | math, reasoning, research | saturating | 93.7% | gpt-6-astra (max) | [独立复现](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) |
 | [MMMU-Pro](https://mmmu-benchmark.github.io/#leaderboard) | 2024-09 | multimodal, knowledge, reasoning | active | 86.9% | Chance Vision 1.5 | [厂商自报](https://mmmu-benchmark.github.io/) |
@@ -40,6 +46,7 @@
 | [MMMU](https://mmmu-benchmark.github.io/#leaderboard) | 2023-11 | multimodal, knowledge, reasoning | saturating | 85.4% | GPT-5.1 | [厂商自报](https://mmmu-benchmark.github.io/) |
 | [IFEval](https://github.com/google-research/google-research/tree/master/instruction_following_eval) | 2023-11 | instruction-following | saturating | 95% | Qwen3.5-27B | [厂商自报](https://huggingface.co/Qwen/Qwen3.5-27B) |
 | [GPQA Diamond](https://github.com/idavidrein/gpqa) | 2023-11 | science, reasoning, knowledge | saturating | 96% | GPT-6 Astra | [聚合站](https://benchlm.ai/benchmarks/gpqa-diamond) |
+| [LMArena Text](https://lmarena.ai/leaderboard/text) | 2023-05 | human-preference, general-assistant | active | 1466 | gemini-2.5-pro | [官方榜单](https://huggingface.co/spaces/lmarena-ai/arena-leaderboard) |
 | *已饱和或退役 —— 不再用于比较前沿系统。所示分数为最后一次报告值，不是榜首。* | | | | | | |
 | [AIME 2025](https://matharena.ai/) | 2025-02 | math, reasoning | saturated | 最后报告 100% | GPT-5.2 (high) | [独立复现](https://matharena.ai/) |
 | [BIG-Bench Hard](https://github.com/suzgunmirac/BIG-Bench-Hard) | 2022-10 | reasoning | saturated | 最后报告 87.5% | DeepSeek-V4-Pro-Base | [厂商自报](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
@@ -62,8 +69,12 @@
 <!-- gen:agent -->
 | Benchmark | 发布 | 领域 | 状态 | 最高分 | 系统 | 来源 |
 |---|---|---|---|---|---|---|
+| [OSWorld 2.0](https://osworld-v2.xlang.ai/) | 2026-06 | computer-use, multimodal, tool-use | active | 41.7% | Claude Fable 5.1 | [厂商自报](https://www.anthropic.com/claude-fable-and-mythos-5-1) |
+| [AutomationBench](https://zapier.com/benchmarks) | 2026-04 | tool-use, general-assistant, instruction-following | active | 50.3% | Claude Opus 5 (max) | [官方榜单](https://github.com/zapier/AutomationBench) |
 | [ARC-AGI-3](https://arcprize.org/leaderboard) | 2026-03 | reasoning, tool-use | saturating | 99.9% | GPT-6 Astra (high) | [官方榜单](https://arcprize.org/blog/astra) |
-| [Terminal-Bench](https://www.tbench.ai/leaderboard) | 2026-01 | software-engineering, code, tool-use, ml-engineering | active | 62.9% | GPT-5.2 + Codex CLI | [论文](https://arxiv.org/abs/2601.11868) |
+| [Terminal-Bench](https://www.tbench.ai/leaderboard) | 2026-01 | software-engineering, code, tool-use, ml-engineering | active | 64.6% | GPT-6 Astra | [厂商自报](https://openai.com/index/gpt-6-astra/) |
+| [DeepSearchQA](https://www.kaggle.com/benchmarks/google/dsqa/leaderboard) | 2025-12 | web, research, factuality, tool-use | active | 95% | Claude Opus 5 | [聚合站](https://benchlm.ai/benchmarks/deepsearchqa) |
+| [Tool Decathlon (Toolathlon)](https://toolathlon.xyz/docs/leaderboard) | 2025-10 | tool-use, general-assistant, software-engineering | active | 78.4% | GLM 5.3 Flash (max) | [官方榜单](https://toolathlon.xyz/docs/leaderboard) |
 | [SWE-Bench Pro](https://labs.scale.com/leaderboard/swe_bench_pro_public) | 2025-09 | software-engineering, code, tool-use | active | 61.5% | Muse Spark 1.1 | [官方榜单](https://labs.scale.com/leaderboard/swe_bench_pro_public) |
 | [tau2-bench](https://taubench.com/leaderboard?benchmark=core) | 2025-06 | tool-use, instruction-following, general-assistant | active | 87.9% | Qwen3.5-397B-A17B | [官方榜单](https://taubench.com) |
 | [FieldWorkArena](https://en-documents.research.global.fujitsu.com/fieldworkarena/) | 2025-05 | multimodal, general-assistant, safety, reasoning | active | 52% | GPT-5.2 (2025-12-11) | [论文](https://arxiv.org/abs/2505.19662) |
@@ -77,7 +88,9 @@
 | [GAIA](https://huggingface.co/spaces/gaia-benchmark/leaderboard) | 2023-11 | general-assistant, tool-use, web, reasoning, multimodal | saturating | 93.36% | CustomGPT.ai Research Lab v44 | [官方榜单](https://huggingface.co/spaces/gaia-benchmark/leaderboard) |
 | [WebArena](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing) | 2023-07 | web, tool-use, computer-use | active | 74.3% | WebTactix + Deepseek v3.2 | [官方榜单](https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing) |
 | *已饱和或退役 —— 不再用于比较前沿系统。所示分数为最后一次报告值，不是榜首。* | | | | | | |
+| [Cybench](https://cybench.github.io/#leaderboard_title) | 2024-08 | safety, code, tool-use | saturated | 最后报告 96% | Claude Opus 4.7 | [厂商自报](https://cybench.github.io) |
 | [tau-bench](https://github.com/sierra-research/tau-bench) | 2024-06 | tool-use, instruction-following, general-assistant | retired | 最后报告 69.2% | TC (claude-3-5-sonnet-20241022), retail | [官方榜单](https://github.com/sierra-research/tau-bench) |
+| [AndroidWorld](https://docs.google.com/spreadsheets/d/1cchzP9dlTZ3WXQTfYNhh3avxoLipqHN75v1Tb86uhHo/edit?gid=0#gid=0) | 2024-05 | computer-use, multimodal, tool-use | saturated | 最后报告 85.3% | Qwen3.8 Max | [聚合站](https://benchlm.ai/benchmarks/androidworld) |
 | [SWE-bench](https://www.swebench.com/#test) | 2023-10 | software-engineering, code, tool-use | saturated | 最后报告 52.62% | Sonar Foundation Agent + Claude 4.5 Opus | [官方榜单](https://www.swebench.com/#test) |
 | [AgentBench](https://docs.google.com/spreadsheets/d/e/2PACX-1vRR3Wl7wsCgHpwUw1_eUXW_fptAPLL3FkhnW_rua0O1Ji_GIVrpTjY5LaKAhwO-WeARjnY_KNw0SYNJ/pubhtml) | 2023-08 | tool-use, reasoning, web, code | retired | 最后报告 3.11 | claude-3 opus | [论文](https://arxiv.org/abs/2308.03688) |
 <!-- /gen:agent -->
@@ -116,10 +129,10 @@
 - **2020** — MMLU
 - **2021** — GSM8K, HumanEval, LM Evaluation Harness (framework), MATH, MBPP, TruthfulQA
 - **2022** — BIG-Bench Hard, HELM (framework)
-- **2023** — AgentBench, DeepEval (framework), GAIA, GPQA Diamond, IFEval, LMArena (leaderboard), MMMU, Open LLM Leaderboard (leaderboard), OpenAI Evals (framework), OpenCompass (framework), SWE-bench, WebArena
-- **2024** — Artificial Analysis (independent-evaluator), BFCL, Epoch AI Benchmarking Hub (independent-evaluator), EvalScope (framework), FrontierMath, Inspect AI (framework), Lighteval (framework), LiveBench (leaderboard), LiveCodeBench, MLE-bench, MMLU-Pro, MMMU-Pro, OSWorld, RULER, Scale SEAL Leaderboards (independent-evaluator), SimpleQA, SWE-bench Verified, tau-bench, Vals AI (independent-evaluator), VisualWebArena
-- **2025** — AIME 2025, ARC-AGI-2, BenchLM (aggregator), BrowseComp, FieldWorkArena, Holistic Agent Leaderboard (HAL) (leaderboard), Humanity's Last Exam, PaperBench, SWE-bench Multilingual, SWE-Bench Pro, SWE-rebench (leaderboard), tau2-bench
-- **2026** — ARC-AGI-3, Terminal-Bench
+- **2023** — AgentBench, DeepEval (framework), GAIA, GPQA Diamond, IFEval, LMArena (leaderboard), LMArena Text, MMMU, Open LLM Leaderboard (leaderboard), OpenAI Evals (framework), OpenCompass (framework), SWE-bench, WebArena
+- **2024** — Aider Polyglot, AndroidWorld, Artificial Analysis (independent-evaluator), BFCL, Cybench, Epoch AI Benchmarking Hub (independent-evaluator), EvalScope (framework), FrontierMath, Inspect AI (framework), Lighteval (framework), LiveBench (leaderboard), LiveCodeBench, MLE-bench, MMLU-Pro, MMMU-Pro, OSWorld, RULER, Scale SEAL Leaderboards (independent-evaluator), SimpleQA, SWE-bench Verified, tau-bench, Vals AI (independent-evaluator), VisualWebArena
+- **2025** — AA-Omniscience, AIME 2025, ARC-AGI-2, BenchLM (aggregator), BrowseComp, DeepSearchQA, FieldWorkArena, GDPval, HealthBench, Holistic Agent Leaderboard (HAL) (leaderboard), Humanity's Last Exam, PaperBench, ScreenSpot-Pro, SWE-bench Multilingual, SWE-Bench Pro, SWE-rebench (leaderboard), tau2-bench, Tool Decathlon (Toolathlon)
+- **2026** — ARC-AGI-3, AutomationBench, BenchCAD, OSWorld 2.0, Terminal-Bench
 <!-- /gen:timeline -->
 
 ## 数据模型

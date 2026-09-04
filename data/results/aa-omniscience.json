@@ -1,0 +1,64 @@
+{
+  "benchmark": "aa-omniscience",
+  "results": [
+    {
+      "system": "Claude 4.1 Opus",
+      "developer": "Anthropic",
+      "value": 4.8,
+      "date": "2025-11-17",
+      "source": {
+        "url": "https://arxiv.org/abs/2511.13029",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Highest score at launch; one of only three models above zero in the paper."
+      }
+    },
+    {
+      "system": "Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)",
+      "developer": "Anthropic",
+      "value": 43,
+      "date": "2026-09-01",
+      "source": {
+        "url": "https://artificialanalysis.ai/evaluations/omniscience",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "reasoning_effort": "max",
+        "notes": "Leaderboard rounds to integers. AA's 2026-09-01 article reports 67.2% accuracy and a 72.6% hallucination rate for this model; ~4% of tokens served by Anthropic's default fallback models."
+      }
+    },
+    {
+      "system": "GPT-6 Astra (high)",
+      "developer": "OpenAI",
+      "value": 44,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://artificialanalysis.ai/evaluations/omniscience",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "reasoning_effort": "high",
+        "notes": "Top of the leaderboard on access date (integer-rounded). AA's 2026-09-03 article attributes the jump over GPT-5.6 Sol to hallucination rate falling from 92% to 51% at max effort."
+      }
+    },
+    {
+      "system": "GPT-6 Astra (xhigh)",
+      "developer": "OpenAI",
+      "value": 43,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://artificialanalysis.ai/evaluations/omniscience",
+        "kind": "independent-evaluation",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "reasoning_effort": "xhigh",
+        "notes": "Leaderboard rounds to integers."
+      }
+    }
+  ]
+}

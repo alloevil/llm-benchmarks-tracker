@@ -1,0 +1,33 @@
+{
+  "id": "aider-polyglot",
+  "name": "Aider Polyglot",
+  "full_name": "Aider polyglot coding benchmark",
+  "layer": "model",
+  "released": "2024-12",
+  "maintainer": "Paul Gauthier (Aider)",
+  "description": "225 of the hardest Exercism exercises in C++, Go, Java, JavaScript, Python and Rust, selected because at most 3 of 7 reference models solved them. The model runs inside the aider CLI, must edit the files using a specified edit format, and gets one retry with the failing test output; the score is the percentage of exercises whose unit tests pass after two attempts. A widely quoted measure of instruction-following code editing that also exposes edit-format compliance and cost per run.",
+  "description_zh": "从 C++、Go、Java、JavaScript、Python、Rust 的 Exercism 练习中选出 7 个参考模型至多 3 个能解的最难 225 题。模型在 aider CLI 中以指定编辑格式修改文件,失败后可凭测试输出重试一次;得分为两次尝试内通过单元测试的题目比例。被广泛引用的指令跟随式代码编辑指标,同时暴露编辑格式合规性与运行成本。",
+  "domains": [
+    "code",
+    "instruction-following"
+  ],
+  "metric": {
+    "name": "percent correct (pass@2)",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 225,
+  "status": "saturating",
+  "contamination_risk": "medium",
+  "human_baseline": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "links": {
+    "paper": null,
+    "website": "https://aider.chat/2024/12/21/polyglot.html",
+    "leaderboard": "https://aider.chat/docs/leaderboards/",
+    "dataset": "https://github.com/Aider-AI/polyglot-benchmark",
+    "code": "https://github.com/Aider-AI/aider"
+  },
+  "notes": "Introduced 2024-12-21 to replace aider's saturated 133-problem Python edit benchmark. Rows below come from the maintainer's leaderboard data file (aider/website/_data/polyglot_leaderboard.yml), which records run dates, pass_rate_2 and total cost. The official leaderboard page was last updated 2025-11-20 and has not added 2026 models; Exercism problems are public, so newer models may have seen them."
+}

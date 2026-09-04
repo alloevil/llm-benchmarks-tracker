@@ -1,0 +1,63 @@
+{
+  "benchmark": "healthbench",
+  "results": [
+    {
+      "system": "GPT-4o (Aug 2024)",
+      "developer": "OpenAI",
+      "value": 32.3,
+      "date": "2025-05-13",
+      "source": {
+        "url": "https://arxiv.org/abs/2505.08775",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Mean of 16 runs (Table 7)."
+      }
+    },
+    {
+      "system": "GPT-4.1",
+      "developer": "OpenAI",
+      "value": 47.8,
+      "date": "2025-05-13",
+      "source": {
+        "url": "https://arxiv.org/abs/2505.08775",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Mean of 16 runs (Table 7)."
+      }
+    },
+    {
+      "system": "o3",
+      "developer": "OpenAI",
+      "value": 59.9,
+      "date": "2025-05-13",
+      "source": {
+        "url": "https://arxiv.org/abs/2505.08775",
+        "kind": "paper",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "notes": "Best model at release; mean of 16 runs (Table 7). Paper states o3 also tops HealthBench Hard at 32%."
+      }
+    },
+    {
+      "system": "GPT-5 (thinking)",
+      "developer": "OpenAI",
+      "value": 46.2,
+      "date": "2025-08-07",
+      "source": {
+        "url": "https://openai.com/index/introducing-gpt-5/",
+        "kind": "developer-report",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "hard",
+        "reasoning_effort": "high",
+        "notes": "HealthBench Hard only; the announcement gives no full-set number."
+      }
+    }
+  ]
+}
