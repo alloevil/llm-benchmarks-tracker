@@ -107,9 +107,14 @@ def test_retired_rows_are_compact_with_divider():
 
 def test_saturation_chart_covers_percent_benchmarks():
     ds = _ds()
-    svg = build.saturation_chart(ds, "en", "")
+    html = build.saturation_chart(ds, "en", "")
     pct = [b for b in ds.benchmarks.values() if b["metric"]["unit"] == "percent" and ds.results.get(b["id"])]
-    assert svg.count('class="series') == len(pct)
+    assert html.count("<svg") == 2  # focused domain + full domain
+    focus, full = html.split("<svg")[1:]
+    live = [b for b in pct if build.is_live(b)]
+    assert focus.count('class="series') == len(live)
+    assert full.count('class="series') == len(pct)
+    svg = full
     for b in pct:
         assert f'data-id="{b["id"]}"' in svg
         assert f'href="b/{b["id"]}/"' in svg
@@ -117,3 +122,13 @@ def test_saturation_chart_covers_percent_benchmarks():
     assert all(f'data-id="{b["id"]}"' in svg for b in pct if not build.is_live(b))
     assert svg.count('hidden="hidden"') >= sum(1 for b in pct if not build.is_live(b))
     assert svg.count('class="human-line"') == sum(1 for b in pct if b.get("human_baseline"))
+    assert svg.count('class="slabel"') == len(pct)  # every series labelled in the gutter
+
+
+def test_frontier_is_monotone_running_best():
+    b = {"metric": {"unit": "percent", "higher_is_better": True}}
+    rows = [{"date": "2024-01-01", "value": 40}, {"date": "2024-06-01", "value": 30},
+            {"date": "2025-01-01", "value": 70}, {"date": "2025-02-01", "value": 65}]
+    assert build.frontier(b, rows) == [("2024-01-01", 40), ("2025-01-01", 70)]
+    b["metric"]["higher_is_better"] = False
+    assert build.frontier(b, rows) == [("2024-01-01", 40), ("2024-06-01", 30)]

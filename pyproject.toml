@@ -1,6 +1,6 @@
 [project]
 name = "llm-benchmarks-tracker"
-version = "1.4.0"
+version = "1.5.0"
 description = "Sourced, schema-validated catalogue of LLM and agent evaluation benchmarks"
 readme = "README.md"
 license = { file = "LICENSE" }

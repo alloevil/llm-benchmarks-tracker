@@ -65,38 +65,44 @@
   });
 })();
 
-// Saturation chart: layer/status toggles, hover highlight, tooltip. Chart is complete without this.
+// Saturation chart: status toggles, focus/full domain switch, hover highlight, tooltip.
 (function () {
   "use strict";
   var wrap = document.querySelector(".chart-wrap");
   if (!wrap) return;
-  var svg = wrap.querySelector("svg.chart"), tip = wrap.querySelector(".tooltip");
-  var controls = wrap.querySelector(".chart-controls");
-  var series = Array.prototype.slice.call(svg.querySelectorAll(".series"));
-  var arrows = Array.prototype.slice.call(svg.querySelectorAll(".chain-arrow"));
-  var on = { layer: {}, status: {} };
+  var tip = wrap.querySelector(".tooltip"), controls = wrap.querySelector(".chart-controls");
+  var svgs = { focus: wrap.querySelector(".chart-focus"), full: wrap.querySelector(".chart-full") };
+  var on = {};
   controls.hidden = false;
-  controls.querySelectorAll("button[data-toggle]").forEach(function (b) {
-    on[b.dataset.toggle][b.dataset.value] = b.getAttribute("aria-pressed") === "true";
+  function setHidden(el, v) { if (v) el.setAttribute("hidden", "hidden"); else el.removeAttribute("hidden"); }
+  controls.querySelectorAll("button[data-toggle=status]").forEach(function (b) {
+    on[b.dataset.value] = b.getAttribute("aria-pressed") === "true";
     b.addEventListener("click", function () {
-      var v = !on[b.dataset.toggle][b.dataset.value];
-      on[b.dataset.toggle][b.dataset.value] = v;
-      b.setAttribute("aria-pressed", String(v));
+      on[b.dataset.value] = !on[b.dataset.value];
+      b.setAttribute("aria-pressed", String(on[b.dataset.value]));
       apply();
     });
   });
-  // SVG elements have no `hidden` property; use the attribute (CSS hides [hidden]).
-  function setHidden(el, v) { if (v) el.setAttribute("hidden", "hidden"); else el.removeAttribute("hidden"); }
-  function visible(s) { return on.layer[s.dataset.layer] && on.status[s.dataset.status]; }
   function apply() {
-    var shown = {};
-    series.forEach(function (s) { var v = visible(s); setHidden(s, !v); if (v) shown[s.dataset.id] = true; });
-    arrows.forEach(function (a) { setHidden(a, !(shown[a.dataset.from] && shown[a.dataset.to])); });
+    // Full domain only when a retired/saturated group is shown; otherwise the focused (recent) domain.
+    var wide = on.saturated || on.retired;
+    setHidden(svgs.focus, wide); setHidden(svgs.full, !wide);
+    Object.keys(svgs).forEach(function (k) {
+      var shown = {};
+      svgs[k].querySelectorAll(".series").forEach(function (s) {
+        var v = !!on[s.dataset.status]; setHidden(s, !v); if (v) shown[s.dataset.id] = true;
+      });
+      svgs[k].querySelectorAll(".chain-arrow").forEach(function (a) { setHidden(a, !(shown[a.dataset.from] && shown[a.dataset.to])); });
+    });
   }
   apply();
-  // Narrow screens: the chart overflows horizontally; start at the recent end where live series are.
-  if (wrap.scrollWidth > wrap.clientWidth) wrap.scrollLeft = wrap.scrollWidth;
-  series.forEach(function (s) {
+  // Narrow screens: land on the recent end of the plot with the label gutter peeking in on the right.
+  if (wrap.scrollWidth > wrap.clientWidth) {
+    var vis = svgs.focus.hasAttribute("hidden") ? svgs.full : svgs.focus;
+    var plotRight = vis.getBoundingClientRect().width * 0.81;  // x1 / CHART_W
+    wrap.scrollLeft = Math.max(0, plotRight - wrap.clientWidth * 0.55);
+  }
+  wrap.querySelectorAll(".series").forEach(function (s) {
     s.addEventListener("mouseenter", function () {
       wrap.classList.add("hovering"); s.classList.add("hot");
       tip.textContent = s.dataset.tip; tip.hidden = false;

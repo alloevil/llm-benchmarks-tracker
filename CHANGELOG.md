@@ -2,6 +2,13 @@
 
 All notable changes to the data model and tooling. Data additions are tracked in git history and the per-benchmark ledgers.
 
+## 1.5.0 — 2026-09-04
+
+### Changed
+- Saturation chart redesigned: two aligned panels (model / agent) instead of one tangle; lines are the running best (frontier), not every reported point; every series is labelled in a right-hand gutter with leaders, de-overlapped; default view is focused on years with live benchmarks, switching to the full 2019– range when saturated/retired are toggled on; sparser grid (0/50/100%).
+- Release timeline is a vertical rail (newest year first, count per year, month tags, entries link to detail pages) instead of bordered pills.
+- Mobile: chart is a fixed-height landscape strip that opens on the recent end; compact nav.
+
 ## 1.4.0 — 2026-09-04
 
 ### Added
