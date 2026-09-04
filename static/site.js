@@ -65,56 +65,40 @@
   });
 })();
 
-// Saturation chart: status toggles, focus/full domain switch, hover highlight, tooltip.
+// Lifespan chart: swap live/full SVG, hover highlight (row + its arrows), tooltip.
 (function () {
   "use strict";
   var wrap = document.querySelector(".chart-wrap");
   if (!wrap) return;
   var tip = wrap.querySelector(".tooltip"), controls = wrap.querySelector(".chart-controls");
-  var svgs = { focus: wrap.querySelector(".chart-focus"), full: wrap.querySelector(".chart-full") };
-  var on = {};
+  var live = wrap.querySelectorAll(".chart-live, .chart-live-m"), full = wrap.querySelectorAll(".chart-full, .chart-full-m");
   controls.hidden = false;
   function setHidden(el, v) { if (v) el.setAttribute("hidden", "hidden"); else el.removeAttribute("hidden"); }
-  controls.querySelectorAll("button[data-toggle=status]").forEach(function (b) {
-    on[b.dataset.value] = b.getAttribute("aria-pressed") === "true";
-    b.addEventListener("click", function () {
-      on[b.dataset.value] = !on[b.dataset.value];
-      b.setAttribute("aria-pressed", String(on[b.dataset.value]));
-      apply();
-    });
+  var btn = controls.querySelector("button[data-toggle=retired]");
+  btn.addEventListener("click", function () {
+    var showFull = btn.getAttribute("aria-pressed") !== "true";
+    btn.setAttribute("aria-pressed", String(showFull));
+    live.forEach(function (el) { setHidden(el, showFull); }); full.forEach(function (el) { setHidden(el, !showFull); });
   });
-  function apply() {
-    // Full domain only when a retired/saturated group is shown; otherwise the focused (recent) domain.
-    var wide = on.saturated || on.retired;
-    setHidden(svgs.focus, wide); setHidden(svgs.full, !wide);
-    Object.keys(svgs).forEach(function (k) {
-      var shown = {};
-      svgs[k].querySelectorAll(".series").forEach(function (s) {
-        var v = !!on[s.dataset.status]; setHidden(s, !v); if (v) shown[s.dataset.id] = true;
-      });
-      svgs[k].querySelectorAll(".chain-arrow").forEach(function (a) { setHidden(a, !(shown[a.dataset.from] && shown[a.dataset.to])); });
+  wrap.querySelectorAll(".row").forEach(function (r) {
+    var svg = r.ownerSVGElement;
+    var mine = Array.prototype.filter.call(svg.querySelectorAll(".chain-arrow"), function (a) {
+      return a.dataset.from === r.dataset.id || a.dataset.to === r.dataset.id;
     });
-  }
-  apply();
-  // Narrow screens: land on the recent end of the plot with the label gutter peeking in on the right.
-  if (wrap.scrollWidth > wrap.clientWidth) {
-    var vis = svgs.focus.hasAttribute("hidden") ? svgs.full : svgs.focus;
-    var plotRight = vis.getBoundingClientRect().width * 0.81;  // x1 / CHART_W
-    wrap.scrollLeft = Math.max(0, plotRight - wrap.clientWidth * 0.55);
-  }
-  wrap.querySelectorAll(".series").forEach(function (s) {
-    s.addEventListener("mouseenter", function () {
-      wrap.classList.add("hovering"); s.classList.add("hot");
-      tip.textContent = s.dataset.tip; tip.hidden = false;
+    r.addEventListener("mouseenter", function () {
+      wrap.classList.add("hovering"); r.classList.add("hot");
+      mine.forEach(function (a) { a.classList.add("hot"); });
+      tip.textContent = r.dataset.tip; tip.hidden = false;
     });
-    s.addEventListener("mousemove", function (e) {
-      var r = wrap.getBoundingClientRect();
-      var x = e.clientX - r.left + 12, y = e.clientY - r.top + 12;
-      if (x + tip.offsetWidth > r.width) x -= tip.offsetWidth + 24;
+    r.addEventListener("mousemove", function (e) {
+      var b = wrap.getBoundingClientRect();
+      var x = e.clientX - b.left + 12, y = e.clientY - b.top + 12;
+      if (x + tip.offsetWidth > b.width) x -= tip.offsetWidth + 24;
       tip.style.left = x + "px"; tip.style.top = y + "px";
     });
-    s.addEventListener("mouseleave", function () {
-      wrap.classList.remove("hovering"); s.classList.remove("hot"); tip.hidden = true;
+    r.addEventListener("mouseleave", function () {
+      wrap.classList.remove("hovering"); r.classList.remove("hot");
+      mine.forEach(function (a) { a.classList.remove("hot"); }); tip.hidden = true;
     });
   });
 })();

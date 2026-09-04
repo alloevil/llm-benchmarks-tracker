@@ -2,6 +2,11 @@
 
 All notable changes to the data model and tooling. Data additions are tracked in git history and the per-benchmark ledgers.
 
+## 1.6.0 — 2026-09-04
+
+### Changed
+- Timeline chart is now "lifespan rows": one row per benchmark (model group, then agent; release order), showing the release marker, dotted lead to the first sourced result, a step area whose height is the running best score, human baseline as a dashed line, extension to today for live benchmarks, and curved arrows to successors. Names and scores sit in side gutters on desktop and inside the plot on mobile (separate viewBox, no horizontal scroll). Saturated/retired rows are hidden behind a toggle. Hover highlights the row and its supersession arrows.
+
 ## 1.5.0 — 2026-09-04
 
 ### Changed

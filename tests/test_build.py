@@ -105,24 +105,22 @@ def test_retired_rows_are_compact_with_divider():
     assert "last reported" in html
 
 
-def test_saturation_chart_covers_percent_benchmarks():
+def test_lifespan_chart_covers_percent_benchmarks():
     ds = _ds()
-    html = build.saturation_chart(ds, "en", "")
+    html = build.lifespan_chart(ds, "en", "")
     pct = [b for b in ds.benchmarks.values() if b["metric"]["unit"] == "percent" and ds.results.get(b["id"])]
-    assert html.count("<svg") == 2  # focused domain + full domain
-    focus, full = html.split("<svg")[1:]
     live = [b for b in pct if build.is_live(b)]
-    assert focus.count('class="series') == len(live)
-    assert full.count('class="series') == len(pct)
-    svg = full
+    assert html.count("<svg") == 4  # live/full × desktop/mobile
+    live_svg, full_svg = html.split("<svg")[1:3]
+    assert live_svg.count('class="row ') == len(live)
+    assert full_svg.count('class="row ') == len(pct)
     for b in pct:
-        assert f'data-id="{b["id"]}"' in svg
-        assert f'href="b/{b["id"]}/"' in svg
-    # retired series are hidden by default; live ones are not
-    assert all(f'data-id="{b["id"]}"' in svg for b in pct if not build.is_live(b))
-    assert svg.count('hidden="hidden"') >= sum(1 for b in pct if not build.is_live(b))
-    assert svg.count('class="human-line"') == sum(1 for b in pct if b.get("human_baseline"))
-    assert svg.count('class="slabel"') == len(pct)  # every series labelled in the gutter
+        assert f'data-id="{b["id"]}"' in full_svg and f'href="b/{b["id"]}/"' in full_svg
+    assert full_svg.count('class="human-line"') == sum(1 for b in pct if b.get("human_baseline"))
+    assert full_svg.count('class="chain-arrow"') == sum(
+        1 for b in pct if b.get("superseded_by") in {x["id"] for x in pct}
+    )
+    assert "AgentBench" in html.split("</svg>")[-1]  # non-percent listed below the chart
 
 
 def test_frontier_is_monotone_running_best():

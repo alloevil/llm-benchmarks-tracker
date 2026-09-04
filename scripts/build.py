@@ -88,9 +88,12 @@ T: dict[str, dict[str, str]] = {
         "sort_hint": "click to sort",
         "no_baseline": "no measured baseline",
         "last_reported": "last reported",
-        "chart_title": "Top sourced score over time, per benchmark (percent metrics only)",
+        "chart_title": "Benchmark lifespans: release, running best score, human baseline, successor (percent metrics only)",
+        "today": "today",
+        "show_retired": "Show saturated / retired ({n})",
+        "legend_release": "release",
         "chart_excluded": "Not charted (non-percent metric)",
-        "chart_hint": "Hover a line for details; click to open the benchmark.",
+        "chart_hint": "Bar height = best sourced score. Hover for details; click to open.",
         "layer": "Layer",
         "layer_model": "Model benchmarks",
         "layer_agent": "Agent benchmarks",
@@ -152,9 +155,12 @@ T: dict[str, dict[str, str]] = {
         "sort_hint": "点击排序",
         "no_baseline": "无实测基线",
         "last_reported": "最后报告",
-        "chart_title": "各基准有来源的最高分随时间变化（仅百分制指标）",
+        "chart_title": "基准生命周期：发布、逐步最高分、人类基线、后继（仅百分制指标）",
+        "today": "今天",
+        "show_retired": "显示已饱和 / 退役（{n}）",
+        "legend_release": "发布",
         "chart_excluded": "未绘制（非百分制指标）",
-        "chart_hint": "悬停查看详情，点击进入基准页。",
+        "chart_hint": "条高 = 有来源的最高分。悬停看详情，点击进入。",
         "layer": "层级",
         "layer_model": "模型基准",
         "layer_agent": "Agent 基准",
@@ -629,19 +635,10 @@ def html_evaluator_rows(ds: Dataset, lang: str) -> str:
     return "\n".join(rows)
 
 
-CHART_W = 1000
-PANEL_H = 300
-PANEL_GAP = 46
-CHART_PAD = {"l": 44, "r": 190, "t": 24, "b": 30}
-LABEL_STEP = 14
-
-
-def _domain(ds: Dataset, series: list[dict[str, Any]], all_visible: bool) -> tuple[int, int]:
-    """x-axis ordinal range. Default view starts at the first year with a live series so the
-    plot isn't half empty; the JS toggle switches to the full-range viewBox variant."""
-    pick = series if all_visible else [b for b in series if is_live(b)] or series
-    dates = [date.fromisoformat(r["date"]) for b in pick for r in ds.results[b["id"]]]
-    return date(min(dates).year, 1, 1).toordinal(), date(max(dates).year + 1, 1, 1).toordinal()
+CHART_W = 1100
+CHART_L, CHART_R = 190, 150  # label gutter left, score gutter right
+ROW_H = 26
+CHART_TOP, CHART_BOT = 44, 30
 
 
 def frontier(b: dict[str, Any], rows: list[dict[str, Any]]) -> list[tuple[str, float]]:
@@ -654,135 +651,149 @@ def frontier(b: dict[str, Any], rows: list[dict[str, Any]]) -> list[tuple[str, f
     return out
 
 
-def _panel(ds: Dataset, lang: str, base: str, layer: str, series: list[dict[str, Any]], top: float,
-           d0: int, d1: int) -> str:
+def lifespan_chart(ds: Dataset, lang: str, base: str) -> str:
+    """One row per percent-metric benchmark, grouped by layer then release order. Each row shows the
+    release marker, a dotted lead to the first sourced result, a step area whose height is the running
+    best score (0-100% of the row), the human baseline as a dashed line, extension to today for live
+    benchmarks, and a curved arrow to the successor. Pure SVG; each row is an <a>. site.js adds
+    hover highlight, tooltip and a toggle for the saturated/retired group."""
     t = T[lang]
-    x0, x1 = CHART_PAD["l"], CHART_W - CHART_PAD["r"]
-    y0, y1 = top, top + PANEL_H
-    gutter = x1 + 12
-
-    def X(d: str) -> float:
-        o = date.fromisoformat(d if len(d) == 10 else d + "-01").toordinal()
-        return x0 + (o - d0) / (d1 - d0) * (x1 - x0)
-
-    def Y(v: float) -> float:
-        return y1 - max(0.0, min(100.0, v)) / 100.0 * (y1 - y0)
-
-    out = [f'<g class="panel" data-layer="{layer}">',
-           f'<text class="ptitle tl-{layer}" x="{x0}" y="{y0 - 8}">{t["layer_" + layer]}</text>']
-    for v in (0, 50, 100):
-        y = Y(v)
-        out.append(f'<line class="grid" x1="{x0}" y1="{y:.1f}" x2="{x1}" y2="{y:.1f}"/>')
-        out.append(f'<text class="axis" x="{x0 - 8}" y="{y + 4:.1f}" text-anchor="end">{v}%</text>')
-    for year in range(date.fromordinal(d0).year, date.fromordinal(d1).year):
-        x = X(f"{year}-01-01")
-        out.append(f'<line class="grid v" x1="{x:.1f}" y1="{y0}" x2="{x:.1f}" y2="{y1}"/>')
-        out.append(f'<text class="axis" x="{x + 4:.1f}" y="{y1 + 14}">{year}</text>')
-
-    # right-gutter labels for every visible series, ordered by final value, de-overlapped
-    order = sorted(series, key=lambda b: -ds.sota(b["id"])["value"])
-    step = min(LABEL_STEP, (y1 - y0) / max(len(order), 1))
-    label_y: dict[str, float] = {}
-    prev = -1e9
-    for b in order:
-        y = max(Y(ds.sota(b["id"])["value"]), prev + step)
-        label_y[b["id"]] = y
-        prev = y
-    overflow = prev - y1
-    if overflow > 0:  # shift the stack up so it stays inside the panel
-        for k in label_y:
-            label_y[k] -= overflow
-
-    # supersession arrows within this panel
-    pos = {b["id"]: b for b in series}
-    for b in series:
-        nxt = b.get("superseded_by")
-        if nxt in pos:
-            best = ds.sota(b["id"])
-            fd, fv = frontier(pos[nxt], ds.results[nxt])[0]
-            hid = "" if is_live(b) and is_live(pos[nxt]) else ' hidden="hidden"'
-            out.append(f'<line class="chain-arrow" x1="{X(best["date"]):.1f}" y1="{Y(best["value"]):.1f}" '
-                       f'x2="{X(fd):.1f}" y2="{Y(fv):.1f}" marker-end="url(#arr)" '
-                       f'data-from="{b["id"]}" data-to="{nxt}"{hid}/>')
-
-    for b in sorted(series, key=lambda b: b["released"]):
-        pts_data = frontier(b, ds.results[b["id"]])
-        best = ds.sota(b["id"])
-        pts = " ".join(f"{X(d):.1f},{Y(v):.1f}" for d, v in pts_data)
-        lx, ly = X(pts_data[-1][0]), Y(pts_data[-1][1])
-        hb = b.get("human_baseline")
-        human = ""
-        if hb:
-            hy = Y(hb["value"])
-            human = f'<line class="human-line" x1="{X(pts_data[0][0]):.1f}" y1="{hy:.1f}" x2="{lx:.1f}" y2="{hy:.1f}"/>'
-        ty = label_y[b["id"]]
-        leader = f'<path class="leader" d="M{lx:.1f},{ly:.1f} H{x1 + 8} V{ty:.1f} H{gutter - 4}"/>'
-        label = f'<text class="slabel" x="{gutter}" y="{ty + 4:.1f}">{_e(b["name"])}</text>'
-        hidden = "" if is_live(b) else ' hidden="hidden"'
-        kind = kind_label(lang, best["source"]["kind"])
-        tip = f'{b["name"]} · {b["released"]} · {fmt_value(b, best["value"])} {best["system"]} ({kind})'
-        out.append(
-            f'<a href="{base}b/{b["id"]}/" class="series layer-{layer} status-{b["status"]}" '
-            f'data-id="{b["id"]}" data-layer="{layer}" data-status="{b["status"]}" data-tip="{_e(tip)}"{hidden}>'
-            f"<title>{_e(tip)}</title>{human}"
-            f'<polyline class="hit" points="{pts}"/><polyline points="{pts}"/>'
-            + "".join(f'<circle cx="{X(d):.1f}" cy="{Y(v):.1f}" r="2.2"/>' for d, v in pts_data)
-            + f'<circle class="last" cx="{lx:.1f}" cy="{ly:.1f}" r="3.5"/>{leader}{label}</a>'
-        )
-    out.append("</g>")
-    return "".join(out)
-
-
-def saturation_chart(ds: Dataset, lang: str, base: str) -> str:
-    """Two aligned panels (model / agent): one polyline per percent-metric benchmark from its earliest
-    sourced result to its best, dashed human-baseline marker, supersession arrows, labels in a right
-    gutter with leaders. Pure SVG; each series is an <a>. site.js adds toggles, hover and tooltip.
-    Two SVGs are emitted: focused (live series, recent years) and full (every series, all years); JS shows one."""
-    t = T[lang]
-    series = [b for b in ds.benchmarks.values() if b["metric"]["unit"] == "percent" and ds.results.get(b["id"])]
-    if not series:
-        return ""
-    total_h = CHART_PAD["t"] + 2 * PANEL_H + PANEL_GAP + CHART_PAD["b"]
-
-    def svg(variant: str, all_visible: bool) -> str:
-        d0, d1 = _domain(ds, series, all_visible)
-        parts = [
-            f'<svg class="chart chart-{variant}" viewBox="0 0 {CHART_W} {total_h}" role="img" '
-            f'aria-labelledby="chart-title-{variant}" xmlns="http://www.w3.org/2000/svg"'
-            + (' hidden="hidden"' if all_visible else "") + ">",
-            f'<title id="chart-title-{variant}">{t["chart_title"]}</title>',
-            '<defs><marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">'
-            '<path d="M0,0 L8,4 L0,8 z" class="arrhead"/></marker></defs>',
-        ]
-        for i, layer in enumerate(("model", "agent")):
-            top = CHART_PAD["t"] + i * (PANEL_H + PANEL_GAP)
-            sub = [b for b in series if b["layer"] == layer and (all_visible or is_live(b))]
-            parts.append(_panel(ds, lang, base, layer, sub, top, d0, d1))
-        parts.append("</svg>")
-        return "".join(parts)
-
-    charted = {b["id"] for b in series}
+    today = date.today()
+    all_rows = [b for b in ds.benchmarks.values() if b["metric"]["unit"] == "percent" and ds.results.get(b["id"])]
+    all_rows.sort(key=lambda b: (b["layer"] != "model", not is_live(b), b["released"], b["id"]))
+    n_retired = sum(1 for b in all_rows if not is_live(b))
+    charted = {b["id"] for b in all_rows}
     others = sorted((b for b in ds.benchmarks.values() if b["id"] not in charted), key=lambda b: b["name"])
     note = ""
     if others:
         names = ", ".join(f'<a href="{base}b/{b["id"]}/">{_e(b["name"])}</a>' for b in others)
         note = f'<p class="muted small-note">{t["chart_excluded"]}: {names}</p>'
-    status_btns = "".join(
-        f'<button type="button" class="pill status-{s}" data-toggle="status" data-value="{s}" '
-        f'aria-pressed="{"true" if s in LIVE else "false"}">{s}</button>'
-        for s in ("active", "saturating", "saturated", "retired")
-    )
     controls = (
         '<div class="chart-controls" hidden>'
-        f'<span class="fgroup"><span class="flabel">{t["status"]}</span>{status_btns}</span>'
+        f'<button type="button" class="pill status-saturated" data-toggle="retired" aria-pressed="false">'
+        f'{t["show_retired"].format(n=n_retired)}</button>'
         f'<span class="legend-inline"><span class="lg human">- - -</span> {t["legend_human"]} '
-        f'<span class="lg arrow">⇢</span> {t["legend_arrow"]}</span>'
+        f'<span class="lg arrow">⇢</span> {t["legend_arrow"]} '
+        f'<span class="lg rel">●</span> {t["legend_release"]}</span>'
         f'<span class="muted chart-hint">{t["chart_hint"]}</span></div>'
     )
-    return (
-        f'<div class="chart-wrap">{controls}{svg("focus", False)}{svg("full", True)}'
-        f'<div class="tooltip" hidden></div></div>{note}'
+    live = [b for b in all_rows if is_live(b)]
+    svgs = (
+        _lifespan_svg(ds, lang, base, t, today, live, "live", False)
+        + _lifespan_svg(ds, lang, base, t, today, all_rows, "full", True)
+        + _lifespan_svg(ds, lang, base, t, today, live, "live-m", False, mobile=True)
+        + _lifespan_svg(ds, lang, base, t, today, all_rows, "full-m", True, mobile=True)
     )
+    return f'<div class="chart-wrap">{controls}{svgs}<div class="tooltip" hidden></div></div>{note}'
+
+
+def _lifespan_svg(ds: Dataset, lang: str, base: str, t: dict[str, str], today: date,
+                  rows: list[dict[str, Any]], variant: str, hidden_svg: bool, mobile: bool = False) -> str:
+    # Mobile: no side gutters (labels drawn inside the plot), taller rows, narrow viewBox.
+    width, left, right, row_h = (420, 12, 12, 34) if mobile else (CHART_W, CHART_L, CHART_R, ROW_H)
+    first = min(min(date.fromisoformat(r["date"]) for b in rows for r in ds.results[b["id"]]),
+                min(date.fromisoformat(b["released"] + "-01") for b in rows))
+    d0, d1 = date(first.year, 1, 1).toordinal(), date(today.year + 1, 1, 1).toordinal()
+    x0, x1 = left, width - right
+
+    def X(d: str | date) -> float:
+        o = d.toordinal() if isinstance(d, date) else date.fromisoformat(d if len(d) == 10 else d + "-01").toordinal()
+        return x0 + (o - d0) / (d1 - d0) * (x1 - x0)
+
+    # layout: layer header rows + benchmark rows
+    y_of: dict[str, float] = {}
+    layout: list[tuple[str, Any]] = []
+    y = CHART_TOP
+    for layer in ("model", "agent"):
+        if not any(b["layer"] == layer for b in rows):
+            continue
+        layout.append(("head", layer, y))
+        y += row_h
+        for b in (b for b in rows if b["layer"] == layer):
+            y_of[b["id"]] = y
+            layout.append(("row", b, y))
+            y += row_h
+    height = y + CHART_BOT
+    x_today = X(today)
+
+    out = [
+        f'<svg class="chart chart-{variant}" viewBox="0 0 {width} {height}" role="img" '
+        f'aria-labelledby="chart-title-{variant}" xmlns="http://www.w3.org/2000/svg"'
+        + (' hidden="hidden"' if hidden_svg else "") + ">",
+        f'<title id="chart-title-{variant}">{t["chart_title"]}</title>',
+        f'<defs><marker id="arr-{variant}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" '
+        'orient="auto"><path d="M0,0 L8,4 L0,8 z" class="arrhead"/></marker></defs>',
+    ]
+    for year in range(date.fromordinal(d0).year, today.year + 1):
+        x = X(f"{year}-01-01")
+        out.append(f'<line class="grid v" x1="{x:.1f}" y1="{CHART_TOP - 6}" x2="{x:.1f}" y2="{height - CHART_BOT}"/>')
+        out.append(f'<text class="axis" x="{x + 4:.1f}" y="{CHART_TOP - 12}">{year}</text>')
+    out.append(f'<line class="today" x1="{x_today:.1f}" y1="{CHART_TOP - 6}" x2="{x_today:.1f}" y2="{height - CHART_BOT}"/>')
+    out.append(f'<text class="axis today-label" x="{x_today + 4:.1f}" y="{height - CHART_BOT + 14}">{t["today"]}</text>')
+
+    # successor arrows first so rows paint over them
+    for b in rows:
+        nxt = b.get("superseded_by")
+        if nxt in y_of:
+            fr, fr2 = frontier(b, ds.results[b["id"]]), frontier(ds.benchmarks[nxt], ds.results[nxt])
+            ax, ay = X(fr[-1][0]), y_of[b["id"]] + row_h - 5
+            bx, by = X(fr2[0][0]), y_of[nxt] + row_h - 5
+            out.append(f'<path class="chain-arrow" d="M{ax:.1f},{ay} C{ax + 30:.1f},{ay} {bx - 30:.1f},{by} {bx:.1f},{by}" '
+                       f'marker-end="url(#arr-{variant})" data-from="{b["id"]}" data-to="{nxt}"/>')
+
+    h = 18
+    for kind, obj, yy in layout:
+        if kind == "head":
+            hx, anchor = (x0 + 4, "start") if mobile else (x0 - 10, "end")
+            out.append(f'<text class="ptitle tl-{obj}" x="{hx}" y="{yy + row_h - 9}" text-anchor="{anchor}">'
+                       f'{t["layer_" + obj]}</text>')
+            continue
+        b = obj
+        live = is_live(b)
+        fr = frontier(b, ds.results[b["id"]])
+        best = ds.sota(b["id"])
+        base_y = yy + row_h - 5
+        xr, xs = X(b["released"]), X(fr[0][0])
+        x_end = x_today if live else X(fr[-1][0])
+        pts = [f"{xs:.1f},{base_y}"]
+        for j, (d, v) in enumerate(fr):
+            if j:
+                pts.append(f"{X(d):.1f},{base_y - fr[j - 1][1] / 100 * h:.1f}")
+            pts.append(f"{X(d):.1f},{base_y - v / 100 * h:.1f}")
+        pts.append(f"{x_end:.1f},{base_y - fr[-1][1] / 100 * h:.1f}")
+        area = " ".join(pts + [f"{x_end:.1f},{base_y}"])
+        line = " ".join(pts)
+        lead = f'<line class="lead" x1="{xr:.1f}" y1="{base_y}" x2="{xs:.1f}" y2="{base_y}"/>' if xs - xr > 2 else ""
+        hb = b.get("human_baseline")
+        human = ""
+        if hb:
+            hy = base_y - hb["value"] / 100 * h
+            human = f'<line class="human-line" x1="{xs:.1f}" y1="{hy:.1f}" x2="{x_end:.1f}" y2="{hy:.1f}"/>'
+        kind_lbl = kind_label(lang, best["source"]["kind"])
+        span = f'{b["released"]} → {fr[-1][0][:7]}' if not live else f'{b["released"]} →'
+        tip = f'{b["name"]} · {span} · {fmt_value(b, best["value"])} {best["system"]} ({kind_lbl})'
+        if mobile:
+            labels = (
+                f'<text class="rlabel-in" x="{x0 + 4}" y="{yy + 12}">{_e(b["name"])} '
+                f'<tspan class="rscore-in">{_e(fmt_value(b, best["value"]))}</tspan></text>'
+            )
+        else:
+            labels = (
+                f'<text class="rlabel" x="{x0 - 10}" y="{base_y - 6}" text-anchor="end">{_e(b["name"])}</text>'
+                f'<text class="rscore" x="{x1 + 10}" y="{base_y - 6}">{_e(fmt_value(b, best["value"]))}</text>'
+                f'<text class="rstatus" x="{x1 + 62}" y="{base_y - 6}">{b["status"]}</text>'
+            )
+        out.append(
+            f'<a href="{base}b/{b["id"]}/" class="row layer-{b["layer"]} status-{b["status"]}" '
+            f'data-id="{b["id"]}" data-status="{b["status"]}" data-tip="{_e(tip)}">'
+            f"<title>{_e(tip)}</title>"
+            f'<rect class="hit" x="0" y="{yy}" width="{width}" height="{row_h}"/>{labels}'
+            f'<circle class="rel" cx="{xr:.1f}" cy="{base_y}" r="3"/>{lead}'
+            f'<polygon class="area" points="{area}"/><polyline class="edge" points="{line}"/>{human}'
+            "</a>"
+        )
+    out.append("</svg>")
+    return "".join(out)
 
 
 def html_timeline(ds: Dataset, lang: str, base: str) -> str:
@@ -891,7 +902,7 @@ def render_site(ds: Dataset, lang: str) -> str:
         "AGENT_ROWS": html_benchmark_rows(ds, "agent", lang),
         "EVALUATOR_ROWS": html_evaluator_rows(ds, lang),
         "TIMELINE": html_timeline(ds, lang, base),
-        "CHART": saturation_chart(ds, lang, base),
+        "CHART": lifespan_chart(ds, lang, base),
     }
     template = TEMPLATE if lang == "en" else TEMPLATE.with_name(f"index.{lang}.html")
     text = template.read_text(encoding="utf-8")

@@ -80,30 +80,33 @@ tr.compact .chain{margin-left:6px}
   .bench tr.compact td[data-label="Released"],.bench tr.compact td[data-label="发布"],.bench tr.compact td[data-label="Domains"],.bench tr.compact td[data-label="领域"]{display:none}
   .bench tr.compact td[colspan]{flex-basis:100%}
 }
-/* --- saturation chart --- */
+/* --- lifespan chart --- */
 .tl-model{color:var(--accent)}.tl-agent{color:var(--violet)}.tl-evaluator{color:var(--ok)}
 .chart-wrap{position:relative;border:1px solid var(--line);border-radius:8px;background:var(--card);padding:14px 14px 6px;margin:0 0 20px}
 .chart{display:block;width:100%;height:auto;font-family:inherit}
-.chart .grid{stroke:var(--line);stroke-width:1}.chart .grid.v{stroke-dasharray:2 4;opacity:.6}
+.chart .grid.v{stroke:var(--line);stroke-dasharray:2 4;opacity:.7}
 .chart .axis{fill:var(--muted);font-size:11px}
-.chart .ptitle{font-size:12px;font-weight:600;fill:currentColor;letter-spacing:.04em;text-transform:uppercase}
-.chart .series{color:var(--accent);transition:opacity .15s}.chart .series.layer-agent{color:var(--violet)}
-.chart .series.status-saturating{opacity:.75}.chart .series.status-saturated,.chart .series.status-retired{color:var(--muted);opacity:.5}
-.chart .series polyline{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
-.chart .series polyline.hit{stroke:transparent;stroke-width:14;pointer-events:stroke}
-.chart .series circle{fill:currentColor}.chart .series circle.last{stroke:var(--card);stroke-width:1.5}
-.chart .series .human-line{stroke:currentColor;stroke-dasharray:3 3;stroke-width:1;opacity:.55}
-.chart .leader{fill:none;stroke:currentColor;stroke-width:.7;opacity:.3}
-.chart .slabel{fill:currentColor;font-size:11px;font-weight:500}
-.chart .chain-arrow{stroke:var(--muted);stroke-width:1;stroke-dasharray:4 3;opacity:.6}.chart .arrhead{fill:var(--muted)}
-.chart-wrap.hovering .series:not(.hot){opacity:.08}.chart-wrap.hovering .chain-arrow{opacity:.15}
-.chart .series.hot{color:var(--ok);opacity:1}.chart .series.hot polyline{stroke-width:2.2}.chart .series.hot .slabel{font-weight:700}.chart .series.hot .leader{opacity:.9}
+.chart .today{stroke:var(--warn);stroke-width:1;opacity:.6}.chart .today-label{fill:var(--warn);font-size:10px}
+.chart .ptitle{font-size:11px;font-weight:700;fill:currentColor;letter-spacing:.06em;text-transform:uppercase}
+.chart .row{color:var(--accent);transition:opacity .15s}.chart .row.layer-agent{color:var(--violet)}
+.chart .row.status-saturated,.chart .row.status-retired{opacity:.5}
+.chart .row .hit{fill:transparent}
+.chart .rlabel{fill:var(--fg);font-size:12px;font-weight:600}.chart .row.status-saturated .rlabel,.chart .row.status-retired .rlabel{font-weight:400;fill:var(--muted)}
+.chart .rlabel-in{fill:var(--fg);font-size:12px;font-weight:600;paint-order:stroke;stroke:var(--card);stroke-width:3px}.chart .rscore-in{fill:currentColor}
+.chart-live-m,.chart-full-m{display:none}
+.chart .rel{fill:currentColor}.chart .lead{stroke:currentColor;stroke-dasharray:2 3;opacity:.6}
+.chart .area{fill:currentColor;opacity:.3}.chart .edge{fill:none;stroke:currentColor;stroke-width:1.3}
+.chart .human-line{stroke:var(--fg);stroke-dasharray:2 2;opacity:.55}
+.chart .rscore{fill:currentColor;font-size:12px;font-weight:600}.chart .rstatus{fill:var(--muted);font-size:10px}
+.chart .chain-arrow{fill:none;stroke:var(--muted);stroke-width:1;stroke-dasharray:4 3;opacity:.7}.chart .arrhead{fill:var(--muted)}
+.chart-wrap.hovering .row:not(.hot){opacity:.15}.chart-wrap.hovering .chain-arrow:not(.hot){opacity:.1}
+.chart .row.hot{opacity:1}.chart .row.hot .area{opacity:.5}.chart .row.hot .rlabel{fill:var(--ok)}.chart .chain-arrow.hot{opacity:1;stroke:var(--ok)}
 .chart [hidden],.chart-wrap>svg[hidden]{display:none}
 .chart-controls{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-bottom:10px;font-size:.85rem}
-.chart-controls button.pill{cursor:pointer;background:transparent;font:inherit;font-size:.72rem;opacity:.5}.chart-controls button.pill[aria-pressed=true]{opacity:1;box-shadow:0 0 0 1px currentColor inset}
+.chart-controls button.pill{cursor:pointer;background:transparent;font:inherit;font-size:.72rem;opacity:.6}.chart-controls button.pill[aria-pressed=true]{opacity:1;box-shadow:0 0 0 1px currentColor inset}
 .legend-inline{font-size:.75rem;color:var(--muted)}.lg{font-family:ui-monospace,monospace;color:var(--fg);margin:0 2px 0 8px}.lg.human{letter-spacing:-1px}
 .chart-hint{font-size:.75rem;margin-left:auto}
-.tooltip{position:absolute;pointer-events:none;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:.8rem;max-width:320px;box-shadow:0 4px 16px rgba(0,0,0,.3);z-index:2}
+.tooltip{position:absolute;pointer-events:none;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:.8rem;max-width:340px;box-shadow:0 4px 16px rgba(0,0,0,.3);z-index:2}
 /* --- release rail --- */
 .rail-wrap{padding:16px 20px}
 .legend{display:flex;gap:6px 14px;flex-wrap:wrap;align-items:center;font-size:.78rem;color:var(--muted);margin:0 0 12px}
@@ -119,8 +122,9 @@ tr.compact .chain{margin-left:6px}
 .rail-year li a{color:var(--fg)}.rail-year li a:hover{color:currentColor}
 .tl-month{font-size:.68rem;color:var(--muted);margin-left:4px}
 @media (max-width:760px){
-  .chart-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:10px 10px 4px}.chart{min-width:900px;max-height:560px;width:auto}.chart-hint,.legend-inline{display:none}
-  .legend{gap:4px 12px}.lg-dot{margin-right:-4px}
+  nav{gap:6px 12px;padding:8px 12px;font-size:.8rem}
+  .chart-wrap{padding:10px 6px 4px}.chart-hint,.legend-inline{display:none}
+  .chart-live,.chart-full{display:none!important}.chart-wrap>svg.chart-live-m:not([hidden]),.chart-wrap>svg.chart-full-m:not([hidden]){display:block}
   .rail::before{left:23px}.rail-year{grid-template-columns:48px 1fr;gap:0 10px}.rail-y{font-size:.85rem}.rail-y::after{left:19px}
   .rail-year li{white-space:normal}
 }
