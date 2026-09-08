@@ -2,7 +2,11 @@
 
 # LLM Benchmarks Tracker
 
-**A sourced, schema-validated catalogue of how language models and agents are measured.**
+</div>
+
+**LLM Benchmarks Tracker** is a sourced, schema-validated catalogue of how language models and agents are measured — for engineers, researchers and analysts who need to know which benchmark still separates frontier systems, and where a quoted score actually came from.
+
+<div align="center">
 
 [**Browse the site**](https://alloevil.github.io/llm-benchmarks-tracker/) · [**中文**](README.zh-CN.md) · [**JSON API**](https://alloevil.github.io/llm-benchmarks-tracker/api/v1/index.json) · [**Add a result**](https://github.com/alloevil/llm-benchmarks-tracker/issues/new?template=result.yml) · [**Changelog**](CHANGELOG.md)
 
@@ -16,10 +20,12 @@
 
 </div>
 
+## What it is
+
 For every benchmark: what it tests, whether it still discriminates between frontier systems (`status`), how exposed its test set is (`contamination_risk`), a measured human baseline when one exists, and who reported the top score under which conditions.
 
 <!-- gen:stats -->
-**31** model benchmarks · **23** agent benchmarks · **18** evaluators · **250** sourced results · updated 2026-09-07
+**31** model benchmarks · **23** agent benchmarks · **18** evaluators · **250** sourced results · updated 2026-09-08
 <!-- /gen:stats -->
 
 **Why another list?** Most benchmark pages copy vendor slide numbers with no provenance. Here every result row carries a source URL, a source *kind* (official leaderboard / paper / independent re-run / developer self-report / aggregator), the access date, and the evaluation conditions (tools, reasoning effort, scaffold, pass@k). Numbers without a source do not get in.
@@ -34,12 +40,17 @@ For every benchmark: what it tests, whether it still discriminates between front
 
 ## Contents
 
+- [What it is](#what-it-is)
 - [Model benchmarks](#model-benchmarks)
 - [Agent benchmarks](#agent-benchmarks)
 - [Evaluators](#evaluators)
 - [Timeline](#timeline)
 - [Data model](#data-model)
+- [Install](#install)
 - [Using the data](#using-the-data)
+- [When to use it](#when-to-use-it)
+- [When NOT to use it](#when-not-to-use-it)
+- [FAQ](#faq)
 - [Contributing](#contributing)
 
 ## Model benchmarks
@@ -179,6 +190,23 @@ Key fields:
 
 Results ledgers are append-only: a new score is a new row, never an edit. `scripts/dataset.py::Dataset.sota()` picks the best row according to `metric.higher_is_better`.
 
+## Install
+
+Reading the published data needs no install:
+
+```bash
+curl https://alloevil.github.io/llm-benchmarks-tracker/api/v1/benchmarks.json
+```
+
+To work on the catalogue (Python ≥ 3.11):
+
+```bash
+git clone https://github.com/alloevil/llm-benchmarks-tracker
+cd llm-benchmarks-tracker
+pip install -e ".[dev]"
+python scripts/validate.py
+```
+
 ## Using the data
 
 ```python
@@ -199,6 +227,33 @@ python scripts/validate.py          # schema + cross-file invariants
 python scripts/build.py             # regenerate README tables (en + zh), dist/ site and API
 pytest                              # validator contract tests
 ```
+
+## When to use it
+
+- You need to choose a benchmark for a capability and want to know whether it still separates frontier systems (`status`) and how exposed its test set is (`contamination_risk`).
+- Someone quoted a score at you and you want the source URL, the source kind, the access date and the evaluation conditions behind it.
+- You want benchmark and evaluator metadata as schema-validated JSON — free, no key, no rate limit — for a dashboard, a paper or an agent.
+- You want to follow supersession chains (which benchmark replaced which) or cite a measured human baseline with its population and source.
+
+## When NOT to use it
+
+- **Not a model ranking.** Rows within one benchmark differ in scaffold, reasoning effort, split and budget, so the top score is the best row in a ledger, not proof that one model beats another.
+- **Not a live leaderboard mirror.** Structured sources sync twice a week and everything else lands by pull request, so a score published yesterday may not be here yet; read each row's `accessed` date.
+- **Not an independent re-run.** Developer self-reports and aggregator rows are included because they exist and are labelled as such; nothing here is re-verified.
+- **Not an evaluation harness.** This repository cannot run a model. Use one of the catalogued frameworks (LM Evaluation Harness, Inspect AI, OpenCompass, …) for that.
+- **Not a cost or latency comparison.** Cost appears only where a source stated `cost_usd_per_task`.
+
+## FAQ
+
+**Does this project run the benchmarks?** No. Every score is a third-party result republished with its provenance: the URL it was published at, the kind of source that published it (official leaderboard, paper, independent evaluation, developer self-report, aggregator), the date it was read there, and the conditions the source stated. Numbers without a source do not get in.
+
+**How does a score get accepted?** A result row must name the system, the developer, the value, the publication date and a source with URL, kind and access date; `schema/results.schema.json` makes all of that required, `scripts/validate.py` enforces cross-file invariants such as dangling references and impossible dates, and CI runs both on every pull request. Ledgers are append-only, so a corrected score is a new row and the earlier row stays visible.
+
+**What do the status values mean?** `active` means the benchmark still separates frontier systems; `saturating` means the top score is within roughly five points of the ceiling or of the human baseline; `saturated` means it no longer discriminates; `retired` means the maintainer stopped running it. Saturated and retired benchmarks show the last reported score rather than a leaderboard top, because there is no meaningful current top.
+
+**Is there a machine-readable summary for LLMs?** Yes. `scripts/build.py` generates [llms.txt](https://alloevil.github.io/llm-benchmarks-tracker/llms.txt), [llms-full.txt](https://alloevil.github.io/llm-benchmarks-tracker/llms-full.txt) and [claims.json](https://alloevil.github.io/llm-benchmarks-tracker/claims.json) from `data/` on every deploy, so their counts, provenance breakdown and repro commands are always the ones the repository can back up.
+
+**Can I reuse the data?** Yes, under the [MIT License](LICENSE), including commercially. Benchmark names, papers and scores belong to their authors and every entry links back to them, so keep the attribution links when you republish.
 
 ## Contributing
 

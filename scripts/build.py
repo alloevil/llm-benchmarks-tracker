@@ -5,6 +5,7 @@
   dist/api/v1/*.json       machine-readable export
   dist/schema/*.json       published schemas
   dist/og.png, robots.txt, sitemap.xml
+  dist/llms.txt, llms-full.txt, claims.json   LLM-retrieval artifacts, counted from data/
   README.md                tables between <!-- gen:* --> markers
 
 `--check` exits 1 if README.md would change (CI drift guard).
@@ -376,6 +377,378 @@ def write_api(ds: Dataset) -> None:
             "schema": {name: f"{SITE}/schema/{name}" for name in sorted(p.name for p in SCHEMA.glob("*.json"))},
         },
     )
+
+
+# --------------------------------------------------------------------------- LLM retrieval
+
+
+def counts(ds: Dataset) -> dict[str, int]:
+    """Single source for every number quoted in llms.txt, llms-full.txt and claims.json — never a literal."""
+    model = sum(1 for b in ds.benchmarks.values() if b["layer"] == "model")
+    return {
+        "benchmarks": len(ds.benchmarks),
+        "model": model,
+        "agent": len(ds.benchmarks) - model,
+        "evaluators": len(ds.evaluators),
+        "results": sum(len(v) for v in ds.results.values()),
+        "live": sum(1 for b in ds.benchmarks.values() if is_live(b)),
+        "closed": sum(1 for b in ds.benchmarks.values() if not is_live(b)),
+        "high_risk": sum(1 for b in ds.benchmarks.values() if b.get("contamination_risk") == "high"),
+        "baselines": sum(1 for b in ds.benchmarks.values() if b.get("human_baseline")),
+        "provenance": provenance_share(ds),
+    }
+
+
+def kind_counts(ds: Dataset) -> dict[str, int]:
+    """Result rows per source kind, most common first. The provenance split is reported, never averaged away."""
+    out: dict[str, int] = {}
+    for rows in ds.results.values():
+        for row in rows:
+            kind = row["source"]["kind"]
+            out[kind] = out.get(kind, 0) + 1
+    return dict(sorted(out.items(), key=lambda kv: (-kv[1], kv[0])))
+
+
+def definition(c: dict[str, int]) -> str:
+    """One-sentence definition, identical in llms.txt and llms-full.txt."""
+    return (
+        f"LLM Benchmarks Tracker is a sourced, schema-validated catalogue of {c['benchmarks']} LLM and agent evaluation "
+        f"benchmarks ({c['model']} model, {c['agent']} agent) and {c['evaluators']} evaluators, in which every score "
+        "records who published it, under which conditions, and what kind of source it came from."
+    )
+
+
+def evaluator_names(ds: Dataset, *kinds: str) -> list[str]:
+    return sorted(e["name"] for e in ds.evaluators.values() if e["kind"] in kinds)
+
+
+def claims(ds: Dataset) -> dict[str, Any]:
+    """Machine-readable claim list. Every value is counted from data/, so it cannot drift from the repository."""
+    c = counts(ds)
+    today = date.today().isoformat()
+    tree = f"{REPO}/tree/main"
+    blob = f"{REPO}/blob/main"
+
+    def claim(cid: str, text: str, value: str, metric: str, method: str, evidence: str) -> dict[str, str]:
+        return {
+            "id": cid,
+            "claim": text,
+            "value": value,
+            "metric": metric,
+            "method": method,
+            "repro": "python scripts/build.py",
+            "evidence": evidence,
+            "verified": today,
+        }
+
+    items = [
+        claim(
+            "benchmarks-catalogued",
+            f"The catalogue describes {c['benchmarks']} evaluation benchmarks: "
+            f"{c['model']} model benchmarks and {c['agent']} agent benchmarks.",
+            str(c["benchmarks"]),
+            "benchmark metadata files that pass schema/benchmark.schema.json",
+            "scripts/dataset.py::load validates every data/benchmarks/*.json against the published schema and counts what loads",
+            f"{tree}/data/benchmarks",
+        ),
+        claim(
+            "evaluators-catalogued",
+            f"The catalogue describes {c['evaluators']} evaluators: frameworks, leaderboards, "
+            "independent evaluators and aggregators.",
+            str(c["evaluators"]),
+            "evaluator metadata files that pass schema/evaluator.schema.json",
+            "scripts/dataset.py::load validates every data/evaluators/*.json against the published schema and counts what loads",
+            f"{tree}/data/evaluators",
+        ),
+        claim(
+            "sourced-results",
+            f"All {c['results']} result rows carry a source URL, a source kind and an access date.",
+            f"{c['results']}/{c['results']}",
+            "result rows with source.url, source.kind and source.accessed present",
+            "schema/results.schema.json marks all three fields required; scripts/validate.py fails the build "
+            "on a row without them",
+            f"{blob}/schema/results.schema.json",
+        ),
+        claim(
+            "top-score-provenance",
+            f"{c['provenance']}% of the current top scores come from an official leaderboard, a paper or an "
+            "independent evaluation rather than a vendor self-report or an aggregator.",
+            f"{c['provenance']}%",
+            "share of per-benchmark top scores whose source.kind is official-leaderboard, paper or independent-evaluation",
+            "scripts/build.py::provenance_share over Dataset.sota() of every benchmark",
+            f"{tree}/data/results",
+        ),
+    ]
+    for kind, n in kind_counts(ds).items():
+        items.append(
+            claim(
+                f"results-{kind}",
+                f"{n} of the {c['results']} result rows have source kind {kind}.",
+                f"{n}/{c['results']}",
+                f"result rows whose source.kind is {kind}",
+                "count over data/results/*.json after schema validation",
+                f"{tree}/data/results",
+            )
+        )
+    items += [
+        claim(
+            "no-longer-discriminative",
+            f"{c['closed']} of the {c['benchmarks']} benchmarks are recorded as saturated or retired, "
+            "so they no longer separate frontier systems.",
+            f"{c['closed']}/{c['benchmarks']}",
+            "benchmarks whose status is saturated or retired",
+            "status field per benchmark file; active and saturating count as live",
+            f"{tree}/data/benchmarks",
+        ),
+        claim(
+            "contamination-high",
+            f"{c['high_risk']} of the {c['benchmarks']} benchmarks have a public, static, widely scraped test set.",
+            f"{c['high_risk']}/{c['benchmarks']}",
+            "benchmarks whose contamination_risk is high",
+            "contamination_risk field per benchmark file",
+            f"{tree}/data/benchmarks",
+        ),
+        claim(
+            "human-baselines",
+            f"{c['baselines']} of the {c['benchmarks']} benchmarks record a measured human baseline with a source.",
+            f"{c['baselines']}/{c['benchmarks']}",
+            "benchmarks with a non-null human_baseline (value, population, source)",
+            "human_baseline is only populated from a measured number with a citation; guesses are left null",
+            f"{tree}/data/benchmarks",
+        ),
+    ]
+    return {
+        "project": "llm-benchmarks-tracker",
+        "url": f"{SITE}/",
+        "repository": REPO,
+        "updated": today,
+        "claims": items,
+    }
+
+
+def llms_txt(ds: Dataset) -> str:
+    """llms.txt: what this is, where the machine-readable data lives, and every live benchmark page."""
+    c = counts(ds)
+    lines = [
+        "# LLM Benchmarks Tracker",
+        "",
+        f"> {definition(c)}",
+        "",
+        f"Most benchmark round-ups copy vendor slide numbers with no provenance. Here each of the {c['results']} result "
+        "rows carries the URL it was published at, the source kind (official leaderboard, paper, independent evaluation, "
+        "developer self-report, aggregator), the access date and the evaluation conditions (split, tools, reasoning "
+        f"effort, scaffold, pass@k); {c['provenance']}% of current top scores come from an official leaderboard, a paper "
+        "or an independent evaluation. Benchmarks also carry a saturation status and a contamination risk, so a stale "
+        "benchmark can be recognised as stale. This project aggregates and labels third-party results; it runs no "
+        "evaluations of its own.",
+        "",
+        f"Read the data without installing anything: `curl {SITE}/api/v1/benchmarks.json`. To work on it: "
+        f'`git clone {REPO} && cd llm-benchmarks-tracker && pip install -e ".[dev]"`.',
+        "",
+        "## Docs",
+        f"- [Benchmark catalogue]({SITE}/): every benchmark with its top sourced score, status and contamination risk",
+        f"- [Chinese edition]({SITE}/zh/): the same data with Simplified Chinese descriptions",
+        f"- [Contributing guide]({REPO}/blob/main/CONTRIBUTING.md): what a result row must carry to be accepted",
+        f"- [Changelog]({REPO}/blob/main/CHANGELOG.md): dated record of catalogue changes",
+        "",
+        "## Data",
+        f"- [JSON API index]({SITE}/api/v1/index.json): every endpoint, generated with the site",
+        f"- [Benchmarks with top scores]({SITE}/api/v1/benchmarks.json): metadata plus sota and result_count per benchmark",
+        f"- [Evaluators]({SITE}/api/v1/evaluators.json): frameworks, leaderboards, independent evaluators, aggregators",
+        f"- [Per-benchmark ledger]({SITE}/api/v1/results/swe-bench-verified.json): one file per benchmark under api/v1/results/",
+        f"- [Benchmark schema]({SITE}/schema/benchmark.schema.json): the contract every benchmark file is validated against",
+        f"- [Results schema]({SITE}/schema/results.schema.json): requires a source URL, source kind and access date per row",
+        "",
+        "## Evidence",
+        f"- [claims.json]({SITE}/claims.json): every number on this site with its metric, method, repro command and evidence",
+        f"- [llms-full.txt]({SITE}/llms-full.txt): self-contained description, install, limits and FAQ",
+        "",
+        "## Benchmarks",
+    ]
+    for layer in ("model", "agent"):
+        for b in sort_benchmarks(ds, layer):
+            if not is_live(b):
+                continue
+            row = ds.sota(b["id"])
+            score = (
+                f"top {fmt_value(b, row['value'])} ({kind_label('en', row['source']['kind'])})"
+                if row
+                else T["en"]["no_result"]
+            )
+            lines.append(
+                f"- [{b['name']}]({SITE}{detail_url('en', b['id'])}): {layer} benchmark, {', '.join(b['domains'])}; "
+                f"{b['status']}, contamination risk {b.get('contamination_risk', 'unrecorded')}; {score}"
+            )
+    lines += [
+        "",
+        "## Source",
+        f"- [GitHub repository]({REPO})",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def llms_full_txt(ds: Dataset) -> str:
+    """llms-full.txt: self-contained, and explicit that these are third-party results, not measurements taken here."""
+    c = counts(ds)
+    kinds = kind_counts(ds)
+    kind_line = ", ".join(f"{kind} {n}" for kind, n in kinds.items())
+    trackers = evaluator_names(ds, "independent-evaluator", "aggregator")
+    frameworks = evaluator_names(ds, "framework")
+    boards = evaluator_names(ds, "leaderboard")
+    compared = f"{', '.join(trackers[:-1])} and {trackers[-1]}" if len(trackers) > 1 else trackers[0]
+    lines = [
+        "# LLM Benchmarks Tracker",
+        "",
+        definition(c),
+        "",
+        "## What it is",
+        "",
+        f"A data repository and generated site describing how language models and agents are measured. Its {c['benchmarks']} "
+        f"benchmarks split into two layers: {c['model']} model benchmarks (static prompt-and-response scoring) and "
+        f"{c['agent']} agent benchmarks (interactive environments where the system acts and is scored on task completion). "
+        "Each benchmark file records what it tests, task count and splits, the metric, release date, maintainer, a "
+        "saturation status (active, saturating, saturated, retired), a contamination risk describing how exposed its test "
+        "set is, a measured human baseline when one exists with a citation, the supersession chain to and from related "
+        f"benchmarks, and links to paper, leaderboard, dataset and code. Alongside them {c['results']} result rows form "
+        f"append-only ledgers — a new score is a new row, never an edit — and {c['evaluators']} evaluator entries describe "
+        "the frameworks, leaderboards, independent evaluators and aggregators that produce those numbers. Everything is "
+        "JSON validated against published JSON Schema 2020-12 files, and the site, the JSON API, this file and claims.json "
+        "are generated from it by scripts/build.py.",
+        "",
+        "### Where the numbers come from",
+        "",
+        "This project runs no evaluations and measures nothing itself: every score is a third-party result republished "
+        f"with its provenance. Across the {c['results']} rows the source kinds are: {kind_line}. A row's source URL is the "
+        "page the number was published on and accessed is the date it was read there; conditions records the split, tools, "
+        "reasoning effort, scaffold, pass@k, shots and cost per task that the source stated, and omits what it did not. "
+        "The organisations that do produce numbers are catalogued as evaluators: independent evaluators and aggregators "
+        f"({', '.join(trackers)}), maintainer-run leaderboards ({', '.join(boards)}) and harnesses you run yourself "
+        f"({', '.join(frameworks)}).",
+        "",
+        "### How it refreshes",
+        "",
+        ".github/workflows/sync.yml runs scripts/sync_ledgers.py twice a week (07:00 UTC on Monday and Thursday) and "
+        "appends new top scores from the sources that publish machine-readable results; schema validation, append-only "
+        "ordering and duplicate detection gate every write, and git history is the audit log. Everything else — vendor "
+        "posts, aggregator pages, newly released benchmarks — is added by a person in a pull request, and CI rejects schema "
+        "violations, dangling references, unsourced rows and stale README tables. .github/workflows/pages.yml reruns "
+        "scripts/build.py and redeploys on every push to main, so the site, the API, llms.txt, llms-full.txt and "
+        "claims.json are regenerated together from data/ and cannot disagree with each other.",
+        "",
+        "## Install",
+        "",
+        "```bash",
+        f"git clone {REPO}",
+        "cd llm-benchmarks-tracker",
+        'pip install -e ".[dev]"',
+        "```",
+        "",
+        "Nothing needs installing to read the data:",
+        "",
+        "```bash",
+        f"curl {SITE}/api/v1/index.json",
+        "```",
+        "",
+        "## Quickstart",
+        "",
+        "```bash",
+        "python scripts/validate.py          # schema + cross-file invariants",
+        "python scripts/build.py             # README tables (en + zh), dist/ site, JSON API, llms.txt, claims.json",
+        "pytest                              # validator and build contract tests",
+        "```",
+        "",
+        "Using the published data instead of the repository:",
+        "",
+        "```python",
+        "import json, urllib.request",
+        f'api = "{SITE}/api/v1/"',
+        'benchmarks = json.load(urllib.request.urlopen(api + "benchmarks.json"))["benchmarks"]',
+        'agentic = [b for b in benchmarks if b["status"] == "active" and b["layer"] == "agent"]',
+        "for b in agentic:",
+        '    s = b["sota"]',
+        '    print(b["name"], s and f\'{s["value"]} {s["system"]} ({s["source"]["kind"]})\')',
+        "```",
+        "",
+        "## Verifiable claims",
+        "",
+        f"Machine-readable copy: {SITE}/claims.json. Every value below is counted from data/ at build time, so it cannot "
+        "drift from the repository. None of them is a measurement made by this project; they describe the catalogue and "
+        "the provenance of the scores in it.",
+        "",
+    ]
+    for item in claims(ds)["claims"]:
+        lines.append(
+            f"- **{item['value']}** — {item['claim']} Metric: {item['metric']}. Method: {item['method']}. "
+            f"Repro: {item['repro']}. Evidence: {item['evidence']}."
+        )
+    lines += [
+        "",
+        "## When to use it",
+        "",
+        "- Deciding which benchmark actually measures a capability, and whether it still separates frontier systems.",
+        "- Checking where a quoted score came from: which kind of source published it, on what date, under which conditions.",
+        f"- Reading benchmark metadata programmatically: {c['benchmarks']} benchmarks and {c['evaluators']} evaluators as "
+        "schema-validated JSON, free, no key, no rate limit.",
+        f"- Following supersession chains (which benchmark replaced which) and human baselines ({c['baselines']} recorded "
+        "with a citation).",
+        "- Citing a saturation or contamination judgement that is written down and reviewable rather than implied.",
+        "",
+        "## When NOT to use it",
+        "",
+        "- Not a model ranking. Rows within one benchmark differ in scaffold, reasoning effort, split and budget, so the "
+        "top score is the best row in a ledger, not a statement that one model beats another.",
+        "- Not a live mirror of leaderboards. Structured sources are synced twice a week and everything else by hand, so a "
+        "score published yesterday may not be here yet; read the accessed date on the row.",
+        f"- Not a clean-room measurement. {kinds.get('developer-report', 0)} rows are vendor self-reports and "
+        f"{kinds.get('aggregator', 0)} come from aggregators republishing reported numbers; both are labelled, neither is "
+        "independently verified here.",
+        f"- Not a set of currently meaningful scores everywhere: {c['closed']} of {c['benchmarks']} benchmarks are "
+        f"saturated or retired and {c['high_risk']} have a public, static, widely scraped test set, which is exactly why "
+        "those two fields exist. Treat their scores as history.",
+        "- Not an evaluation harness. It cannot run a model; for that use one of the frameworks it catalogues.",
+        "- Not a cost or latency comparison. Cost appears only where a source stated it per task.",
+        "",
+        f"## Compared to {compared}",
+        "",
+        "Those are evaluators and aggregators: they produce or republish scores. This project is a catalogue of the "
+        "measurement landscape itself — one metadata file per benchmark plus provenance-labelled score ledgers — and it "
+        "tracks each of them as an evaluator entry with its kind, maintainer, methodology and status. Use an evaluator "
+        "when you need a fresh number produced under one controlled methodology; use this catalogue when you need to know "
+        "which benchmark to look at, whether it is still discriminative, and where a number someone quoted at you came "
+        "from. The evaluator entries record the distinction that matters when the same model shows two different scores "
+        "in two places: whether the number was self-run, crowdsourced, submitted or merely collected.",
+        "",
+        "## FAQ",
+        "",
+        "**Does this project run the benchmarks?** No. It records numbers published elsewhere and labels each one with its "
+        "source kind (official leaderboard, paper, independent evaluation, developer self-report, aggregator), the URL it "
+        "came from and the date it was read there. If you need a number produced under a single controlled methodology, "
+        "run one of the catalogued frameworks yourself or read an independent evaluator's own published data.",
+        "",
+        "**How does a score get accepted?** Every row must name the system, the developer, the value, the publication date "
+        "and a source with a URL, a kind and an access date; schema/results.schema.json makes all of that required, "
+        "scripts/validate.py enforces cross-file invariants such as dangling benchmark references and impossible dates, "
+        "and CI runs both on every pull request. Ledgers are append-only, so a corrected score is a new row with a newer "
+        "date and the earlier row stays visible.",
+        "",
+        "**What do the status values mean?** active means the benchmark still separates frontier systems; saturating means "
+        "the top score is within roughly five points of the ceiling or of the human baseline; saturated means it no longer "
+        "discriminates; retired means the maintainer stopped running it. For saturated and retired benchmarks the site "
+        "shows the last reported score rather than a leaderboard top, because there is no meaningful current top.",
+        "",
+        "**How do I get the data in bulk?** Every endpoint is listed at "
+        f"{SITE}/api/v1/index.json: benchmarks.json carries all benchmark metadata plus the top score and result count per "
+        "benchmark, evaluators.json carries the evaluator catalogue, and results/<id>.json carries the full ledger for one "
+        "benchmark. The JSON Schemas are published under /schema/, everything is static JSON on GitHub Pages, and the "
+        "repository is MIT licensed, so cloning it instead is equally fine.",
+        "",
+        "**How current is this file?** It is regenerated by scripts/build.py on every deploy from the same data/ directory "
+        f"as the site and the API, and was last built on {date.today().isoformat()}. The counts above are therefore "
+        "exactly what the repository contained at build time, not a hand-maintained summary.",
+        "",
+    ]
+    return "\n".join(lines)
 
 
 # --------------------------------------------------------------------------- site
@@ -1006,6 +1379,9 @@ def main() -> int:
         f"{entries}</urlset>\n",
         encoding="utf-8",
     )
+    (DIST / "llms.txt").write_text(llms_txt(ds), encoding="utf-8")
+    (DIST / "llms-full.txt").write_text(llms_full_txt(ds), encoding="utf-8")
+    (DIST / "claims.json").write_text(json.dumps(claims(ds), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     shutil.copytree(SCHEMA, DIST / "schema")
     write_api(ds)
     print(f"built {DIST.relative_to(ROOT)}/ ({len(ds.benchmarks)} benchmarks, {len(ds.evaluators)} evaluators)")
