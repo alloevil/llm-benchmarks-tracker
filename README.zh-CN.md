@@ -2,7 +2,11 @@
 
 # LLM Benchmarks Tracker
 
-**有来源、经 schema 校验的 LLM 与 Agent 评测基准目录。**
+</div>
+
+**LLM Benchmarks Tracker** 是一个有来源、经 schema 校验的目录，记录语言模型与 Agent 是如何被测量的 —— 面向需要判断某个基准是否仍能区分前沿系统、以及某个被引用的分数究竟出自何处的工程师、研究者与分析师。
+
+<div align="center">
 
 [**English**](README.md) · [**浏览网站**](https://alloevil.github.io/llm-benchmarks-tracker/zh/) · [**JSON API**](https://alloevil.github.io/llm-benchmarks-tracker/api/v1/index.json) · [**提交分数**](https://github.com/alloevil/llm-benchmarks-tracker/issues/new?template=result.yml) · [**更新日志**](CHANGELOG.md)
 
@@ -13,10 +17,12 @@
 
 </div>
 
+## 这是什么
+
 对每个基准记录：它测什么、是否仍能区分前沿系统（`status`）、测试集暴露程度（`contamination_risk`）、有出处的人类基线（若存在），以及最高分由谁、在什么条件下报告。
 
 <!-- gen:stats -->
-**31** 个模型基准 · **23** 个 Agent 基准 · **18** 个评测方 · **250** 条有来源的结果 · 更新于 2026-09-07
+**31** 个模型基准 · **23** 个 Agent 基准 · **18** 个评测方 · **250** 条有来源的结果 · 更新于 2026-09-08
 <!-- /gen:stats -->
 
 **为什么再做一个列表？** 多数基准页面照搬厂商幻灯片上的数字，没有出处。这里每一行结果都带有来源 URL、来源类型（官方榜单 / 论文 / 独立复现 / 厂商自报 / 聚合站）、访问日期和评测条件（工具、推理强度、scaffold、pass@k）。没有来源的数字不收录。
@@ -157,6 +163,52 @@ data/
 | `results[].conditions` | `split`、`tools`、`reasoning_effort`、`scaffold`、`pass_k`、`shots`、`cost_usd_per_task`、`notes` —— 不知道的键不填，绝不猜 |
 
 结果账本只追加：新分数是新的一行，绝不修改旧行。`scripts/dataset.py::Dataset.sota()` 按 `metric.higher_is_better` 选出最佳行。
+
+## 安装
+
+读取已发布的数据不需要安装任何东西：
+
+```bash
+curl https://alloevil.github.io/llm-benchmarks-tracker/api/v1/benchmarks.json
+```
+
+参与维护目录（Python ≥ 3.11）：
+
+```bash
+git clone https://github.com/alloevil/llm-benchmarks-tracker
+cd llm-benchmarks-tracker
+pip install -e ".[dev]"
+python scripts/validate.py          # schema 与跨文件校验
+python scripts/build.py             # 重新生成 README 表格（中英）、dist/ 站点、JSON API、llms.txt、claims.json
+pytest                              # 校验器契约测试
+```
+
+## 何时使用
+
+- 需要为某项能力挑选基准，并想知道它是否仍能区分前沿系统（`status`）、测试集暴露到什么程度（`contamination_risk`）。
+- 有人向你引用了一个分数，你想拿到它的来源 URL、来源类型、访问日期和评测条件。
+- 需要机器可读的基准与评测方元数据：经 schema 校验的 JSON，免费、无需 key、无速率限制，可直接喂给看板、论文或 Agent。
+- 需要追踪基准的取代关系（谁取代了谁），或引用一条带人群说明与出处的实测人类基线。
+
+## 何时不要使用
+
+- **不是模型排名。** 同一基准内各行的 scaffold、推理强度、split 与预算都不同，最高分只是账本中的最佳一行，不能证明某个模型强于另一个。
+- **不是榜单的实时镜像。** 结构化来源每周同步两次，其余靠 PR 人工录入，昨天发布的分数可能还没进来；请看每一行的 `accessed` 日期。
+- **不是独立复现。** 厂商自报与聚合站的行会被收录并如实标注，但本项目不做二次验证。
+- **不是评测框架。** 这个仓库不能跑模型；要跑请用它收录的框架（LM Evaluation Harness、Inspect AI、OpenCompass 等）。
+- **不是成本或延迟对比。** 只有当来源自己给出 `cost_usd_per_task` 时才会记录成本。
+
+## 常见问题
+
+**这个项目自己跑基准吗？** 不跑。每个分数都是第三方已发布的结果，连同出处一起收录：发布该数字的 URL、来源类型（官方榜单 / 论文 / 独立复现 / 厂商自报 / 聚合站）、读取日期，以及来源自己声明的评测条件。没有来源的数字不收录。
+
+**一条分数如何被接受？** 每行必须写明系统、开发者、数值、发布日期，以及带 URL、类型和访问日期的来源；`schema/results.schema.json` 把这些字段设为必填，`scripts/validate.py` 检查悬空引用、不可能的日期等跨文件约束，CI 在每个 PR 上都会跑这两项。账本只追加，所以更正一个分数是新增一行，旧行仍然可见。
+
+**status 的取值是什么意思？** `active` 表示仍能区分前沿系统；`saturating` 表示最高分距上限或人类基线约 5 分以内；`saturated` 表示已无区分度；`retired` 表示维护者已停止运行。已饱和与已退役的基准显示的是最后一次报告的分数，而不是榜首，因为此时不存在有意义的「当前最高分」。
+
+**有给 LLM 用的机器可读摘要吗？** 有。`scripts/build.py` 在每次部署时从 `data/` 生成 [llms.txt](https://alloevil.github.io/llm-benchmarks-tracker/llms.txt)、[llms-full.txt](https://alloevil.github.io/llm-benchmarks-tracker/llms-full.txt) 与 [claims.json](https://alloevil.github.io/llm-benchmarks-tracker/claims.json)，其中的计数、来源类型分布与复现命令永远与仓库当时的数据一致。
+
+**数据可以再利用吗？** 可以，遵循 [MIT 许可](LICENSE)，包括商业用途。基准名称、论文与分数归各自作者所有，每个条目都链接回原处，转载时请保留这些出处链接。
 
 ## 参与贡献
 

@@ -1,7 +1,9 @@
-"""Build pipeline tests: README rendering is deterministic and idempotent; site template renders fully."""
+"""Build pipeline tests: README rendering is deterministic and idempotent; site template renders fully;
+the retrieval artifacts (llms.txt, llms-full.txt, claims.json) quote numbers counted from data/, never literals."""
 
 from __future__ import annotations
 
+import json
 import re
 
 import pytest
@@ -150,3 +152,52 @@ def test_frontier_is_monotone_running_best():
     assert build.frontier(b, rows) == [("2024-01-01", 40), ("2025-01-01", 70)]
     b["metric"]["higher_is_better"] = False
     assert build.frontier(b, rows) == [("2024-01-01", 40), ("2024-06-01", 30)]
+
+
+def test_claims_are_counted_from_the_data():
+    ds = _ds()
+    doc = build.claims(ds)
+    c = build.counts(ds)
+    keys = {"id", "claim", "value", "metric", "method", "repro", "evidence", "verified"}
+    for item in doc["claims"]:
+        assert set(item) == keys and all(item[k] for k in keys), item
+    by_id = {item["id"]: item for item in doc["claims"]}
+    assert by_id["benchmarks-catalogued"]["value"] == str(c["benchmarks"])
+    assert by_id["evaluators-catalogued"]["value"] == str(c["evaluators"])
+    assert by_id["sourced-results"]["value"] == f"{c['results']}/{c['results']}"
+    kinds = build.kind_counts(ds)
+    assert sum(kinds.values()) == c["results"]  # every row is attributed to exactly one source kind
+    for kind, n in kinds.items():
+        assert by_id[f"results-{kind}"]["value"] == f"{n}/{c['results']}"
+    assert json.loads(json.dumps(doc)) == doc  # claims.json must be plain JSON
+
+
+def test_llms_files_follow_the_data_rather_than_literals():
+    ds = _ds()
+    trimmed = build.Dataset(
+        benchmarks=dict(list(ds.benchmarks.items())[1:]),
+        results=dict(list(ds.results.items())[1:]),
+        evaluators=ds.evaluators,
+    )
+    n, less = len(ds.benchmarks), len(trimmed.benchmarks)
+    for render in (build.llms_txt, build.llms_full_txt):
+        assert f"catalogue of {n} LLM" in render(ds)
+        assert f"catalogue of {less} LLM" in render(trimmed), "count is hardcoded instead of counted"
+
+
+def test_llms_txt_links_only_to_pages_that_are_built():
+    ds = _ds()
+    text = build.llms_txt(ds)
+    linked = set(re.findall(rf"{re.escape(build.SITE)}/b/([a-z0-9-]+)/", text))
+    assert linked == {b["id"] for b in ds.benchmarks.values() if build.is_live(b)}
+    for path in ("/api/v1/index.json", "/api/v1/benchmarks.json", "/claims.json", "/llms-full.txt", "/zh/"):
+        assert f"{build.SITE}{path}" in text
+
+
+def test_llms_full_txt_has_every_required_section():
+    text = build.llms_full_txt(_ds())
+    for heading in ("## What it is", "## Install", "## Quickstart", "## Verifiable claims",
+                    "## When to use it", "## When NOT to use it", "## FAQ"):
+        assert f"\n{heading}\n" in text
+    assert text.startswith("# LLM Benchmarks Tracker")
+    assert "runs no evaluations" in text  # the aggregation caveat must survive edits
