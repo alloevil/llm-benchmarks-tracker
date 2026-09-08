@@ -1364,8 +1364,14 @@ def main() -> int:
             (d / "index.html").write_text(render_detail(ds, b, lang), encoding="utf-8")
     (DIST / ".nojekyll").touch()
     shutil.copytree(STATIC, DIST, dirs_exist_ok=True)
+    # Advisory only: the Robots Exclusion Protocol is origin-scoped, so crawlers read
+    # https://alloevil.github.io/robots.txt — not this one. Kept because some AI crawlers probe
+    # subpaths, and it becomes authoritative if this site ever moves to its own domain. Anything
+    # that must actually be excluded has to go in the origin's root robots.txt.
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
     today = date.today().isoformat()
+    # Pages and the API index only. Assets (og.png, style.css, favicon.svg) resolve 200 but are not
+    # pages; listing them dilutes the sitemap, so do not "helpfully" add them here.
     urls = [(f"{SITE}/", "weekly"), (f"{SITE}/zh/", "weekly"), (f"{SITE}/api/v1/index.json", None)]
     urls += [(f"{SITE}{detail_url(lang, bid)}", "weekly") for lang in ("en", "zh") for bid in sorted(ds.benchmarks)]
     entries = "".join(
