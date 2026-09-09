@@ -1372,13 +1372,24 @@ def main() -> int:
     today = date.today().isoformat()
     # Pages and the API index only. Assets (og.png, style.css, favicon.svg) resolve 200 but are not
     # pages; listing them dilutes the sitemap, so do not "helpfully" add them here.
-    urls = [(f"{SITE}/", "weekly"), (f"{SITE}/zh/", "weekly"), (f"{SITE}/api/v1/index.json", None)]
-    urls += [(f"{SITE}{detail_url(lang, bid)}", "weekly") for lang in ("en", "zh") for bid in sorted(ds.benchmarks)]
+    # Landing pages + API index are rebuilt daily → build date. Each benchmark
+    # detail page uses its newest sourced result date (a real, past record date;
+    # validate() rejects future dates), falling back to the benchmark's release
+    # date, then the build date — clamped so lastmod is never in the future.
+    def _bench_lastmod(bid: str) -> str:
+        last = last_reported(ds, bid)
+        d = last["date"] if last else ds.benchmarks[bid].get("released")
+        return min(d, today) if d else today
+    urls = [(f"{SITE}/", "weekly", today), (f"{SITE}/zh/", "weekly", today), (f"{SITE}/api/v1/index.json", None, today)]
+    urls += [
+        (f"{SITE}{detail_url(lang, bid)}", "weekly", _bench_lastmod(bid))
+        for lang in ("en", "zh") for bid in sorted(ds.benchmarks)
+    ]
     entries = "".join(
-        f"  <url><loc>{loc}</loc><lastmod>{today}</lastmod>"
+        f"  <url><loc>{loc}</loc><lastmod>{lastmod}</lastmod>"
         + (f"<changefreq>{freq}</changefreq>" if freq else "")
         + "</url>\n"
-        for loc, freq in urls
+        for loc, freq, lastmod in urls
     )
     (DIST / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

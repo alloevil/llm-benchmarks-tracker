@@ -38,3 +38,31 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Tell search engines to recrawl (IndexNow) after the site is deployed, using
+  # the freshly published sitemap. Advisory: a non-2xx or network error must
+  # never fail the pipeline.
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping IndexNow
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import json, re, urllib.parse, urllib.request
+          KEY = "8ed96c1ebbc0415f1c2de0feb52bbf92c484e7ce0de0b00a"
+          KEY_LOCATION = "https://alloevil.github.io/8ed96c1ebbc0415f1c2de0feb52bbf92c484e7ce0de0b00a.txt"
+          SITEMAP = "https://alloevil.github.io/llm-benchmarks-tracker/sitemap.xml"
+          xml = urllib.request.urlopen(SITEMAP, timeout=30).read().decode()
+          urls = re.findall(r"<loc>(.*?)</loc>", xml)
+          host = urllib.parse.urlsplit(urls[0]).netloc
+          payload = {"host": host, "key": KEY, "keyLocation": KEY_LOCATION, "urlList": urls}
+          req = urllib.request.Request("https://api.indexnow.org/indexnow",
+              data=json.dumps(payload).encode(), headers={"Content-Type": "application/json"})
+          try:
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  print("IndexNow:", resp.status, resp.read().decode() or "(no body)")
+          except Exception as e:
+              print("IndexNow ping failed (advisory, ignoring):", e)
+          PY
