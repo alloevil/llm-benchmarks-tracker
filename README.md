@@ -25,7 +25,7 @@
 For every benchmark: what it tests, whether it still discriminates between frontier systems (`status`), how exposed its test set is (`contamination_risk`), a measured human baseline when one exists, and who reported the top score under which conditions.
 
 <!-- gen:stats -->
-**31** model benchmarks · **23** agent benchmarks · **18** evaluators · **250** sourced results · updated 2026-09-08
+**31** model benchmarks · **23** agent benchmarks · **18** evaluators · **250** sourced results · updated 2026-09-09
 <!-- /gen:stats -->
 
 **Why another list?** Most benchmark pages copy vendor slide numbers with no provenance. Here every result row carries a source URL, a source *kind* (official leaderboard / paper / independent re-run / developer self-report / aggregator), the access date, and the evaluation conditions (tools, reasoning effort, scaffold, pass@k). Numbers without a source do not get in.
