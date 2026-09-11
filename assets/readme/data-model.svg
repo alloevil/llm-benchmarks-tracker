@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="150" viewBox="0 0 1200 150" role="img" aria-labelledby="dmTitle dmDesc">
+  <title id="dmTitle">Data model</title>
+  <desc id="dmDesc">One JSON file per benchmark under data/benchmarks, mapped to schema/benchmark.schema.json; an append-only score ledger per benchmark under data/results, mapped to schema/results.schema.json; evaluator records under data/evaluators, mapped to schema/evaluator.schema.json. Key fields include layer, status, contamination_risk and metric.unit.</desc>
+
+  <defs>
+    <style>
+      .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="150" rx="18" fill="#0b0e14"/>
+  <rect x="0.75" y="0.75" width="1198.5" height="148.5" rx="17.5" fill="none" stroke="#232a36" stroke-width="1.5"/>
+
+  <g id="section-label">
+    <text x="64" y="56" class="sans" font-size="30" font-weight="700" fill="#e6e9ef">Data model</text>
+    <text x="64" y="88" class="mono" font-size="18" fill="#8a94a6">JSON Schema 2020-12</text>
+    <text x="64" y="116" class="mono" font-size="18" fill="#7aa2f7">layer &#183; status &#183; contamination_risk</text>
+  </g>
+
+  <g id="file-map">
+    <text x="784" y="48" class="mono" font-size="18" fill="#e6e9ef" text-anchor="end">data/benchmarks/&lt;id&gt;.json</text>
+    <text x="796" y="48" class="mono" font-size="18" fill="#8a94a6">&#8594;</text>
+    <text x="832" y="48" class="mono" font-size="18" fill="#8a94a6">schema/benchmark.schema.json</text>
+
+    <text x="784" y="84" class="mono" font-size="18" fill="#e6e9ef" text-anchor="end">data/results/&lt;id&gt;.json</text>
+    <text x="796" y="84" class="mono" font-size="18" fill="#8a94a6">&#8594;</text>
+    <text x="832" y="84" class="mono" font-size="18" fill="#8a94a6">schema/results.schema.json</text>
+
+    <text x="784" y="120" class="mono" font-size="18" fill="#e6e9ef" text-anchor="end">data/evaluators/&lt;id&gt;.json</text>
+    <text x="796" y="120" class="mono" font-size="18" fill="#8a94a6">&#8594;</text>
+    <text x="832" y="120" class="mono" font-size="18" fill="#8a94a6">schema/evaluator.schema.json</text>
+  </g>
+</svg>

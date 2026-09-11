@@ -16,7 +16,9 @@
 [![Last commit](https://img.shields.io/github/last-commit/alloevil/llm-benchmarks-tracker)](https://github.com/alloevil/llm-benchmarks-tracker/commits/main)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-[![LLM Benchmarks Tracker](static/og.png)](https://alloevil.github.io/llm-benchmarks-tracker/)
+<p align="center">
+  <a href="https://alloevil.github.io/llm-benchmarks-tracker/"><img src="./assets/readme/hero.svg" width="100%" alt="LLM Benchmarks Tracker: a results ledger row for ARC-AGI-2 carrying system, value, date, source.kind, source.accessed, metric.unit and conditions.split, above the five source.kind provenance labels official-leaderboard, paper, independent-evaluation, developer-report and aggregator."></a>
+</p>
 
 </div>
 
@@ -168,6 +170,10 @@ Frameworks you run, leaderboards run by maintainers, organisations that independ
 <!-- /gen:timeline -->
 
 ## Data model
+
+<p align="center">
+  <img src="./assets/readme/data-model.svg" width="100%" alt="Data model: data/benchmarks/&lt;id&gt;.json maps to schema/benchmark.schema.json, data/results/&lt;id&gt;.json to schema/results.schema.json and data/evaluators/&lt;id&gt;.json to schema/evaluator.schema.json; JSON Schema 2020-12, results ledgers are append-only, key fields layer, status and contamination_risk.">
+</p>
 
 ```
 data/
