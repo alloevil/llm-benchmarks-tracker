@@ -42,7 +42,7 @@ T: dict[str, dict[str, str]] = {
         "bench_header": "| Benchmark | Released | Domains | Status | Top score | System | Source |",
         "eval_header": "| Evaluator | Kind | Maintainer | Methodology | Status |",
         "stats": "**{model}** model benchmarks · **{agent}** agent benchmarks · **{evals}** evaluators · "
-        "**{results}** sourced results · updated {date}",
+        "**{results}** sourced results · data as of {date}",
         "no_result": "no sourced result",
         "rows": "{n} rows",
         "lang_switch": '<a href="{other}" lang="zh-CN" hreflang="zh-CN">中文</a>',
@@ -112,7 +112,7 @@ T: dict[str, dict[str, str]] = {
         "bench_header": "| Benchmark | 发布 | 领域 | 状态 | 最高分 | 系统 | 来源 |",
         "eval_header": "| 评测方 | 类型 | 维护者 | 方法 | 状态 |",
         "stats": "**{model}** 个模型基准 · **{agent}** 个 Agent 基准 · **{evals}** 个评测方 · "
-        "**{results}** 条有来源的结果 · 更新于 {date}",
+        "**{results}** 条有来源的结果 · 数据截至 {date}",
         "no_result": "暂无有来源的结果",
         "rows": "{n} 条",
         "lang_switch": '<a href="{other}" lang="en" hreflang="en">English</a>',
@@ -266,6 +266,18 @@ def best_link(b: dict[str, Any]) -> str | None:
 # --------------------------------------------------------------------------- README
 
 
+def split_is_ambiguous(ds: Dataset, benchmark_id: str) -> bool:
+    """True when a benchmark has sourced rows on more than one split.
+
+    Twelve ledgers do (terminal-bench ships 2.0, 4.0 and science rows); printing a
+    bare top score there would silently mix suites, e.g. Terminal-Bench Science 0.1
+    against Terminal-Bench 4.0.
+    """
+    splits = {(r.get("conditions") or {}).get("split") for r in ds.results.get(benchmark_id, [])}
+    splits.discard(None)
+    return len(splits) > 1
+
+
 def readme_benchmark_table(ds: Dataset, layer: str, lang: str = "en") -> str:
     t = T[lang]
     out = [t["bench_header"], "|---|---|---|---|---|---|---|"]
@@ -279,6 +291,10 @@ def readme_benchmark_table(ds: Dataset, layer: str, lang: str = "en") -> str:
             score = fmt_value(b, row["value"])
             if not is_live(b):
                 score = f"{t['last_reported']} {score}"
+            elif split_is_ambiguous(ds, b["id"]):
+                split = (row.get("conditions") or {}).get("split")
+                if split:
+                    score = f"{score} ({split})"
             system = row["system"]
             src = md_link(kind_label(lang, row["source"]["kind"]), row["source"]["url"])
         else:
@@ -312,6 +328,24 @@ def readme_timeline(ds: Dataset) -> str:
     return "\n".join(lines)
 
 
+def data_as_of(ds: Dataset) -> str:
+    """Newest date the data itself comes from.
+
+    The README stamp must move when the *data* moves, not when the generator runs:
+    --check compares the rendered README against the committed one, so a
+    build-time date would fail the CI drift guard on every day without a rebuild.
+    """
+    dates = [
+        row["source"]["accessed"]
+        for rows in ds.results.values()
+        for row in rows
+        if row.get("source", {}).get("accessed")
+    ]
+    if not dates:
+        dates = [row["date"] for rows in ds.results.values() for row in rows]
+    return max(dates) if dates else "n/a"
+
+
 def readme_stats(ds: Dataset, lang: str = "en") -> str:
     n_results = sum(len(v) for v in ds.results.values())
     model = sum(1 for b in ds.benchmarks.values() if b["layer"] == "model")
@@ -320,7 +354,7 @@ def readme_stats(ds: Dataset, lang: str = "en") -> str:
         agent=len(ds.benchmarks) - model,
         evals=len(ds.evaluators),
         results=n_results,
-        date=date.today().isoformat(),
+        date=data_as_of(ds),
     )
 
 
@@ -536,8 +570,8 @@ def llms_txt(ds: Dataset) -> str:
         "",
         f"Most benchmark round-ups copy vendor slide numbers with no provenance. Here each of the {c['results']} result "
         "rows carries the URL it was published at, the source kind (official leaderboard, paper, independent evaluation, "
-        "developer self-report, aggregator), the access date and the evaluation conditions (split, tools, reasoning "
-        f"effort, scaffold, pass@k); {c['provenance']}% of current top scores come from an official leaderboard, a paper "
+        "developer self-report, aggregator), the access date, and the evaluation conditions the source stated (split, "
+        f"tools, reasoning effort, scaffold, pass@k); {c['provenance']}% of current top scores come from an official leaderboard, a paper "
         "or an independent evaluation. Benchmarks also carry a saturation status and a contamination risk, so a stale "
         "benchmark can be recognised as stale. This project aggregates and labels third-party results; it runs no "
         "evaluations of its own.",
