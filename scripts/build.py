@@ -571,7 +571,8 @@ def llms_txt(ds: Dataset) -> str:
         f"Most benchmark round-ups copy vendor slide numbers with no provenance. Here each of the {c['results']} result "
         "rows carries the URL it was published at, the source kind (official leaderboard, paper, independent evaluation, "
         "developer self-report, aggregator), the access date, and the evaluation conditions the source stated (split, "
-        f"tools, reasoning effort, scaffold, pass@k); {c['provenance']}% of current top scores come from an official leaderboard, a paper "
+        f"tools, reasoning effort, scaffold, pass@k); {c['provenance']}% of current top scores come from an official "
+        "leaderboard, a paper "
         "or an independent evaluation. Benchmarks also carry a saturation status and a contamination risk, so a stale "
         "benchmark can be recognised as stale. This project aggregates and labels third-party results; it runs no "
         "evaluations of its own.",
