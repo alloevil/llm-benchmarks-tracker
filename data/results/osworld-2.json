@@ -49,6 +49,22 @@
       }
     },
     {
+      "system": "Claude Opus 5 (max, batch tool)",
+      "developer": "Anthropic",
+      "value": 31.43,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://osworld-v2.xlang.ai/",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "full",
+        "reasoning_effort": "max",
+        "notes": "Top of the official leaderboard as of access date; 500 steps, release v2026.08.08, partial 68.31%. Leaderboard updatedAt 2026-09-03 used as date."
+      }
+    },
+    {
       "system": "GPT-5.6 Sol (max, batch tool)",
       "developer": "OpenAI",
       "value": 27.34,
@@ -65,19 +81,18 @@
       }
     },
     {
-      "system": "Claude Opus 5 (max, batch tool)",
-      "developer": "Anthropic",
-      "value": 31.43,
+      "system": "GPT-6 Astra",
+      "developer": "OpenAI",
+      "value": 72.6,
       "date": "2026-09-03",
       "source": {
-        "url": "https://osworld-v2.xlang.ai/",
-        "kind": "official-leaderboard",
-        "accessed": "2026-09-04"
+        "url": "https://openai.com/index/gpt-6-astra/",
+        "kind": "developer-report",
+        "accessed": "2026-09-13"
       },
       "conditions": {
-        "split": "full",
-        "reasoning_effort": "max",
-        "notes": "Top of the official leaderboard as of access date; 500 steps, release v2026.08.08, partial 68.31%. Leaderboard updatedAt 2026-09-03 used as date."
+        "split": "offline",
+        "notes": "Partial score (not binary completion): OpenAI launch table 2026-09-03, ~40 min/task. openai.com returned 403 from the host that added this row, so it was cross-checked against o-mega.ai, datanorth.ai and benchlm.ai."
       }
     }
   ]

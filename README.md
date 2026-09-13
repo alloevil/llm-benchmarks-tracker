@@ -27,7 +27,7 @@
 For every benchmark: what it tests, whether it still discriminates between frontier systems (`status`), how exposed its test set is (`contamination_risk`), a measured human baseline when one exists, and who reported the top score under which conditions.
 
 <!-- gen:stats -->
-**31** model benchmarks · **23** agent benchmarks · **18** evaluators · **250** sourced results · data as of 2026-09-04
+**31** model benchmarks · **23** agent benchmarks · **18** evaluators · **252** sourced results · data as of 2026-09-13
 <!-- /gen:stats -->
 
 **Why another list?** Most benchmark pages copy vendor slide numbers with no provenance. Here every result row carries a source URL, a source *kind* (official leaderboard / paper / independent re-run / developer self-report / aggregator), the access date, and the evaluation conditions the source stated (tools, reasoning effort, scaffold, pass@k) — an unstated condition is left empty, never guessed. Numbers without a source do not get in.
@@ -62,7 +62,7 @@ Static prompt-and-response scoring of the model itself. *Top score* is the best 
 <!-- gen:model -->
 | Benchmark | Released | Domains | Status | Top score | System | Source |
 |---|---|---|---|---|---|---|
-| [BenchCAD](https://benchcad.com/leaderboard) | 2026-05 | multimodal, code, reasoning | active | 0.843 (vision2code-tools) | Claude Fable 5.1 (max, Python tools) | [self-reported](https://benchcad.com/leaderboard) |
+| [BenchCAD](https://benchcad.com/leaderboard) | 2026-05 | multimodal, code, reasoning | active | 0.959 (vision2code-tools) | GPT-6 Astra | [aggregator](https://benchcad.com/leaderboard) |
 | [AA-Omniscience](https://artificialanalysis.ai/evaluations/omniscience) | 2025-11 | knowledge, factuality | active | 44 | GPT-6 Astra (high) | [independent](https://artificialanalysis.ai/evaluations/omniscience) |
 | [GDPval](https://openai.com/index/gdpval/) | 2025-09 | general-assistant, knowledge, instruction-following | active | 74.1% | GPT-5.2 Pro | [self-reported](https://openai.com/index/introducing-gpt-5-2/) |
 | [HealthBench](https://openai.com/index/healthbench/) | 2025-05 | knowledge, safety, instruction-following | active | 59.9% | o3 | [paper](https://arxiv.org/abs/2505.08775) |
@@ -103,7 +103,7 @@ Interactive environments where the system acts, uses tools, and is scored on tas
 <!-- gen:agent -->
 | Benchmark | Released | Domains | Status | Top score | System | Source |
 |---|---|---|---|---|---|---|
-| [OSWorld 2.0](https://osworld-v2.xlang.ai/) | 2026-06 | computer-use, multimodal, tool-use | active | 41.7% | Claude Fable 5.1 | [self-reported](https://www.anthropic.com/claude-fable-and-mythos-5-1) |
+| [OSWorld 2.0](https://osworld-v2.xlang.ai/) | 2026-06 | computer-use, multimodal, tool-use | active | 72.6% (offline) | GPT-6 Astra | [self-reported](https://openai.com/index/gpt-6-astra/) |
 | [AutomationBench](https://zapier.com/benchmarks) | 2026-04 | tool-use, general-assistant, instruction-following | active | 50.3% (public) | Claude Opus 5 (max) | [official](https://github.com/zapier/AutomationBench) |
 | [ARC-AGI-3](https://arcprize.org/leaderboard) | 2026-03 | reasoning, tool-use | saturating | 99.9% | GPT-6 Astra (high) | [official](https://arcprize.org/blog/astra) |
 | [Terminal-Bench](https://www.tbench.ai/leaderboard) | 2026-01 | software-engineering, code, tool-use, ml-engineering | active | 64.6% (science) | GPT-6 Astra | [self-reported](https://openai.com/index/gpt-6-astra/) |

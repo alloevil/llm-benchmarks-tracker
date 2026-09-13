@@ -22,7 +22,7 @@
 对每个基准记录：它测什么、是否仍能区分前沿系统（`status`）、测试集暴露程度（`contamination_risk`）、有出处的人类基线（若存在），以及最高分由谁、在什么条件下报告。
 
 <!-- gen:stats -->
-**31** 个模型基准 · **23** 个 Agent 基准 · **18** 个评测方 · **250** 条有来源的结果 · 数据截至 2026-09-04
+**31** 个模型基准 · **23** 个 Agent 基准 · **18** 个评测方 · **252** 条有来源的结果 · 数据截至 2026-09-13
 <!-- /gen:stats -->
 
 **为什么再做一个列表？** 多数基准页面照搬厂商幻灯片上的数字，没有出处。这里每一行结果都带有来源 URL、来源类型（官方榜单 / 论文 / 独立复现 / 厂商自报 / 聚合站）、访问日期，以及来源写明的评测条件（工具、推理强度、scaffold、pass@k）——来源没写的就留空，绝不猜。没有来源的数字不收录。
@@ -34,7 +34,7 @@
 <!-- gen:model -->
 | Benchmark | 发布 | 领域 | 状态 | 最高分 | 系统 | 来源 |
 |---|---|---|---|---|---|---|
-| [BenchCAD](https://benchcad.com/leaderboard) | 2026-05 | multimodal, code, reasoning | active | 0.843 (vision2code-tools) | Claude Fable 5.1 (max, Python tools) | [厂商自报](https://benchcad.com/leaderboard) |
+| [BenchCAD](https://benchcad.com/leaderboard) | 2026-05 | multimodal, code, reasoning | active | 0.959 (vision2code-tools) | GPT-6 Astra | [聚合站](https://benchcad.com/leaderboard) |
 | [AA-Omniscience](https://artificialanalysis.ai/evaluations/omniscience) | 2025-11 | knowledge, factuality | active | 44 | GPT-6 Astra (high) | [独立复现](https://artificialanalysis.ai/evaluations/omniscience) |
 | [GDPval](https://openai.com/index/gdpval/) | 2025-09 | general-assistant, knowledge, instruction-following | active | 74.1% | GPT-5.2 Pro | [厂商自报](https://openai.com/index/introducing-gpt-5-2/) |
 | [HealthBench](https://openai.com/index/healthbench/) | 2025-05 | knowledge, safety, instruction-following | active | 59.9% | o3 | [论文](https://arxiv.org/abs/2505.08775) |
@@ -75,7 +75,7 @@
 <!-- gen:agent -->
 | Benchmark | 发布 | 领域 | 状态 | 最高分 | 系统 | 来源 |
 |---|---|---|---|---|---|---|
-| [OSWorld 2.0](https://osworld-v2.xlang.ai/) | 2026-06 | computer-use, multimodal, tool-use | active | 41.7% | Claude Fable 5.1 | [厂商自报](https://www.anthropic.com/claude-fable-and-mythos-5-1) |
+| [OSWorld 2.0](https://osworld-v2.xlang.ai/) | 2026-06 | computer-use, multimodal, tool-use | active | 72.6% (offline) | GPT-6 Astra | [厂商自报](https://openai.com/index/gpt-6-astra/) |
 | [AutomationBench](https://zapier.com/benchmarks) | 2026-04 | tool-use, general-assistant, instruction-following | active | 50.3% (public) | Claude Opus 5 (max) | [官方榜单](https://github.com/zapier/AutomationBench) |
 | [ARC-AGI-3](https://arcprize.org/leaderboard) | 2026-03 | reasoning, tool-use | saturating | 99.9% | GPT-6 Astra (high) | [官方榜单](https://arcprize.org/blog/astra) |
 | [Terminal-Bench](https://www.tbench.ai/leaderboard) | 2026-01 | software-engineering, code, tool-use, ml-engineering | active | 64.6% (science) | GPT-6 Astra | [厂商自报](https://openai.com/index/gpt-6-astra/) |

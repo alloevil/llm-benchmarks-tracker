@@ -2,22 +2,6 @@
   "benchmark": "benchcad",
   "results": [
     {
-      "system": "Gemini 3.1 Pro (thinking)",
-      "developer": "Google",
-      "value": 0.289,
-      "date": "2026-06-01",
-      "source": {
-        "url": "https://benchcad.com/leaderboard",
-        "kind": "official-leaderboard",
-        "accessed": "2026-09-04"
-      },
-      "conditions": {
-        "split": "vision2code",
-        "tools": false,
-        "notes": "Re-graded by the BenchCAD team on the full split; best no-tools row among models it ran itself. Leaderboard gives 'tested 2026-06' only, 1st used."
-      }
-    },
-    {
       "system": "Claude Opus 4.7 (max)",
       "developer": "Anthropic",
       "value": 0.2692,
@@ -32,6 +16,22 @@
         "tools": false,
         "reasoning_effort": "max",
         "notes": "Re-graded by the BenchCAD team; exec rate 96.5%. Leaderboard gives 'tested 2026-06' only, 1st used."
+      }
+    },
+    {
+      "system": "Gemini 3.1 Pro (thinking)",
+      "developer": "Google",
+      "value": 0.289,
+      "date": "2026-06-01",
+      "source": {
+        "url": "https://benchcad.com/leaderboard",
+        "kind": "official-leaderboard",
+        "accessed": "2026-09-04"
+      },
+      "conditions": {
+        "split": "vision2code",
+        "tools": false,
+        "notes": "Re-graded by the BenchCAD team on the full split; best no-tools row among models it ran itself. Leaderboard gives 'tested 2026-06' only, 1st used."
       }
     },
     {
@@ -83,6 +83,21 @@
         "tools": true,
         "reasoning_effort": "max",
         "notes": "Self-reported voxel IoU from the Fable 5.1 / Mythos 5.1 system card (fig. 8.14.2.A) on a random 1,000-file subset, averaged over five runs; republished on the official leaderboard. No-tools 0.437. Highest with-tools figure as of access date."
+      }
+    },
+    {
+      "system": "GPT-6 Astra",
+      "developer": "OpenAI",
+      "value": 0.959,
+      "date": "2026-09-03",
+      "source": {
+        "url": "https://benchcad.com/leaderboard",
+        "kind": "aggregator",
+        "accessed": "2026-09-13"
+      },
+      "conditions": {
+        "split": "vision2code-tools",
+        "notes": "Republished by the leaderboard, which labels it secondhand: OpenAI's own page was unreachable when that row was added. The split is inferred on that page from the same table's Anthropic figures (Fable 5.1 0.843, Opus 5 0.821, Fable 5 0.675), which match Anthropic's published with-tools numbers."
       }
     }
   ]
