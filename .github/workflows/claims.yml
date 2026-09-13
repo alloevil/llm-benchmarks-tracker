@@ -29,4 +29,4 @@ jobs:
         run: python scripts/build.py
       # No `file:` input: the action's default search order already ends at dist/claims.json,
       # and verify-claims rejects `-f` after the `run` subcommand (v0.1.0).
-      - uses: alloevil/verify-claims@v0.1.0
+      - uses: alloevil/verify-claims@v0.1.1
