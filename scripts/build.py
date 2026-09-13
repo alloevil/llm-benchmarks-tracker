@@ -278,6 +278,23 @@ def split_is_ambiguous(ds: Dataset, benchmark_id: str) -> bool:
     return len(splits) > 1
 
 
+def top_cell(ds: Dataset, b: dict[str, Any], row: dict[str, Any], lang: str = "en") -> str:
+    """The `Top score` cell for one row: value, plus the split when the ledger carries several.
+
+    Live benchmarks show the best sourced score; saturated and retired ones show the last
+    reported score with a prefix, because there is no meaningful current top. The rule lives
+    here once so the README tables and the receipts for those cells cannot disagree.
+    """
+    score = fmt_value(b, row["value"])
+    if not is_live(b):
+        return f"{T[lang]['last_reported']} {score}"
+    if split_is_ambiguous(ds, b["id"]):
+        split = (row.get("conditions") or {}).get("split")
+        if split:
+            return f"{score} ({split})"
+    return score
+
+
 def readme_benchmark_table(ds: Dataset, layer: str, lang: str = "en") -> str:
     t = T[lang]
     out = [t["bench_header"], "|---|---|---|---|---|---|---|"]
@@ -288,13 +305,7 @@ def readme_benchmark_table(ds: Dataset, layer: str, lang: str = "en") -> str:
             divider_done = True
         row = ds.sota(b["id"]) if is_live(b) else last_reported(ds, b["id"])
         if row:
-            score = fmt_value(b, row["value"])
-            if not is_live(b):
-                score = f"{t['last_reported']} {score}"
-            elif split_is_ambiguous(ds, b["id"]):
-                split = (row.get("conditions") or {}).get("split")
-                if split:
-                    score = f"{score} ({split})"
+            score = top_cell(ds, b, row, lang)
             system = row["system"]
             src = md_link(kind_label(lang, row["source"]["kind"]), row["source"]["url"])
         else:
@@ -443,6 +454,59 @@ def kind_counts(ds: Dataset) -> dict[str, int]:
     return dict(sorted(out.items(), key=lambda kv: (-kv[1], kv[0])))
 
 
+# --------------------------------------------------------------------------- claim receipts
+#
+# Every claim carries an executable receipt, and each receipt recomputes its figure from the
+# committed data on its own. None of them runs scripts/build.py: a generator that re-runs
+# itself proves it is deterministic, not that the published number is true. The receipts are
+# `python3 -c` one-liners over data/ with the standard library, except for the schema-validated
+# counts, where scripts/validate.py already prints what it loaded and validated.
+#
+# A receipt body is single-quoted Python: a double quote inside it would break the shell
+# quoting the command is run with (verify-claims hands `cmd` to `sh -c`), so `receipt()`
+# rejects one instead of emitting a command nothing can parse.
+#
+# What a receipt does not prove is that the upstream page still says what the row says: that
+# needs the network, and it is the one claim left `manual` below.
+
+VALIDATE_RECEIPT = "python3 scripts/validate.py"
+_BENCH_FILES = "[json.load(open(p)) for p in glob.glob('data/benchmarks/*.json')]"
+_ROW_FILES = "[r for p in glob.glob('data/results/*.json') for r in json.load(open(p))['results']]"
+
+# The two Top score cells an audit had to correct (2026-09-13): one became an aggregator
+# republication, the other a vendor self-report on a partial split. Both are the kind of cell a
+# reader should be able to check without trusting the generator, so each has its own receipt.
+AUDITED_TOP_CELLS = ("benchcad", "osworld-2")
+
+
+def receipt(body: str, imports: str = "json, glob") -> str:
+    """A claim's `check.cmd`: one Python statement chain over data/, as a shell one-liner."""
+    if '"' in body:
+        raise ValueError(f"a receipt body is single-quoted Python; found a double quote in: {body}")
+    return f'python3 -c "import {imports};{body}"'
+
+
+def top_cell_receipt(bid: str) -> str:
+    """Recompute one README `Top score` cell from the ledger and compare it with the README row.
+
+    Exits non-zero when the recomputed cell and the committed README cell differ, and prints
+    both, so a failure says which of the two moved.
+    """
+    body = (
+        f"B=json.load(open('data/benchmarks/{bid}.json'));"
+        f"R=json.load(open('data/results/{bid}.json'))['results'];"
+        "T=min(R, key=lambda r: (-r['value'] if B['metric']['higher_is_better'] else r['value'], r['date']));"
+        "V=('%g' % T['value']) + ('%' if B['metric']['unit'] == 'percent' else '');"
+        "S={(r.get('conditions') or {}).get('split') for r in R} - {None};"
+        "V+=(' (%s)' % T['conditions']['split']) if len(S) > 1 and (T.get('conditions') or {}).get('split') else '';"
+        "C=[l for l in open('README.md', encoding='utf-8') if l.startswith('| [%s]' % B['name'])][0]"
+        ".split('|')[5].strip();"
+        "print('%s: top %s · %s · %s · README cell %s' % (B['name'], V, T['system'], T['source']['kind'], C));"
+        "sys.exit(0 if V == C else 1)"
+    )
+    return receipt(body, imports="json, sys")
+
+
 def definition(c: dict[str, int]) -> str:
     """One-sentence definition, identical in llms.txt and llms-full.txt."""
     return (
@@ -456,24 +520,60 @@ def evaluator_names(ds: Dataset, *kinds: str) -> list[str]:
     return sorted(e["name"] for e in ds.evaluators.values() if e["kind"] in kinds)
 
 
+def top_cell_receipt_expect(ds: Dataset, bid: str) -> str:
+    """The line top_cell_receipt() must print, built from the same data it recomputes."""
+    b = ds.benchmarks[bid]
+    row = ds.sota(bid)
+    if row is None:
+        raise ValueError(f"{bid}: an audited top-score cell needs at least one ledger row")
+    cell = top_cell(ds, b, row)
+    return f"{b['name']}: top {cell} · {row['system']} · {row['source']['kind']} · README cell {cell}"
+
+
 def claims(ds: Dataset) -> dict[str, Any]:
-    """Machine-readable claim list. Every value is counted from data/, so it cannot drift from the repository."""
+    """Machine-readable claim list: every published number with the receipt that recomputes it.
+
+    Each value is counted from data/ here, and each `check.cmd` recounts it from data/ with code
+    that shares nothing with this module (see the receipts section above). The one claim no
+    command can settle — whether the upstream page still carries the number — is `manual` with
+    the reason written down rather than silently missing.
+    """
     c = counts(ds)
     today = date.today().isoformat()
     tree = f"{REPO}/tree/main"
     blob = f"{REPO}/blob/main"
 
-    def claim(cid: str, text: str, value: str, metric: str, method: str, evidence: str) -> dict[str, str]:
+    def claim(
+        cid: str,
+        text: str,
+        value: str,
+        metric: str,
+        method: str,
+        evidence: str,
+        check: dict[str, Any],
+        repro: str | None = None,
+    ) -> dict[str, Any]:
         return {
             "id": cid,
             "claim": text,
             "value": value,
             "metric": metric,
             "method": method,
-            "repro": "python scripts/build.py",
+            "repro": repro or check.get("cmd", ""),
             "evidence": evidence,
             "verified": today,
+            "check": check,
         }
+
+    def checked(cmd: str, expect: str) -> dict[str, Any]:
+        """A receipt that prints exactly the published figure."""
+        return {"cmd": cmd, "expect": {"equals": expect}, "timeout": 60}
+
+    def over_benchmarks(body: str) -> str:
+        return receipt(f"B={_BENCH_FILES};{body}")
+
+    def over_rows(body: str) -> str:
+        return receipt(f"R={_ROW_FILES};{body}")
 
     items = [
         claim(
@@ -484,6 +584,20 @@ def claims(ds: Dataset) -> dict[str, Any]:
             "benchmark metadata files that pass schema/benchmark.schema.json",
             "scripts/dataset.py::load validates every data/benchmarks/*.json against the published schema and counts what loads",
             f"{tree}/data/benchmarks",
+            {"cmd": VALIDATE_RECEIPT, "expect": {"regex": f"^{c['benchmarks']} benchmarks,"}, "timeout": 60},
+        ),
+        claim(
+            "benchmark-layers",
+            f"The {c['benchmarks']} benchmarks split into {c['model']} model benchmarks "
+            f"and {c['agent']} agent benchmarks.",
+            f"{c['model']}/{c['agent']}",
+            "benchmark metadata files by layer, model benchmarks first",
+            "layer field per benchmark file; the receipt recounts it straight from data/benchmarks/*.json",
+            f"{tree}/data/benchmarks",
+            checked(
+                over_benchmarks("L=[b['layer'] for b in B];print(L.count('model'), L.count('agent'), sep='/')"),
+                f"{c['model']}/{c['agent']}",
+            ),
         ),
         claim(
             "evaluators-catalogued",
@@ -493,6 +607,7 @@ def claims(ds: Dataset) -> dict[str, Any]:
             "evaluator metadata files that pass schema/evaluator.schema.json",
             "scripts/dataset.py::load validates every data/evaluators/*.json against the published schema and counts what loads",
             f"{tree}/data/evaluators",
+            {"cmd": VALIDATE_RECEIPT, "expect": {"regex": f", {c['evaluators']} evaluators$"}, "timeout": 60},
         ),
         claim(
             "sourced-results",
@@ -502,6 +617,27 @@ def claims(ds: Dataset) -> dict[str, Any]:
             "schema/results.schema.json marks all three fields required; scripts/validate.py fails the build "
             "on a row without them",
             f"{blob}/schema/results.schema.json",
+            checked(
+                over_rows(
+                    "print(sum(1 for r in R if r['source'].get('url') and r['source'].get('kind') "
+                    "and r['source'].get('accessed')), len(R), sep='/')"
+                ),
+                f"{c['results']}/{c['results']}",
+            ),
+        ),
+        claim(
+            "data-as-of",
+            f"The newest access date across the {c['results']} result rows is {data_as_of(ds)}, "
+            "which is the date the README publishes as `data as of`.",
+            data_as_of(ds),
+            "newest source.accessed date over all result rows",
+            "scripts/build.py::data_as_of takes the maximum access date, so the README stamp moves with the "
+            "data and not with the build date; the receipt recomputes that maximum from data/results/*.json",
+            f"{tree}/data/results",
+            checked(
+                over_rows("print(max(r['source'].get('accessed') or r['date'] for r in R))"),
+                data_as_of(ds),
+            ),
         ),
         claim(
             "top-score-provenance",
@@ -509,8 +645,20 @@ def claims(ds: Dataset) -> dict[str, Any]:
             "independent evaluation rather than a vendor self-report or an aggregator.",
             f"{c['provenance']}%",
             "share of per-benchmark top scores whose source.kind is official-leaderboard, paper or independent-evaluation",
-            "scripts/build.py::provenance_share over Dataset.sota() of every benchmark",
+            "scripts/build.py::provenance_share over Dataset.sota() of every benchmark; the receipt picks the top row "
+            "again from each ledger (higher_is_better, ties to the earliest date) and counts the trusted kinds",
             f"{tree}/data/results",
+            checked(
+                receipt(
+                    f"S=[(b, json.load(open('data/results/' + b['id'] + '.json'))['results']) for b in {_BENCH_FILES}];"
+                    "S=[(b, r) for b, r in S if r];"
+                    "print(round(100 * sum(1 for b, r in S if min(r, key=lambda x:"
+                    " (-(1 if b['metric']['higher_is_better'] else -1) * x['value'], x['date']))"
+                    "['source']['kind'] in ('official-leaderboard', 'paper', 'independent-evaluation')) / len(S)),"
+                    " '%', sep='')"
+                ),
+                f"{c['provenance']}%",
+            ),
         ),
     ]
     for kind, n in kind_counts(ds).items():
@@ -522,6 +670,28 @@ def claims(ds: Dataset) -> dict[str, Any]:
                 f"result rows whose source.kind is {kind}",
                 "count over data/results/*.json after schema validation",
                 f"{tree}/data/results",
+                checked(
+                    over_rows(f"print(sum(r['source']['kind'] == {kind!r} for r in R), len(R), sep='/')"),
+                    f"{n}/{c['results']}",
+                ),
+            )
+        )
+    for bid in AUDITED_TOP_CELLS:
+        b, row = ds.benchmarks[bid], ds.sota(bid)
+        if row is None:
+            raise ValueError(f"{bid}: an audited top-score cell needs at least one ledger row")
+        items.append(
+            claim(
+                f"top-score-{bid}",
+                f"The README's Top score for {b['name']} is {top_cell(ds, b, row)}, "
+                f"from {row['system']} ({kind_label('en', row['source']['kind'])}), the best row in its ledger.",
+                top_cell(ds, b, row),
+                f"highest value in data/results/{bid}.json under the benchmark's metric, rendered as the README cell",
+                "the receipt picks the top row again (value, ties to the earliest date), formats it with the "
+                "benchmark's metric unit, appends conditions.split because this ledger carries rows on more than "
+                "one split, and requires the README row for this benchmark to carry the same cell",
+                f"{blob}/README.md#{b['layer']}-benchmarks + {tree}/data/results/{bid}.json",
+                checked(top_cell_receipt(bid), top_cell_receipt_expect(ds, bid)),
             )
         )
     items += [
@@ -533,6 +703,10 @@ def claims(ds: Dataset) -> dict[str, Any]:
             "benchmarks whose status is saturated or retired",
             "status field per benchmark file; active and saturating count as live",
             f"{tree}/data/benchmarks",
+            checked(
+                over_benchmarks("print(sum(b['status'] in ('saturated', 'retired') for b in B), len(B), sep='/')"),
+                f"{c['closed']}/{c['benchmarks']}",
+            ),
         ),
         claim(
             "contamination-high",
@@ -541,6 +715,10 @@ def claims(ds: Dataset) -> dict[str, Any]:
             "benchmarks whose contamination_risk is high",
             "contamination_risk field per benchmark file",
             f"{tree}/data/benchmarks",
+            checked(
+                over_benchmarks("print(sum(b.get('contamination_risk') == 'high' for b in B), len(B), sep='/')"),
+                f"{c['high_risk']}/{c['benchmarks']}",
+            ),
         ),
         claim(
             "human-baselines",
@@ -549,6 +727,28 @@ def claims(ds: Dataset) -> dict[str, Any]:
             "benchmarks with a non-null human_baseline (value, population, source)",
             "human_baseline is only populated from a measured number with a citation; guesses are left null",
             f"{tree}/data/benchmarks",
+            checked(
+                over_benchmarks("print(sum(1 for b in B if b.get('human_baseline')), len(B), sep='/')"),
+                f"{c['baselines']}/{c['benchmarks']}",
+            ),
+        ),
+        claim(
+            "source-pages-not-re-read",
+            "No receipt fetches a source page: all "
+            f"{c['results']} rows state the number the page carried when it was read, and the gate only proves "
+            "the committed value is the one the repository publishes.",
+            f"0/{c['results']}",
+            "result rows whose source.url is fetched again while the gate runs",
+            "the receipts are offline recounts of data/; re-reading the pages is scripts/sync_ledgers.py's job for "
+            "the four allow-listed machine-readable sources and a person's job for the rest, and source.accessed "
+            "records when either last did it",
+            f"{blob}/scripts/sync_ledgers.py",
+            {
+                "manual": "re-reading a source page needs the network, and not all of them answer a CI host "
+                "(openai.com returned 403 for the OSWorld 2.0 row); what a receipt proves is that the published "
+                "figure is the figure in the committed ledger, not that the upstream page still agrees",
+            },
+            repro="python scripts/sync_ledgers.py --dry-run  # needs the network; CI runs it twice a week",
         ),
     ]
     return {
@@ -595,7 +795,8 @@ def llms_txt(ds: Dataset) -> str:
         f"- [Results schema]({SITE}/schema/results.schema.json): requires a source URL, source kind and access date per row",
         "",
         "## Evidence",
-        f"- [claims.json]({SITE}/claims.json): every number on this site with its metric, method, repro command and evidence",
+        f"- [claims.json]({SITE}/claims.json): every number on this site with its metric, method, repro command, "
+        "executable check and evidence",
         f"- [llms-full.txt]({SITE}/llms-full.txt): self-contained description, install, limits and FAQ",
         "",
         "## Benchmarks",
@@ -708,8 +909,9 @@ def llms_full_txt(ds: Dataset) -> str:
         "## Verifiable claims",
         "",
         f"Machine-readable copy: {SITE}/claims.json. Every value below is counted from data/ at build time, so it cannot "
-        "drift from the repository. None of them is a measurement made by this project; they describe the catalogue and "
-        "the provenance of the scores in it.",
+        "drift from the repository, and each one carries a check: a command that recomputes the figure from data/ "
+        "without calling the generator, run by .github/workflows/claims.yml on every push and weekly. None of them is a "
+        "measurement made by this project; they describe the catalogue and the provenance of the scores in it.",
         "",
     ]
     for item in claims(ds)["claims"]:

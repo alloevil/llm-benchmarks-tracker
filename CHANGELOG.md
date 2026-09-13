@@ -2,6 +2,13 @@
 
 All notable changes to the data model and tooling. Data additions are tracked in git history and the per-benchmark ledgers.
 
+## 1.9.0 — 2026-09-13
+
+### Added
+- Every claim in `dist/claims.json` now carries a `check`: a command that recomputes the published figure from `data/` without calling `scripts/build.py`, so the gate cannot be satisfied by the generator agreeing with itself. The receipts are `python3 -c` one-liners over `data/` (plus `python3 scripts/validate.py` for the schema-validated counts) and the new figures they cover are the model/agent layer split (`31/23`) and the `data as of` date. The two `Top score` cells an audit corrected each get their own receipt, which re-picks the top row from the ledger, re-renders the cell and requires the README row to carry it.
+- `.github/workflows/claims.yml`: runs the `alloevil/verify-claims` action on push, pull request and weekly (Mon 06:17 UTC). `dist/` is gitignored, so the job installs `requirements.txt`, builds `dist/claims.json` and then verifies it. One claim is `manual` on purpose: whether the cited upstream page still carries the number needs the network.
+- `requirements.txt` (the runtime dependency `jsonschema[format]`, mirrored from `pyproject.toml`) for jobs that install without the package extras.
+
 ## 1.8.0 — 2026-09-04
 
 ### Added

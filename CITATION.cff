@@ -7,5 +7,5 @@ authors:
 repository-code: "https://github.com/alloevil/llm-benchmarks-tracker"
 url: "https://alloevil.github.io/llm-benchmarks-tracker/"
 license: MIT
-version: 1.8.0
-date-released: 2026-09-04
+version: 1.9.0
+date-released: 2026-09-13

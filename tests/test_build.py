@@ -158,18 +158,47 @@ def test_claims_are_counted_from_the_data():
     ds = _ds()
     doc = build.claims(ds)
     c = build.counts(ds)
-    keys = {"id", "claim", "value", "metric", "method", "repro", "evidence", "verified"}
+    keys = {"id", "claim", "value", "metric", "method", "repro", "evidence", "verified", "check"}
     for item in doc["claims"]:
         assert set(item) == keys and all(item[k] for k in keys), item
     by_id = {item["id"]: item for item in doc["claims"]}
     assert by_id["benchmarks-catalogued"]["value"] == str(c["benchmarks"])
+    assert by_id["benchmark-layers"]["value"] == f"{c['model']}/{c['agent']}"
     assert by_id["evaluators-catalogued"]["value"] == str(c["evaluators"])
     assert by_id["sourced-results"]["value"] == f"{c['results']}/{c['results']}"
+    assert by_id["data-as-of"]["value"] == build.data_as_of(ds)
     kinds = build.kind_counts(ds)
     assert sum(kinds.values()) == c["results"]  # every row is attributed to exactly one source kind
     for kind, n in kinds.items():
         assert by_id[f"results-{kind}"]["value"] == f"{n}/{c['results']}"
     assert json.loads(json.dumps(doc)) == doc  # claims.json must be plain JSON
+
+
+def test_every_claim_carries_a_receipt_that_does_not_rerun_the_generator():
+    ds = _ds()
+    for item in build.claims(ds)["claims"]:
+        check = item["check"]
+        manual, cmd = check.get("manual"), check.get("cmd")
+        assert bool(manual) != bool(cmd), item["id"]
+        if manual:
+            continue
+        # A receipt that re-ran the generator would prove only that the generator is
+        # deterministic, so the gate would still pass with a wrong published number.
+        assert "scripts/build.py" not in cmd, item["id"]
+        assert set(check) == {"cmd", "expect", "timeout"}, item["id"]
+        assert set(check["expect"]) <= {"equals", "contains", "not_contains", "regex", "exit_code"}, item["id"]
+
+
+def test_audited_top_score_cells_are_receipted_from_their_ledger():
+    ds = _ds()
+    by_id = {item["id"]: item for item in build.claims(ds)["claims"]}
+    for bid in build.AUDITED_TOP_CELLS:
+        item = by_id[f"top-score-{bid}"]
+        cell = build.top_cell(ds, ds.benchmarks[bid], ds.sota(bid))
+        assert item["value"] == cell
+        # The receipt prints the recomputed cell next to the committed README cell it must equal.
+        assert item["check"]["expect"]["equals"] == build.top_cell_receipt_expect(ds, bid)
+        assert cell in item["check"]["expect"]["equals"]
 
 
 def test_llms_files_follow_the_data_rather_than_literals():

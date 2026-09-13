@@ -1,0 +1,32 @@
+name: claims
+
+# Runs the receipts behind dist/claims.json: every published number must still be printed by
+# the command next to it, which recomputes it from data/ without calling the generator.
+# Weekly as well as on push, because data moves without anyone committing a workflow file.
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: published numbers still reproduce
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      # dist/ is gitignored: claims.json is generated, so build it (and its dependencies)
+      # before the gate. The receipts themselves are stdlib + scripts/validate.py.
+      - run: pip install -r requirements.txt
+      - name: Build dist/claims.json
+        run: python scripts/build.py
+      # No `file:` input: the action's default search order already ends at dist/claims.json,
+      # and verify-claims rejects `-f` after the `run` subcommand (v0.1.0).
+      - uses: alloevil/verify-claims@v0.1.0

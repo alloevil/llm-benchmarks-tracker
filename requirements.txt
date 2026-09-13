@@ -1,0 +1,4 @@
+# Runtime dependencies of scripts/validate.py, scripts/build.py and the claim receipts,
+# mirrored from pyproject.toml [project].dependencies. The claims job installs this first:
+# dist/claims.json is a build artifact, so the gate runs the generator in a bare checkout.
+jsonschema[format]>=4.20
