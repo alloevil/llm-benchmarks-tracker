@@ -214,9 +214,7 @@ pytest                              # 校验器契约测试
 
 见 [CONTRIBUTING.md](CONTRIBUTING.md)（英文）。简版：编辑或新增 `data/` 下的 JSON，运行 `python scripts/validate.py && python scripts/build.py`，提交 PR。CI 会拒绝 schema 违规、悬空引用、无来源的行，以及过期的 README 表格。
 
-<p align="center">
-  <a href="https://github.com/oil-oil/beautify-github-readme"><img src="./assets/readme/made-with-beautify.svg" width="300" alt="README made with beautify-github-readme"></a>
-</p>
+
 
 ## 许可
 
