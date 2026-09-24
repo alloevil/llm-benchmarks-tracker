@@ -140,3 +140,6 @@ tr.compact .chain{margin-left:6px}
   .rail::before{left:23px}.rail-year{grid-template-columns:48px 1fr;gap:0 10px}.rail-y{font-size:.85rem}.rail-y::after{left:19px}
   .rail-year li{white-space:normal}
 }
+
+/* Keep keyboard focus visible when hover is unavailable. */
+:where(a,button,input,select,summary):focus-visible{outline:3px solid var(--accent,#58a6ff);outline-offset:3px}
