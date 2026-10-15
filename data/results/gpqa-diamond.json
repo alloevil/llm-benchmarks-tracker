@@ -94,6 +94,20 @@
       "conditions": {
         "notes": "Epoch AI Benchmarking Hub run started 2026-08-30 (stderr 1.3); OpenAI's launch table reports 96.0, which benchlm.ai republishes."
       }
+    },
+    {
+      "system": "gemini-4-argon_high",
+      "developer": "Google DeepMind",
+      "value": 96.4,
+      "date": "2026-10-13",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/gpqa-diamond",
+        "kind": "independent-evaluation",
+        "accessed": "2026-10-15"
+      },
+      "conditions": {
+        "notes": "Epoch AI independent run (Inspect). Added automatically by scripts/sync_ledgers.py."
+      }
     }
   ]
 }

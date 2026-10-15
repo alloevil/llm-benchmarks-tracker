@@ -27,7 +27,7 @@
 For every benchmark: what it tests, whether it still discriminates between frontier systems (`status`), how exposed its test set is (`contamination_risk`), a measured human baseline when one exists, and who reported the top score under which conditions.
 
 <!-- gen:stats -->
-**31** model benchmarks · **23** agent benchmarks · **18** evaluators · **252** sourced results · data as of 2026-09-13
+**31** model benchmarks · **23** agent benchmarks · **18** evaluators · **253** sourced results · data as of 2026-10-15
 <!-- /gen:stats -->
 
 **Why another list?** Most benchmark pages copy vendor slide numbers with no provenance. Here every result row carries a source URL, a source *kind* (official leaderboard / paper / independent re-run / developer self-report / aggregator), the access date, and the evaluation conditions the source stated (tools, reasoning effort, scaffold, pass@k) — an unstated condition is left empty, never guessed. Numbers without a source do not get in.
@@ -79,7 +79,7 @@ Static prompt-and-response scoring of the model itself. *Top score* is the best 
 | [BFCL](https://gorilla.cs.berkeley.edu/leaderboard.html) | 2024-02 | tool-use | active | 77.47% | Claude-Opus-4-5-20251101 (FC) | [official](https://gorilla.cs.berkeley.edu/leaderboard.html) |
 | [MMMU](https://mmmu-benchmark.github.io/#leaderboard) | 2023-11 | multimodal, knowledge, reasoning | saturating | 85.4% | GPT-5.1 | [self-reported](https://mmmu-benchmark.github.io/) |
 | [IFEval](https://github.com/google-research/google-research/tree/master/instruction_following_eval) | 2023-11 | instruction-following | saturating | 95% | Qwen3.5-27B | [self-reported](https://huggingface.co/Qwen/Qwen3.5-27B) |
-| [GPQA Diamond](https://github.com/idavidrein/gpqa) | 2023-11 | science, reasoning, knowledge | saturating | 96% | GPT-6 Astra | [aggregator](https://benchlm.ai/benchmarks/gpqa-diamond) |
+| [GPQA Diamond](https://github.com/idavidrein/gpqa) | 2023-11 | science, reasoning, knowledge | saturating | 96.4% | gemini-4-argon_high | [independent](https://epoch.ai/benchmarks/gpqa-diamond) |
 | [LMArena Text](https://lmarena.ai/leaderboard/text) | 2023-05 | human-preference, general-assistant | active | 1466 | gemini-2.5-pro | [official](https://huggingface.co/spaces/lmarena-ai/arena-leaderboard) |
 | *Saturated or retired — no longer used to compare frontier systems. Score shown is the last one reported, not a leaderboard top.* | | | | | | |
 | [AIME 2025](https://matharena.ai/) | 2025-02 | math, reasoning | saturated | last reported 100% | GPT-5.2 (high) | [independent](https://matharena.ai/) |

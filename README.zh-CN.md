@@ -22,7 +22,7 @@
 对每个基准记录：它测什么、是否仍能区分前沿系统（`status`）、测试集暴露程度（`contamination_risk`）、有出处的人类基线（若存在），以及最高分由谁、在什么条件下报告。
 
 <!-- gen:stats -->
-**31** 个模型基准 · **23** 个 Agent 基准 · **18** 个评测方 · **252** 条有来源的结果 · 数据截至 2026-09-13
+**31** 个模型基准 · **23** 个 Agent 基准 · **18** 个评测方 · **253** 条有来源的结果 · 数据截至 2026-10-15
 <!-- /gen:stats -->
 
 **为什么再做一个列表？** 多数基准页面照搬厂商幻灯片上的数字，没有出处。这里每一行结果都带有来源 URL、来源类型（官方榜单 / 论文 / 独立复现 / 厂商自报 / 聚合站）、访问日期，以及来源写明的评测条件（工具、推理强度、scaffold、pass@k）——来源没写的就留空，绝不猜。没有来源的数字不收录。
@@ -51,7 +51,7 @@
 | [BFCL](https://gorilla.cs.berkeley.edu/leaderboard.html) | 2024-02 | tool-use | active | 77.47% | Claude-Opus-4-5-20251101 (FC) | [官方榜单](https://gorilla.cs.berkeley.edu/leaderboard.html) |
 | [MMMU](https://mmmu-benchmark.github.io/#leaderboard) | 2023-11 | multimodal, knowledge, reasoning | saturating | 85.4% | GPT-5.1 | [厂商自报](https://mmmu-benchmark.github.io/) |
 | [IFEval](https://github.com/google-research/google-research/tree/master/instruction_following_eval) | 2023-11 | instruction-following | saturating | 95% | Qwen3.5-27B | [厂商自报](https://huggingface.co/Qwen/Qwen3.5-27B) |
-| [GPQA Diamond](https://github.com/idavidrein/gpqa) | 2023-11 | science, reasoning, knowledge | saturating | 96% | GPT-6 Astra | [聚合站](https://benchlm.ai/benchmarks/gpqa-diamond) |
+| [GPQA Diamond](https://github.com/idavidrein/gpqa) | 2023-11 | science, reasoning, knowledge | saturating | 96.4% | gemini-4-argon_high | [独立复现](https://epoch.ai/benchmarks/gpqa-diamond) |
 | [LMArena Text](https://lmarena.ai/leaderboard/text) | 2023-05 | human-preference, general-assistant | active | 1466 | gemini-2.5-pro | [官方榜单](https://huggingface.co/spaces/lmarena-ai/arena-leaderboard) |
 | *已饱和或退役 —— 不再用于比较前沿系统。所示分数为最后一次报告值，不是榜首。* | | | | | | |
 | [AIME 2025](https://matharena.ai/) | 2025-02 | math, reasoning | saturated | 最后报告 100% | GPT-5.2 (high) | [独立复现](https://matharena.ai/) |
