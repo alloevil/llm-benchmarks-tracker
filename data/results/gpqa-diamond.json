@@ -108,6 +108,20 @@
       "conditions": {
         "notes": "Epoch AI independent run (Inspect). Added automatically by scripts/sync_ledgers.py."
       }
+    },
+    {
+      "system": "gemini-4-carbon_high",
+      "developer": "Google DeepMind",
+      "value": 96.5,
+      "date": "2026-11-02",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/gpqa-diamond",
+        "kind": "independent-evaluation",
+        "accessed": "2026-11-12"
+      },
+      "conditions": {
+        "notes": "Epoch AI independent run (Inspect). Added automatically by scripts/sync_ledgers.py."
+      }
     }
   ]
 }

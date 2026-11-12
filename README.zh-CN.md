@@ -22,7 +22,7 @@
 对每个基准记录：它测什么、是否仍能区分前沿系统（`status`）、测试集暴露程度（`contamination_risk`）、有出处的人类基线（若存在），以及最高分由谁、在什么条件下报告。
 
 <!-- gen:stats -->
-**31** 个模型基准 · **23** 个 Agent 基准 · **18** 个评测方 · **253** 条有来源的结果 · 数据截至 2026-10-15
+**31** 个模型基准 · **23** 个 Agent 基准 · **18** 个评测方 · **255** 条有来源的结果 · 数据截至 2026-11-12
 <!-- /gen:stats -->
 
 **为什么再做一个列表？** 多数基准页面照搬厂商幻灯片上的数字，没有出处。这里每一行结果都带有来源 URL、来源类型（官方榜单 / 论文 / 独立复现 / 厂商自报 / 聚合站）、访问日期，以及来源写明的评测条件（工具、推理强度、scaffold、pass@k）——来源没写的就留空，绝不猜。没有来源的数字不收录。
@@ -43,7 +43,7 @@
 | [Humanity's Last Exam](https://lastexam.ai/) | 2025-01 | knowledge, reasoning, science, math, multimodal | active | 65% | Claude Fable 5.1 (with tools) | [厂商自报](https://www.anthropic.com/claude-fable-and-mythos-5-1) |
 | [Aider Polyglot](https://aider.chat/docs/leaderboards/) | 2024-12 | code, instruction-following | saturating | 88% | gpt-5 (high) | [官方榜单](https://aider.chat/docs/leaderboards/) |
 | [SimpleQA](https://openai.com/index/introducing-simpleqa/) | 2024-11 | factuality, knowledge | active | 62.5% | gpt-4.5-preview-2025-02-27 | [厂商自报](https://github.com/openai/simple-evals) |
-| [FrontierMath](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) | 2024-11 | math, reasoning, research | saturating | 93.7% (Tiers 1-3 (v2)) | gpt-6-astra (max) | [独立复现](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) |
+| [FrontierMath](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) | 2024-11 | math, reasoning, research | saturating | 95.1% | claude-fable-5-2_max | [独立复现](https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2) |
 | [MMMU-Pro](https://mmmu-benchmark.github.io/#leaderboard) | 2024-09 | multimodal, knowledge, reasoning | active | 86.9% | Chance Vision 1.5 | [厂商自报](https://mmmu-benchmark.github.io/) |
 | [MMLU-Pro](https://huggingface.co/spaces/TIGER-Lab/MMLU-Pro) | 2024-06 | knowledge, reasoning | saturating | 91% | Gemini 3.1 Pro (High) | [独立复现](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) |
 | [RULER](https://github.com/NVIDIA/RULER) | 2024-04 | long-context | saturating | 95.1% | Jamba-1.5-large | [官方榜单](https://github.com/NVIDIA/RULER) |
@@ -51,7 +51,7 @@
 | [BFCL](https://gorilla.cs.berkeley.edu/leaderboard.html) | 2024-02 | tool-use | active | 77.47% | Claude-Opus-4-5-20251101 (FC) | [官方榜单](https://gorilla.cs.berkeley.edu/leaderboard.html) |
 | [MMMU](https://mmmu-benchmark.github.io/#leaderboard) | 2023-11 | multimodal, knowledge, reasoning | saturating | 85.4% | GPT-5.1 | [厂商自报](https://mmmu-benchmark.github.io/) |
 | [IFEval](https://github.com/google-research/google-research/tree/master/instruction_following_eval) | 2023-11 | instruction-following | saturating | 95% | Qwen3.5-27B | [厂商自报](https://huggingface.co/Qwen/Qwen3.5-27B) |
-| [GPQA Diamond](https://github.com/idavidrein/gpqa) | 2023-11 | science, reasoning, knowledge | saturating | 96.4% | gemini-4-argon_high | [独立复现](https://epoch.ai/benchmarks/gpqa-diamond) |
+| [GPQA Diamond](https://github.com/idavidrein/gpqa) | 2023-11 | science, reasoning, knowledge | saturating | 96.5% | gemini-4-carbon_high | [独立复现](https://epoch.ai/benchmarks/gpqa-diamond) |
 | [LMArena Text](https://lmarena.ai/leaderboard/text) | 2023-05 | human-preference, general-assistant | active | 1466 | gemini-2.5-pro | [官方榜单](https://huggingface.co/spaces/lmarena-ai/arena-leaderboard) |
 | *已饱和或退役 —— 不再用于比较前沿系统。所示分数为最后一次报告值，不是榜首。* | | | | | | |
 | [AIME 2025](https://matharena.ai/) | 2025-02 | math, reasoning | saturated | 最后报告 100% | GPT-5.2 (high) | [独立复现](https://matharena.ai/) |

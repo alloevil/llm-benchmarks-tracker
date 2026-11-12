@@ -80,6 +80,20 @@
         "tools": true,
         "notes": "Epoch AI Benchmarking Hub (run started 2026-08-30, published with the model on 2026-09-03), stderr 1.4; Tier 4 (v2): 95.1 at max, 97.6 at medium effort."
       }
+    },
+    {
+      "system": "claude-fable-5-2_max",
+      "developer": "Anthropic",
+      "value": 95.1,
+      "date": "2026-11-06",
+      "source": {
+        "url": "https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2",
+        "kind": "independent-evaluation",
+        "accessed": "2026-11-12"
+      },
+      "conditions": {
+        "notes": "Epoch AI independent run (Inspect). Added automatically by scripts/sync_ledgers.py."
+      }
     }
   ]
 }
