@@ -1,0 +1,14 @@
+{
+  "id": "aihot",
+  "name": "AIHOT Model Leaderboard",
+  "kind": "aggregator",
+  "maintainer": "AIHOT",
+  "released": "2026-08",
+  "description": "Chinese-language leaderboard that combines publicly available scores measured by independent evaluators into an overall ranking and separate capability rankings. It links the original leaderboards and explains the score conversion and weighting.",
+  "description_zh": "中文模型榜单，将独立评测机构实测并公开的成绩折算为综合排名和分领域排名，提供原始榜单链接，并公开得分折算和加权方法。",
+  "status": "active",
+  "methodology": "collected",
+  "links": {
+    "website": "https://aihot.news/leaderboard"
+  }
+}

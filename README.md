@@ -27,7 +27,7 @@
 For every benchmark: what it tests, whether it still discriminates between frontier systems (`status`), how exposed its test set is (`contamination_risk`), a measured human baseline when one exists, and who reported the top score under which conditions.
 
 <!-- gen:stats -->
-**31** model benchmarks · **23** agent benchmarks · **18** evaluators · **255** sourced results · data as of 2026-11-12
+**31** model benchmarks · **23** agent benchmarks · **19** evaluators · **255** sourced results · data as of 2026-11-12
 <!-- /gen:stats -->
 
 **Why another list?** Most benchmark pages copy vendor slide numbers with no provenance. Here every result row carries a source URL, a source *kind* (official leaderboard / paper / independent re-run / developer self-report / aggregator), the access date, and the evaluation conditions the source stated (tools, reasoning effort, scaffold, pass@k) — an unstated condition is left empty, never guessed. Numbers without a source do not get in.
@@ -153,6 +153,7 @@ Frameworks you run, leaderboards run by maintainers, organisations that independ
 | [Epoch AI Benchmarking Hub](https://epoch.ai/benchmarks) | independent-evaluator | Epoch AI | self-run | active |
 | [Scale SEAL Leaderboards](https://scale.com/leaderboard) | independent-evaluator | Scale AI (SEAL Research Lab) | self-run | active |
 | [Vals AI](https://www.vals.ai) | independent-evaluator | Vals AI | self-run | active |
+| [AIHOT Model Leaderboard](https://aihot.news/leaderboard) | aggregator | AIHOT | collected | active |
 | [BenchLM](https://benchlm.ai) | aggregator | BenchLM.ai (independent, maintained by @glevd) | collected | active |
 <!-- /gen:evaluators -->
 
@@ -166,7 +167,7 @@ Frameworks you run, leaderboards run by maintainers, organisations that independ
 - **2023** — AgentBench, DeepEval (framework), GAIA, GPQA Diamond, IFEval, LMArena (leaderboard), LMArena Text, MMMU, Open LLM Leaderboard (leaderboard), OpenAI Evals (framework), OpenCompass (framework), SWE-bench, WebArena
 - **2024** — Aider Polyglot, AndroidWorld, Artificial Analysis (independent-evaluator), BFCL, Cybench, Epoch AI Benchmarking Hub (independent-evaluator), EvalScope (framework), FrontierMath, Inspect AI (framework), Lighteval (framework), LiveBench (leaderboard), LiveCodeBench, MLE-bench, MMLU-Pro, MMMU-Pro, OSWorld, RULER, Scale SEAL Leaderboards (independent-evaluator), SimpleQA, SWE-bench Verified, tau-bench, Vals AI (independent-evaluator), VisualWebArena
 - **2025** — AA-Omniscience, AIME 2025, ARC-AGI-2, BenchLM (aggregator), BrowseComp, DeepSearchQA, FieldWorkArena, GDPval, HealthBench, Holistic Agent Leaderboard (HAL) (leaderboard), Humanity's Last Exam, PaperBench, ScreenSpot-Pro, SWE-bench Multilingual, SWE-Bench Pro, SWE-rebench (leaderboard), tau2-bench, Tool Decathlon (Toolathlon)
-- **2026** — ARC-AGI-3, AutomationBench, BenchCAD, OSWorld 2.0, Terminal-Bench
+- **2026** — AIHOT Model Leaderboard (aggregator), ARC-AGI-3, AutomationBench, BenchCAD, OSWorld 2.0, Terminal-Bench
 <!-- /gen:timeline -->
 
 ## Data model
