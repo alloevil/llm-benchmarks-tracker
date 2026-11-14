@@ -22,7 +22,7 @@
 对每个基准记录：它测什么、是否仍能区分前沿系统（`status`）、测试集暴露程度（`contamination_risk`）、有出处的人类基线（若存在），以及最高分由谁、在什么条件下报告。
 
 <!-- gen:stats -->
-**31** 个模型基准 · **23** 个 Agent 基准 · **18** 个评测方 · **255** 条有来源的结果 · 数据截至 2026-11-12
+**31** 个模型基准 · **23** 个 Agent 基准 · **19** 个评测方 · **255** 条有来源的结果 · 数据截至 2026-11-12
 <!-- /gen:stats -->
 
 **为什么再做一个列表？** 多数基准页面照搬厂商幻灯片上的数字，没有出处。这里每一行结果都带有来源 URL、来源类型（官方榜单 / 论文 / 独立复现 / 厂商自报 / 聚合站）、访问日期，以及来源写明的评测条件（工具、推理强度、scaffold、pass@k）——来源没写的就留空，绝不猜。没有来源的数字不收录。
@@ -125,6 +125,7 @@
 | [Epoch AI Benchmarking Hub](https://epoch.ai/benchmarks) | independent-evaluator | Epoch AI | self-run | active |
 | [Scale SEAL Leaderboards](https://scale.com/leaderboard) | independent-evaluator | Scale AI (SEAL Research Lab) | self-run | active |
 | [Vals AI](https://www.vals.ai) | independent-evaluator | Vals AI | self-run | active |
+| [AIHOT Model Leaderboard](https://aihot.news/leaderboard) | aggregator | AIHOT | collected | active |
 | [BenchLM](https://benchlm.ai) | aggregator | BenchLM.ai (independent, maintained by @glevd) | collected | active |
 <!-- /gen:evaluators -->
 
@@ -138,7 +139,7 @@
 - **2023** — AgentBench, DeepEval (framework), GAIA, GPQA Diamond, IFEval, LMArena (leaderboard), LMArena Text, MMMU, Open LLM Leaderboard (leaderboard), OpenAI Evals (framework), OpenCompass (framework), SWE-bench, WebArena
 - **2024** — Aider Polyglot, AndroidWorld, Artificial Analysis (independent-evaluator), BFCL, Cybench, Epoch AI Benchmarking Hub (independent-evaluator), EvalScope (framework), FrontierMath, Inspect AI (framework), Lighteval (framework), LiveBench (leaderboard), LiveCodeBench, MLE-bench, MMLU-Pro, MMMU-Pro, OSWorld, RULER, Scale SEAL Leaderboards (independent-evaluator), SimpleQA, SWE-bench Verified, tau-bench, Vals AI (independent-evaluator), VisualWebArena
 - **2025** — AA-Omniscience, AIME 2025, ARC-AGI-2, BenchLM (aggregator), BrowseComp, DeepSearchQA, FieldWorkArena, GDPval, HealthBench, Holistic Agent Leaderboard (HAL) (leaderboard), Humanity's Last Exam, PaperBench, ScreenSpot-Pro, SWE-bench Multilingual, SWE-Bench Pro, SWE-rebench (leaderboard), tau2-bench, Tool Decathlon (Toolathlon)
-- **2026** — ARC-AGI-3, AutomationBench, BenchCAD, OSWorld 2.0, Terminal-Bench
+- **2026** — AIHOT Model Leaderboard (aggregator), ARC-AGI-3, AutomationBench, BenchCAD, OSWorld 2.0, Terminal-Bench
 <!-- /gen:timeline -->
 
 ## 数据模型
