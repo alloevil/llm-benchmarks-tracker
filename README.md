@@ -27,7 +27,7 @@
 For every benchmark: what it tests, whether it still discriminates between frontier systems (`status`), how exposed its test set is (`contamination_risk`), a measured human baseline when one exists, and who reported the top score under which conditions.
 
 <!-- gen:stats -->
-**31** model benchmarks · **23** agent benchmarks · **18** evaluators · **255** sourced results · data as of 2026-11-12
+**31** model benchmarks · **24** agent benchmarks · **18** evaluators · **277** sourced results · data as of 2026-11-20
 <!-- /gen:stats -->
 
 **Why another list?** Most benchmark pages copy vendor slide numbers with no provenance. Here every result row carries a source URL, a source *kind* (official leaderboard / paper / independent re-run / developer self-report / aggregator), the access date, and the evaluation conditions the source stated (tools, reasoning effort, scaffold, pass@k) — an unstated condition is left empty, never guessed. Numbers without a source do not get in.
@@ -103,6 +103,7 @@ Interactive environments where the system acts, uses tools, and is scored on tas
 <!-- gen:agent -->
 | Benchmark | Released | Domains | Status | Top score | System | Source |
 |---|---|---|---|---|---|---|
+| [EC²-Bench](https://github.com/OpenBMB/EC2-Bench#leaderboard) | 2026-10 | tool-use, general-assistant, safety | active | 82.7% | GLM-5.3 | [paper](https://arxiv.org/html/2610.17816v2#S5.T2) |
 | [OSWorld 2.0](https://osworld-v2.xlang.ai/) | 2026-06 | computer-use, multimodal, tool-use | active | 72.6% (offline) | GPT-6 Astra | [self-reported](https://openai.com/index/gpt-6-astra/) |
 | [AutomationBench](https://zapier.com/benchmarks) | 2026-04 | tool-use, general-assistant, instruction-following | active | 50.3% (public) | Claude Opus 5 (max) | [official](https://github.com/zapier/AutomationBench) |
 | [ARC-AGI-3](https://arcprize.org/leaderboard) | 2026-03 | reasoning, tool-use | saturating | 99.9% | GPT-6 Astra (high) | [official](https://arcprize.org/blog/astra) |
@@ -166,7 +167,7 @@ Frameworks you run, leaderboards run by maintainers, organisations that independ
 - **2023** — AgentBench, DeepEval (framework), GAIA, GPQA Diamond, IFEval, LMArena (leaderboard), LMArena Text, MMMU, Open LLM Leaderboard (leaderboard), OpenAI Evals (framework), OpenCompass (framework), SWE-bench, WebArena
 - **2024** — Aider Polyglot, AndroidWorld, Artificial Analysis (independent-evaluator), BFCL, Cybench, Epoch AI Benchmarking Hub (independent-evaluator), EvalScope (framework), FrontierMath, Inspect AI (framework), Lighteval (framework), LiveBench (leaderboard), LiveCodeBench, MLE-bench, MMLU-Pro, MMMU-Pro, OSWorld, RULER, Scale SEAL Leaderboards (independent-evaluator), SimpleQA, SWE-bench Verified, tau-bench, Vals AI (independent-evaluator), VisualWebArena
 - **2025** — AA-Omniscience, AIME 2025, ARC-AGI-2, BenchLM (aggregator), BrowseComp, DeepSearchQA, FieldWorkArena, GDPval, HealthBench, Holistic Agent Leaderboard (HAL) (leaderboard), Humanity's Last Exam, PaperBench, ScreenSpot-Pro, SWE-bench Multilingual, SWE-Bench Pro, SWE-rebench (leaderboard), tau2-bench, Tool Decathlon (Toolathlon)
-- **2026** — ARC-AGI-3, AutomationBench, BenchCAD, OSWorld 2.0, Terminal-Bench
+- **2026** — ARC-AGI-3, AutomationBench, BenchCAD, EC²-Bench, OSWorld 2.0, Terminal-Bench
 <!-- /gen:timeline -->
 
 ## Data model
