@@ -1,0 +1,335 @@
+{
+  "benchmark": "ec2-bench",
+  "results": [
+    {
+      "system": "Qwen3.5-2B",
+      "developer": "Qwen Team",
+      "value": 12.75,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge-only. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-9B",
+      "developer": "Qwen Team",
+      "value": 39.12,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge-only. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-27B",
+      "developer": "Qwen Team",
+      "value": 61.79,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge-only. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.7-Plus",
+      "developer": "Qwen Team",
+      "value": 71.34,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge-only. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "DeepSeek-v4-Pro",
+      "developer": "DeepSeek",
+      "value": 72.9,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Cloud-only. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "GLM-5.3",
+      "developer": "Z.ai",
+      "value": 82.7,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Cloud-only. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-2B + GLM-5.3 (Query Routing)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 23.98,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-2B. Cloud: GLM-5.3. Strategy: Query Routing. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-2B + GLM-5.3 (Per-step Routing)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 39.97,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-2B. Cloud: GLM-5.3. Strategy: Per-step Routing. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-2B + GLM-5.3 (Edge-Ctrl. Delegation)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 15.86,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-2B. Cloud: GLM-5.3. Strategy: Edge-Ctrl. Delegation. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-2B + GLM-5.3 (Edge-Ctrl. Advisory)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 14.75,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-2B. Cloud: GLM-5.3. Strategy: Edge-Ctrl. Advisory. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-9B + GLM-5.3 (Query Routing)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 43.6,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-9B. Cloud: GLM-5.3. Strategy: Query Routing. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-9B + GLM-5.3 (Per-step Routing)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 52.71,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-9B. Cloud: GLM-5.3. Strategy: Per-step Routing. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-9B + GLM-5.3 (Edge-Ctrl. Delegation)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 52.88,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-9B. Cloud: GLM-5.3. Strategy: Edge-Ctrl. Delegation. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-9B + GLM-5.3 (Edge-Ctrl. Advisory)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 60.46,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-9B. Cloud: GLM-5.3. Strategy: Edge-Ctrl. Advisory. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-27B + GLM-5.3 (Query Routing)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 65.53,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-27B. Cloud: GLM-5.3. Strategy: Query Routing. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-27B + GLM-5.3 (Per-step Routing)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 68.42,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-27B. Cloud: GLM-5.3. Strategy: Per-step Routing. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-27B + GLM-5.3 (Edge-Ctrl. Delegation)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 69.06,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-27B. Cloud: GLM-5.3. Strategy: Edge-Ctrl. Delegation. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.5-27B + GLM-5.3 (Edge-Ctrl. Advisory)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 70.13,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.5-27B. Cloud: GLM-5.3. Strategy: Edge-Ctrl. Advisory. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.7-Plus + GLM-5.3 (Query Routing)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 73.17,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.7-Plus. Cloud: GLM-5.3. Strategy: Query Routing. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.7-Plus + GLM-5.3 (Per-step Routing)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 73.77,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.7-Plus. Cloud: GLM-5.3. Strategy: Per-step Routing. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.7-Plus + GLM-5.3 (Edge-Ctrl. Delegation)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 74.24,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.7-Plus. Cloud: GLM-5.3. Strategy: Edge-Ctrl. Delegation. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    },
+    {
+      "system": "Qwen3.7-Plus + GLM-5.3 (Edge-Ctrl. Advisory)",
+      "developer": "Qwen Team / Z.ai",
+      "value": 76.84,
+      "date": "2026-10-18",
+      "source": {
+        "url": "https://arxiv.org/html/2610.17816v2#S5.T2",
+        "kind": "paper",
+        "accessed": "2026-11-20"
+      },
+      "conditions": {
+        "scaffold": "OpenClaw",
+        "notes": "Edge: Qwen3.7-Plus. Cloud: GLM-5.3. Strategy: Edge-Ctrl. Advisory. Mean completion on all 128 tasks, averaged across three runs. GPT-5.4-mini for semantic grading."
+      }
+    }
+  ]
+}

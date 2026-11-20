@@ -1,0 +1,30 @@
+{
+  "id": "ec2-bench",
+  "name": "EC²-Bench",
+  "full_name": "Edge–Cloud Collaborative Agent Benchmark",
+  "layer": "agent",
+  "released": "2026-10",
+  "maintainer": "Huang et al. (OpenBMB/EC2-Bench)",
+  "description": "Evaluates long-horizon edge–cloud agents on 128 executable digital-workspace tasks in OpenClaw. Completion averages weighted task-specific checks over repeated runs. The paper compares edge-only and cloud-only execution with query routing, per-step routing, edge-controlled delegation and cloud advisory, and separately measures resource use and cloud exposure of sensitive information on 100 annotated tasks.",
+  "description_zh": "在 OpenClaw 中通过 128 个可执行数字工作空间任务评测端云协同智能体的长程执行。Completion 依据各任务的加权检查项评分并跨多次运行取平均。论文比较纯端侧、纯云侧、按查询路由、逐步路由、端侧控制的委派和云侧顾问，并另外评估资源用量及 100 个标注任务中敏感信息对云侧的暴露。",
+  "domains": [
+    "tool-use",
+    "general-assistant",
+    "safety"
+  ],
+  "metric": {
+    "name": "Mean task completion",
+    "unit": "percent",
+    "higher_is_better": true
+  },
+  "task_count": 128,
+  "status": "active",
+  "contamination_risk": "high",
+  "links": {
+    "paper": "https://arxiv.org/abs/2610.17816",
+    "dataset": "https://huggingface.co/datasets/chengpingan/EC2-Bench",
+    "code": "https://github.com/OpenBMB/EC2-Bench",
+    "leaderboard": "https://github.com/OpenBMB/EC2-Bench#leaderboard"
+  },
+  "notes": "Table 2 reports mean completion, Pass³, cost and privacy separately. The ledger records only mean completion for the listed configurations. The task suite and grading checks are public and fixed. The privacy subset is used for exposure measurement."
+}

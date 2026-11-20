@@ -22,7 +22,7 @@
 对每个基准记录：它测什么、是否仍能区分前沿系统（`status`）、测试集暴露程度（`contamination_risk`）、有出处的人类基线（若存在），以及最高分由谁、在什么条件下报告。
 
 <!-- gen:stats -->
-**31** 个模型基准 · **23** 个 Agent 基准 · **18** 个评测方 · **255** 条有来源的结果 · 数据截至 2026-11-12
+**31** 个模型基准 · **24** 个 Agent 基准 · **18** 个评测方 · **277** 条有来源的结果 · 数据截至 2026-11-20
 <!-- /gen:stats -->
 
 **为什么再做一个列表？** 多数基准页面照搬厂商幻灯片上的数字，没有出处。这里每一行结果都带有来源 URL、来源类型（官方榜单 / 论文 / 独立复现 / 厂商自报 / 聚合站）、访问日期，以及来源写明的评测条件（工具、推理强度、scaffold、pass@k）——来源没写的就留空，绝不猜。没有来源的数字不收录。
@@ -75,6 +75,7 @@
 <!-- gen:agent -->
 | Benchmark | 发布 | 领域 | 状态 | 最高分 | 系统 | 来源 |
 |---|---|---|---|---|---|---|
+| [EC²-Bench](https://github.com/OpenBMB/EC2-Bench#leaderboard) | 2026-10 | tool-use, general-assistant, safety | active | 82.7% | GLM-5.3 | [论文](https://arxiv.org/html/2610.17816v2#S5.T2) |
 | [OSWorld 2.0](https://osworld-v2.xlang.ai/) | 2026-06 | computer-use, multimodal, tool-use | active | 72.6% (offline) | GPT-6 Astra | [厂商自报](https://openai.com/index/gpt-6-astra/) |
 | [AutomationBench](https://zapier.com/benchmarks) | 2026-04 | tool-use, general-assistant, instruction-following | active | 50.3% (public) | Claude Opus 5 (max) | [官方榜单](https://github.com/zapier/AutomationBench) |
 | [ARC-AGI-3](https://arcprize.org/leaderboard) | 2026-03 | reasoning, tool-use | saturating | 99.9% | GPT-6 Astra (high) | [官方榜单](https://arcprize.org/blog/astra) |
@@ -138,7 +139,7 @@
 - **2023** — AgentBench, DeepEval (framework), GAIA, GPQA Diamond, IFEval, LMArena (leaderboard), LMArena Text, MMMU, Open LLM Leaderboard (leaderboard), OpenAI Evals (framework), OpenCompass (framework), SWE-bench, WebArena
 - **2024** — Aider Polyglot, AndroidWorld, Artificial Analysis (independent-evaluator), BFCL, Cybench, Epoch AI Benchmarking Hub (independent-evaluator), EvalScope (framework), FrontierMath, Inspect AI (framework), Lighteval (framework), LiveBench (leaderboard), LiveCodeBench, MLE-bench, MMLU-Pro, MMMU-Pro, OSWorld, RULER, Scale SEAL Leaderboards (independent-evaluator), SimpleQA, SWE-bench Verified, tau-bench, Vals AI (independent-evaluator), VisualWebArena
 - **2025** — AA-Omniscience, AIME 2025, ARC-AGI-2, BenchLM (aggregator), BrowseComp, DeepSearchQA, FieldWorkArena, GDPval, HealthBench, Holistic Agent Leaderboard (HAL) (leaderboard), Humanity's Last Exam, PaperBench, ScreenSpot-Pro, SWE-bench Multilingual, SWE-Bench Pro, SWE-rebench (leaderboard), tau2-bench, Tool Decathlon (Toolathlon)
-- **2026** — ARC-AGI-3, AutomationBench, BenchCAD, OSWorld 2.0, Terminal-Bench
+- **2026** — ARC-AGI-3, AutomationBench, BenchCAD, EC²-Bench, OSWorld 2.0, Terminal-Bench
 <!-- /gen:timeline -->
 
 ## 数据模型
